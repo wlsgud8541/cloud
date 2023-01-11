@@ -13,7 +13,7 @@
 	class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 		<div class="col-4 offset-md-2">
 		    <label for="mhfNo" class="form-label">글번호</label><!-- for는 아래 input의 id값과 동일시 하자 그럼 앨 찍어도 아래 인풋에 포커스가 간다 -->
-		    <input type="text"class="form-control" name="mhfNo" id="writer" value="${mhfind.mhfNo}" readonly>
+		    <input type="text"class="form-control" name="mhfNo" id="mhfNo" value="${mhfind.mhfNo}" readonly>
 	  	</div>
 		<div class="col-4 offset-md-2">
 		    <label for="mhfWriter" class="form-label">글쓴이</label><!-- for는 아래 input의 id값과 동일시 하자 그럼 앨 찍어도 아래 인풋에 포커스가 간다 -->

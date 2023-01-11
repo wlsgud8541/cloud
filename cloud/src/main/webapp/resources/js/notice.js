@@ -499,8 +499,7 @@ $(document).ready(function(){
 					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMoth()+1)) + "-"
 										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
-										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
-										+(date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
+										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
  					var result =
 						'<div>'
 						+'<span>'+v.mhfComContent+'</span>'+'</div>'
@@ -518,7 +517,7 @@ $(document).ready(function(){
 	 				$("#comList").append(result);
 	 			
  				});
-				$("#commForm").slideUp(300)
+				$("#mhfcForm").slideUp(300)
 			},
 			"error":function(xhr, status){
 				console.log("error:");
@@ -529,45 +528,54 @@ $(document).ready(function(){
 	});
 	// 실종자 목격 게시판 댓글 수정버튼이 클릭 되었을때 이벤트
 	$(document).on("click","#mhfcUpdate", function(){
-		console.log($("#CommForm").css("display"));
+		console.log($("#mhfcForm").css("display"));
+		var mhfComNo = $(this).attr("data-mhfComNo");		
 		
-		console.log($(this).parents("#comList"));
-		var $comList = $(this).parent("#comList");
-		if($("#CommForm").is(":visible")){
+		var $comList = $(this).next();
+		if($("#mhfcForm").is(":visible")){
 			var $next = $comList.next();
-			if(! $next.is("#CommForm")){
-				$("#CommForm").slideUp(500);
+			if(! $next.is("#mhfcForm")){
+				$("#mhfcForm").slideUp(500);
 			}
 			setTimeout(function(){
-				$("#CommForm").insertAfter($comList).slideDown(500);
+				$("#mhfcForm").insertAfter($comList).slideDown(500);
 			},500);
 		}else{
-			$("#CommForm").removeClass("d-none").css("display","inline-block").insertAfter($comList).slideDown(500);
+			$("#mhfcForm").removeClass("d-none").css("display","none").insertAfter($comList).slideDown(500);
 		}
 		
-		$("#CommForm").find("form").attr({"id":"modifyForm","data-mhfNo":$(this).attr("data-mhfNo")});
+		$("#mhfcForm").find("form").attr("id","mhfModifyForm").attr("data-mhfComNo",mhfComNo).removeAttr("data-mhfNo");
 		
 		var mhfcModify = $(this).parent().parent().find("pre").text();
 		console.log("mhfcModify:"+mhfcModify);
 		$("#mhfComContent").val($.trim(mhfcModify));
 	});
+	
 	// 실종자 목격 게시판 댓글 수정 서브밋 될때 이벤트
 	
-	$(document).on("submit","#updateCom", function(){
-		if($("#updateContent").val().length < 1){
+	$(document).on("submit","#mhfModifyForm", function(evt){
+
+		evt.preventDefault();
+
+		var mhfComNo = $("#mhfModifyForm").attr("data-mhfComNo");
+
+		if($("#mhfComContent").val().length < 1){
 			alert("댓글이 입력되지 않았습니다.");
-			return false
+			return false;
 		}
 		
-		$CommForm = $("#CommForm").slideUp(500);
-		var param = $(this).serialize() + "&mhfComNo="+$(this).attr("data-mhfComNo");
+		$mhfcForm = $("#mhfcForm").slideUp(500);
+		
+		var param = $(this).serialize() + "&mhfComNo="+mhfComNo;
+		console.log("param:");
+		console.log(param);
 		
 		$.ajax({
-			"url":"mhfcUpdate",
-			"data":param,
-			"dataType":"json",
-			"type":"post",
-			"success":function(resultData){
+			url:"mhfcUpdate",
+			data:param,
+			dataType:"json",
+			type:"post",
+			success : function(resultData){
 				console.log(resultData);
 				
 				$("#comList").empty();
@@ -576,8 +584,7 @@ $(document).ready(function(){
 					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMoth()+1)) + "-"
 										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
-										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
-										+(date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
+										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;
 										
 					var result =
 							'<div>'
@@ -588,23 +595,77 @@ $(document).ready(function(){
 							+'<div>'
 							+'<span>'+tmpDate+'</span>'
 							+'</div>'
-							+'<button class="btn btn-outline-success btn-sm" data-no="'+v.mhfComNo+'">' 
+							+'<button class="btn btn-outline-success btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">' 
 								+'<i class="bi bi-journal-text">수정</i></button>'
-							+'<button class="btn btn-outline-warning btn-sm" data-no="'+v.mhfComNo+'">' 
+							+'<button class="btn btn-outline-warning btn-sm" data-no="'+v.mhfComNo+'" id="mhfcDelete">' 
 								+'<i class="bi bi-trash">삭제</i></button>'
 		 					 				
 		 				$("#comList").append(result);					
 				});
 				
-				$("#updateContent").val("");
-				$CommForm.css("display","none");
-				$("#global" > div.col).append($CommForm);
+				$("#mhfComContent").val("");
+				$mhfcForm.css("display","none");
+				$("#global > div.col").append($mhfcForm);
+				
 			},
-			"error":function(xhr, status){
+			error : function(xhr, status){
 				alert("ajax 실패:" + status);
 			}
 		});
 		return false;
+	});
+	// 실종자 목격 게시판 댓글 삭제
+	$(document).on("click","#mhfcDelete",function(evt){
+		evt.preventDefault();
+		var mhfComNo = $(this).attr("data-mhfComNo");
+		var writer = $("#mhfComWriter").val();
+		var mhfNo = $("#mhfcForm input[name=mhfNo]").val();
+		var par = "mhfComNo=" + mhfComNo + "&mhfComWriter=" + writer + "&mhfNo=" + mhfNo
+		console.log(par);
+		var alram = confirm("댓글을 삭제하시겠습니까?");
+		if(alram){
+			$.ajax({
+				"url":"mhfcDelete",
+				"type":"post",
+				"data":par,
+				"dataType":"json",
+				"success":function(resultData){
+				console.log("resultData:");
+					console.log(resultData);
+					$("#comList").empty();
+				$.each(resultData, function(k, v) {
+					var date = new Date(v.mhfComRegDate);
+					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMoth()+1)) + "-"
+										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
+										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
+										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;
+										
+					var result =
+							'<div>'
+							+'<span>'+v.mhfComContent+'</span>'+'</div>'
+							+'<div>'
+							+'<span>'+v.mhfComWriter+'</span>'+'<br>'
+							+'</div>'
+							+'<div>'
+							+'<span>'+tmpDate+'</span>'
+							+'</div>'
+							+'<button class="btn btn-outline-success btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">' 
+								+'<i class="bi bi-journal-text">수정</i></button>'
+							+'<button class="btn btn-outline-warning btn-sm" data-no="'+v.mhfComNo+'" id="mhfcDelete">' 
+								+'<i class="bi bi-trash">삭제</i></button>'
+		 					 				
+		 				$("#comList").append(result);					
+				});
+				
+				$("#mhfComContent").val("");
+				},
+				"error":function(status, xhr){
+					alert("댓글 삭제 실패:"+ status + xhr.status);
+				}
+			});
+		
+			return false;
+		}; 
 	});
 	
 	// 건의사항 게시판 js

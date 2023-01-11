@@ -44,11 +44,11 @@
 								</div>
 							</div>
 						</c:forEach>
-				</div>
+				</div> 
 			</div>
 			</c:if>
 		
-		<div class="row my-3 d-none" id="CommForm">
+		<div class="row my-3 d-none" id="mhfcForm">
 			<div class="col">
 				<form name="WriteForm" id="WriteForm">
 					<input type="hidden" name="mhfNo" value="${mhfind.mhfNo}"/>
