@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- header  -->
 <div class="header">
-	<div class="row"> 
+	<div class="row">  
 		<div class="col-4 text-center">
 			<a href="main"><img src="resources/image/main/cloudLogo.png" style="width: 130px;"></a>
 		</div>
