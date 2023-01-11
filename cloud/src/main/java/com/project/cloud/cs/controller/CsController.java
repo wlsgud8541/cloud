@@ -188,7 +188,11 @@ public class CsController {
 	@RequestMapping("/mqModifyProcess")
 	@ResponseBody
 	public List<Mqna> mqUpdate(int mqNo, String mqTitle, String mqContent, String mqWriter) {
-
+		System.out.println("mqNo : "+mqNo);
+		System.out.println("mqTitle : "+mqTitle);
+		System.out.println("mqContent"+mqContent);
+		System.out.println("mqWriter : "+mqWriter);
+		
 		// Q&A 게시판 수정 처리
 		mqnaService.mqUpdate(mqNo, mqTitle, mqContent, mqWriter);
 		
