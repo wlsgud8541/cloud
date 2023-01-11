@@ -56,12 +56,12 @@
 		<interceptor>
 			<mapping path="/*Insert"/>
 			<mapping path="/*InsertProcess"/>
-			<mapping path="/*Update"/>
+			<!-- <mapping path="/*Update"/>
 			<mapping path="/*UpdateProcess"/>
 			<mapping path="/*Modify"/>
 			<mapping path="/*ModifyProcess"/>
 			<mapping path="/*Delete"/>
-			<mapping path="/*DeleteProcess"/>
+			<mapping path="/*DeleteProcess"/> -->
 			<beans:ref bean="globalInterceptor"/>
 		</interceptor>		
 	</interceptors>

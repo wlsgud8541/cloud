@@ -129,7 +129,6 @@ $(document).ready(function(){
 				$("#mqDiv"+mqNo).slideUp(300);
 			}
 		}
-		
 	});	
 
 	// qna게시판 수정 버튼 클릭시 
@@ -139,7 +138,7 @@ $(document).ready(function(){
 		var beforeCont = $("#beforeCont"+mqNo).html();
 		
 		// 수정 버튼시 : updateSuccess 클래스 포함 여부로 확인
-		if($(this).hasClass("updateSuccess") == false){
+		if($(this).hasClass("updateSuccess") === false){
 			if(!($("#mqDiv"+mqNo).is(":visible"))){
 				$("#mqDiv"+mqNo).slideDown(300);
 				$("#mqDiv"+mqNo).css("display", "block");	
@@ -150,13 +149,13 @@ $(document).ready(function(){
 			$("#mqDiv"+mqNo).empty();
 			
 			var tag1 = '<span class="member">'
-					 + '	<input type="text" id="mqTitle' + mqNo + '" class="form-control" value="' + beforeTitle + '">'
-					 + '</span>';
+					 + '	<input type="text" id="beforeTitle' + mqNo + '" class="form-control" value="' + beforeTitle + '">'
+					 + '</span>'
 			
 			var tag2 =  '<div class="col p-3">'
-					  + '	<input type="text" id="mqContent' + mqNo + '" class="form-control" value="' + beforeCont + '">'
-					  + '</div>';
-					  
+					  + '	<input type="text" id="beforeCont' + mqNo + '" class="form-control" value="' + beforeCont + '">'
+					  + '</div>'
+					  ;
 					  
 			$(this).addClass("updateSuccess");
 			$(this).children().html("수정완료");
@@ -165,10 +164,11 @@ $(document).ready(function(){
 		
 		// 수정 완료 버튼시 : updateSuccess 클래스 포함 여부로 확인
 		}else{
-			var mqTitle = $("#mqTitle"+mqNo).val();
-			var mqContent = $("#mqContent"+mqNo).val();
+			var mqTitle = $("#beforeTitle"+mqNo).val();
+			var mqContent = $("#beforeCont"+mqNo).val();
 			var mqWriter = $("#mqWriter"+mqNo).val();
-			var sessionId = $("#sessionId").val();
+			
+			console.log("mqWriter : "+mqWriter);
 			
 			var params = {
 							mqNo : mqNo
@@ -197,7 +197,7 @@ $(document).ready(function(){
 
 
 						var tag = '<div class="row border border-top-0">'
-							  +'   <input type="hidden" class="form-control" name="mqWriter" id="mqWriter'+data.mqNo+'" value="'+sessionId+'">'
+							  +'     <input type="hidden" class="form-control" name="mqWriter" id="mqWriter'+data.mqNo+'" value="${sessionScope.userId}">'
 							  +'	 <div class="col">'
 							  +'		<div class="row bg-light p-2">'
 							  +'			<div id="mqTilte' + data.mqNo + '" class="mqTilte col-4">'
@@ -240,7 +240,7 @@ $(document).ready(function(){
 	
 	// 삭제 버튼 클릭시
 	$(document).on("click",".mqDelete",function(){
-		var sessionId = $("#sessionId").val();
+	
 		var delCk = confirm("해당 게시글이 삭제됩니다. 정말 삭제하시겠습니까?");
 
 		if(delCk){
@@ -248,7 +248,7 @@ $(document).ready(function(){
 			var params = {
 						mqNo : mqNo
 						};
-			 
+			
 			$.ajax({
 				url : "mqDeleteProcess",
 				type : "POST",
@@ -268,7 +268,7 @@ $(document).ready(function(){
 	
 	
 						var tag = '<div class="row border border-top-0">'
-							  +'   <input type="hidden" class="form-control" name="mqWriter" id="mqWriter'+data.mqNo+'" value="'+sessionId+'">'
+							  +'     <input type="hidden" class="form-control" name="mqWriter" id="mqWriter'+data.mqNo+'" value="${sessionScope.userId}">'
 							  +'	 <div class="col">'
 							  +'		<div class="row bg-light p-2">'
 							  +'			<div id="mqTilte' + data.mqNo + '" class="mqTilte col-4">'

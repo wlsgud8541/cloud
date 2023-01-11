@@ -11,7 +11,6 @@
 	</div>
 	<div class="row mb-3">
 		<div class="col" id="qnaList">
-			<input type="hidden" id="sessionId" value="${sessionScope.userId}">
 			<c:forEach var="mqList" items="${mQnaList}" >
 				<div class="row border border-top-0">
 					<input type="hidden" class="form-control" name="mqWriter" id="mqWriter${mqList.mqNo}" value="${sessionScope.userId}">
