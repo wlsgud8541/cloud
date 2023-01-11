@@ -20,7 +20,7 @@ $(document).ready(function(){
 			alert("작성자가 입력되지 않았습니다.");
 			return false;
 		}
-		
+		 
 		// 글 제목 체크
 		if(title == null){
 			alert("제목이 입력되지 않았습니다.");
