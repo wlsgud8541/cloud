@@ -36,7 +36,9 @@
 <body>
 	<div>
 		<%@ include file="template/header.jsp" %>
-		<jsp:include page="${ param.body }" />
+		<div style="margin-top: 220px;">
+			<jsp:include page="${ param.body }" />
+		</div>
 		<%@ include file="template/footer.jsp" %>
 	</div>
     <script src="resources/bootstrap/bootstrap.bundle.min.js"></script>	
