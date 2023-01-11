@@ -61,7 +61,7 @@
 									content LIKE CONCAT('%', #{keyWord}, '%')
 								</if>		                    	
 		                    ORDER BY mreNo DESC
-		                    )
+		                    ) 
 		            )
 		WHERE rNum BETWEEN #{startRow} AND #{startRow} + #{pageSize} - 1
 	</select>

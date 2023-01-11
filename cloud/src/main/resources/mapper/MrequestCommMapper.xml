@@ -26,7 +26,7 @@
 		FROM MREQUESTCOMM
 		WHERE mreComNo = #{mreNo}
 			ORDER BY mreComNo DESC
-	</select>
+	</select> 
 	 -->
 	<select id="mrcSelectDetail" resultType="MrequestComm">
 		SELECT  mreNo,
