@@ -15,7 +15,7 @@ $(document).ready(function(){
 		var mhrage = $("#mhrage").val();
 		var mhrNation = $("#mhrNation").val();
 		
-		// 작성자 체크
+		// 작성자 체크 
 		if(writer == null){
 			alert("작성자가 입력되지 않았습니다.");
 			return false;

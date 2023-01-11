@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="w3-content row">
 		${mppDetail.mppNo}
 		${mppDetail.mppTitle}
 		
@@ -39,6 +40,6 @@
 			<input type="button" value="목록보기" class="btn btn-primary" onclick="location.href='mppSelectList?pageNum=${pageNum}'"/>			
 		</div>
 		
-		
+		</div>
 </body>
 </html>

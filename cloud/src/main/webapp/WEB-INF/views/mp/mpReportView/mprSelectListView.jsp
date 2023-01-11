@@ -1,19 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div class="row">
+
+<!-- 반려동물 정보 -->
+
+	<div class="w3-content row">
 		<div class="row my-3">
 			<div class="col text-end">
 				<a href="mprInsert" class="btn btn-outline-success">글쓰기</a>
 			</div>
 		</div>
-
+		<h1>반려동물 신고 게시판</h1>
 	<c:forEach var="mprSelectList" items="${mprSelectList}">
 		${mprSelectList.mprNo}
 		<a href="mprSelectDetail?mprNo=${mprSelectList.mprNo}&pageNum=${mprModel.currentPage}">${mprSelectList.mprTitle}</a>
@@ -57,5 +53,3 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>

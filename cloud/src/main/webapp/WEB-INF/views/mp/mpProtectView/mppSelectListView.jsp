@@ -1,19 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div class="row">
+
+	<div class="w3-content row">
 		<div class="row my-3">
 			<div class="col text-end">
 				<a href="mppInsert" class="btn btn-outline-success">글쓰기</a>
 			</div>
 		</div>
 
+	<h2>반려동물 임시보호 게시판</h2>
 	<c:forEach var="mppSelectList" items="${mppSelectList}">
 		${mppSelectList.mppNo}
 		<a href="mppSelectDetail?mppNo=${mppSelectList.mppNo}&pageNum=${mppModel.currentPage}">${mppSelectList.mppTitle}</a>
