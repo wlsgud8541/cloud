@@ -32,32 +32,44 @@
 			</c:if>
 		</div>
 	</div>
-	<c:if test="mhrSelectlist">
-	<div class="row p-4 text-center" style="background-color:#820101;">
-		<div class="ms-5">
-			<div class="col text-white fs-5">
-				<a href="mhrSelectList"><span>실종자 신고게시판</span></a>&nbsp;|&nbsp;
-				<a href="mprSelectList"><span>반려동물 목록신고게시판</span></a>&nbsp;|&nbsp;
-				<a href="mppSelectList"><span>반려동물 임시보호게시판</span></a>&nbsp;|&nbsp;
-				<a href="mnSelectList"><span>공지사항</span></a>&nbsp;|&nbsp;
-				<a href="mqSelectList"><span>Q&A 게시판</span></a>&nbsp;|&nbsp;
-				<a href="mrSelectList"><span>건의게시판</span></a>
-			</div>
+	<div class="row fs-5 text-center" style="background-color:#285430;">
+		<div class="col ">
+			<ul class="navi">
+				<li><a href="#">사이트소개</a>
+					<ul>
+						<li><a href="#">사이트 목적</a></li>
+						<li><a href="#">제휴 사이트</a></li>
+					</ul>
+				</li>
+				<li><a href="mhrSelectList">실종자신고</a>
+					<ul>
+						<li><a href="mhrSelectList">실종자 정보</a></li>
+						<li><a href="mhrSelectList">실종자 신고</a></li>
+						<li><a href="mhrSelectList">실종자 목격</a></li>
+					</ul>
+				</li>
+				<li><a href="mprSelectList">반려동물신고</a>
+					<ul>
+						<li><a href="mprSelectList">실종 반려동물 신고</a></li>
+						<li><a href="mppSelectList">실종 반려동물 임시보호</a></li>
+						<li><a href="mprSelectList">실종 반려동물 목격</a></li>
+					</ul>
+				</li>
+				<li><a href="mnSelectList">고객지원</a>
+					<ul>
+						<li><a href="mnSelectList">공지사항</a></li>
+						<li><a href="mqSelectList">Q&A</a></li>
+						<li><a href="mrSelectList">건의사항</a></li>
+					</ul>
+				</li>
+				<li><a href="#">실시간서비스</a>
+					<ul>
+						<li><a href="#">실시간 동선체크</a></li>
+						<li><a href="#">반려동물 실시간 동선체크</a></li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 	</div>
-	</c:if>
-	<div class="row p-4 text-center" style="background-color:#285430;">
-		<div class="ms-5">
-			<div class="col text-white fs-5">
-				<a href="mhrSelectList"><span>실종자 신고게시판</span></a>&nbsp;|&nbsp;
-				<a href="mprSelectList"><span>반려동물 목록신고게시판</span></a>&nbsp;|&nbsp;
-				<a href="mppSelectList"><span>반려동물 임시보호게시판</span></a>&nbsp;|&nbsp;
-				<a href="mnSelectList"><span>공지사항</span></a>&nbsp;|&nbsp;
-				<a href="mqSelectList"><span>Q&A 게시판</span></a>&nbsp;|&nbsp;
-				<a href="mrSelectList"><span>건의게시판</span></a>
-			</div>
-		</div>
-	</div>
-	<div>
-	</div>
+	
 </div>

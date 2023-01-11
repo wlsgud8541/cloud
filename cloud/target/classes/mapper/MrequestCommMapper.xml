@@ -13,24 +13,10 @@
 		<result property="mreComDelYn" column="mreComDelYn"/>
 		<result property="mreComAddFile" column="mreComAddFile"/>
 	</resultMap>
-	<!-- 
-	<select id="mrcSelectList" resultType="MrequestComm">
-		SELECT mreComNo,
-				mreNo,
-				mreComRegDate,
-				mreComTitle,
-				mreComContent,
-				mreComWriter,
-				mreComDelYn,
-				mreComAddFile
-		FROM MREQUESTCOMM
-		WHERE mreComNo = #{mreNo}
-			ORDER BY mreComNo DESC
-	</select>
-	 -->
+	
+
 	<select id="mrcSelectDetail" resultType="MrequestComm">
-		SELECT  mreNo,
-				mreComNo,
+		SELECT mreComNo,
 				mreComTitle,
 				mreComRegDate,
 				mreComContent,
@@ -44,21 +30,20 @@
 	
 	<insert id="mrcInsert" parameterType="MrequestComm">
 		INSERT INTO MREQUESTCOMM(mreComNo,
-								mreComTitle,
 								mreComContent,
 								mreComWriter,
 								mreComRegDate,
 								mmNo,
 								mreNo
 								)
-		VALUES(mRequestComm_seq.NEXTVAL,
+		VALUES(mRequest_seq.NEXTVAL,
 				#{mreComTitle},
 				#{mreComContent},
 				#{mreComWriter},
 				SYSTIMESTAMP,
 				#{mmNo},
 				#{mreNo}
-				)
+				)				
 	</insert>
 	<update id="mrcUpdate" parameterType="MrequestComm">
 		UPDATE MREQUESTCOMM
@@ -74,5 +59,4 @@
 		WHERE mreComNo = #{mreComNo}
 	</update>
 </mapper>
-
 

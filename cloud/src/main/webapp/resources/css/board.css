@@ -166,17 +166,37 @@ table {
     font-style: normal;
 }
 body * {font-family:'NanumSquareNeo-Variable';}
-/* textarea{font-family:'NanumSquareNeo-Variable';} */
 a {text-decoration: none;}
-/* input{font-family:'NanumSquareNeo-Variable';} */
-/* /* list 검색 및 기타 버튼 */
-/*  .searchArea {margin:25px auto 120px; position: relative; width: 674px; height: 54px; border:1px solid #d0d0d0;} */
-/*  .searchArea input {padding:0 20px; width: 562px; height: 100%; background:#fff; border:0; font-size:17px; } */
-/*  .searchArea .search {position: absolute; top: 0; right: 0; width: 72px; height: 54px; display: block; text-indent: -9999px; background:url(https://ssl.nexon.com/s2/game/closers/site_renewal2020/common/btn/btn_search.png) no-repeat;} */
-
-/*  .searchArea.typeSelect {width: 674px; } */
-/*  .searchArea.typeSelect input {margin-left:103px; width: 459px; } */
-/*  .searchArea.typeSelect .customSelect {left:0px; top:0px; width:102px; height:54px; background:#fff;  border-right:1px solid #d0d0d0;} */
-/*  .searchArea.typeSelect  .customSelect .txt{padding-bottom:0; width:100%; height:100%; line-height:56px; background:url(https://ssl.nexon.com/s2/game/closers/site_renewal2020/common/ico/ico_arrow_btm.png) no-repeat 86px center; text-indent:10px; color:#232323; font-size:17px; text-align:left;} */
-/*  .searchArea .hashTxt {z-index: 50; position:absolute; left: 112px; top: 18px; font-size:17px; font-weight:400; color:#232323} */
-
+ul{
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+.navi > li{
+	float:left;
+}
+.navi > li > a{
+	padding: 10px 50px;
+	transition:all 0.5;
+}
+li a{
+	background-color:#285430;
+	font-weight:bold;
+	color:white;
+	display:block;
+	text-align:center;
+	padding:20px;
+}
+li a:hover{
+	background-color: white;
+	color:#285430;
+}
+.navi li ul{
+	display:none;
+	opacity:0;
+}
+.navi li:hover ul{
+	display:block;
+	opacity: 1;
+	transition: all 1s;
+}
