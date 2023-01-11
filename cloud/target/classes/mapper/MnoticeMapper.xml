@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="Mnotice">
+	<resultMap type="Mnotice" id="Mnotice">
+		<id property="mnNo" column="mnNo"/>
+		<result property="mnReadCnt" column="mnReadCnt"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mnRegDate" column="mnRegDate"/>
+		<result property="mnTitle" column="mnTitle"/>
+		<result property="mnContent" column="mnContent"/>
+		<result property="mnAddFile" column="mnAddFile"/>
+		<result property="mnWriter" column="mnWriter"/>
+		<result property="mnFixTopYn" column="mnFixTopYn"/>
+		<result property="mnDelYn" column="mnDelYn"/>
+		<result property="rNum" column="rNum"/>
+	</resultMap>
+	
+	<!-- 공지사항 게시판 리스트 조회 -->
+	<select id="mnSelectList" resultType="Mnotice" parameterType="hashmap">
+   		  SELECT rNum
+		         ,mnNo
+		         ,mnReadCnt
+				 ,mmNo
+				 ,mnRegDate
+				 ,mnTitle
+				 ,mnContent
+				 ,mnAddFile
+				 ,mnWriter
+				 ,mnFixTopYn
+				 ,mnDelYn
+	    	FROM (SELECT rownum as rNum
+		                ,mnNo
+						,mnReadCnt
+						,mmNo
+						,mnRegDate
+						,mnTitle
+						,mnContent
+						,mnAddFile
+						,mnWriter
+						,mnFixTopYn
+						,mnDelYn 
+		            FROM(SELECT mnNo
+		                       ,mnReadCnt
+		                       ,mmNo
+		                       ,mnRegDate
+		                       ,mnTitle
+		                       ,mnContent
+		                       ,mnAddFile
+		                       ,mnWriter
+		                       ,mnFixTopYn
+		                       ,mnDelYn
+		            	  FROM MNOTICE
+		             	 WHERE mnDelYn = 'N'
+	                      <if test="type=='title'">
+							title LIKE CONCAT('%', #{keyWord}, '%')
+						  </if>
+						  <if test="type=='writer'">
+							writer LIKE CONCAT('%', #{keyWord}, '%')
+						  </if>
+						  <if test="type=='content'">
+							content LIKE CONCAT('%', #{keyWord}, '%')
+						  </if>
+				    	ORDER BY mnNo DESC
+	               		 )
+	           		 )
+		    WHERE rnum BETWEEN #{startRow} AND #{startRow} + #{pageSize} - 1
+			     	
+			    
+	</select>
+
+	<!-- 공지사항 게시판 리스트 조회 -->
+	<select id="mnSelectListCount" resultType="int" parameterType="hashmap">
+		SELECT COUNT(*) AS cnt
+		FROM MNOTICE
+		WHERE mnDelYn = 'N'
+		<if test="type=='title'">
+			title LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+		<if test="type=='writer'">
+			title LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+		<if test="type=='content'">
+			title LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+	</select>
+
+	<!-- 공지사항 게시판 상세 글 조회 -->
+	<select id="mnSelectDetail" resultType="Mnotice" resultMap="Mnotice">
+		SELECT mnNo
+			  ,mnReadCnt
+			  ,mmNo
+			  ,mnRegDate
+			  ,mnTitle
+			  ,mnContent
+			  ,mnAddFile
+			  ,mnWriter
+			  ,mnFixTopYn
+			  ,mnDelYn
+		FROM MNOTICE
+		WHERE mnNo = #{mnNo}	  
+	</select>
+	
+	<insert id="mnInsert" parameterType="Mnotice">
+		INSERT INTO MNOTICE(mnNo
+						   ,mnTitle
+						   ,mnContent
+						   ,mnWriter
+						   ,mnRegDate
+						   ,mmNo
+						   ,mnFixTopYn
+						   <if test="mnAddFile != null">
+						   ,mnAddFile
+						   </if>
+						   )
+		VALUES( mNotice_seq.nextval
+			   ,#{mnTitle}
+			   ,#{mnContent}
+			   ,#{mnWriter}
+			   ,SYSTIMESTAMP
+			   ,#{mmNo}
+			   ,#{mnFixTopYn}
+			   <if test="mnAddFile != null">
+			   ,#{mnAddFile}
+			   </if>
+			   )
+	</insert>
+	
+	<update id="mnUpdate" parameterType="Mnotice">
+		UPDATE MNOTICE
+		SET mnTitle = #{mnTitle}
+		     ,mnContent = #{mnContent}
+		     ,mnFixTopYn = #{mnFixTopYn}
+		     ,mnRegDate = SYSTIMESTAMP
+		     <if test="mnAddFile != null">
+		     ,mnAddFile = #{mnAddFile}
+		     </if>
+		WHERE mnNo = #{mnNo}     
+	</update>
+	
+	<update id="mnDelete" parameterType="int">
+		UPDATE MNOTICE
+		SET mnDelYn = 'Y'
+		WHERE mnNo = #{mnNo}
+	</update>
+	
+	
+	<update id="mnReadCountUpdate">
+		UPDATE MNOTICE
+		SET mnReadCnt = (SELECT MAX(mnReadCnt)
+		 				 FROM MNOTICE
+        				 WHERE mnNo = #{mnNo}) + 1
+        WHERE mnNo = #{mnNo}				 
+	
+	</update>
+	
+</mapper>

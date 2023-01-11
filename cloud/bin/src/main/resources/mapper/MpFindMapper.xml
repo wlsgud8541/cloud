@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MpFind">
+	<resultMap type="MpFind" id="MpFind">
+		<id property="mpfNo" column="mpfNo"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mpfInfoDate" column="mpfInfoDate"/>
+		<result property="mpfRegDate" column="mpfRegDate"/>
+		<result property="mpfTitle" column="mpfTitle"/>
+		<result property="mpfContent" column="mpfContent"/>
+		<result property="mpfStatusCode" column="mpfStatusCode"/>
+		<result property="mpfLocalCode" column="mpfLocalCode"/>
+		<result property="mpfPetType" column="mpfPetType"/>
+		<result property="mpfAddFile" column="mpfAddFile"/>
+		<result property="mpfWriter" column="mpfWriter"/>
+		<result property="mpfDelYn" column="mpfDelYn"/>
+	</resultMap>
+</mapper>
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MpFindComm">
+	<resultMap type="MpFindComm" id="MpFindComm">
+		<id property="mpfComNo" column="mpfComNo"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mpfNo" column="mpfNo"/>
+		<result property="mpfComRegDate" column="mpfComRegDate"/>
+		<result property="mpfComContent" column="mpfComContent"/>
+		<result property="mpfComWriter" column="mpfComWriter"/>
+		<result property="mpfComDelYn" column="mpfComDelYn"/>
+	</resultMap>
+	
+	<select id="mpfcSelectList" resultType="MpFindComm">
+	SELECT
+		 mpfComWriter
+		,mpfComContent
+		,mpfComRegDate
+		,mpfComNo
+		,mpfNo
+		,mmNo
+	FROM
+		mpfindcomm
+	WHERE
+		mpfComDelYn = 'N' AND
+		mpfNo = #{mpfNo}
+	ORDER BY
+		mpfComNo DESC
+	</select>
+	<insert id="mpfcInsert" parameterType="MpFindComm">
+	INSERT INTO
+		mpfindComm(mpfComNo
+				  ,mpfComContent
+				  ,mpfComWriter
+				  ,mmNo
+				  ,mpfNo )
+	VALUES(mpFind_seq.NEXTVAL
+		   ,#{mpfComContent}
+		   ,#{mpfComWriter}
+		   ,#{mmNo}
+		   ,#{mpfNo})
+	</insert>
+	<update id="mpfcUpdate" parameterType="MpFindComm">
+		UPDATE MpFindComm
+		SET  mpfComContent = #{mpfComContent}
+			,mpfComRegDate = SYSDATE
+			
+		 WHERE mpfComNo = #{mpfComNo}
+		
+	</update>
+	
+	<update id="mpfcDelete" parameterType="int">
+	UPDATE MpFindComm
+	    set mpfcomdelyn = 'Y'
+	    WHERE mpfcomno = #{mpfcomno}
+	</update>
+	
+</mapper>

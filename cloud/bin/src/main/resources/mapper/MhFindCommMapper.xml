@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MhFindComm">
+	<resultMap type="MhFindComm" id="MhFindComm">
+		<id property="mhfComNo" column="mhfComNo"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mhfNo" column="mhfNo"/>
+		<result property="mhfComRegDate" column="mhfComRegDate"/>
+		<result property="mhfComContent" column="mhfComContent"/>
+		<result property="mhfComWriter" column="mhfComWriter"/>
+		<result property="mhfComDelYn" column="mhfComDelYn"/>
+	</resultMap>
+</mapper>
+

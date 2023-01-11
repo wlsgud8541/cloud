@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MhInfo">
+	<resultMap type="MhInfo" id="MhInfo">
+		<id property="mhiNo" column="mhiNo"/>
+		<result property="mhiOccrde" column="mhiOccrde"/>
+		<result property="mhiAlldressingDscd" column="mhiAlldressingDscd"/>
+		<result property="mhiAgeNow" column="mhiAgeNow"/>
+		<result property="mhiAge" column="mhiAge"/>
+		<result property="mhiWritingTrgetDscd" column="mhiWritingTrgetDscd"/>
+		<result property="mhiSexdstnDscd" column="mhiSexdstnDscd"/>
+		<result property="mhiOccrAres" column="mhiOccrAres"/>
+		<result property="mhiNm" column="mhiNm"/>
+		<result property="mhiTknphotolength" column="mhiTknphotolength"/>
+		<result property="mhiBdwgh" column="mhiBdwgh"/>
+	</resultMap>
+</mapper>
+
+

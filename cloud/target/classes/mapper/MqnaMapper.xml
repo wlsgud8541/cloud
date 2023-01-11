@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="Mqna">
+	<resultMap type="Mqna" id="Mqna">
+		<id property="mqNo" column="mqNo"/>
+		<result property="mqRegDate" column="mqRegDate"/>
+		<result property="mqTitle" column="mqTitle"/>
+		<result property="mqContent" column="mqContent"/>
+		<result property="mqWriter" column="mqWriter"/>
+		<result property="mqDelYn" column="mqDelYn"/>
+	</resultMap>
+	
+	<select id="mqSelectList" resultMap="Mqna" resultType="Mqna">
+		SELECT mqNo
+           	  ,mqTitle
+           	  ,mqContent
+              ,mqWriter
+              ,mqRegDate
+              ,mqDelYn
+          FROM MQNA
+         WHERE mqDelYn = 'N'
+         ORDER BY mqNo DESC
+	</select>
+	
+	<insert id="mqInsert" parameterType="Mqna">
+		INSERT INTO MQNA(mqNo
+						,mqWriter
+						,mqContent
+						,mqTitle)
+		VALUES (mqna_seq.nextval
+			   ,#{mqWriter}
+			   ,#{mqContent}
+			   ,#{mqTitle})				
+	</insert>
+	
+	<update id="mqUpdate" parameterType="hashmap">
+		UPDATE MQNA
+		SET mqTitle = #{mqTitle}
+		   ,mqContent = #{mqContent}
+		   ,mqRegDate = SYSTIMESTAMP
+		   ,mqWriter = #{mqWriter}
+		WHERE mqNo = #{mqNo}
+	</update>
+	
+	<update id="mqDelete" parameterType="int">
+		UPDATE MQNA
+		SET mqDelYn = 'Y'
+		WHERE mqNo = #{mqNo}
+	</update>
+	
+</mapper>

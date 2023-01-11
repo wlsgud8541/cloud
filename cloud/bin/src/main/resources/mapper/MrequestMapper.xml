@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="Mrequest">
+	<resultMap type="Mrequest" id="Mrequest">
+		<id property="mreNo" column="mreNo"/>
+		<result property="mreReadCnt" column="mreReadCnt"/>
+		<result property="mreRecoCnt" column="mreRecoCnt"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mreRegDate" column="mreRegDate"/>
+		<result property="mreTitle" column="mreTitle"/>
+		<result property="mreContent" column="mreContent"/>
+		<result property="mreAddFile" column="mreAddFile"/>
+		<result property="mreWriter" column="mreWriter"/>
+		<result property="mreSecretYn" column="mreSecretYn"/>
+		<result property="mreReplyCode" column="mreReplyCode"/>
+		<result property="mreDelYn" column="mreDelYn"/>
+	</resultMap>
+	<select id="mrSelectList" resultType="Mrequest" parameterType="hashmap">
+		SELECT mreNo,
+			   mreReadCnt,
+			   mreRecoCnt,
+			   mreRegDate,
+			   mreTitle,
+			   mreWriter,
+			   mreReplyCode,
+			   mreDelYn
+		FROM MREQUEST
+		WHERE mreDelYn = 'N'
+		ORDER BY mreNo DESC
+	</select>
+	<select id="mrSelectDetail" resultType="Mrequest">
+		SELECT mreNo,
+				mreReadCnt,
+				mreRecoCnt,
+				mreRegDate,
+				mreTitle,
+				mreContent,
+				mreAddFile,
+				mreWriter,
+				mreReplyCode,
+				mreDelYn
+		FROM MREQUEST
+		WHERE mreNo = #{mreNo}	
+	</select>
+	<insert id="mrInsert" parameterType="Mrequest">
+		INSERT INTO MREQUEST(mreNo,
+								mreTitle,
+								mreContent,
+								mreWriter,
+								mreRegDate,
+								mmNo
+								)
+		VALUES(mRequest_seq.NEXTVAL,
+				#{mreTitle},
+				#{mreContent},
+				#{mreWriter},
+				SYSTIMESTAMP,
+				#{mmNo}
+				)						
+	</insert>
+	<update id="mrUpdate" parameterType="Mrequest">
+		UPDATE MREQUEST
+		SET mreTitle = #{mreTitle},
+			mreContent = #{mreContent},
+			mreRegDate = SYSTIMESTAMP
+		WHERE mreNo = #{mreNo}
+	</update>
+	
+	<update id="mrDelete" parameterType="int">
+		UPDATE MREQUEST
+		SET mreDelYn = 'Y'
+		WHERE mreNo = #{mreNo}
+	</update>
+</mapper>
+

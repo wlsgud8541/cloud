@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MpReport">
+	<resultMap type="MpReport" id="MpReport">
+		<id property="mprNo" column="mprNo"/>
+		<result property="mprReadCnt" column="mprReadCnt"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mprInfoDate" column="mprInfoDate"/>
+		<result property="mprRegDate" column="mprRegDate"/>
+		<result property="mprTitle" column="mprTitle"/>
+		<result property="mprContent" column="mprContent"/>
+		<result property="mprStatusCode" column="mprStatusCode"/>
+		<result property="mprLocalCode" column="mprLocalCode"/>
+		<result property="mprPetType" column="mprPetType"/>
+		<result property="mprAddFile" column="mprAddFile"/>
+		<result property="mprWriter" column="mprWriter"/>
+		<result property="mprDelYn" column="mprDelYn"/>
+		<result property="mprGen" column="mprGen"/>
+		<result property="rNum" column="rNum"/>
+	</resultMap>
+	
+	<!-- 리스트 조회 -->
+	<select id="mprSelectList" resultType="MpReport">
+		SELECT rNum
+		     , mprNo
+		     , mprReadCnt
+		     , mprRegDate
+		     , mprTitle
+		     , mprWriter
+		  FROM (SELECT rownum as rNum
+		             , mprNo
+		             , mprReadCnt
+		             , mprRegDate
+		             , mprTitle
+		             , mprWriter
+				FROM(SELECT mprNo
+		                  , mprReadCnt
+		                  , mprRegDate
+		                  , mprTitle
+		                  , mprWriter
+		               FROM mpReport
+		              WHERE mprDelYn = 'N'
+		              <if test="type=='title'">
+						  title LIKE CONCAT('%', #{keyWord}, '%')
+					  </if>
+					  <if test="type=='writer'">
+						  writer LIKE CONCAT('%', #{keyWord}, '%')
+					  </if>
+					  <if test="type=='content'">
+						  content LIKE CONCAT('%', #{keyWord}, '%')
+					  </if>
+		        ORDER BY mprNo DESC))
+		WHERE rNum between ${startRow} and ${startRow} + ${pageSize}
+	</select>
+	
+	<!-- 리스트 디테일 조회 -->
+	<select id="mprSelectDetail" resultType="MpReport" resultMap="MpReport">
+		SELECT
+		    mprNo,mprReadCnt,
+		    mprInfoDate,mprRegDate,
+		    mprTitle,mprContent,
+		    mprStatusCode,mprLocalCode,
+		    mprPetType,mprWriter,mprGen,mprAddFile
+		FROM
+		    mpReport
+		WHERE
+			mprNo = #{mprNo}
+		ORDER BY mprNo DESC
+	</select>
+	
+	<!-- 리스트 카운트 조회 -->
+	<select id="mprSelectListCount" resultType="int" parameterType="hashmap">
+		SELECT COUNT(*) AS cnt
+		FROM MpReport
+		WHERE mprDelYn = 'N'
+		<if test="type=='title'">
+			title LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+		<if test="type=='writer'">
+			writer LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+		<if test="type=='content'">
+			content LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+	</select>
+	
+	<!-- 글쓰기 -->
+	<insert id="mprInsert" parameterType="MpReport">
+		INSERT INTO mpreport(mprNo
+								,mprTitle
+								,mprContent
+			                    ,mprInfoDate 
+			                    ,mprStatusCode
+			                    ,mprLocalCode
+			                    ,mprPetType
+			                    ,mprWriter
+			                    ,mprRegDate
+			                    ,mmNo
+			                    ,mprGen
+			                    <if test="mprAddFile != null">
+								,mprAddFile
+								</if>
+								)
+		VALUES(mpreport_seq.NEXTVAL
+		      ,#{mprTitle} 
+		      ,#{mprContent}
+		      ,#{mprInfoDate}
+		      ,#{mprStatusCode}
+		      ,#{mprLocalCode}
+		      ,#{mprPetType} 
+		      ,#{mprWriter}
+		      ,SYSTIMESTAMP
+		      ,#{mmNo}
+		      ,#{mprGen}
+		       <if test="mprAddFile != null">
+			   ,#{mprAddFile}
+			   </if>
+		      )
+	</insert>
+	
+	<!--  수정화면 -->
+	<update id="mprUpdate" parameterType="MpReport">
+		UPDATE MpReport
+		SET mprTitle = #{mprTitle}
+			,mprContent = #{mprContent}
+			,mprInfoDate = #{mprInfoDate}
+			,mprStatusCode = #{mprStatusCode}
+			,mprLocalCode = #{mprLocalCode}
+			,mprPetType = #{mprPetType}
+			,mprGen = #{mprGen}
+			 <if test="mprAddFile != null">
+		     ,mprAddFile = #{mprAddFile}
+		     </if>
+		 WHERE mprNo = #{mprNo}
+	</update>
+	
+	<!-- 삭제 -->
+	<update id="mprDelete" parameterType="int">
+		UPDATE MpReport
+		SET mprDelYn = 'Y'
+		WHERE mprNo = #{mprNo}
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="mprReadCountUpdate">
+		UPDATE MpReport
+		SET mprReadCnt = (SELECT MAX(mprReadCnt)
+		 				 FROM MpReport
+        				 WHERE mprNo = #{mprNo}) + 1
+        WHERE mprNo = #{mprNo}				 
+	
+	</update>
+	
+</mapper>
+

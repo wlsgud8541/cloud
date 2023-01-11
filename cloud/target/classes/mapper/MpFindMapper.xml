@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MpFind">
+	<resultMap type="MpFind" id="MpFind">
+		<id property="mpfNo" column="mpfNo"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mpfInfoDate" column="mpfInfoDate"/>
+		<result property="mpfRegDate" column="mpfRegDate"/>
+		<result property="mpfTitle" column="mpfTitle"/>
+		<result property="mpfContent" column="mpfContent"/>
+		<result property="mpfStatusCode" column="mpfStatusCode"/>
+		<result property="mpfLocalCode" column="mpfLocalCode"/>
+		<result property="mpfPetType" column="mpfPetType"/>
+		<result property="mpfAddFile" column="mpfAddFile"/>
+		<result property="mpfWriter" column="mpfWriter"/>
+		<result property="mpfDelYn" column="mpfDelYn"/>
+		<result property="rNum" column="rNum"/>
+	</resultMap>
+	
+	<!-- 리스트 조회 -->
+	<select id="mpfSelectList" resultType="MpFind">
+		SELECT rNum
+		     , mpfNo
+		     , mpfReadCnt
+		     , mpfRegDate
+		     , mpfTitle
+		     , mpfWriter
+		  FROM (SELECT rownum as rNum
+		             , mpfNo
+		             , mpfReadCnt
+		             , mpfRegDate
+		             , mpfTitle
+		             , mpfWriter
+				FROM(SELECT mpfNo
+		                  , mpfReadCnt
+		                  , mpfRegDate
+		                  , mpfTitle
+		                  , mpfWriter
+		               FROM mpFind
+		              WHERE mpfDelYn = 'N'
+		              <if test="type=='title'">
+						  title LIKE CONCAT('%', #{keyWord}, '%')
+					  </if>
+					  <if test="type=='writer'">
+						  writer LIKE CONCAT('%', #{keyWord}, '%')
+					  </if>
+					  <if test="type=='content'">
+						  content LIKE CONCAT('%', #{keyWord}, '%')
+					  </if>
+		        ORDER BY mpfNo DESC))
+		WHERE rNum between ${startRow} and ${startRow} + ${pageSize}
+	</select>
+	
+	<!-- 리스트 디테일 조회 -->
+	<select id="mpfSelectDetail" resultType="MpFind" resultMap="MpFind">
+		SELECT
+		    mpfNo,mpfReadCnt,
+		    mpfInfoDate,mpfRegDate,
+		    mpfTitle,mpfContent,
+		    mpfStatusCode,mpfLocalCode,
+		    mpfPetType,mpfWriter,mpfAddFile
+		FROM
+		    mpFind
+		WHERE
+			mpfNo = #{mpfNo}
+		ORDER BY mpfNo DESC
+	</select>
+	
+	<!-- 리스트 카운트 조회 -->
+	<select id="mpfSelectListCount" resultType="int" parameterType="hashmap">
+		SELECT COUNT(*) AS cnt
+		FROM MpFind
+		WHERE mpfDelYn = 'N'
+		<if test="type=='title'">
+			title LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+		<if test="type=='writer'">
+			writer LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+		<if test="type=='content'">
+			content LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+	</select>
+	
+	<!-- 글쓰기 -->
+	<insert id="mpfInsert" parameterType="MpFind">
+		INSERT INTO mpfind(		mpfNo
+								,mpfTitle
+								,mpfContent
+			                    ,mpfInfoDate 
+			                    ,mpfStatusCode
+			                    ,mpfLocalCode
+			                    ,mpfPetType
+			                    ,mpfWriter
+			                    ,mpfRegDate
+			                    ,mmNo
+			                    <if test="mpfAddFile != null">
+								,mpfAddFile
+								</if>
+								)
+		VALUES(mpfind_seq.NEXTVAL
+		      ,#{mpfTitle} 
+		      ,#{mpfContent}
+		      ,#{mpfInfoDate}
+		      ,#{mpfStatusCode}
+		      ,#{mpfLocalCode}
+		      ,#{mpfPetType} 
+		      ,#{mpfWriter}
+		      ,SYSTIMESTAMP
+		      ,#{mmNo}
+		       <if test="mpfAddFile != null">
+			   ,#{mpfAddFile}
+			   </if>
+		      )
+	</insert>
+	
+	<!--  수정화면 -->
+	<update id="mpfUpdate" parameterType="MpFind">
+		UPDATE MpFind
+		SET mpfTitle = #{mpfTitle}
+			,mpfContent = #{mpfContent}
+			,mpfInfoDate = #{mpfInfoDate}
+			,mpfStatusCode = #{mpfStatusCode}
+			,mpfLocalCode = #{mpfLocalCode}
+			,mpfPetType = #{mpfPetType}
+			 <if test="mpfAddFile != null">
+		     ,mpfAddFile = #{mpfAddFile}
+		     </if>
+		 WHERE mpfNo = #{mpfNo}
+	</update>
+	
+	<!-- 삭제 -->
+	<update id="mpfDelete" parameterType="int">
+		UPDATE MpFind
+		SET mpfDelYn = 'Y'
+		WHERE mpfNo = #{mpfNo}
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="mpfReadCountUpdate">
+		UPDATE MpFind
+		SET mpfReadCnt = (SELECT MAX(mpfReadCnt)
+		 				 FROM MpFind
+        				 WHERE mpfNo = #{mpfNo}) + 1
+        WHERE mpfNo = #{mpfNo}				 
+	
+	</update>
+	
+</mapper>
+

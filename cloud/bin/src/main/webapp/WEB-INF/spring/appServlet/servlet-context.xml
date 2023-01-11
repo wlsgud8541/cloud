@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+								 https://www.springframework.org/schema/mvc/spring-mvc.xsd
+								 http://www.springframework.org/schema/beans 
+								 https://www.springframework.org/schema/beans/spring-beans.xsd
+								 http://www.springframework.org/schema/context 
+								 https://www.springframework.org/schema/context/spring-context.xsd">
+
+	
+	<!-- 어노테이션 설정 -->
+	<annotation-driven />
+
+	<!-- resources 매핑 설정 -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- url prefix, subfix 설정 -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/index.jsp?body=views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<!-- 베이스 페키지 설정 -->	
+	<context:component-scan base-package="com.project.cloud" />
+	
+	<!-- 공지사항 게시판 뷰 이동 -->
+	<view-controller path="/mnInsert" view-name="/customerSupportView/mNoticeView/mnNoticeInsertView"/>
+	<!-- 건의사항 게시판 뷰 이동 -->
+	<view-controller path="/mrInsert" view-name="/customerSupportView/mRequestView/mRequestInsertView"/>
+	<!-- 실종자 신고 게시판인서트 뷰 이동 -->
+<!-- 	<view-controller path="/mhrInsert" view-name="/mh/mhReportView/mhrInsertView"/> -->
+	<!-- 반려동물 신고 게시판 수정화면 뷰 이동 -->
+	<view-controller path="/mprInsert" view-name="/mp/mpReportView/mprInsertView"/>
+</beans:beans>

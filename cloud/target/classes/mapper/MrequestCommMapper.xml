@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MrequestComm">
+	<resultMap type="MrequestComm" id="MrequestComm">
+		<id property="mreComNo" column="mreComNo"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mreNo" column="mreNo"/>
+		<result property="mreComRegDate" column="mreComRegDate"/>
+		<result property="mreComTitle" column="mreComTitle"/>
+		<result property="mreComContent" column="mreComContent"/>
+		<result property="mreComWriter" column="mreComWriter"/>
+		<result property="mreComDelYn" column="mreComDelYn"/>
+		<result property="mreComAddFile" column="mreComAddFile"/>
+	</resultMap>
+	<!-- 
+	<select id="mrcSelectList" resultType="MrequestComm">
+		SELECT mreComNo,
+				mreNo,
+				mreComRegDate,
+				mreComTitle,
+				mreComContent,
+				mreComWriter,
+				mreComDelYn,
+				mreComAddFile
+		FROM MREQUESTCOMM
+		WHERE mreComNo = #{mreNo}
+			ORDER BY mreComNo DESC
+	</select>
+	 -->
+	<select id="mrcSelectDetail" resultType="MrequestComm">
+		SELECT  mreNo,
+				mreComNo,
+				mreComTitle,
+				mreComRegDate,
+				mreComContent,
+				mreComWriter,
+				mreComDelYn,
+				mreComAddFile
+		FROM MREQUESTCOMM
+		WHERE mreNo = #{mreNo}
+		AND mreComDelYn = 'N'
+	</select>
+	
+	<insert id="mrcInsert" parameterType="MrequestComm">
+		INSERT INTO MREQUESTCOMM(mreComNo,
+								mreComTitle,
+								mreComContent,
+								mreComWriter,
+								mreComRegDate,
+								mmNo,
+								mreNo
+								)
+		VALUES(mRequestComm_seq.NEXTVAL,
+				#{mreComTitle},
+				#{mreComContent},
+				#{mreComWriter},
+				SYSTIMESTAMP,
+				#{mmNo},
+				#{mreNo}
+				)
+	</insert>
+	<update id="mrcUpdate" parameterType="MrequestComm">
+		UPDATE MREQUESTCOMM
+		SET mreComTitle = #{mreComTitle},
+			mreComContent = #{mreComContent},
+			mreComRegDate = SYSTIMESTAMP
+		WHERE mreComNo = #{mreComNo}
+	</update>
+	
+	<update id="mrcDelete" parameterType="int">
+		UPDATE MREQUESTCOMM
+		SET mreComDelYn = 'Y'
+		WHERE mreComNo = #{mreComNo}
+	</update>
+</mapper>
+
+

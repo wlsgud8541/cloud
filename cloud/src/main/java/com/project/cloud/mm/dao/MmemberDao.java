@@ -1,0 +1,16 @@
+package com.project.cloud.mm.dao;
+
+import com.project.cloud.mm.domain.Mmember;
+
+public interface MmemberDao {
+	// 로그인 체크
+	public String mmSelectLoginCheck(String mmId);
+	// 유저 정보 조회
+	public Mmember mmSelectUserInfo(String mmId);
+	// 아이디 중복 체크
+	public int idCheck(String mmId);
+	// 회원가입 처리
+	public int mmInsertJoin(Mmember member);
+	// 마이페이지 조회
+	public Mmember mmSelectMyPage(String mmNo);
+}

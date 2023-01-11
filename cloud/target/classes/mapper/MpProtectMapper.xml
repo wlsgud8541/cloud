@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MpProtect">
+	<resultMap type="MpProtect" id="MpProtect">
+		<id property="mppNo" column="mppNo"/>
+		<result property="mppReadCnt" column="mppReadCnt"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mppRegDate" column="mppRegDate"/>
+		<result property="mppInfoDate" column="mppInfoDate"/>
+		<result property="mppTitle" column="mppTitle"/>
+		<result property="mppContent" column="mppContent"/>
+		<result property="mppPetType" column="mppPetType"/>
+		<result property="mppAddFile" column="mppAddFile"/>
+		<result property="mppWriter" column="mppWriter"/>
+		<result property="mppDelYn" column="mppDelYn"/>
+		<result property="mppGen" column="mppGen"/>
+		<result property="rNum" column="rNum"/>
+		<result property="mppLocalCode" column="mppLocalCode"/>
+	</resultMap>
+	
+	<!-- 리스트 조회 -->
+	<select id="mppSelectList" resultType="MpProtect">
+		SELECT rNum
+		     , mppNo
+		     , mppReadCnt
+		     , mppRegDate
+		     , mppTitle
+		     , mppWriter
+		  FROM (SELECT rownum as rNum
+		             , mppNo
+		             , mppReadCnt
+		             , mppRegDate
+		             , mppTitle
+		             , mppWriter
+				FROM(SELECT mppNo
+		                  , mppReadCnt
+		                  , mppRegDate
+		                  , mppTitle
+		                  , mppWriter
+		               FROM MpProtect
+		              WHERE mppDelYn = 'N'
+		              <if test="type=='title'">
+						  title LIKE CONCAT('%', #{keyWord}, '%')
+					  </if>
+					  <if test="type=='writer'">
+						  writer LIKE CONCAT('%', #{keyWord}, '%')
+					  </if>
+					  <if test="type=='content'">
+						  content LIKE CONCAT('%', #{keyWord}, '%')
+					  </if>
+		        ORDER BY mppNo DESC))
+		WHERE rNum between ${startRow} and ${startRow} + ${pageSize}
+	</select>
+	
+	<!-- 리스트 디테일 조회 -->
+	<select id="mppSelectDetail" resultType="MpProtect" resultMap="MpProtect">
+		SELECT
+		    mppNo,mppReadCnt,
+		    mppInfoDate,mppRegDate,
+		    mppTitle,mppContent,
+		    mppLocalCode, mppPetType,
+		    mppWriter,mppGen,mppAddFile
+		FROM
+		    MpProtect
+		WHERE
+			mppNo = #{mppNo}
+		ORDER BY mppNo DESC
+	</select>
+	
+	
+	<!-- 리스트 카운트 조회 -->
+	<select id="mppSelectListCount" resultType="int" parameterType="hashmap">
+		SELECT COUNT(*) AS cnt
+		FROM MpProtect
+		WHERE mppDelYn = 'N'
+		<if test="type=='title'">
+			title LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+		<if test="type=='writer'">
+			writer LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+		<if test="type=='content'">
+			content LIKE CONCAT('%', #{keyWord}, '%')
+		</if>
+	</select>
+	
+	<!-- 글쓰기 -->
+	<insert id="mppInsert" parameterType="MpProtect">
+		INSERT INTO MpProtect(mppNo
+								,mppTitle
+								,mppContent
+			                    ,mppInfoDate 
+			                    ,mppLocalCode
+			                    ,mppPetType
+			                    ,mppWriter
+			                    ,mppRegDate
+			                    ,mmNo
+			                    ,mppGen
+			                    <if test="mppAddFile != null">
+								,mppAddFile
+								</if>
+								)
+		VALUES(MpProtect_seq.NEXTVAL
+		      ,#{mppTitle} 
+		      ,#{mppContent}
+		      ,#{mppInfoDate}
+		      ,#{mppLocalCode}
+		      ,#{mppPetType} 
+		      ,#{mppWriter}
+		      ,SYSTIMESTAMP
+		      ,#{mmNo}
+		      ,#{mppGen}
+		       <if test="mppAddFile != null">
+			   ,#{mppAddFile}
+			   </if>
+		      )
+	</insert>
+	
+	<!--  수정화면 -->
+	<update id="mppUpdate" parameterType="MpProtect">
+		UPDATE MpProtect
+		SET mppTitle = #{mppTitle}
+			,mppContent = #{mppContent}
+			,mppInfoDate = #{mppInfoDate}
+			,mppLocalCode = #{mppLocalCode}
+			,mppPetType = #{mppPetType}
+			,mppGen = #{mppGen}
+			 <if test="mppAddFile != null">
+		     ,mppAddFile = #{mppAddFile}
+		     </if>
+		 WHERE mppNo = #{mppNo}
+	</update>
+	
+	<!-- 삭제 -->
+	<update id="mppDelete" parameterType="int">
+		UPDATE MpProtect
+		SET mppDelYn = 'Y'
+		WHERE mppNo = #{mppNo}
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="mppReadCountUpdate">
+		UPDATE MpProtect
+		SET mppReadCnt = (SELECT MAX(mppReadCnt)
+		 				 FROM MpProtect
+        				 WHERE mppNo = #{mppNo}) + 1
+        WHERE mppNo = #{mppNo}				 
+	
+	</update>
+	
+	
+	
+</mapper>
+

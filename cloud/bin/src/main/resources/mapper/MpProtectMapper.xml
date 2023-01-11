@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MpProtect">
+	<resultMap type="MpProtect" id="MpProtect">
+		<id property="mppNo" column="mppNo"/>
+		<result property="mppReadCnt" column="mppReadCnt"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mppRegDate" column="mppRegDate"/>
+		<result property="mppInfoDate" column="mppInfoDate"/>
+		<result property="mppTitle" column="mppTitle"/>
+		<result property="mppContent" column="mppContent"/>
+		<result property="mppPetType" column="mppPetType"/>
+		<result property="mppAddFile" column="mppAddFile"/>
+		<result property="mppWriter" column="mppWriter"/>
+		<result property="mppDelYn" column="mppDelYn"/>
+		<result property="mprGen" column="mprGen"/>
+	</resultMap>
+</mapper>
+

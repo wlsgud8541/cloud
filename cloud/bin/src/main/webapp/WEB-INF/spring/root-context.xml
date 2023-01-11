@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+								 https://www.springframework.org/schema/beans/spring-beans.xsd
+								 http://www.springframework.org/schema/tx
+								 http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	
+	
+	<import resource="classpath:datasource/datasource.xml"/>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds" />
+		<property name="mapperLocations" value="classpath:mapper/**/*Mapper.xml"/>
+		<property name="typeAliasesPackage" value="com.project.cloud.*.domain"/>
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" c:sqlSessionFactory-ref="sqlSessionFactory" />
+	
+	<!-- 파일업로드 처리 bean -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+		
+</beans>

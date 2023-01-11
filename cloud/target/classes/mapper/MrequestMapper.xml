@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="Mrequest">
+	<resultMap type="Mrequest" id="Mrequest">
+		<id property="mreNo" column="mreNo"/>
+		<result property="mreReadCnt" column="mreReadCnt"/>
+		<result property="mreRecoCnt" column="mreRecoCnt"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mreRegDate" column="mreRegDate"/>
+		<result property="mreTitle" column="mreTitle"/>
+		<result property="mreContent" column="mreContent"/>
+		<result property="mreAddFile" column="mreAddFile"/>
+		<result property="mreWriter" column="mreWriter"/>
+		<result property="mreSecretYn" column="mreSecretYn"/>
+		<result property="mreReplyCode" column="mreReplyCode"/>
+		<result property="mreDelYn" column="mreDelYn"/>
+	</resultMap>
+	<select id="mrSelectList" resultType="Mrequest" parameterType="hashmap">
+		SELECT  rNum,
+		        mreNo,
+		        mreReadCnt,
+		        mreRegDate,
+		        mreTitle,
+		        mreContent,
+		        mreAddFile,
+		        mreWriter,
+		        mreDelYn,
+		        mreReplyCode,
+		        mreRecoCnt
+		FROM    (SELECT  rownum as  rNum,
+		                        mreNo,
+		                        mreReadCnt,
+		                        mreRegDate,
+		                        mreTitle,
+		                        mreContent,
+		                        mreAddFile,
+		                        mreWriter,
+		                        mreDelYn,
+		                        mreReplyCode,
+		                        mreRecoCnt
+		                FROM(SELECT mreNo,
+		                            mreReadCnt,
+		                            mreRegDate,
+		                            mreTitle,
+		                            mreContent,
+		                            mreAddFile,
+		                            mreWriter,
+		                            mreDelYn,
+		                            mreReplyCode,
+		                            mreRecoCnt
+		                    FROM    MREQUEST
+		                    where   mreDelYn = 'N'
+								<if test="type=='title'">
+									title LIKE CONCAT('%', #{keyWord}, '%')
+								</if>
+								<if test="type=='writer'">
+									writer LIKE CONCAT('%', #{keyWord}, '%')
+								</if>
+								<if test="type=='content'">
+									content LIKE CONCAT('%', #{keyWord}, '%')
+								</if>		                    	
+		                    ORDER BY mreNo DESC
+		                    )
+		            )
+		WHERE rNum BETWEEN #{startRow} AND #{startRow} + #{pageSize} - 1
+	</select>
+<!-- 	건의게시판 게시글 수 조회 -->
+	<select id="getMrSelectCnt" resultType="int" parameterType="hashmap">
+		SELECT count(*) as cnt
+		FROM MREQUEST
+		WHERE mreDelYn = 'N'
+				<if test="type=='title'">
+					title LIKE CONCAT('%', #{keyWord}, '%')
+				</if>
+					<if test="type=='writer'">
+					writer LIKE CONCAT('%', #{keyWord}, '%')
+				</if>
+					<if test="type=='content'">
+					content LIKE CONCAT('%', #{keyWord}, '%')
+				</if>
+	</select>
+	
+	<select id="mrSelectDetail" resultType="Mrequest">
+		SELECT mreNo,
+				mreReadCnt,
+				mreRecoCnt,
+				mreRegDate,
+				mreTitle,
+				mreContent,
+				mreAddFile,
+				mreWriter,
+				mreReplyCode,
+				mreDelYn
+		FROM MREQUEST
+		WHERE mreNo = #{mreNo}	
+	</select>
+	<insert id="mrInsert" parameterType="Mrequest">
+		INSERT INTO MREQUEST(mreNo,
+								mreTitle,
+								mreContent,
+								mreWriter,
+								mreRegDate,
+								<if test="mreAddFile != null">
+								mreAddFile,
+								</if>
+								mmNo
+								)
+		VALUES(mRequest_seq.NEXTVAL,
+				#{mreTitle},
+				#{mreContent}, 
+				#{mreWriter},
+				SYSTIMESTAMP,
+				<if test="mreAddFile != null">
+				#{mreAddFile},
+				</if>
+				#{mmNo}
+				)						
+	</insert>
+	<!-- 답글 작성시 코드 변경 -->
+	<update id="mrUpdateReplyCode">
+		UPDATE MREQUEST
+		SET mreReplyCode = '02'
+		WHERE mreNo = #{mreNo}
+	</update>
+	<update id="mrDelReplyCode">
+		UPDATE MREQUEST
+		SET mreReplyCode = '01'
+		WHERE mreNo = #{mreNo}
+	</update>
+<!-- 	추천 업데이트 -->
+	<update id="mrUpdateRecommend">
+		UPDATE MREQUEST
+		SET mreRecoCnt = mreRecoCnt + 1
+		WHERE mreNo = #{mreNo}
+	</update>
+	
+<!-- 	추천 가져오기 -->
+	<select id="getMrRecommend" resultType="Mrequest">
+		SELECT mreRecoCnt
+		FROM MREQUEST
+		WHERE mreNo= #{mreNo}
+	</select>
+	
+	<update id="mrUpdate" parameterType="Mrequest">
+		UPDATE MREQUEST
+		SET mmNo = #{mmNo},
+			mreWriter = #{mreWriter},
+			mreTitle = #{mreTitle},
+			mreContent = #{mreContent},
+			<if test="mreAddFile != null">
+			mreAddFile = #{mreAddFile},
+			</if>
+			mreRegDate = SYSTIMESTAMP
+		WHERE mreNo = #{mreNo}
+	</update>
+	
+	<update id="mrDelete" parameterType="int">
+		UPDATE MREQUEST
+		SET mreDelYn = 'Y'
+		WHERE mreNo = #{mreNo}
+	</update>
+	
+<!-- 	조회수 -->
+	<update id="mrUpdateReadCnt">
+		UPDATE MREQUEST
+		SET mreReadCnt =	(
+								SELECT	MAX(mreReadCnt)
+								FROM MREQUEST
+								WHERE mreNo = #{mreNo}
+							) +1
+		WHERE mreNo = #{mreNo}
+	</update>
+	
+</mapper>
+
+

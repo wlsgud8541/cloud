@@ -1,0 +1,165 @@
+@CHARSET "UTF-8";
+
+table {
+	/* width: 900px; */
+	margin: 0 auto;
+	padding: 5px 5px;
+	border-collapse: collapse;	
+	line-height: 160%;	
+}
+
+/*  게시 글 리스트 */
+.listThNo { 
+	width: 90px; 
+	height: 30px;
+	border-top: 5px solid #5F8D4E;
+	border-bottom: 1px solid #5F8D4E;
+}
+.listThTitle { 
+	width: 400px;
+	border-top: 5px solid #5F8D4E;
+	border-bottom: 1px solid #5F8D4E; 
+}
+.listThWriter { 
+	width: 110px;
+	border-top: 5px solid #5F8D4E;
+	border-bottom: 1px solid #5F8D4E;  
+}
+.listThDate { 
+	width: 130px;
+	border-top: 5px solid #5F8D4E;
+	border-bottom: 1px solid #5F8D4E;
+}
+.listThReadCount {
+	width: 60px;
+	border-top: 5px solid #5F8D4E;
+	border-bottom: 1px solid #5F8D4E;
+}
+.gunThNo { 
+	width: 90px; 
+	height: 30px;
+	border-top: 5px solid #A4BE7B;
+	border-bottom: 1px solid #A4BE7B;
+}
+.gunThTitle { 
+	width: 400px;
+	border-top: 5px solid #A4BE7B;
+	border-bottom: 1px solid #A4BE7B;
+}
+.gunThWriter { 
+	width: 110px;
+	border-top: 5px solid #A4BE7B;
+	border-bottom: 1px solid #A4BE7B;
+}
+.gunThDate { 
+	width: 0px;
+	border-top: 5px solid #A4BE7B;
+	border-bottom: 1px solid #A4BE7B;
+	text-align:right;
+}
+.gunThReadCount {
+	width: 25px;
+	border-top: 5px solid #A4BE7B;
+	border-bottom: 1px solid #A4BE7B;
+	text-align:center;
+}
+.gunContent {	
+	height: 300px;
+	padding: 20px;
+	border: 1px solid #787878;
+	vertical-align: top;
+	/* overflow: scroll; */
+}
+
+.explainbox{
+	width: 800px;
+	border: 1px solid #AAAAAA;
+	padding: 25px;
+	text-align:center;
+	margin:0 auto;
+	background-color:light gray;
+}
+
+.reportBtn{
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	background-color: #A4BE7B;
+	margin-top: 5px;
+    padding: 5px 25px;
+    float: right;
+    color:#ffffff;
+/*     position:absolute; */
+/*     right: 510px; */
+}
+.divbox{
+	margin: 0 auto;
+}
+.divtablebox{
+	width: auto;
+}
+.textTitle{
+	margin: 0 auto;
+	padding: 5px 5px;
+	line-height: 160%;
+/* 	position: relative; */
+/* 	left: 510px; */
+}
+.textTop{
+	margin: 0 auto;
+	padding: 5px 5px;
+	border-collapse: collapse;	
+	line-height: 160%;	
+}
+.topbox{
+	border-top: 2px solid gray;
+	border-bottom: 1px solid gray;
+	width:977px;
+}
+.gunContent{
+	width:600px;
+	height:300px;
+}
+.answer-box{
+	width:140px;
+	height:260px;
+	text-align:center;
+	background-color: #6c757d;
+	color:#ffffff;
+	font-size: 30px;
+	margin:15px 10px 0 10px;
+	display: inline-block;
+	line-height: 70px;
+	border-radius: 10px;
+}
+.gunTopContent{
+	width:650px;
+	height:300px;
+	margin-left:167px;
+	padding-top: 130px;
+}
+.gunUnderContent{
+	display: inline-block;
+	background-color: #f8f6f7;
+}
+.boxLine{
+	border-bottom: 1px solid #A4BE7B;
+	width:977px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.gunUnderBox{
+	/* border: 1px solid red; */
+	margin-top: 10px;
+}
+.posiRight{
+	float:right;
+}
+.titleBox{
+	border: 1px solid #e3e3e3;
+}
+@font-face{
+	font-family: 'nanum';
+	src: url('font/NanumSquareNeoTTF-cBd.woff') format('woff');
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MpReport">
+	<resultMap type="MpReport" id="MpReport">
+		<id property="mprNo" column="mprNo"/>
+		<result property="mprReadCnt" column="mprReadCnt"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mprInfoDate" column="mprInfoDate"/>
+		<result property="mprRegDate" column="mprRegDate"/>
+		<result property="mprTitle" column="mprTitle"/>
+		<result property="mprContent" column="mprContent"/>
+		<result property="mprStatusCode" column="mprStatusCode"/>
+		<result property="mprLocalCode" column="mprLocalCode"/>
+		<result property="mprPetType" column="mprPetType"/>
+		<result property="mprAddFile" column="mprAddFile"/>
+		<result property="mprWriter" column="mprWriter"/>
+		<result property="mprDelYn" column="mprDelYn"/>
+		<result property="mprGen" column="mprGen"/>
+	</resultMap>
+	<select id="mprSelectList" resultType="MpReport">
+		SELECT
+		    mprNo, mprReadCnt, mprRegDate, mprTitle, mprWriter
+		FROM
+		    mpreport
+		ORDER BY mprNo DESC
+	</select>
+	<select id="mprSelectDetail" resultType="MpReport" resultMap="MpReport">
+		SELECT
+		    mprNo,mprReadCnt,
+		    mprInfoDate,mprRegDate,
+		    mprTitle,mprContent,
+		    mprStatusCode,mprLocalCode,
+		    mprPetType,mprWriter,mprGen
+		FROM
+		    mpreport
+		WHERE
+			mprNo = #{mprNo}
+		ORDER BY mprNo DESC
+	</select>
+	<!-- 글쓰기 질의명령 -->
+	<insert id="mprInsert" parameterType="MpReport">
+		INSERT INTO mpreport(mprNo
+					,mprTitle, mprContent
+                    ,mprInfoDate ,mprStatusCode, mprLocalCode
+                    ,mprPetType, mprWriter, mprRegDate
+                    ,mmNo, mprGen)
+		VALUES(mpreport_seq.NEXTVAL
+		      ,#{mprTitle} ,#{mprContent}
+		      ,#{mprInfoDate}, #{mprStatusCode}, #{mprLocalCode}
+		      ,#{mprPetType} ,#{mprWriter},SYSTIMESTAMP()
+		      ,#{mmNo},#{mprGen})
+	</insert>
+	
+	<update id="mprUpdate" parameterType="MpReport">
+		UPDATE MpReport
+		SET mprTitle = #{mprTitle}
+			,mprContent = #{mprContent}
+			,mprInfoDate = #{mprInfoDate}
+			,mprStatusCode = #{mprStatusCode}
+			,mprLocalCode = #{mprLocalCode}
+			,mprPetType = #{mprPetType}
+			,mprGen = #{mprGen}
+		WHERE mnNo = #{mnNo}
+	</update>
+	
+	<update id="mprDelete" parameterType="int">
+		UPDATE MpReport
+		SET mprDelYn = 'Y'
+		WHERE mprNo = #{mprNo}
+	</update>
+	
+</mapper>
+

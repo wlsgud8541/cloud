@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MhReport">
+	<resultMap type="MhReport" id="MhReport">
+		<id property="mhrNo" column="mhrNo"/>
+		<result property="mhrTitle" column="mhrTitle"/>		
+		<result property="mhrContent" column="mhrContent"/>
+		<result property="mhrReadCnt" column="mhrReadCnt"/>
+		<result property="mhrRegDate" column="mhrRegDate"/>
+		<result property="mhrInfoDate" column="mhrInfoDate"/>
+		<result property="mhrName" column="mhrName"/>
+		<result property="mhrMage" column="mhrMage"/>
+		<result property="mhrage" column="mhrage"/>
+		<result property="mhrNation" column="mhrNation"/>
+		<result property="mhrIllCode" column="mhrIllCode"/>
+		<result property="mhrStatusCode" column="mhrStatusCode"/>
+		<result property="mhrLocalCode" column="mhrLocalCode"/>
+		<result property="mhrWriter" column="mhrWriter"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mhrGen" column="mhrGen"/>
+		<result property="mhrHeight" column="mhrHeight"/>
+		<result property="mhrWeight" column="mhrWeight"/>
+		<result property="mhrPhysical" column="mhrPhysical"/>
+		<result property="mhrFace" column="mhrFace"/>
+		<result property="mhrHairColor" column="mhrHairColor"/>
+		<result property="mhrHair" column="mhrHair"/>
+		<result property="mhrWear" column="mhrWear"/>
+		<result property="mhrDelYn" column="mhrDelYn"/>
+		<result property="mhrAddFile" column="mhrAddFile"/>
+	</resultMap>
+	<select id="mhrSelectList" resultType="MhReport">
+		SELECT rNum
+        ,mhrNo
+        ,mhrReadCnt
+        ,mhrRegDate
+        ,mhrTitle
+        ,mhrWriter
+FROM (SELECT rownum as rNum
+            ,mhrNo
+            ,mhrReadCnt
+            ,mhrRegDate
+            ,mhrTitle
+            ,mhrWriter 
+        FROM(SELECT mhrNo
+                   ,mhrReadCnt
+                   ,mhrRegDate
+                   ,mhrTitle
+                   ,mhrWriter
+              FROM
+                mhreport
+             WHERE 
+              mhrDelYn = 'N'
+             ORDER BY 
+                mhrNo DESC)
+                    )
+WHERE
+    rNum BETWEEN #{startRow} and #{startRow} + #{pagesize} -1
+	</select>
+	<select id="mhrSelectDetail" resultType="MhReport" resultMap="MhReport">
+		SELECT
+			mhrNo, mhrName,mhrMage, mhrage,mhrIllCode, mhrGen, mhrHeight,mhrWeight,mhrFace,mhrHairColor, 
+			mhrHair, mhrWear, mhrStatusCode, mhrLocalCode, mhrTitle, mhrContent,mhrDelYn,mhrRegDate,
+			mhrReadCnt,mhrAddFile,mhrInfoDate
+		FROM
+			mhreport
+			
+		WHERE
+			mhrNo = #{mhrNo} and
+			mhrDelYn = 'N'
+			
+	</select>
+	<insert id="mhrInsert" parameterType="MhReport">
+	 INSERT INTO mhreport(mhrNo, mhrTitle
+	 									, mhrContent, mhrRegDate
+	 									, mhrInfoDate, mhrName
+	 									, mhrMage, mhrage
+	 									, mhrNation, mhrIllCode
+	 									, mhrStatusCode, mhrLocalCode
+	 									, mhrWriter, mmNo
+	 									, mhrGen, mhrHeight
+	 									, mhrWeight, mhrPhysical
+	 									, mhrFace, mhrHairColor
+	 									, mhrHair, mhrWear
+	 									<if test="mhrAddFile != null">
+	 									,mhrAddFile
+	 									</if>
+	 									)
+	 	VALUES(MHREPORT_seq.NEXTVAL, #{mhrTitle}
+	 				, #{mhrContent}, SYSTIMESTAMP
+	 				, #{mhrInfoDate}, #{mhrName}
+	 				, #{mhrMage}, #{mhrage}
+	 				, #{mhrNation}, #{mhrIllCode}
+	 				, #{mhrStatusCode}, #{mhrLocalCode}
+	 				, #{mhrWriter}, #{mmNo}
+	 				, #{mhrGen}, #{mhrHeight, jdbcType=VARCHAR}
+	 				, #{mhrWeight, jdbcType=VARCHAR}, #{mhrPhysical, jdbcType=VARCHAR}
+	 				, #{mhrFace, jdbcType=VARCHAR}, #{mhrHairColor, jdbcType=VARCHAR}
+	 				, #{mhrHair, jdbcType=VARCHAR}, #{mhrWear, jdbcType=VARCHAR}
+	 				<if test="mhrAddFile != null">
+	 				, #{mhrAddFile}
+	 				</if>
+	 				)
+	</insert>
+	<update id="mhrUpdate" parameterType="MhReport">
+		UPDATE
+			mhreport
+		SET
+			mhrTitle=#{mhrTitle},
+			mhrContent=#{mhrContent},
+			mhrName=#{mhrName},
+			mhrMage=#{mhrMage},
+			mhrage=#{mhrage},
+			mhrInfoDate=#{mhrInfoDate},
+			mhrHeight=#{mhrHeight, jdbcType=VARCHAR},
+			mhrWeight=#{mhrWeight, jdbcType=VARCHAR},
+			mhrPhysical=#{mhrPhysical, jdbcType=VARCHAR},
+			mhrFace=#{mhrFace, jdbcType=VARCHAR},
+			mhrHairColor=#{mhrHairColor, jdbcType=VARCHAR},
+			mhrHair=#{mhrHair, jdbcType=VARCHAR},
+			mhrWear=#{mhrWear, jdbcType=VARCHAR}
+			<if test="mhrAddFile != null">
+			,mhrAddFile = #{mhrAddFile} 
+			</if>
+		WHERE
+			mhrNo=#{mhrNo}
+	</update>
+	<update id="mhrDelete" parameterType="MhReport">
+		UPDATE
+			mhreport
+		SET
+			mhrDelYn = 'Y'
+		WHERE
+			mhrNo=#{mhrNo}
+	</update>
+	<select id ="mhrListCount" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			mhreport
+		WHERE
+			mhrDelYn = 'N'
+	</select>
+	<update id="mhrReadCount" parameterType="int">
+	UPDATE
+		mhreport
+	SET
+		mhrReadCnt = (SELECT MAX(mhrReadCnt)
+								FROM
+									mhreport
+								WHERE
+									mhrNo = #{mhrNo})+ 1
+	WHERE
+		mhrNo = #{mhrNo}
+	</update>
+</mapper>

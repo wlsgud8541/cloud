@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="Mmember">
+	<resultMap type="Mmember" id="Mmember">
+		<id property="mmNo" column="mmNo"/>
+		<result property="mmUseUserInfoEdate" column="mmUseUserInfoEdate"/>
+		<result property="mmJoinDate" column="mmJoinDate"/>
+		<result property="mmSecedeDate" column="mmSecedeDate"/>
+		<result property="mmId" column="mmId"/>
+		<result property="mmPass" column="mmPass"/>
+		<result property="mmName" column="mmName"/>
+		<result property="mmBirth" column="mmBirth"/>
+		<result property="mmGen" column="mmGen"/>
+		<result property="mmEmail" column="mmEmail"/>
+		<result property="mmTel" column="mmTel"/>
+		<result property="mmAddr1" column="mmAddr1"/>
+		<result property="mmAddr2" column="mmAddr2"/>
+		<result property="mmUseUserInfoYn" column="mmUseUserInfoYn"/>
+		<result property="mmActivateYn" column="mmActivateYn"/>
+		<result property="mmIdConnKAKAO" column="mmIdConnKAKAO"/>
+		<result property="mmIdConnGOOGLE" column="mmIdConnGOOGLE"/>
+		<result property="mmIdConnNaver" column="mmIdConnNaver"/>
+		<result property="mmZipCode" column="mmZipCode"/>
+	</resultMap>
+	
+	<select id="mmSelectLoginCheck" resultType="String" parameterType="String">
+		SELECT mmPass
+		FROM MMEMBER
+		WHERE mmId = #{mmId}
+	</select>
+
+	<select id="mmSelectUserInfo" resultType="Mmember" parameterType="String">
+		SELECT 	mmNo
+				,mmUseUserInfoEdate
+				,mmJoinDate
+				,mmSecedeDate
+				,mmId
+				,mmPass
+				,mmName
+				,mmBirth
+				,mmGen
+				,mmEmail
+				,mmTel	
+				,mmAddr1
+				,mmAddr2
+				,mmUseUserInfoYn
+				,mmActivateYn
+				,mmIdConnKAKAO
+				,mmIdConnGOOGLE
+				,mmIdConnNaver
+		FROM MMEMBER
+		WHERE mmId = #{mmId}
+	</select>
+	
+	<select id="idCheck" resultType="int" parameterType="String">
+		SELECT count(mmId) as cnt
+		FROM MMEMBER
+		WHERE mmId = #{mmId}
+	</select>
+	
+	<select id="mmInsertJoin" resultType="int" parameterType="Mmember">
+		INSERT INTO MMEMBER(mmNo
+						   ,mmId
+						   ,mmPass
+						   ,mmName
+						   ,mmGen
+						   ,mmBirth
+						   ,mmTel
+						   ,mmEmail
+						   ,mmZipCode
+						   ,mmAddr1
+						   ,mmAddr2
+						   ,mmUseUserInfoYn
+						   )
+		VALUES(MMEMBER_SEQ.nextval
+			  ,#{mmId}
+			  ,#{mmPass}
+			  ,#{mmName}
+			  ,#{mmGen}
+			  ,#{mmBirth}
+			  ,#{mmTel}
+			  ,#{mmEmail}
+			  ,#{mmZipCode}
+			  ,#{mmAddr1}
+			  ,#{mmAddr2}
+			  ,#{mmUseUserInfoYn}
+			  )
+	</select>
+	
+	<select id="mmSelectMyPage" resultType="Mmember" parameterType="String">
+		SELECT 	mmNo
+				,mmUseUserInfoEdate
+				,mmJoinDate
+				,mmSecedeDate
+				,mmId
+				,mmPass
+				,mmName
+				,mmBirth
+				,mmGen
+				,mmEmail
+				,mmTel	
+				,mmAddr1
+				,mmAddr2
+				,mmUseUserInfoYn
+				,mmActivateYn
+				,mmIdConnKAKAO
+				,mmIdConnGOOGLE
+				,mmIdConnNaver
+		FROM MMEMBER
+		WHERE mmNo = #{mmNo}
+	</select>
+</mapper>
+

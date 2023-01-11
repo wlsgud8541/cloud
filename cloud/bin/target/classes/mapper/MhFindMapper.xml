@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MhFind">
+	<resultMap type="MhFind" id="MhFind">
+		<id property="mhfNo" column="mhfNo"/>
+		<result property="mhfReadCnt" column="mhfReadCnt"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="mhfInfoDate" column="mhfInfoDate"/>
+		<result property="mhfRegDate" column="mhfRegDate"/>
+		<result property="mhfTitle" column="mhfTitle"/>
+		<result property="mhfContent" column="mhfContent"/>
+		<result property="mhfAddFile" column="mhfAddFile"/>
+		<result property="mhfWriter" column="mhfWriter"/>
+		<result property="mhfSecretYn" column="mhfSecretYn"/>
+		<result property="mhfDelYn" column="mhfDelYn"/>
+		<result property="mhrGen" column="mhrGen"/>
+	</resultMap>
+</mapper>
+
