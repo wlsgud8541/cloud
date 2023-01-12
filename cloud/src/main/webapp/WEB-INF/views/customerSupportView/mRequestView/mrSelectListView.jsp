@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link type="text/css" rel="stylesheet" href="resources/css/pagen.css">
 
-<div class="container"style="margin-top:220px;">
+<div class="w3-content">
 	<!-- 상단 게시판 제목 -->
 	<div class="textTop row">
 		<div class="col fs-2">

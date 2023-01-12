@@ -159,62 +159,14 @@ table {
 .titleBox{
 	border: 1px solid #e3e3e3;
 }
-@font-face {
-    font-family: 'NanumSquareNeo-Variable';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-body * {font-family:'NanumSquareNeo-Variable';}
-a {text-decoration: none;}
-ul{
-	list-style-type: none;
-	margin:0;
-	padding:0;
-	font-size: 0;
-}
-.navi > li{
-	display: inline-block;
-	width : 300px;
-	font-size: 18.75px;
-	vertical-align: top;
-}
-.navi > li > a{
-	padding: 10px 50px;
-}
-li a{
-/* 	background-color:#285430; */
-	font-weight:bold;
-/* 	color:white; */
-	display:block;
-	text-align:center;
-	padding:20px;
-}
-.underline-hover li a{
-	position:relative;
-}
-.underline-hover li a:before{
-	content:'';
-	background-color: #285430;
-	width:0;
-	height:2px;
-	position: absolute;
-	left:73px;
-	bottom: -5px;
-	transition:0.3s;
-}
-.underline-hover li a:hover:before{
-	width:50%;
-}
-li a:hover{
-/* 	background-color: white; */
-	color:#285430;
-}
-.navi li ul{
-	display:none;
-}
-.navi li:hover ul{
-	display:block;
-	font-size: 18.75px;
-	
-}
+/* 페이징 */
+.cl-pagination-wrap {position:relative;text-align:center;padding:7px;margin-top:20px}
+.cl-pagination {position:relative;list-style:none;display:inline-block;padding:0;margin:0}
+.cl-pagination li {display:inline}
+.cl-pagination a {display:inline-block;font-size:12px;text-decoration:none;min-width:28px;height:28px;padding:0 5px;color:#fff;border:1px solid transparent;line-height:26px;text-align:center;color:#757575;position:relative;z-index:1}
+.cl-pagination a:active {outline:none}
+.cl-pagination a:hover {color:#000;background:#e5e5e5}
+.cl-pagination a.active {cursor:default;background:#4B4B4D;color:#fff}
+.cl-pagination a.active:hover {color:#fff;background:#4B4B4D}
+.cl-pagination a.next,.cl-pagination a.prev {color:#959595}
+.cl-pagination a.next:hover,.cl-pagination a.prev:hover {color:#000}
