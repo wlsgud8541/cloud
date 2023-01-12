@@ -298,8 +298,6 @@ $(document).ready(function(){
 			data : {email : email},
 			datatype : "json",
 			success : function(result){
-				console.log(result.result);
-				console.log(result.strCN);
 				// 0:전송 실패 | 1:전송 성공
 				if(result.result = 0){
 					alert("이메일이 전송 중 오류가 발생했습니다. 관리자에게 문의해주세요.");
