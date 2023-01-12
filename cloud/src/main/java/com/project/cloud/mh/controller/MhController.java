@@ -1,19 +1,20 @@
 package com.project.cloud.mh.controller;
 
 import java.io.IOException;
-
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.cloud.gm.service.GlobalMethodService;
@@ -22,6 +23,7 @@ import com.project.cloud.mh.domain.MhFindComm;
 import com.project.cloud.mh.domain.MhReport;
 import com.project.cloud.mh.service.MhFindCommService;
 import com.project.cloud.mh.service.MhFindService;
+import com.project.cloud.mh.service.MhInfoService;
 import com.project.cloud.mh.service.MhReportService;
 
 @Controller
@@ -38,7 +40,8 @@ public class MhController {
 	private MhFindService mhfService;
 	@Autowired
 	private MhFindCommService mhfCommService;
-	
+	@Autowired
+	private MhInfoService mhiService;
 	public void setMhReportService(MhReportService service) {
 		this.service = service;
 	}
@@ -287,6 +290,7 @@ public class MhController {
 	public List<MhFindComm> mhfComUpdate(MhFindComm mhfCom){
 		System.out.println("getMhfComNo : "+mhfCom.getMhfComNo());
 		System.out.println("getMhfComContent : "+mhfCom.getMhfComContent());
+		
 		int result = mhfCommService.mhfcUpdate(mhfCom);
 		System.out.println("댓글 수정:"+result);
 		return mhfCommService.mhfcSelectList(mhfCom.getMhfNo());
@@ -300,4 +304,15 @@ public class MhController {
 		System.out.println("댓글삭제:"+result);
 		return mhfCommService.mhfcSelectList(mhfCom.getMhfNo());
 	}
+	
+	
+	// 실종자 정보 게시판 api
+	
+	@RequestMapping("/mhInfoData")
+	public String mhInfoList(Model model)throws IOException, ParseException {
+		 Map<String, Object> map = mhiService.mhiSelectList();
+		 model.addAttribute("jMap",map);
+		return "mh/mhInfoView/mhiDetailView";
+	}
+
 } 
