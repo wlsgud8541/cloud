@@ -34,8 +34,8 @@ public class MpFindCommServiceImpl implements MpFindCommService{
 	}
 
 	@Override
-	public int mpfcDelete(int mpfcNo) {
-		return mpfcDao.mpfcDelete(mpfcNo);
+	public int mpfcDelete(MpFindComm mpfindCom) {
+		return mpfcDao.mpfcDelete(mpfindCom);
 	}
 
 }

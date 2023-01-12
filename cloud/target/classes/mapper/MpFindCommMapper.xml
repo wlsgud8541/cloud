@@ -52,8 +52,8 @@
 	
 	<update id="mpfcDelete" parameterType="int">
 	UPDATE MpFindComm
-	    set mpfcomdelyn = 'Y'
-	    WHERE mpfcomno = #{mpfcomno}
+	    set mpfcomDelYn = 'Y'
+	    WHERE mpfComNo = #{mpfComNo}
 	</update>
 	
 </mapper>

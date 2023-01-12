@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="row">
+	<div class="w3-content row">
 		<div class="row my-3">
 			<div class="col text-end">
 				<a href="mpfInsert" class="btn btn-outline-success">글쓰기</a>
 			</div>
 		</div>
-
+	<h1>실종 반려동물 목격 게시판</h1>
 	<c:forEach var="mpfSelectList" items="${mpfSelectList}">
 		${mpfSelectList.mpfNo}
 		<a href="mpfSelectDetail?mpfNo=${mpfSelectList.mpfNo}&pageNum=${mpfModel.currentPage}">${mpfSelectList.mpfTitle}</a>

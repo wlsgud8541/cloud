@@ -439,13 +439,25 @@ public class MpController {
 		return mpfCommService.mpfcSelectList(mpfCom.getMpfNo());
 	}
 	
+	// 실종자 목격 게시판 댓글 수정
+	@RequestMapping("/mpfcUpdate")
+	@ResponseBody
+	public List<MpFindComm> mpfComUpdate(MpFindComm mpfindCom){
+		System.out.println("getMpfComNo : "+mpfindCom.getMpfComNo());
+		System.out.println("getMhfComContent : "+mpfindCom.getMpfComContent());
+		
+		int result = mpfCommService.mpfcUpdate(mpfindCom);
+		System.out.println("댓글 수정:"+result);
+		return mpfCommService.mpfcSelectList(mpfindCom.getMpfNo());
+	}
+	
 	// 실종 반려동물 목격 게시판 댓글 삭제기능
 	@RequestMapping("/mpfCommDelete")
 	@ResponseBody
-	public List<MpFindComm> mpfComDelete(int mpfcNo){
-		int result = mpfCommService.mpfcDelete(mpfcNo);
+	public List<MpFindComm> mpfComDelete(MpFindComm mpfindCom){
+		int result = mpfCommService.mpfcDelete(mpfindCom);
 		System.out.println("댓글삭제 결과 : " + result);
-		return mpfCommService.mpfcSelectList(mpfcNo);
+		return mpfCommService.mpfcSelectList(mpfindCom.getMpfNo());
 	}
 }
 

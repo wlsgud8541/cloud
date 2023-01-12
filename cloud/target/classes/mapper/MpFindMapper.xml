@@ -49,7 +49,7 @@
 						  content LIKE CONCAT('%', #{keyWord}, '%')
 					  </if>
 		        ORDER BY mpfNo DESC))
-		WHERE rNum between ${startRow} and ${startRow} + ${pageSize}
+		WHERE rNum between ${startRow} and ${startRow} + ${pageSize} - 1
 	</select>
 	
 	<!-- 리스트 디테일 조회 -->

@@ -36,7 +36,7 @@ public class MpFindCommDaoImpl implements MpFindCommDao{
 	}
 
 	@Override
-	public int mpfcDelete(int mpfcNo) {
-		return sql.delete("MpFindComm.mpfcDelete", mpfcNo);
+	public int mpfcDelete(MpFindComm mpfindCom) {
+		return sql.delete("MpFindComm.mpfcDelete", mpfindCom);
 	}
 }

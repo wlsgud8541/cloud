@@ -287,7 +287,6 @@ public class MhController {
 	public List<MhFindComm> mhfComUpdate(MhFindComm mhfCom){
 		System.out.println("getMhfComNo : "+mhfCom.getMhfComNo());
 		System.out.println("getMhfComContent : "+mhfCom.getMhfComContent());
-		
 		int result = mhfCommService.mhfcUpdate(mhfCom);
 		System.out.println("댓글 수정:"+result);
 		return mhfCommService.mhfcSelectList(mhfCom.getMhfNo());

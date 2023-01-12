@@ -363,6 +363,7 @@ $(document).ready(function(){
 		
 		console.log($(this).next());
 		var $mpfComList = $(this).next();
+		var mpfComNo = $(this).attr("data-mpfComNo");
 		if($("#mpfCommForm").is(":visible")){
 			var $next = $mpfComList.next();
 			if(! $next.is("#mpfCommForm")){
@@ -375,7 +376,7 @@ $(document).ready(function(){
 			$("#mpfCommForm").removeClass("d-none").css("display","none").insertAfter($mpfComList).slideDown(500);
 		}
 		
-		$("#mpfCommForm").find("form").attr({"id":"modifyForm","data-mpfNo":$(this).attr("data-mpfNo")});
+		$("#mpfCommForm").find("form").attr({"id":"modifyForm","data-mpfComNo":mpfComNo}).removeAttr("data-mpfNo");
 		
 		var mpfcModify = $(this).parent().parent().find("pre").text();
 		console.log("mpfcModify:"+mpfcModify);
@@ -422,9 +423,9 @@ $(document).ready(function(){
 							+'<div>'
 							+'<span>'+tmpDate+'</span>'
 							+'</div>'
-							+'<button class="btn btn-outline-success btn-sm" data-no="'+v.mpfComNo+'">' 
+							+'<button class="btn btn-outline-success btn-sm" data-mpfComNo="'+v.mpfComNo+'">' 
 								+'<i class="bi bi-journal-text">수정</i></button>'
-							+'<button class="btn btn-outline-warning btn-sm" data-no="'+v.mpfComNo+'">' 
+							+'<button class="btn btn-outline-warning btn-sm" data-mpfComNo="'+v.mpfComNo+'">' 
 								+'<i class="bi bi-trash">삭제</i></button>'
 		 					 				
 		 				$("#mpfComList").append(result);					
@@ -443,7 +444,60 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	
+	// 실종 반려동물 목격 게시판 댓글 삭제
+	$(document).on("click","#mpfcDelete",function(evt){
+		evt.preventDefault();
+		var mpfComNo = $(this).attr("data-mpfComNo");
+		var writer = $("#mpfComWriter").val();
+		var mpfNo = $("#mpfCommForm input[name=mpfNo]").val();
+		console.log(mpfNo);
+		var par = "mpfComNo=" + mpfComNo + "&mpfComWriter=" + writer + "&mpfNo=" + mpfNo
+		console.log(par);
+		var alram = confirm("댓글을 삭제하시겠습니까?");
+		if(alram){
+			$.ajax({
+				"url":"mpfCommDelete",
+				"type":"post",
+				"data":par,
+				"dataType":"json",
+				"success":function(resultData){
+				console.log("resultData:");
+					console.log(resultData);
+					$("#mpfComList").empty();
+				$.each(resultData, function(k, v) {
+					var date = new Date(v.mpfComRegDate);
+					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMoth()+1)) + "-"
+										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
+										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
+										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;
+										
+					var result =
+							'<div>'
+							+'<span>'+v.mpfComContent+'</span>'+'</div>'
+							+'<div>'
+							+'<span>'+v.mpfComWriter+'</span>'+'<br>'
+							+'</div>'
+							+'<div>'
+							+'<span>'+tmpDate+'</span>'
+							+'</div>'
+							+'<button class="btn btn-outline-success btn-sm" data-mpfComNo="'+v.mpfComNo+'" id="mpfcUpdate">' 
+								+'<i class="bi bi-journal-text">수정</i></button>'
+							+'<button class="btn btn-outline-warning btn-sm" data-mpfComNo="'+v.mpfComNo+'" id="mpfcDelete">' 
+								+'<i class="bi bi-trash">삭제</i></button>'
+		 					 				
+		 				$("#mpfComList").append(result);					
+				});
+				
+				$("#mpfComContent").val("");
+				},
+				"error":function(status, xhr){
+					alert("댓글 삭제 실패:"+ status + xhr.status);
+				}
+			});
+		
+		}; 
+			return false;
+	});
 	
 	
 	// 실종자 신고 게시판 -경욱
