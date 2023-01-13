@@ -37,7 +37,7 @@
 <body>
 	<div>
 		<%@ include file="template/header.jsp" %>
-		<div style="margin-top: 220px;">
+		<div class="container" style="margin-top: 179px;">
 			<jsp:include page="${ param.body }" />
 		</div>
 		<%@ include file="template/footer.jsp" %>
