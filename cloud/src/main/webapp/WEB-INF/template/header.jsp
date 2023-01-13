@@ -65,8 +65,8 @@
 				</li>
 				<li class="menu1"><a href="#">실시간서비스</a>
 					<ul>
-						<li><a href="#">실시간 동선체크</a></li>
-						<li><a href="#">반려동물 실시간 동선체크</a></li>
+						<li><a href="realTimeMhInfo">실시간 동선체크</a></li>
+						<li><a href="realTimeMpInfo">반려동물 실시간 동선체크</a></li>
 					</ul>
 				</li>
 			</ul>
