@@ -14,7 +14,7 @@
          <button type="button" class="btn">검색</button> 
      	</div>
 		<c:if test="${empty sessionScope.userId }">
-		<div class="col text-start">
+		<div class="col text-start pt-4 ps-5">
 			<ul class="nowLogin">
 				<li><a href="loginView" class="login">로그인</a></li>
 				<li><a href="mmInsertJoin1" class="join">회원가입</a></li>
@@ -22,7 +22,7 @@
 		</div>
 		</c:if>
 		<c:if test="${not empty sessionScope.userId }">
-		<div class="col text-start">
+		<div class="col text-start pt-4 ps-5">
 			<ul class="nowLogin">
 				<li class="user"><span><b>${sessionScope.userId}</b>님</span><br><span>로그인하셨습니다.</span></li>
 				<li><a href="mmSelectMyPage?mmNo=${sessionScope.mmNo}" class="myPage">마이페이지</a></li>
@@ -35,7 +35,7 @@
 	<div class="row fs-5 text-center" >
 <!-- 	style="background-color:#285430;" -->
 		<div class="col navi_wrap">
-			<ul class="navi underline-hover">
+			<ul class="underline-hover">
 				<li class="menu1"><a href="#">사이트소개</a>
 					<ul>
 						<li><a href="#">사이트 목적</a></li>

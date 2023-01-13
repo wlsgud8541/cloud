@@ -16,6 +16,10 @@ ul{
 	margin:0;
 	padding:0;
 }
+.header{
+	z-index: 999;
+	min-height: 50px;
+}
 .mainLogo a img{
 	height: 125px;
 }
@@ -50,9 +54,6 @@ ul{
 	right: 0;
 }
 .nowLogin{
-	position: absolute;
-	top: 25px;
-	right: 0;
 	display: inline-block;
 }
 .login{
@@ -88,19 +89,21 @@ li.user{
 	text-align: center;
 }
 .navi_wrap ul{
+	background-color:#285430;
+	color : white;
 	list-style-type: none;
 	margin:0;
 	padding:0;
 	font-size: 0;
 }
-.navi > li{
+.underline-hover > li{
 	display: inline-block;
 	font-size: 18.75px;
 	vertical-align: top;
 	position: relative;
     width: 12%;
 }
-.navi > li > a{
+.underline-hover > li > a{
 	padding: 0;
 }
 .underline-hover li a{
@@ -112,7 +115,7 @@ li.user{
 }
 .underline-hover > li a:before{
 	content:'';
-	background-color: #285430;
+	background-color: #fff;
 	width:0;
 	height:3px;
 	position: absolute;
@@ -124,19 +127,26 @@ li.user{
 .underline-hover > li a:hover:before{
 	width:70%;
 }
-li a:hover{
-	color:#285430;
+.underline-hover li a:hover{
+	color: white;
 }
-.navi li ul{
+.underline-hover li ul{
+	color : black; 
 	display:none;
 }
-.navi li:hover ul{
+.underline-hover li:hover ul{
+	position :absolute;
+	width: 210px;
 	display:block;
-	font-size: 14px;
+	font-size: 13px;
 	border: 1px solid lightgray;
 	background-color: white;
 	box-shadow: 0px 5px 5px -5px rgba(53, 64, 82, 0.2);
 }
-.menu1{
-	background-color: white;
+.menu1 ul li a:hover{
+	color : #285430;
+}
+.menu1 ul li a:before{
+	border-bottom: 1px solid lightgray;
+	width: 70%;	
 }
