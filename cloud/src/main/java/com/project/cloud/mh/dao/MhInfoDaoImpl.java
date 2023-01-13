@@ -32,9 +32,9 @@ public class MhInfoDaoImpl implements MhInfoDao {
 	}
 
 	@Override
-	public int mhiInsert() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int mhiInsert(MhInfo mhInfo) {
+		
+		return sql.insert("MhInfo.mhInfoInsert",mhInfo);
 	}
 
 	@Override

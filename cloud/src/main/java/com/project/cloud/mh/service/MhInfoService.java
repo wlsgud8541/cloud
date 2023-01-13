@@ -14,7 +14,7 @@ public interface MhInfoService {
 	// 실종자 정보 게시판 상세화면 조회
 	public MhInfo mhiSelectDetail();
 	// 실종자 정보 게시판 작성화면
-	public int mhiInsert();
+	public int mhiInsert(MhInfo mhInfo);
 	// 실종자 정보 게시판 수정화면 
 	public int mhiUpdate();
 }

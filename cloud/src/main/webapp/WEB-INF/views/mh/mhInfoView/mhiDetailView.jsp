@@ -15,21 +15,22 @@
              <th>성명</th> 
              <th>사진</th>     
          </tr> 
-         ${jMap} 
-          <%-- <c:if test="${not empty jMap}">
-	         <c:forEach var="jMap" items="${jMap}">
+      
+        
+          <c:if test="${not empty jMap}">
+	         <c:forEach var="jMap" items="${jMap.jsonobj.list}">
 	             <tr> 
-	                 <td> ${jMap.occrde}</td> 
-	                  <td>${jMap.alldressingDscd}</td> 
+	                 <td>${jMap.occrde}</td> 
+	                 <td>${jMap.alldressingDscd}</td> 
 	                 <td>${jMap.ageNow}</td> 
 	                 <td>${jMap.age}</td> 
 	                 <td>${jMap.writingTrgetDscd}</td>
 	                 <td>${jMap.sexdstnDscd}</td> 
 	                 <td>${jMap.occrAdres}</td> 
 	                 <td>${jMap.nm}</td> 
-	                 <td><a href='https://www.safe182.go.kr/home/lcm/lcmMssGet.do?gnbMenuCd=014000000000&lnbMenuCd=014001000000&rptDscd=2&msspsnIdntfccd=" + jMap.msspsnIdntfccd + "'><img style='width:96px;height:128px;' width='96' height='128' border='0' src='https://www.safe182.go.kr/api/lcm/imgView.do?msspsnIdntfccd=" + jMap.msspsnIdntfccd + "'/></a></td>
+	                 <td><a href='https://www.safe182.go.kr/home/lcm/lcmMssGet.do?gnbMenuCd=014000000000&lnbMenuCd=014001000000&rptDscd=2&msspsnIdntfccd=" + ${jMap.jsonobj.list.msspsnIdntfccd}+ "'><img style='width:96px;height:128px;' width='96' height='128' border='0' src='https://www.safe182.go.kr/api/lcm/imgView.do?msspsnIdntfccd="+${jMap.jsonobj.list.msspsnIdntfccd}+ "'/></a></td>
 	        </c:forEach>
-        </c:if>  --%>
+        </c:if>
         <c:if test = "${empty jMap}">
         	<h2>자료가 없습니다.</h2>
         </c:if>

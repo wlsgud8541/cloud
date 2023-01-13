@@ -15,7 +15,12 @@
 		<result property="mhiTknphotolength" column="mhiTknphotolength"/>
 		<result property="mhiBdwgh" column="mhiBdwgh"/>
 	</resultMap>
-	
+	<insert id = "mhInfoInsert" parameterType="MhInfo">
+	INSERT INTO
+		mhinfo
+	VALUES(#{mhiNo}, #{mhiOccrde, jdbcType=VARCHAR}, #{mhiAlldressingDscd, jdbcType=VARCHAR}, #{mhiAgeNow, jdbcType=VARCHAR}, #{mhiAge, jdbcType=VARCHAR}, #{mhiWritingTrgetDscd, jdbcType=VARCHAR},
+				#{mhiSexdstnDscd, jdbcType=VARCHAR}, #{mhiOccrAres, jdbcType=VARCHAR}, #{mhiNm, jdbcType=VARCHAR}, #{mhiTknphotolength, jdbcType=VARCHAR}, #{mhiBdwgh, jdbcType=VARCHAR})
+	</insert>
 </mapper>
 
 
