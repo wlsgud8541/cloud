@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class=" pt-5">
+<div class="container pt-5">
 	<!-- 상단 게시판 제목 -->
 	<div class="textTop row">
 		<div class="col fs-2">

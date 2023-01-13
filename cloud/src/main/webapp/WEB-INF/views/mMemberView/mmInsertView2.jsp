@@ -2,7 +2,61 @@
 
 <%String mmUseUserInfoYn = request.getParameter("mmUseUserInfoYn"); %>
 
-<div class="row my-5" id="global-content">
+   <div class="root">
+        <div class="signin-wrapper form active">
+          <div class="form-wrapper Jform-wrapper">
+            <h2 class="text-center"><b>Cloud 회원가입</b></h2>
+            	<div class=joinForm>
+	            	<div class="joinGroup">
+			            <label for="id" class="joinTitle"><b>아이디</b></label>
+			            <input type="text" placeholder="*아이디" class="join-field" id="id"></input>
+			            <label for="password" class="joinTitle"><b>비밀번호</b></label>
+			            <input  type="password" placeholder="*비밀번호" class="join-field" id="password"></input>
+			            <label for="password"  class="joinTitle"><b>비밀번호 확인</b></label>
+			            <input  type="password" placeholder="*비밀번호 확인" class="join-field" id="#"></input>
+	            	</div>
+	            	<div class="joinGroup">
+			            <label for="id" class="joinTitle"><b>아이디</b></label>
+			            <input type="text" placeholder="*아이디" class="join-field" id="id"></input>
+			            <label for="password" class="joinTitle"><b>비밀번호</b></label>
+			            <input  type="password" placeholder="*비밀번호" class="join-field" id="password"></input>
+			            <label for="password"  class="joinTitle"><b>비밀번호 확인</b></label>
+			            <input  type="password" placeholder="*비밀번호 확인" class="join-field" id="#"></input>
+	            	</div>
+	            	<div class="joinGroup">
+			            <label for="id" class="joinTitle"><b>아이디</b></label>
+			            <input type="text" placeholder="*아이디" class="join-field" id="id"></input>
+			            <label for="password" class="joinTitle"><b>비밀번호</b></label>
+			            <input  type="password" placeholder="*비밀번호" class="join-field" id="password"></input>
+			            <label for="password"  class="joinTitle"><b>비밀번호 확인</b></label>
+			            <input  type="password" placeholder="*비밀번호 확인" class="join-field" id="#"></input>
+	            	</div>
+	            	<div class="joinGroup">
+			            <label for="id" class="joinTitle"><b>아이디</b></label>
+			            <input type="text" placeholder="*아이디" class="join-field" id="id"></input>
+			            <label for="password" class="joinTitle"><b>비밀번호</b></label>
+			            <input  type="password" placeholder="*비밀번호" class="join-field" id="password"></input>
+			            <label for="password"  class="joinTitle"><b>비밀번호 확인</b></label>
+			            <input  type="password" placeholder="*비밀번호 확인" class="join-field" id="#"></input>
+	            	</div>
+	            	<div class="joinGroup">
+			            <label for="id" class="joinTitle"><b>아이디</b></label>
+			            <input type="text" placeholder="*아이디" class="join-field" id="id"></input>
+			            <label for="password" class="joinTitle"><b>비밀번호</b></label>
+			            <input  type="password" placeholder="*비밀번호" class="join-field" id="password"></input>
+			            <label for="password"  class="joinTitle"><b>비밀번호 확인</b></label>
+			            <input  type="password" placeholder="*비밀번호 확인" class="join-field" id="#"></input>
+	            	</div>
+	            
+            	</div>
+            <button class="button primary" id="#">가입하기</button>
+         
+          </div>
+        </div>
+   </div>
+
+
+<%-- <div class="row my-5" id="global-content">
 	<div class="col">
 		<div class="row my-3 text-center">
 			<div class="col">
@@ -168,4 +222,4 @@
 			</div>
 		</form>
 	</div>
-</div>
+</div> --%>

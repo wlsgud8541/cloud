@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <span>
-	<img class="inline-block" alt="" src="resources/image/main/mainTmp.jpg">
+	<img alt="" src="resources/image/main/mainTmp.jpg">
 </span>
