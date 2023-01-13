@@ -1,11 +1,15 @@
 package com.project.cloud.mm.controller;
 
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -107,4 +111,28 @@ public class MmController {
 		
 		return "mMemberView/mmMyPageView";
 	}
+	
+	@RequestMapping("/loginView*")
+	public String mmLoginview(HttpServletRequest request, Model model, String code, String error) {
+		
+		
+		String REST_API_KEY = "e46c1c647457913d7dbf891555db0996";
+		String REDIRECT_URI = "http://localhost:8080/cloud/loginView";
+		
+		model.addAttribute("REST_API_KEY",REST_API_KEY);
+		model.addAttribute("REDIRECT_URI",REDIRECT_URI);
+		
+		if(code != null) {
+			System.out.println("code : "+code);
+			System.out.println("REDIRECT_URI : "+REDIRECT_URI);
+			mmService.mmKakaoLogin(code, error, REST_API_KEY, REDIRECT_URI);
+		}
+		
+		if(error != null) {
+			System.err.println("카카오 로그인 시도 중 에러 발생");
+		}
+		
+		return "mMemberView/mmLoginView";
+	}
+	
 }

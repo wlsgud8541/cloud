@@ -547,6 +547,4 @@ $(document).ready(function(){
 		return ture;
 	});
 	
-	
-	
 });

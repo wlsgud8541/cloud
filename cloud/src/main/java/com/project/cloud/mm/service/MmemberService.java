@@ -19,4 +19,7 @@ public interface MmemberService {
 	public int sendMessege(String tel);
 	// 이메일 인증
 	public Map<String,Object> sendEmail(String email);
+	// Kakao login API
+	public void mmKakaoLogin(String code, String error, String REST_API_KEY, String REDIRECT_URI);
 }
+

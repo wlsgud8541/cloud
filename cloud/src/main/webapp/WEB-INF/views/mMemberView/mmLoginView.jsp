@@ -1,26 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="row my-5" id="global-content">
-	<div class="col">
-		<form class="my-5" id="loginForm" action="mmSelectLoginCheck" method="post">
-			<h2 class="fw-bold">Cloud Login</h2>
-			<fieldset>	
-				<legend>Cloud Login</legend>
-				<div id="login">
-					<p>
-						<label for="userId" class="labelStyle">아이디</label>
-						<input type="text" id="mmId" name="mmId" />
-					</p>
-					<p>
-						<label for="userPass" class="labelStyle">비밀번호</label>
-						<input type="password" id="mmPass" name="mmPass"/>
-					</p>
-				</div>
-					<input type="submit" value="로그인" id="btnLogin" />
-				<p id="btn2">
-					<input type="button" value="회원가입" id="btnJoin" />
-					<input type="button" value="아이디/비밀번호 찾기" id="btnSearch" />
-				</p>
-			</fieldset>
-		</form>
-	</div>
-</div>
+</head>
+	<body>
+		<div class="root">
+			<form class="my-5" id="loginForm" action="mmSelectLoginCheck" method="post">
+			  <div class="signin-wrapper form active">
+			    <div class="form-wrapper">
+			      <div class="fs-5 text-center pb-3 fw-bold">Cloud</div>
+			     
+			      <input type="text" id="mmId" name="mmId" placeholder="ID" class="form-field" />
+			      <input type="password" id="mmPass" name="mmPass" placeholder="Password" class="form-field"/>
+			     
+			      <button class="button primary" type="submit" id="btnLogin">로그인</button>
+			      <button class="button secondary" type="button" id="btnJoin">회원가입</button> 
+			   
+			      <a href="#" id="GoogleLogin" class="text-center">
+			   		  <img src="resources/image/login/GoogleLogin.png" id="GoogleLogin" class="SNSLogin">
+			      </a>
+			      <a href="https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code" class="text-center">
+			   		  <img src="resources/image/login/KakaoLogin.png" id="KakaoLogin" class="SNSLogin" >
+			      </a>
+			      <a href="#" id="NaverLogin" class="text-center">
+			    	  <img src="resources/image/login/NaverLogin.png" id="NaverLogin" class="SNSLogin">
+			      </a>
+			      </div>
+			   </div>
+			</form>
+		</div>
+	</body>
+</html>
