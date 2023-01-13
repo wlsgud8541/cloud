@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -23,9 +24,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.cloud.mm.dao.MmemberDao;
-import com.project.cloud.mm.domain.Mmember;
+import com.project.cloud.mm.domain.Mmember;import com.sun.org.apache.bcel.internal.classfile.PMGClass;
 
 @Service
 public class MmemberServiceImpl implements MmemberService{
@@ -102,7 +105,7 @@ public class MmemberServiceImpl implements MmemberService{
 		String strCN = certificationNumber();
 
 		int result = 0;
-		String sendTel = "\""+tel+"\"";
+		//String sendTel = "\""+tel+"\"";
 		System.out.println("인증 번호 : " + strCN);
 		System.out.println("전송 번호 : " + tel);
 		
@@ -284,5 +287,135 @@ public class MmemberServiceImpl implements MmemberService{
 		
 		return strCN;
 	}
+	
+	// Kakao login API
+	public void mmKakaoLogin(String code, String error, String REST_API_KEY, String REDIRECT_URI) {
+		String targetUrl = "https://kauth.kakao.com/oauth/token";
+		String clientSecret = "UVD9pWa6o9kNZ6BLMTBv6KuKXWiLvgnN";
+		
+		System.out.println("service impl targetUrl : "+targetUrl);
+		System.out.println("service impl code : "+code);
+		System.out.println("service impl REST_API_KEY : "+REST_API_KEY);
+		System.out.println("service impl REDIRECT_URI : "+REDIRECT_URI);
+		try {
+			
+			URL url = new URL(targetUrl+"?grant_type=authorization_code&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI+"&code="+code+"&client_secret="+clientSecret);
+			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+			con.setRequestMethod("POST");
+			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
+			con.setDoOutput(true);
+			
+			DataOutputStream dr = new DataOutputStream(con.getOutputStream());
+			dr.flush();
+			dr.close();
+			
+			int responseCode = con.getResponseCode();
+			System.out.println("응답 결과 : "+responseCode);
 
+			BufferedReader br;
+			if (responseCode == 200) { // 정상호출
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			}else{ // error
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			}
+
+			//response 결과 출력
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while ((inputLine = br.readLine()) != null) {
+				response.append(inputLine);
+			}
+			System.out.println("response : "+ response.toString());
+
+			br.close();
+			
+			HashMap<String, Object> map = new ObjectMapper().readValue(response.toString(), HashMap.class);
+			
+			//kakao user info 가져오기
+			kakaoUserInfo(map);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+	
+	//kakao user info 가져오기
+	public void kakaoUserInfo(HashMap<String, Object> map) {
+		String requestUrl = "https://kapi.kakao.com/v2/user/me";
+		String accessToken = (String)map.get("access_token");
+		System.out.println("accessToken : "+accessToken);
+
+		try {
+			URL url = new URL(requestUrl);
+			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+			con.setRequestMethod("POST");
+			con.setRequestProperty("Authorization", "Bearer "+accessToken);
+			con.setDoOutput(true);
+			
+			DataOutputStream ds =  new DataOutputStream(con.getOutputStream());
+			ds.flush();
+			ds.close();
+			
+			int responseCode = con.getResponseCode();
+			System.out.println("kakao user info 응답결과 : "+ responseCode);
+			
+			BufferedReader br;
+			if(responseCode == 200) {
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			}else {
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			}
+			
+			//response 결과 출력
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while((inputLine = br.readLine()) != null) {
+				response.append(inputLine);
+			}
+			System.out.println("response : "+response.toString());
+			
+			br.close();
+		
+			HashMap<String, Object> kakaoInfoMap = new ObjectMapper().readValue(response.toString(), HashMap.class);
+			System.out.println("kakaoInfoMap : "+kakaoInfoMap.get("kakao_account"));
+
+			Map<String, String> kakaoUserInfoMap = (Map<String, String>)kakaoInfoMap.get("kakao_account");
+			System.out.println("kakaoUserInfoMap-user-Email : "+kakaoUserInfoMap.get("email"));  									// 이메일
+			System.out.println("kakaoUserInfoMap-user-Name : "+kakaoUserInfoMap.get("name").toString());							// 사용자 이름
+			System.out.println("kakaoUserInfoMap-user-is_email_verified : "+kakaoUserInfoMap.get("is_email_verified").toString());  // 이메일 인증여부
+			System.out.println("kakaoUserInfoMap-user-birthyear : "+kakaoUserInfoMap.get("birthyear").toString()); 					// 사용자 출생연도(YYYY 형식)
+			System.out.println("kakaoUserInfoMap-user-birthday : "+kakaoUserInfoMap.get("birthday").toString()); 					// 사용자 생일(MMDD 형식)
+			System.out.println("kakaoUserInfoMap-user-gender : "+kakaoUserInfoMap.get("gender").toString()); 						// 사용자 성별
+			System.out.println("kakaoUserInfoMap-user-phone_number : "+kakaoUserInfoMap.get("phone_number").toString()); 			// 사용자 전화번호
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

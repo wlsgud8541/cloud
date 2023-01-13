@@ -24,8 +24,8 @@
 	<link href="resources/bootstrap/bootstrap.min.css" rel="stylesheet" >
 	<link rel="stylesheet" type="text/css" href="resources/css/w3.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">		
-	<link rel="stylesheet" type="text/css" href="resources/css/board.css" />		
-			
+	<link rel="stylesheet" type="text/css" href="resources/css/board.css" />	
+	<link rel="stylesheet" type="text/css" href="resources/css/member.css" />
     <style>      	
     </style>
 	<script src="resources/js/jquery-3.2.1.min.js"></script>
