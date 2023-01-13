@@ -6,10 +6,10 @@
 <!-- header  -->
 <div class="header fixed-top">
 	<div class="row headerMain border-bottom bg-white">  
-		<div class="col text-center">
+		<div class="col ps-5 pe-0 text-center">
         	 <a href="main"><img src="resources/image/main/cloudLogo.png" style="width: 130px;"></a>
      	</div>
-     	<div class="search_wrap text-center">
+     	<div class="col search_wrap text-center">
          <input type="text" class="search_bar rounded-pill ps-4 pe-5">
          <button type="button" class="btn">검색</button> 
      	</div>

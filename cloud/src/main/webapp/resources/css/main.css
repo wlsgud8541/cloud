@@ -50,7 +50,7 @@ ul{
 	text-indent : -9999px;
 	border-radius:100px;
 	position: absolute;
-	background-size:100% 40px;
+	background-size:auto;
 	right: 0;
 }
 .nowLogin{
@@ -87,6 +87,9 @@ li.user{
 	padding-top: 39px;
 	font-size: 15px;
 	text-align: center;
+}
+.navi_wrap{
+	border-bottom: 3px;
 }
 .navi_wrap ul{
 	background-color:#285430;
