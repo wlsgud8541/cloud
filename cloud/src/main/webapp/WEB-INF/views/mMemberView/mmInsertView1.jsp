@@ -4,7 +4,7 @@
 	참고 사이트 : http://postcode.map.daum.net/guide
 -->    
 <!-- <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>    --> 
-<div class="row my-5" id="global-content">
+<div class="w3-content row my-5" id="global-content">
 	<div class="col">
 		<div class="row my-3 text-center">
 			<div class="col">

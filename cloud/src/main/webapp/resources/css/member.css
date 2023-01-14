@@ -12,13 +12,6 @@
   /* background: #d5d5d5; */
   transition: all .32s ease-in; 
 }
-
-.signup-wrapper {
-  flex-grow: 1;
-  background: #0F3758;
-  transition: all .32s ease-in-out; 
-}
-
 .active {
   flex-grow: 6; 
 }
@@ -67,14 +60,16 @@ h5 {
 }
 .join-wrapper {
   background-color: white;
-  width: 750px;
+  width: 700px;
   height: 100%;
   padding: 20px 0;
   margin: 20px auto;
   border-radius: 15px;
-  border: 1px solid black;
+  border: 1px solid lightgray;
+  box-shadow: 0px 5px 5px -5px rgba(53, 64, 82, 0.2);
   border-radius: 8%;
 }
+/* 로그인 */
 .form-wrapper button {
     cursor: pointer;
     font-weight: bold;
@@ -103,7 +98,7 @@ h5 {
 }
 .form-wrapper .form-field {
     font-weight: bold;
-    width: 200px;
+    width: 230px;
     margin: 0 35px 20px;
     height: 35px;
     padding: 6px 15px;
@@ -114,30 +109,59 @@ h5 {
     color: #748194;
     font-size: 14px; 
 }
-.form-wrapper .join-field {
+
+/* 회원가입 */
+.join-wrapper .join-field {
     font-weight: bold;
     width: 400px;
-    margin: 0 35px 20px;
+/*     margin: 0 35px 20px; */
     height: 35px;
     padding: 6px 15px;
-    border-radius: 5px;
+/*     border-radius: 5px; */
     outline: none;
     border: none;
     background: #f5f5f5;
     color: #748194;
     font-size: 14px; 
 }
-.form-wrapper p {
-    color: #424242;
-    font-size: 14px;
-    text-align: center; 
+.join-wrapper .mail-field {
+    font-weight: bold;
+    width: 124px;
+/*     margin: 0 35px 20px; */
+    height: 35px;
+    padding: 6px 15px;
+/*     border-radius: 5px; */
+    outline: none;
+    border: none;
+    background: #f5f5f5;
+    color: #748194;
+    font-size: 14px; 
 }
-.form-wrapper p a {
-      cursor: pointer;
-      color: #0F3758; 
+.join-wrapper button {
+    cursor: pointer;
+    font-weight: bold;
+    width: 230px;
+    margin: 0 35px 20px;
+    height: 45px;
+    padding: 6px 15px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-size: 14px; 
 }
-.form-wrapper p a:hover {
-        color: #009688; 
+.join-wrapper button.primary {
+      color: white;
+      background: #0F3758; 
+}
+.join-wrapper button.primary:hover {
+        opacity: .9; 
+}
+.join-wrapper button.secondary {
+      background: #a8a8a8;
+      color: #ffffff; 
+}
+.join-wrapper button.secondary:hover {
+       opacity: .9;  
 }
 .joinForm{
 	width:400px;
