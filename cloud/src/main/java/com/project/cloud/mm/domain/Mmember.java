@@ -28,18 +28,20 @@ public class Mmember {
 	private String mmIdConnGOOGLE;
 	private String mmIdConnNaver;
 	private String mmZipCode;
+
+	private String kakaoId;
+	private String kakaoEmail;
+	private String kakaoGender;
 	
 	public Mmember() {}
-	
-
-	
 	
 	public Mmember(int mmNo, Timestamp mmUseUserInfoEdate, Timestamp mmJoinDate, Timestamp mmSecedeDate, String mmId,
 			String mmPass, String mmName, String mmBirth, String mmGen, String mmEmail, String emailId,
 			String emailDomain, String selectDomain, String mmTel, String tel1, String tel2, String tel3,
 			String mmAddr1, String mmAddr2, String mmUseUserInfoYn, String mmActivateYn, String mmIdConnKAKAO,
-			String mmIdConnGOOGLE, String mmIdConnNaver, String mmZipCode) {
-	
+			String mmIdConnGOOGLE, String mmIdConnNaver, String mmZipCode, String kakaoId, String kakaoEmail,
+			String kakaoGender) {
+			
 			this.mmNo = mmNo;
 			this.mmUseUserInfoEdate = mmUseUserInfoEdate;
 			this.mmJoinDate = mmJoinDate;
@@ -65,8 +67,35 @@ public class Mmember {
 			this.mmIdConnGOOGLE = mmIdConnGOOGLE;
 			this.mmIdConnNaver = mmIdConnNaver;
 			this.mmZipCode = mmZipCode;
+			this.kakaoId = kakaoId;
+			this.kakaoEmail = kakaoEmail;
+			this.kakaoGender = kakaoGender;
 		}
+	
 
+	public String getKakaoId() {
+		return kakaoId;
+	}
+
+	public void setKakaoId(String kakaoId) {
+		this.kakaoId = kakaoId;
+	}
+
+	public String getKakaoEmail() {
+		return kakaoEmail;
+	}
+
+	public void setKakaoEmail(String kakaoEmail) {
+		this.kakaoEmail = kakaoEmail;
+	}
+
+	public String getKakaoGender() {
+		return kakaoGender;
+	}
+
+	public void setKakaoGender(String kakaoGender) {
+		this.kakaoGender = kakaoGender;
+	}
 
 	public String getEmailId() {
 		return emailId;

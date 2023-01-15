@@ -1,5 +1,6 @@
 package com.project.cloud.mm.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.project.cloud.mm.domain.Mmember;
@@ -19,7 +20,9 @@ public interface MmemberService {
 	public int sendMessege(String tel);
 	// 이메일 인증
 	public Map<String,Object> sendEmail(String email);
-	// Kakao login API
-	public void mmKakaoLogin(String code, String error, String REST_API_KEY, String REDIRECT_URI);
+	// kakao login API
+	public HashMap<String, String> mmKakaoLogin(String code, String error, String REST_API_KEY, String REDIRECT_KAKAO_LOGIN_URI);
+	// 카카오 로그인 처리
+	public Mmember kakaoUserLogin(String kakaoUserId);
 }
 

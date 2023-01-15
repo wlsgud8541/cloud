@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -24,11 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.cloud.mm.dao.MmemberDao;
-import com.project.cloud.mm.domain.Mmember;import com.sun.org.apache.bcel.internal.classfile.PMGClass;
+import com.project.cloud.mm.domain.Mmember;
 
 @Service
 public class MmemberServiceImpl implements MmemberService{
@@ -38,7 +36,6 @@ public class MmemberServiceImpl implements MmemberService{
 	
 	@Autowired
 	private JavaMailSenderImpl mailSender;
-	
 	
 	@Override
 	public int mmSelectLoginCheck(String mmId, String mmPass) {
@@ -76,6 +73,7 @@ public class MmemberServiceImpl implements MmemberService{
 		String tel1 = member.getTel1();
 		String tel2 = member.getTel2();
 		String tel3 = member.getTel3();
+		int result = 0;
 		
 		// 이메일 세팅
 		if (member.getEmailDomain() == null || member.getEmailDomain().equals("")) {
@@ -88,8 +86,23 @@ public class MmemberServiceImpl implements MmemberService{
 		
 		// 전화번호 세팅
 		member.setMmTel(tel1 + "-" + tel2 + "-" + tel3);
+		System.out.println("member.getKakaoId() : "+member.getKakaoId());
+		System.out.println("member.getMmZipCode() : "+member.getMmZipCode());
+		System.out.println("member.getMmUseUserInfoYn() : "+member.getMmUseUserInfoYn());
+		System.out.println("member.getMmIdConnKAKAO() : "+member.getMmIdConnKAKAO());
+		System.out.println("member.getKakaoId() : "+member.getKakaoId());
+		if (member.getKakaoId() == null || member.getKakaoId() == "") {
+			System.out.println("일반 회원 insert");
+			result = mmDao.mmInsertJoin(member);
+		}else if(member.getKakaoId() != null && member.getKakaoId() != "") {
+			member.setMmId("kakao_");
+			member.setMmPass("kakao_");
+			member.setMmIdConnKAKAO("Y");
+			System.out.println("카카오 회원 insert");
+			result = mmDao.mmInsertJoin(member);
+			result = mmDao.mmInsertKakaoJoin(member);
+		}
 		
-		int result = mmDao.mmInsertJoin(member);
 		
 		return result;
 	}
@@ -108,7 +121,6 @@ public class MmemberServiceImpl implements MmemberService{
 		//String sendTel = "\""+tel+"\"";
 		System.out.println("인증 번호 : " + strCN);
 		System.out.println("전송 번호 : " + tel);
-		
 	
 		String hostNameUrl = "https://sens.apigw.ntruss.com";
 		String requestUrl = "/sms/v2/services/";
@@ -120,7 +132,6 @@ public class MmemberServiceImpl implements MmemberService{
 		String timestamp = Long.toString(System.currentTimeMillis()); 			
 		requestUrl += serviceId + requestUrlType;
 		String apiUrl = hostNameUrl + requestUrl;
-		
 		
 		JSONObject bodyJson = new JSONObject();
 		JSONObject toJson = new JSONObject();
@@ -289,17 +300,14 @@ public class MmemberServiceImpl implements MmemberService{
 	}
 	
 	// Kakao login API
-	public void mmKakaoLogin(String code, String error, String REST_API_KEY, String REDIRECT_URI) {
+	public HashMap<String, String> mmKakaoLogin(String code, String error, String REST_API_KEY, String REDIRECT_KAKAO_LOGIN_URI) {
+		HashMap<String, String> resultMap = new HashMap<String, String>();
 		String targetUrl = "https://kauth.kakao.com/oauth/token";
 		String clientSecret = "UVD9pWa6o9kNZ6BLMTBv6KuKXWiLvgnN";
 		
-		System.out.println("service impl targetUrl : "+targetUrl);
-		System.out.println("service impl code : "+code);
-		System.out.println("service impl REST_API_KEY : "+REST_API_KEY);
-		System.out.println("service impl REDIRECT_URI : "+REDIRECT_URI);
 		try {
 			
-			URL url = new URL(targetUrl+"?grant_type=authorization_code&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_URI+"&code="+code+"&client_secret="+clientSecret);
+			URL url = new URL(targetUrl+"?grant_type=authorization_code&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_KAKAO_LOGIN_URI+"&code="+code+"&client_secret="+clientSecret);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
@@ -325,25 +333,26 @@ public class MmemberServiceImpl implements MmemberService{
 			while ((inputLine = br.readLine()) != null) {
 				response.append(inputLine);
 			}
-			System.out.println("response : "+ response.toString());
 
 			br.close();
 			
 			HashMap<String, Object> map = new ObjectMapper().readValue(response.toString(), HashMap.class);
 			
 			//kakao user info 가져오기
-			kakaoUserInfo(map);
+			resultMap = kakaoUserInfo(map);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
+		
+		return resultMap;
 	}
 	
 	//kakao user info 가져오기
-	public void kakaoUserInfo(HashMap<String, Object> map) {
+	public HashMap<String, String> kakaoUserInfo(HashMap<String, Object> map) {
+		HashMap<String, String> resultMap = new HashMap<String, String>();
 		String requestUrl = "https://kapi.kakao.com/v2/user/me";
 		String accessToken = (String)map.get("access_token");
-		System.out.println("accessToken : "+accessToken);
 
 		try {
 			URL url = new URL(requestUrl);
@@ -377,42 +386,28 @@ public class MmemberServiceImpl implements MmemberService{
 			br.close();
 		
 			HashMap<String, Object> kakaoInfoMap = new ObjectMapper().readValue(response.toString(), HashMap.class);
-			System.out.println("kakaoInfoMap : "+kakaoInfoMap.get("kakao_account"));
-
 			Map<String, String> kakaoUserInfoMap = (Map<String, String>)kakaoInfoMap.get("kakao_account");
-			System.out.println("kakaoUserInfoMap-user-Email : "+kakaoUserInfoMap.get("email"));  									// 이메일
-			System.out.println("kakaoUserInfoMap-user-Name : "+kakaoUserInfoMap.get("name").toString());							// 사용자 이름
-			System.out.println("kakaoUserInfoMap-user-is_email_verified : "+kakaoUserInfoMap.get("is_email_verified").toString());  // 이메일 인증여부
-			System.out.println("kakaoUserInfoMap-user-birthyear : "+kakaoUserInfoMap.get("birthyear").toString()); 					// 사용자 출생연도(YYYY 형식)
-			System.out.println("kakaoUserInfoMap-user-birthday : "+kakaoUserInfoMap.get("birthday").toString()); 					// 사용자 생일(MMDD 형식)
-			System.out.println("kakaoUserInfoMap-user-gender : "+kakaoUserInfoMap.get("gender").toString()); 						// 사용자 성별
-			System.out.println("kakaoUserInfoMap-user-phone_number : "+kakaoUserInfoMap.get("phone_number").toString()); 			// 사용자 전화번호
+			
+			ObjectMapper objMapper = new ObjectMapper();
+			HashMap<String, Object> kakaoUserProfileInfoMap = objMapper.convertValue(kakaoUserInfoMap.get("profile"), HashMap.class);
+			
+			resultMap.put("kakaoId", (String)kakaoInfoMap.get("id").toString());
+			resultMap.put("kakaoEmail", (String)kakaoUserInfoMap.get("email").toString());
+			resultMap.put("kakaoGender", (String)kakaoUserInfoMap.get("gender").toString());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		return resultMap;
+	}
+	
+	// 카카오 로그인 처리
+	public Mmember kakaoUserLogin(String kakaoUserId) {
+		Mmember member = mmDao.kakaoUserLogin(kakaoUserId);
+		return member;
 	}
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

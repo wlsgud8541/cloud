@@ -11,6 +11,10 @@ public interface MmemberDao {
 	public int idCheck(String mmId);
 	// 회원가입 처리
 	public int mmInsertJoin(Mmember member);
+	// 회원가입 처리
+	public int mmInsertKakaoJoin(Mmember member);
 	// 마이페이지 조회
 	public Mmember mmSelectMyPage(String mmNo);
+	// 카카오 유저 로그인 처리
+	public Mmember kakaoUserLogin(String kakaoUserId);
 }

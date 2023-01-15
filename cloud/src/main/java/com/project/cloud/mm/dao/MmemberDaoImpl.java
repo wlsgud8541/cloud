@@ -33,8 +33,17 @@ public class MmemberDaoImpl implements MmemberDao{
 	}
 
 	@Override
+	public int mmInsertKakaoJoin(Mmember member) {
+		return sql.insert("Mmember.mmInsertKakaoJoin", member);
+	}
+
+	@Override
 	public Mmember mmSelectMyPage(String mmNo) {
 		return sql.selectOne("Mmember.mmSelectMyPage", mmNo);
 	}
-
+	
+	@Override
+	public Mmember kakaoUserLogin(String kakaoUserId) {
+		return sql.selectOne("Mmember.kakaoUserLogin", kakaoUserId);
+	}
 }

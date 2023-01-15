@@ -22,6 +22,10 @@
 		<result property="mmIdConnGOOGLE" column="mmIdConnGOOGLE"/>
 		<result property="mmIdConnNaver" column="mmIdConnNaver"/>
 		<result property="mmZipCode" column="mmZipCode"/>
+		
+		<result property="kakaoId" column="kakaoId"/>
+		<result property="kakaoEmail" column="kakaoEmail"/>
+		<result property="kakaoGender" column="kakaoGender"/>
 	</resultMap>
 	
 	<select id="mmSelectLoginCheck" resultType="String" parameterType="String">
@@ -59,10 +63,23 @@
 		WHERE mmId = #{mmId}
 	</select>
 	
-	<select id="mmInsertJoin" resultType="int" parameterType="Mmember">
+	<insert id="mmInsertJoin" parameterType="Mmember">
 		INSERT INTO MMEMBER(mmNo
+							<if test="kakaoId == null or kakaoId == ''">
 						   ,mmId
 						   ,mmPass
+						   ,mmIdConnKAKAO
+						   ,mmIdConnGOOGLE
+						   ,mmIdConnNaver
+							</if>
+							 <if test="kakaoId != null and kakaoId != ''">
+						   ,mmId
+						   ,mmPass
+						   ,kakaoUserRealId
+						   ,mmIdConnKAKAO
+						   ,mmIdConnGOOGLE
+						   ,mmIdConnNaver
+							</if>
 						   ,mmName
 						   ,mmGen
 						   ,mmBirth
@@ -74,8 +91,21 @@
 						   ,mmUseUserInfoYn
 						   )
 		VALUES(MMEMBER_SEQ.nextval
+			  <if test="kakaoId == null or kakaoId == ''">
 			  ,#{mmId}
 			  ,#{mmPass}
+			  ,'N'
+			  ,'N'
+			  ,'N'
+			  </if>
+			  <if test="kakaoId != null and kakaoId != ''">
+			  ,#{mmId}||MMEMBER_SEQ.nextval
+			  ,#{mmPass}||MMEMBER_SEQ.nextval
+			  ,#{kakaoId}
+			  ,'Y'
+			  ,'N'
+			  ,'N'
+			  </if>
 			  ,#{mmName}
 			  ,#{mmGen}
 			  ,#{mmBirth}
@@ -86,6 +116,41 @@
 			  ,#{mmAddr2}
 			  ,#{mmUseUserInfoYn}
 			  )
+	</insert>
+	
+	<insert id="mmInsertKakaoJoin" parameterType="Mmember">
+		INSERT INTO KAKAO(kakaoUserNo
+						 ,kakaoUserId
+						 ,kakaoUserRealId
+						 )
+		VALUES(KAKAO_SEQ.nextval
+			  ,#{kakaoEmail}
+			  ,#{kakaoId}
+			  )
+	
+	</insert>
+	
+	<select id="kakaoUserLogin" parameterType="String" resultType="Mmember">
+		SELECT 	mmNo
+				,mmUseUserInfoEdate
+				,mmJoinDate
+				,mmSecedeDate
+				,mmId
+				,mmPass
+				,mmName
+				,mmBirth
+				,mmGen
+				,mmEmail
+				,mmTel	
+				,mmAddr1
+				,mmAddr2
+				,mmUseUserInfoYn
+				,mmActivateYn
+				,mmIdConnKAKAO
+				,mmIdConnGOOGLE
+				,mmIdConnNaver
+		FROM MMEMBER
+    	WHERE kakaoUserRealId = #{kakaoUserId}
 	</select>
 	
 	<select id="mmSelectMyPage" resultType="Mmember" parameterType="String">

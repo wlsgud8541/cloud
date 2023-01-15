@@ -1,15 +1,11 @@
 package com.project.cloud.mm.controller;
 
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +23,10 @@ public class MmController {
 	
 	@Autowired
 	private MmemberService mmService;
+	
+	
+	private static String REST_API_KEY = "e46c1c647457913d7dbf891555db0996";
+	private static String REDIRECT_KAKAO_LOGIN_URI = "http://localhost:8080/cloud/loginView";
 	
 	// 로그인 처리
 	@RequestMapping("mmSelectLoginCheck")
@@ -49,17 +49,55 @@ public class MmController {
 		return resultMap;
 	}
 	
-	// 로그아웃 처리
-	@RequestMapping("mmLogout")
-	public void mmLogout(HttpSession session, HttpServletResponse response, PrintWriter writer) {
+	@RequestMapping("loginView*")
+	public String mmLoginview(HttpSession session,Model model, String code, String error) {
 		
+		model.addAttribute("REST_API_KEY",REST_API_KEY);
+		model.addAttribute("REDIRECT_KAKAO_INSERT_URI",REDIRECT_KAKAO_LOGIN_URI);
+
+		// 정상처리
+		if(code != null) {
+			HashMap<String, String> resultMap = mmService.mmKakaoLogin(code, error, REST_API_KEY, REDIRECT_KAKAO_LOGIN_URI);
+			// db에 저장된 카카오 유저 정보가 있는지 조회
+			Mmember member = mmService.kakaoUserLogin(resultMap.get("kakaoId"));
+			System.out.println("member check : "+member);
+			
+			if (member != null) { // db에 저장된 정보가 있으면 카카오 로그인 처리 후 메인으로 전송
+				System.out.println("카카오 로그아웃");
+				model.addAttribute("member", member);
+				session.setAttribute("userId", member.getMmId());
+				session.setAttribute("mmNo", member.getMmNo());
+				session.setAttribute("kakaoLogin", "kakaoLogin");
+				return "main/mainView";
+			
+			}else if(member == null) { // db에 저장된 정보가 없으면 카카오 회원가입 처리
+				System.out.println("카카오 회원가입");
+				model.addAttribute("kakaoId", resultMap.get("kakaoId"));
+				model.addAttribute("kakaoEmail", resultMap.get("kakaoEmail"));
+				model.addAttribute("kakaoGender", resultMap.get("kakaoGender"));
+				return "mMemberView/mmInsertView1"; 
+			}
+		}
+		// 카카오 회원가입 오류 발생
+		if(error != null) {
+			System.err.println("카카오 로그인 시도 중 에러 발생");
+		}
+		
+		System.out.println("일반 로그아웃");
+		return "mMemberView/mmLoginView";
+	}
+		
+	
+	
+	// 로그아웃 처리
+	@RequestMapping("mmLogout*")
+	public void mmLogout(HttpSession session, HttpServletResponse response, PrintWriter writer) {
 		response.setContentType("text/html; charset=utf-8");
+		session.invalidate();
 		writer.println("<script>");
 		writer.println("	alert('정상적으로 로그아웃 되셨습니다.')");
 		writer.println("	location.href='main';");
 		writer.println("</script>");
-		
-		session.invalidate();
 	}
 	
 	
@@ -84,6 +122,21 @@ public class MmController {
 	public int sendMessege(String tel) throws NoSuchAlgorithmException, InvalidKeyException {
 		
 		return mmService.sendMessege(tel);
+	}
+	
+	// 일반 회원 뷰 이동
+	@RequestMapping("/mmInsertJoin2")
+	public String mmInsertJoin2(Model model, String mmUseUserInfoYn) {
+		model.addAttribute("mmUseUserInfoYn",mmUseUserInfoYn);
+
+		return "mMemberView/mmInsertView2";
+	}
+	
+	@RequestMapping("/mmKakaoInsertJoin2")
+	public String mmKakaoInsertJoin2(Model model, Mmember member) {
+		model.addAttribute("member",member);
+		
+		return "mMemberView/mmKakaoInsertView2";
 	}
 	
 	// 회원가입 처리
@@ -112,27 +165,7 @@ public class MmController {
 		return "mMemberView/mmMyPageView";
 	}
 	
-	@RequestMapping("/loginView*")
-	public String mmLoginview(HttpServletRequest request, Model model, String code, String error) {
-		
-		
-		String REST_API_KEY = "e46c1c647457913d7dbf891555db0996";
-		String REDIRECT_URI = "http://localhost:8080/cloud/loginView";
-		
-		model.addAttribute("REST_API_KEY",REST_API_KEY);
-		model.addAttribute("REDIRECT_URI",REDIRECT_URI);
-		
-		if(code != null) {
-			System.out.println("code : "+code);
-			System.out.println("REDIRECT_URI : "+REDIRECT_URI);
-			mmService.mmKakaoLogin(code, error, REST_API_KEY, REDIRECT_URI);
-		}
-		
-		if(error != null) {
-			System.err.println("카카오 로그인 시도 중 에러 발생");
-		}
-		
-		return "mMemberView/mmLoginView";
-	}
+	
+	
 	
 }

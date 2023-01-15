@@ -29,7 +29,6 @@
 	<view-controller path="/main" view-name="/main/mainView"/>
 	<!-- 회원가입 뷰 이동 -->
 	<view-controller path="/mmInsertJoin1" view-name="/mMemberView/mmInsertView1"/>
-	<view-controller path="/mmInsertJoin2" view-name="/mMemberView/mmInsertView2"/>
 	<!-- 공지사항 게시판 글쓰기 뷰 이동 -->
 	<view-controller path="/mnInsert" view-name="/customerSupportView/mNoticeView/mnInsertView"/>
 	<!-- Qna 게시판  글쓰기 뷰 이동 -->
