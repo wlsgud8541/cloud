@@ -1,8 +1,16 @@
 package com.project.cloud.main.service;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import com.project.cloud.cs.domain.Mnotice;
+import com.project.cloud.mh.domain.MhFind;
+import com.project.cloud.mp.domain.MpFind;
 
 public interface MainService {
-	//반환 타입은 필요한 타입에 맞게 수정해서 사용
-	public ArrayList<?> selectMainList();
+	//메인 공지
+	public List<Mnotice> mainMnList();
+	//메인 실종자 목격
+	public List<MhFind> mainMhfList();
+	//메인 반려동물 목격
+	public List<MpFind> mainMpfList();
 }

@@ -17,7 +17,7 @@
 		<result property="mhfGen" column="mhfGen"/>
 	</resultMap>
 
-<select id="mhfSelectList" resultType="MhFind">
+<select id="mhfSelectList" resultType="MhFind" parameterType="hashMap">
 SELECT rNum
         ,mhfNo
         ,mhfReadCnt
@@ -43,7 +43,7 @@ FROM (SELECT rownum as rNum
                 mhfNo DESC)
                     )
 WHERE
-    rNum BETWEEN #{startRow} and #{startRow} + #{pageSize} -1
+    rNum BETWEEN #{startRow} AND #{startRow} + #{pageSize} -1
 </select>
 
 <select id="mhfSelectListCount" resultType="int">

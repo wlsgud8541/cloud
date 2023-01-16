@@ -16,6 +16,9 @@ ul{
 	margin:0;
 	padding:0;
 }
+.bodyBg{
+	 background:url('../image/main/background.jpg') no-repeat 50% 0;
+}
 .header{
 	z-index: 999;
 	min-height: 50px;

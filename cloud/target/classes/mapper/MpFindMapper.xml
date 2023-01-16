@@ -19,7 +19,7 @@
 	</resultMap>
 	
 	<!-- 리스트 조회 -->
-	<select id="mpfSelectList" resultType="MpFind">
+	<select id="mpfSelectList" resultType="MpFind" parameterType="hashMap">
 		SELECT rNum
 		     , mpfNo
 		     , mpfReadCnt

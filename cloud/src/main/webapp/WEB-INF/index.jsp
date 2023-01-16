@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,16 +35,20 @@
 	<script src="resources/js/notice.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
+<%-- <c:if test="${param.body == 'views/main/mainView.jsp'}">
+<body class="bodyBg">
+</c:if> --%>
+<c:if test="${param.body != 'main/mainView'}">
 <body>
-	<div>
-		<%@ include file="template/header.jsp" %>
-		<div style="margin-top: 179px;">
-<!-- 		class="container"  -->
-		
-			<jsp:include page="${ param.body }" />
+</c:if>
+		<div>
+			<%@ include file="template/header.jsp" %>
+			<div style="margin-top: 190px;">
+<!-- 			 class="container" -->
+				<jsp:include page="${ param.body }" />
+			</div>
+			<%@ include file="template/footer.jsp" %>
 		</div>
-		<%@ include file="template/footer.jsp" %>
-	</div>
     <script src="resources/bootstrap/bootstrap.bundle.min.js"></script>	
 </body>
 </html>
