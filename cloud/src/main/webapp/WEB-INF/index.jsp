@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Cloud</title>
+	<title>Cloud</title> 
 	<!--
 		BoardController에서 클래스 레벨에 @RequestMapping 애노테이션을 사용해
 		별도로 경로 매핑을 하지 않고 boardList(Model model) 메서드에만
