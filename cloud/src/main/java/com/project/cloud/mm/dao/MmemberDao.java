@@ -11,10 +11,14 @@ public interface MmemberDao {
 	public int idCheck(String mmId);
 	// 회원가입 처리
 	public int mmInsertJoin(Mmember member);
-	// 회원가입 처리
+	// 카카오 회원가입 처리
 	public int mmInsertKakaoJoin(Mmember member);
+	// 네이버 회원가입 처리
+	public int mmInsertNaverJoin(Mmember member);
 	// 마이페이지 조회
 	public Mmember mmSelectMyPage(String mmNo);
 	// 카카오 유저 로그인 처리
 	public Mmember kakaoUserLogin(String kakaoUserId);
+	// 네이버 유저 로그인 처리
+	public Mmember naverUserLogin(String naverUserId);
 }

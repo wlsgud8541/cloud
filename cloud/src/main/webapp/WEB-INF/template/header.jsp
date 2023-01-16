@@ -26,11 +26,14 @@
 			<ul class="nowLogin">
 				<li class="user"><span><b>${sessionScope.userId}</b>님</span><br><span>로그인하셨습니다.</span></li>
 				<li><a href="mmSelectMyPage?mmNo=${sessionScope.mmNo}" class="myPage">마이페이지</a></li>
-				<c:if test="${empty sessionScope.kakaoLogin}">
+				<c:if test="${empty sessionScope.kakaoLogin and empty sessionScope.naverLogin }">
 					<li><a href="mmLogout" class="logout">로그아웃</a></li>
 				</c:if>
 				<c:if test="${not empty sessionScope.kakaoLogin}">
 					<li><a href="https://kauth.kakao.com/oauth/logout?client_id=e46c1c647457913d7dbf891555db0996&logout_redirect_uri=http://localhost:8080/cloud/mmLogout" class="logout">로그아웃</a></li>
+				</c:if>
+				<c:if test="${not empty sessionScope.naverLogin}">
+					<li><a href="mmLogout" class="logout">로그아웃</a></li>
 				</c:if>
 			</ul>
 		</div>

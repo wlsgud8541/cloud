@@ -22,10 +22,17 @@
 		<result property="mmIdConnGOOGLE" column="mmIdConnGOOGLE"/>
 		<result property="mmIdConnNaver" column="mmIdConnNaver"/>
 		<result property="mmZipCode" column="mmZipCode"/>
-		
+		<!-- 카카오 회원  -->
 		<result property="kakaoId" column="kakaoId"/>
 		<result property="kakaoEmail" column="kakaoEmail"/>
 		<result property="kakaoGender" column="kakaoGender"/>
+		<!-- 네이버 회원 -->
+		<result property="naverId" column="naverId"/>
+		<result property="naverGender" column="naverGender"/>
+		<result property="naverEmail" column="naverEmail"/>
+		<result property="naverMobile" column="naverMobile"/>
+		<result property="naverName" column="naverName"/>
+		<result property="naverBirthday" column="naverBirthday"/>
 	</resultMap>
 	
 	<select id="mmSelectLoginCheck" resultType="String" parameterType="String">
@@ -65,7 +72,7 @@
 	
 	<insert id="mmInsertJoin" parameterType="Mmember">
 		INSERT INTO MMEMBER(mmNo
-							<if test="kakaoId == null or kakaoId == ''">
+							<if test="kakaoId == null and naverId == null">
 						   ,mmId
 						   ,mmPass
 						   ,mmIdConnKAKAO
@@ -76,6 +83,14 @@
 						   ,mmId
 						   ,mmPass
 						   ,kakaoUserRealId
+						   ,mmIdConnKAKAO
+						   ,mmIdConnGOOGLE
+						   ,mmIdConnNaver
+							</if>
+							<if test="naverId != null and naverId != ''">
+						   ,mmId
+						   ,mmPass
+						   ,naverUserRealId
 						   ,mmIdConnKAKAO
 						   ,mmIdConnGOOGLE
 						   ,mmIdConnNaver
@@ -91,7 +106,7 @@
 						   ,mmUseUserInfoYn
 						   )
 		VALUES(MMEMBER_SEQ.nextval
-			  <if test="kakaoId == null or kakaoId == ''">
+			  <if test="kakaoId == null and naverId == null">
 			  ,#{mmId}
 			  ,#{mmPass}
 			  ,'N'
@@ -106,6 +121,14 @@
 			  ,'N'
 			  ,'N'
 			  </if>
+			  <if test="naverId != null and naverId != ''">
+		      ,#{mmId}||MMEMBER_SEQ.nextval
+			  ,#{mmPass}||MMEMBER_SEQ.nextval
+			  ,#{naverId}
+			  ,'N'
+			  ,'N'
+			  ,'Y'
+			</if>
 			  ,#{mmName}
 			  ,#{mmGen}
 			  ,#{mmBirth}
@@ -127,7 +150,17 @@
 			  ,#{kakaoEmail}
 			  ,#{kakaoId}
 			  )
-	
+	</insert>
+
+	<insert id="mmInsertNaverJoin" parameterType="Mmember">
+		INSERT INTO NAVER(naverUserNo
+						 ,naverUserId
+						 ,naverUserRealId
+						 )
+		VALUES(NAVER_SEQ.nextval
+			  ,#{naverEmail}
+			  ,#{naverId}
+			  )
 	</insert>
 	
 	<select id="kakaoUserLogin" parameterType="String" resultType="Mmember">
@@ -151,6 +184,29 @@
 				,mmIdConnNaver
 		FROM MMEMBER
     	WHERE kakaoUserRealId = #{kakaoUserId}
+	</select>
+
+	<select id="naverUserLogin" parameterType="String" resultType="Mmember">
+		SELECT 	mmNo
+				,mmUseUserInfoEdate
+				,mmJoinDate
+				,mmSecedeDate
+				,mmId
+				,mmPass
+				,mmName
+				,mmBirth
+				,mmGen
+				,mmEmail
+				,mmTel	
+				,mmAddr1
+				,mmAddr2
+				,mmUseUserInfoYn
+				,mmActivateYn
+				,mmIdConnKAKAO
+				,mmIdConnGOOGLE
+				,mmIdConnNaver
+		FROM MMEMBER
+    	WHERE naverUserRealId = #{naverUserId}
 	</select>
 	
 	<select id="mmSelectMyPage" resultType="Mmember" parameterType="String">

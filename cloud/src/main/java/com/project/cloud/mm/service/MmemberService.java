@@ -21,8 +21,12 @@ public interface MmemberService {
 	// 이메일 인증
 	public Map<String,Object> sendEmail(String email);
 	// kakao login API
-	public HashMap<String, String> mmKakaoLogin(String code, String error, String REST_API_KEY, String REDIRECT_KAKAO_LOGIN_URI);
+	public HashMap<String, String> mmKakaoLogin(String code, String error, String REST_API_KAKAO_KEY, String REST_API_KAKAO_SECRET_KEY, String REDIRECT_KAKAO_LOGIN_URI);
 	// 카카오 로그인 처리
 	public Mmember kakaoUserLogin(String kakaoUserId);
+	// naver login API
+	public HashMap<String, String> mmNaverLogin(String code, String state, String REST_API_NAVER_KEY, String REST_API_NAVER_SECRET_KEY, String REDIRECT_NAVER_LOGIN_URI);
+	// 네이버 로그인 처리
+	public Mmember naverUserLogin(String naverUserId);
 }
 

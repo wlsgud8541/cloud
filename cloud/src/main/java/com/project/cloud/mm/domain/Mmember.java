@@ -29,18 +29,32 @@ public class Mmember {
 	private String mmIdConnNaver;
 	private String mmZipCode;
 
+	// 카카오 회원 
 	private String kakaoId;
 	private String kakaoEmail;
 	private String kakaoGender;
 	
+	// 네이버 회원
+	private String naverId;
+	private String naverGender;
+	private String naverEmail;
+	private String naverMobile;
+	private String naverName;
+	private String naverBirthyear;
+	private String naverBirthday;
+	
+	
 	public Mmember() {}
 	
+	
+
 	public Mmember(int mmNo, Timestamp mmUseUserInfoEdate, Timestamp mmJoinDate, Timestamp mmSecedeDate, String mmId,
 			String mmPass, String mmName, String mmBirth, String mmGen, String mmEmail, String emailId,
 			String emailDomain, String selectDomain, String mmTel, String tel1, String tel2, String tel3,
 			String mmAddr1, String mmAddr2, String mmUseUserInfoYn, String mmActivateYn, String mmIdConnKAKAO,
 			String mmIdConnGOOGLE, String mmIdConnNaver, String mmZipCode, String kakaoId, String kakaoEmail,
-			String kakaoGender) {
+			String kakaoGender, String naverId, String naverGender, String naverEmail, String naverMobile,
+			String naverName, String naverBirthyear, String naverBirthday) {
 			
 			this.mmNo = mmNo;
 			this.mmUseUserInfoEdate = mmUseUserInfoEdate;
@@ -70,9 +84,75 @@ public class Mmember {
 			this.kakaoId = kakaoId;
 			this.kakaoEmail = kakaoEmail;
 			this.kakaoGender = kakaoGender;
-		}
-	
+			this.naverId = naverId;
+			this.naverGender = naverGender;
+			this.naverEmail = naverEmail;
+			this.naverMobile = naverMobile;
+			this.naverName = naverName;
+			this.naverBirthyear = naverBirthyear;
+			this.naverBirthday = naverBirthday;
+	}
 
+
+	
+	// 네이버 회원 getter, setter
+	public String getNaverId() {
+		return naverId;
+	}
+	
+	public void setNaverId(String naverId) {
+		this.naverId = naverId;
+	}
+	
+	public String getNaverGender() {
+		return naverGender;
+	}
+	
+	public void setNaverGender(String naverGender) {
+		this.naverGender = naverGender;
+	}
+	
+	public String getNaverEmail() {
+		return naverEmail;
+	}
+	
+	public void setNaverEmail(String naverEmail) {
+		this.naverEmail = naverEmail;
+	}
+	
+	public String getNaverMobile() {
+		return naverMobile;
+	}
+	
+	public void setNaverMobile(String naverMobile) {
+		this.naverMobile = naverMobile;
+	}
+	
+	public String getNaverName() {
+		return naverName;
+	}
+	
+	public void setNaverName(String naverName) {
+		this.naverName = naverName;
+	}
+	
+	public String getNaverBirthyear() {
+		return naverBirthyear;
+	}
+	
+	public void setNaverBirthyear(String naverBirthyear) {
+		this.naverBirthyear = naverBirthyear;
+	}
+	
+	public String getNaverBirthday() {
+		return naverBirthday;
+	}
+	
+	public void setNaverBirthday(String naverBirthday) {
+		this.naverBirthday = naverBirthday;
+	}
+
+	// 카카오 회원 getter, setter
 	public String getKakaoId() {
 		return kakaoId;
 	}

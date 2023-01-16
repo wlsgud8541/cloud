@@ -62,22 +62,34 @@ $(document).ready(function(){
 	$("#insertContinue").on("click",function(){
 		var checkValue = $("input[name=mmUseUserInfoYn]:checked").val();
 		var kakaoId = $("#kakaoId").val();
+		var naverId = $("#naverId").val();
 		
 		if(checkValue == 'N'){
 			alert("다음으로 진행하시려면 개인정보 수집 및 이용 동의에 동의하셔야합니다.");
 			return false;
 		}
 		if(checkValue == 'Y'){
-			console.log("kakaoId : "+kakaoId)
+			console.log("kakaoId value check : "+kakaoId);
+			console.log("naverId value check : "+naverId);
+			
 			if(kakaoId != '' && kakaoId !== undefined){
-				console.log("카카오 회원");
+				console.log("카카오 회원 가입 처리");
 				$("#mmInsertJoin2Form").attr("action","mmKakaoInsertJoin2");
 				$("#mmInsertJoin2Form").submit();
+				return false;
 			}
-			if(kakaoId == '' || kakaoId === undefined){
-				console.log("일반 회원");
+			if(naverId != '' && naverId !== undefined){
+				console.log("네이버 회원 가입 처리");
+				$("#mmInsertJoin2Form").attr("action","mmNaverInsertJoin2");
+				$("#mmInsertJoin2Form").submit();
+				return false;
+			}
+			if((kakaoId == '' || kakaoId === undefined)
+				|| (naverId == '' || naverId === undefined)){
+				console.log("일반 회원 가입 처리");
 				$("#mmInsertJoin2Form").attr("action","mmInsertJoin2");
 				$("#mmInsertJoin2Form").submit();
+				return false;
 			}	
 		}
 	});
@@ -417,6 +429,10 @@ $(document).ready(function(){
 	$("#insertJoin").on("submit",function(e){
 		
 		var kakaoId = $("kakaoId").val();
+		var naverId = $("naverId").val();
+		
+		console.log("kakaoId : " +kakaoId);
+		console.log("naverId : " +naverId);
 		
 		var name = $("#name").val();
 		var gen = $("input[name=mmGen]:checked").val();
@@ -426,8 +442,8 @@ $(document).ready(function(){
 		var birth = $("#birth").val();
 		
 		
-		// 카카오 회원이 아닌 일반 회원일때만 체크
-		if(kakaoId == '' || kakaoId === undefined){
+		// 카카오 회원, 네이버 회원이 아닌 일반 회원일때만 체크
+		if((kakaoId === undefined) && (naverId === undefined)){
 			if(id == ""){
 				alert("아이디를 입력해주세요.");
 				return false;
