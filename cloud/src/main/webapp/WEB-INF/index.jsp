@@ -35,16 +35,16 @@
 	<script src="resources/js/notice.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
-<%-- <c:if test="${param.body == 'views/main/mainView.jsp'}">
+<c:if test="${param.body == 'views/main/mainView.jsp'}">
 <body class="bodyBg">
-</c:if> --%>
+</c:if>
 <c:if test="${param.body != 'main/mainView'}">
 <body>
 </c:if>
 		<div>
 			<%@ include file="template/header.jsp" %>
-			<div style="margin-top: 190px;">
-<!-- 			 class="container" -->
+			<div style="margin-top: 190px;"class="container">
+<!-- 			  -->
 				<jsp:include page="${ param.body }" />
 			</div>
 			<%@ include file="template/footer.jsp" %>

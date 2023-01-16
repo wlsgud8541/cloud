@@ -154,3 +154,19 @@ li.user{
 	border-bottom: 1px solid lightgray;
 	width: 70%;	
 }
+.main_Blist{
+	width: 100%;
+}
+.main_Blist li{
+	width: 150px;
+}
+
+.main_Blist li a{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.main_Blist li span{
+	position: relative;
+	right: 0;
+}
