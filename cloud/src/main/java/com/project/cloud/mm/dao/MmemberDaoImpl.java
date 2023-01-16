@@ -38,6 +38,11 @@ public class MmemberDaoImpl implements MmemberDao{
 	}
 
 	@Override
+	public int mmInsertNaverJoin(Mmember member) {
+		return sql.insert("Mmember.mmInsertNaverJoin", member);
+	}
+
+	@Override
 	public Mmember mmSelectMyPage(String mmNo) {
 		return sql.selectOne("Mmember.mmSelectMyPage", mmNo);
 	}
@@ -46,4 +51,10 @@ public class MmemberDaoImpl implements MmemberDao{
 	public Mmember kakaoUserLogin(String kakaoUserId) {
 		return sql.selectOne("Mmember.kakaoUserLogin", kakaoUserId);
 	}
+	
+	@Override
+	public Mmember naverUserLogin(String naverUserId) {
+		return sql.selectOne("Mmember.naverUserLogin", naverUserId);
+	}
+	
 }

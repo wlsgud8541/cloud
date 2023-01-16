@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -19,6 +20,8 @@ import javax.mail.internet.MimeMessage;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -31,6 +34,8 @@ import com.project.cloud.mm.domain.Mmember;
 @Service
 public class MmemberServiceImpl implements MmemberService{
 
+	private Logger logger = LoggerFactory.getLogger(MmemberServiceImpl.class);
+	
 	@Autowired
 	private MmemberDao mmDao;
 	
@@ -86,23 +91,25 @@ public class MmemberServiceImpl implements MmemberService{
 		
 		// 전화번호 세팅
 		member.setMmTel(tel1 + "-" + tel2 + "-" + tel3);
-		System.out.println("member.getKakaoId() : "+member.getKakaoId());
-		System.out.println("member.getMmZipCode() : "+member.getMmZipCode());
-		System.out.println("member.getMmUseUserInfoYn() : "+member.getMmUseUserInfoYn());
-		System.out.println("member.getMmIdConnKAKAO() : "+member.getMmIdConnKAKAO());
-		System.out.println("member.getKakaoId() : "+member.getKakaoId());
-		if (member.getKakaoId() == null || member.getKakaoId() == "") {
-			System.out.println("일반 회원 insert");
+		if ((member.getKakaoId() == null || member.getKakaoId() == "") && (member.getNaverId() == null || member.getNaverId() == "")) {
+			logger.debug("일반 회원 insert");
 			result = mmDao.mmInsertJoin(member);
 		}else if(member.getKakaoId() != null && member.getKakaoId() != "") {
 			member.setMmId("kakao_");
 			member.setMmPass("kakao_");
 			member.setMmIdConnKAKAO("Y");
-			System.out.println("카카오 회원 insert");
+			logger.debug("카카오 회원 insert");
 			result = mmDao.mmInsertJoin(member);
 			result = mmDao.mmInsertKakaoJoin(member);
+		}else if (member.getNaverId() != null && member.getNaverId() != "") {
+			member.setMmId("naver_");
+			member.setMmPass("naver_");
+			member.setMmIdConnNaver("Y");
+			result = mmDao.mmInsertJoin(member);
+			result = mmDao.mmInsertNaverJoin(member);
+			logger.debug("네이버 회원 insert");
+			
 		}
-		
 		
 		return result;
 	}
@@ -119,8 +126,6 @@ public class MmemberServiceImpl implements MmemberService{
 
 		int result = 0;
 		//String sendTel = "\""+tel+"\"";
-		System.out.println("인증 번호 : " + strCN);
-		System.out.println("전송 번호 : " + tel);
 	
 		String hostNameUrl = "https://sens.apigw.ntruss.com";
 		String requestUrl = "/sms/v2/services/";
@@ -148,7 +153,6 @@ public class MmemberServiceImpl implements MmemberService{
 		
 		String body = bodyJson.toString();
 		
-		System.out.println(body);
 		
 		try {
 			URL url = new URL(apiUrl);
@@ -168,7 +172,6 @@ public class MmemberServiceImpl implements MmemberService{
 			
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
-			System.out.println("responseCode" +" " + responseCode);
           
 			if(responseCode == 202) { // 정상 호출
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -185,7 +188,9 @@ public class MmemberServiceImpl implements MmemberService{
             }
             br.close();
             
-            System.out.println(response.toString());
+            logger.debug(response.toString());
+            
+            con.disconnect();
             
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -208,8 +213,6 @@ public class MmemberServiceImpl implements MmemberService{
 						  .append(newLine)
 						  .append(accessKey)
 						  .toString();
-		
-		System.out.println(message);
 		
 		SecretKeySpec signingKey;
 		String encodeBase64String ;
@@ -300,14 +303,20 @@ public class MmemberServiceImpl implements MmemberService{
 	}
 	
 	// Kakao login API
-	public HashMap<String, String> mmKakaoLogin(String code, String error, String REST_API_KEY, String REDIRECT_KAKAO_LOGIN_URI) {
+	public HashMap<String, String> mmKakaoLogin(String code, String error
+												, String REST_API_KAKAO_KEY
+												, String REST_API_KAKAO_SECRET_KEY
+												, String REDIRECT_KAKAO_LOGIN_URI) {
+		
 		HashMap<String, String> resultMap = new HashMap<String, String>();
 		String targetUrl = "https://kauth.kakao.com/oauth/token";
-		String clientSecret = "UVD9pWa6o9kNZ6BLMTBv6KuKXWiLvgnN";
 		
 		try {
 			
-			URL url = new URL(targetUrl+"?grant_type=authorization_code&client_id="+REST_API_KEY+"&redirect_uri="+REDIRECT_KAKAO_LOGIN_URI+"&code="+code+"&client_secret="+clientSecret);
+			URL url = new URL(targetUrl+"?grant_type=authorization_code&client_id="+REST_API_KAKAO_KEY
+							+"&redirect_uri="+REDIRECT_KAKAO_LOGIN_URI
+							+"&code="+code
+							+"&client_secret="+REST_API_KAKAO_SECRET_KEY);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
@@ -318,13 +327,12 @@ public class MmemberServiceImpl implements MmemberService{
 			dr.close();
 			
 			int responseCode = con.getResponseCode();
-			System.out.println("응답 결과 : "+responseCode);
 
 			BufferedReader br;
 			if (responseCode == 200) { // 정상호출
 				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			}else{ // error
-				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 			}
 
 			//response 결과 출력
@@ -340,6 +348,8 @@ public class MmemberServiceImpl implements MmemberService{
 			
 			//kakao user info 가져오기
 			resultMap = kakaoUserInfo(map);
+			
+			con.disconnect();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -366,13 +376,12 @@ public class MmemberServiceImpl implements MmemberService{
 			ds.close();
 			
 			int responseCode = con.getResponseCode();
-			System.out.println("kakao user info 응답결과 : "+ responseCode);
-			
+
 			BufferedReader br;
 			if(responseCode == 200) {
 				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			}else {
-				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 			}
 			
 			//response 결과 출력
@@ -381,19 +390,18 @@ public class MmemberServiceImpl implements MmemberService{
 			while((inputLine = br.readLine()) != null) {
 				response.append(inputLine);
 			}
-			System.out.println("response : "+response.toString());
+			logger.debug("response : "+response.toString());
 			
 			br.close();
 		
 			HashMap<String, Object> kakaoInfoMap = new ObjectMapper().readValue(response.toString(), HashMap.class);
 			Map<String, String> kakaoUserInfoMap = (Map<String, String>)kakaoInfoMap.get("kakao_account");
 			
-			ObjectMapper objMapper = new ObjectMapper();
-			HashMap<String, Object> kakaoUserProfileInfoMap = objMapper.convertValue(kakaoUserInfoMap.get("profile"), HashMap.class);
-			
 			resultMap.put("kakaoId", (String)kakaoInfoMap.get("id").toString());
 			resultMap.put("kakaoEmail", (String)kakaoUserInfoMap.get("email").toString());
 			resultMap.put("kakaoGender", (String)kakaoUserInfoMap.get("gender").toString());
+			
+			con.disconnect();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -407,6 +415,124 @@ public class MmemberServiceImpl implements MmemberService{
 		Mmember member = mmDao.kakaoUserLogin(kakaoUserId);
 		return member;
 	}
+	
+	// naver login API
+	public HashMap<String, String> mmNaverLogin(String code, String state
+												, String REST_API_NAVER_KEY
+												, String REST_API_NAVER_SECRET_KEY
+												, String REDIRECT_NAVER_LOGIN_URI) {
+		
+		HashMap<String, String> naverInfoMap = new HashMap<String, String>();
+
+		try {
+			String clientId = REST_API_NAVER_KEY;//애플리케이션 클라이언트 아이디값";
+			String clientSecret = REST_API_NAVER_SECRET_KEY;//애플리케이션 클라이언트 시크릿값";
+			String redirectURI = URLEncoder.encode(REDIRECT_NAVER_LOGIN_URI, "UTF-8");
+			String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
+				   apiURL += "client_id=" + clientId;
+				   apiURL += "&client_secret=" + clientSecret;
+				   apiURL += "&redirect_uri=" + redirectURI;
+				   apiURL += "&code=" + code;
+				   apiURL += "&state=" + state;
+		
+			URL url = new URL(apiURL);
+			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+			con.setRequestMethod("GET");
+			int responseCode = con.getResponseCode();
+			BufferedReader br;
+			
+			if(responseCode==200) { // 정상 호출
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			} else {  // 에러 발생
+				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+			}
+			
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			
+			while ((inputLine = br.readLine()) != null) {
+				response.append(inputLine);
+			}
+			br.close();
+			
+			logger.debug("response : "+response.toString());
+			
+			HashMap<String, String> naverResultMap =  new HashMap<String, String>();
+			naverResultMap = new ObjectMapper().readValue(response.toString(), HashMap.class);
+			
+			//네이버 사용자 정보 가져오기 처리
+			naverInfoMap = naverUserInfo(naverResultMap);
+			
+			con.disconnect();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return naverInfoMap;
+	}
+	
+	
+	//kakao user info 가져오기
+	public HashMap<String, String> naverUserInfo(HashMap<String, String> naverResultMap) {
+		String naverToken = naverResultMap.get("access_token");
+		String header = "Bearer " + naverToken;
+		String targetUrl = "https://openapi.naver.com/v1/nid/me";
+
+		HashMap<String, String> resultMap = new HashMap<String, String>();
+		
+		try {
+			URL url = new URL(targetUrl);
+			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+			
+			con.setRequestMethod("GET");
+			con.setRequestProperty("Authorization", header);
+			
+			int responseCode = con.getResponseCode();
+			
+			BufferedReader br;
+			
+			if (responseCode == 200) {
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			} else {
+				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+			}
+			
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			
+			while ((inputLine = br.readLine()) != null) {
+				response.append(inputLine);
+			}
+			br.close();
+			
+			HashMap<String, Object> naverInfoMap = new ObjectMapper().readValue(response.toString(), HashMap.class);
+			Map<String, String> naverUserInfoMap = (Map<String, String>)naverInfoMap.get("response");
+			logger.debug(naverUserInfoMap.toString());
+			
+			resultMap.put("naverId", naverUserInfoMap.get("id"));
+			resultMap.put("naverGender", naverUserInfoMap.get("gender"));
+			resultMap.put("naverEmail", naverUserInfoMap.get("email"));
+			resultMap.put("naverMobile", naverUserInfoMap.get("mobile"));
+			resultMap.put("naverName", naverUserInfoMap.get("name"));
+			resultMap.put("naverBirthyear", naverUserInfoMap.get("birthyear"));
+			resultMap.put("naverBirthday", naverUserInfoMap.get("birthday"));
+			
+			con.disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resultMap;
+	}
+	
+	// 네이버 로그인 처리
+	public Mmember naverUserLogin(String naverUserId) {
+		Mmember member = mmDao.naverUserLogin(naverUserId);
+		return member;
+	}
+
+	
 }
 	
 	

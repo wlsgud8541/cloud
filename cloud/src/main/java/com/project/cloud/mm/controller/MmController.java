@@ -1,18 +1,23 @@
 package com.project.cloud.mm.controller;
 
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.cloud.mm.domain.Mmember;
@@ -21,12 +26,20 @@ import com.project.cloud.mm.service.MmemberService;
 @Controller
 public class MmController {
 	
+	private Logger logger = LoggerFactory.getLogger(MmController.class);
+	
 	@Autowired
 	private MmemberService mmService;
 	
+	// 카카오 로그인 key, 카카오 로그인 redirect URI
+	private static String REST_API_KAKAO_KEY = "e46c1c647457913d7dbf891555db0996";
+	private static String REST_API_KAKAO_SECRET_KEY = "UVD9pWa6o9kNZ6BLMTBv6KuKXWiLvgnN";
+	private static String REDIRECT_KAKAO_LOGIN_URI = "http://localhost:8080/cloud/loginView?loginType=kakao";
 	
-	private static String REST_API_KEY = "e46c1c647457913d7dbf891555db0996";
-	private static String REDIRECT_KAKAO_LOGIN_URI = "http://localhost:8080/cloud/loginView";
+	// 네이버 로그인 key, 네이버 로그인 redirect URI
+	private static String REST_API_NAVER_KEY = "9toN9PG3pvbhxKu3hXUL";
+	private static String REST_API_NAVER_SECRET_KEY = "8DxLGOLOT9";
+	private static String REDIRECT_NAVER_LOGIN_URI = "http://localhost:8080/cloud/loginView?loginType=naver";
 	
 	// 로그인 처리
 	@RequestMapping("mmSelectLoginCheck")
@@ -50,43 +63,82 @@ public class MmController {
 	}
 	
 	@RequestMapping("loginView*")
-	public String mmLoginview(HttpSession session,Model model, String code, String error) {
+	public String mmLoginview(HttpSession session, Model model
+							, @RequestParam(required = false) String code
+							, @RequestParam(required = false) String error
+							, @RequestParam(required = false) String state
+							, String loginType) {
 		
-		model.addAttribute("REST_API_KEY",REST_API_KEY);
+		logger.debug("loginType check : "+loginType);
+		
+		// 카카오
+		model.addAttribute("REST_API_KAKAO_KEY",REST_API_KAKAO_KEY);
 		model.addAttribute("REDIRECT_KAKAO_INSERT_URI",REDIRECT_KAKAO_LOGIN_URI);
-
-		// 정상처리
-		if(code != null) {
-			HashMap<String, String> resultMap = mmService.mmKakaoLogin(code, error, REST_API_KEY, REDIRECT_KAKAO_LOGIN_URI);
-			// db에 저장된 카카오 유저 정보가 있는지 조회
-			Mmember member = mmService.kakaoUserLogin(resultMap.get("kakaoId"));
-			System.out.println("member check : "+member);
-			
-			if (member != null) { // db에 저장된 정보가 있으면 카카오 로그인 처리 후 메인으로 전송
-				System.out.println("카카오 로그아웃");
-				model.addAttribute("member", member);
-				session.setAttribute("userId", member.getMmId());
-				session.setAttribute("mmNo", member.getMmNo());
-				session.setAttribute("kakaoLogin", "kakaoLogin");
-				return "main/mainView";
-			
-			}else if(member == null) { // db에 저장된 정보가 없으면 카카오 회원가입 처리
-				System.out.println("카카오 회원가입");
-				model.addAttribute("kakaoId", resultMap.get("kakaoId"));
-				model.addAttribute("kakaoEmail", resultMap.get("kakaoEmail"));
-				model.addAttribute("kakaoGender", resultMap.get("kakaoGender"));
-				return "mMemberView/mmInsertView1"; 
+		
+		// 네이버
+		SecureRandom random = new SecureRandom();
+		String naverState = new BigInteger(130, random).toString();
+		model.addAttribute("REST_API_NAVER_KEY", REST_API_NAVER_KEY);
+		model.addAttribute("REDIRECT_NAVER_LOGIN_URI", REDIRECT_NAVER_LOGIN_URI);
+		model.addAttribute("state", naverState);
+		
+		if (loginType != null && loginType.equals("kakao")) { // 카카오 로그인 처리
+			// 카카오 로그인 (정상처리)
+			if(code != null) {
+				HashMap<String, String> resultMap = mmService.mmKakaoLogin(code, error, REST_API_KAKAO_KEY, REST_API_KAKAO_SECRET_KEY, REDIRECT_KAKAO_LOGIN_URI);
+				// db에 저장된 카카오 유저 정보가 있는지 조회
+				Mmember member = mmService.kakaoUserLogin(resultMap.get("kakaoId"));
+				
+				if (member != null) { // db에 저장된 정보가 있으면 카카오 로그인 처리 후 메인으로 전송
+					logger.debug("카카오 로그인");
+					model.addAttribute("member", member);
+					session.setAttribute("userId", member.getMmId());
+					session.setAttribute("mmNo", member.getMmNo());
+					session.setAttribute("kakaoLogin", "kakaoLogin");
+					return "redirect:main";
+					
+				}else if(member == null) { // db에 저장된 정보가 없으면 카카오 회원가입 처리
+					logger.debug("카카오 회원가입");
+					model.addAttribute("kakaoId", resultMap.get("kakaoId"));
+					model.addAttribute("kakaoEmail", resultMap.get("kakaoEmail"));
+					model.addAttribute("kakaoGender", resultMap.get("kakaoGender"));
+					return "mMemberView/mmInsertView1"; 
+				}
+			}
+			// 카카오 로그인 오류 발생
+			if(error != null) {
+				logger.debug("카카오 로그인 시도 중 에러 발생");
+			}
+		}else if (loginType != null && loginType.equals("naver")) { // 네이버 로그인 처리
+			if (code != null) {
+				HashMap<String, String> resultMap = mmService.mmNaverLogin(code, state, REST_API_NAVER_KEY, REST_API_NAVER_SECRET_KEY, REDIRECT_NAVER_LOGIN_URI);
+				logger.debug("네이버 유저 아이디 확인 결과 : "+resultMap.get("naverId"));
+				Mmember member = mmService.naverUserLogin(resultMap.get("naverId"));
+				
+				if (member != null) {
+					logger.debug("네이버 로그인 처리");
+					model.addAttribute("member", member);
+					session.setAttribute("userId", member.getMmId());
+					session.setAttribute("mmNo", member.getMmNo());
+					session.setAttribute("naverLogin", "naverLogin");
+					return "redirect:main";
+					
+				}else if (member == null) {
+					logger.debug("네이버 회원가입");
+					model.addAttribute("naverId", resultMap.get("id"));
+					model.addAttribute("naverGender", resultMap.get("gender"));
+					model.addAttribute("naverEmail", resultMap.get("email"));
+					model.addAttribute("naverMobile", resultMap.get("mobile"));
+					model.addAttribute("naverName", resultMap.get("name"));
+					model.addAttribute("naverBirthyear", resultMap.get("birthyear"));
+					model.addAttribute("naverBirthday", resultMap.get("birthday"));
+					return "mMemberView/mmInsertView1";  
+				}
 			}
 		}
-		// 카카오 회원가입 오류 발생
-		if(error != null) {
-			System.err.println("카카오 로그인 시도 중 에러 발생");
-		}
 		
-		System.out.println("일반 로그아웃");
 		return "mMemberView/mmLoginView";
 	}
-		
 	
 	
 	// 로그아웃 처리
@@ -135,8 +187,13 @@ public class MmController {
 	@RequestMapping("/mmKakaoInsertJoin2")
 	public String mmKakaoInsertJoin2(Model model, Mmember member) {
 		model.addAttribute("member",member);
-		
 		return "mMemberView/mmKakaoInsertView2";
+	}
+
+	@RequestMapping("/mmNaverInsertJoin2")
+	public String mmNaverInsertJoin2(Model model, Mmember member) {
+		model.addAttribute("member",member);
+		return "mMemberView/mmNaverInsertView2";
 	}
 	
 	// 회원가입 처리
@@ -145,11 +202,11 @@ public class MmController {
 		int result = mmService.mmInsertJoin(member);
 		
 		if(result == 0) {
-			System.err.println("회원 Insert 중 오류 발생");
+			logger.debug("회원 Insert 중 오류 발생");
 		}
 		
 		if(result == 1) {
-			System.err.println("회원 Insert 성공");
+			logger.debug("회원 Insert 성공");
 		}
 		return "mMemberView/mmInsertView3";
 	}
@@ -157,7 +214,7 @@ public class MmController {
 	// 마이페이지
 	@RequestMapping("/mmSelectMyPage")
 	public String mmSelectMyPage(Model model, String mmNo) {
-		System.out.println("mmNo : "+mmNo);
+		logger.debug("mmNo : "+mmNo);
 		
 		Mmember memberInfo = mmService.mmSelectMyPage(mmNo);
 		model.addAttribute("mInfo", memberInfo);

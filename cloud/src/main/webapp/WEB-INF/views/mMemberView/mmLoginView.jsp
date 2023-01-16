@@ -9,13 +9,10 @@
 		<button class="button secondary" type="button" id="btnJoin">회원가입</button> 
 		
 		<div class="text-center">
-			<a href="#" id="GoogleLogin">
-				<img src="resources/image/login/GoogleLogin.png" id="GoogleLogin" class="SNSLogin">
-			</a>
-			<a href="https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_KAKAO_INSERT_URI}&response_type=code">
+			<a href="https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KAKAO_KEY}&redirect_uri=${REDIRECT_KAKAO_INSERT_URI}&response_type=code">
 				<img src="resources/image/login/KakaoLogin.png" id="KakaoLogin" class="SNSLogin" >
 			</a>
-			<a href="#" id="NaverLogin">
+			<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${REST_API_NAVER_KEY}&redirect_uri=${REDIRECT_NAVER_LOGIN_URI}&state=${state}" id="NaverLogin">
 				<img src="resources/image/login/NaverLogin.png" id="NaverLogin" class="SNSLogin">
 			</a>
 		</div>

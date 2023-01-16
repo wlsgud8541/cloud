@@ -15,15 +15,26 @@
 				</div>
 				<!-- 확인용 -->
 				<c:if test="${not empty kakaoId}">
-					<h3>${kakaoId}</h3>
-					<h3>${kakaoEmail}</h3>
-					<h3>${kakaoGender}</h3>
+					<h5>카카오</h5>
+					<h5>${kakaoId}</h5>
+					<h5>${kakaoEmail}</h5>
+					<h5>${kakaoGender}</h5>
 				</c:if>
 				
 				<form action="mmInsertJoin2" id="mmInsertJoin2Form" method="post">
+					<!-- 카카오  -->
 					<input type="hidden" id="kakaoId" name="kakaoId" value="${kakaoId}">
 					<input type="hidden" id="kakaoEmail" name="kakaoEmail" value="${kakaoEmail}">
 					<input type="hidden" id="kakaoGender" name="kakaoGender" value="${kakaoGender}">
+					
+					<!-- 네이버 -->
+					<input type="hidden" id="naverId" name="naverId" value="${naverId}">
+					<input type="hidden" id="naverGender" name="naverGender" value="${naverGender}">
+					<input type="hidden" id="naverEmail" name="naverEmail" value="${naverEmail}">
+					<input type="hidden" id="naverMobile" name="naverMobile" value="${naverMobile}">
+					<input type="hidden" id="naverName" name="naverName" value="${naverName}">
+					<input type="hidden" id="naverBirthyear" name="naverBirthyear" value="${naverBirthyear}">
+					<input type="hidden" id="naverBirthday" name="naverBirthday" value="${naverBirthday}">
 					
 					<div class="row">
 						<textarea readonly rows="20">

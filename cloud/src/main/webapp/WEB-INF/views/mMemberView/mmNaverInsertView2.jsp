@@ -5,14 +5,20 @@
 	<div class="col">
 		<div class="row my-3 text-center">
 			<div class="col">
-				<h2 class="fs-3 fw-bold">KAKAO 회원가입 추가 정보 입력</h2>
+				<h2 class="fs-3 fw-bold">Naver 회원가입 추가 정보 입력</h2>
 			</div> 
 		</div>
 		<form action="mmInsertJoin" name="insertJoin" method="POST" id="insertJoin">
 			<input type="text" id="mmUseUserInfoYn" name="mmUseUserInfoYn" value="${member.mmUseUserInfoYn}">
-			<input type="text" id="kakaoId" name="kakaoId" value="${member.kakaoId}">
-			<input type="text" id="kakaoEmail" name="kakaoEmail" value="${member.kakaoEmail}">
-			<input type="text" id="kakaoGender" name="kakaoGender" value="${member.kakaoGender}">
+		
+			<input type="text" id="naverId" name="naverId" value="${member.naverId}">
+			<input type="text" id="naverGender" name="naverGender" value="${member.naverGender}">
+			<input type="text" id="naverEmail" name="naverEmail" value="${member.naverEmail}">
+			<input type="text" id="naverMobile" name="naverMobile" value="${member.naverMobile}">
+			<input type="text" id="naverName" name="naverName" value="${member.naverName}">
+			<input type="text" id="naverBirthyear" name="naverBirthyear" value="${member.naverBirthyear}">
+			<input type="text" id="naverBirthday" name="naverBirthday" value="${member.naverBirthday}">
+			
 		
 			<div class="row mt-5 mb-3">
 				<div class="col-8 offset-2">				

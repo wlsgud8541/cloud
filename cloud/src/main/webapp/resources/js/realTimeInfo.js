@@ -20,7 +20,6 @@ $(document).ready(function(){
 				latitude = position.coords.latitude;   // 위도 값
 				longitude = position.coords.longitude; // 경도 값
 				
-				
 				// 마커 테스트
 				/*
 				latitude = latitude + test;
