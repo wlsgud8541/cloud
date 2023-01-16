@@ -159,6 +159,10 @@ table {
 .titleBox{
 	border: 1px solid #e3e3e3;
 }
+.board tr td{
+	width: auto;
+	
+}
 /* 페이징 */
 .cl-pagination-wrap {position:relative;text-align:center;padding:7px;margin-top:20px}
 .cl-pagination {position:relative;list-style:none;display:inline-block;padding:0;margin:0}
