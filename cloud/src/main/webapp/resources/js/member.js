@@ -1,6 +1,4 @@
 $(document).ready(function(){
-	
-	
 	// 로그인 버튼 클릭시 로그인 처리 진행
 	$("#btnLogin").on("click",function(e){
 		e.preventDefault();
@@ -527,6 +525,167 @@ $(document).ready(function(){
 		}
 		
 		return ture;
+	});
+	
+		
+	// 마이페이지 페이징
+	$(document).on("click",".myPageSelectPage",function(){
+		var mmNo = $("#mInfo_mmNo").val();
+		var pageNum = $(this).attr("data-pageNum");
+		
+		if(pageNum === 'undefined'){
+			pageNum = 1;
+		}
+		
+		$.ajax({
+			url : "myPagePaging",
+			type : "POST",
+			data : { 
+					mmNo : mmNo,
+				   	pageNum : pageNum
+				   },
+			datatype : "json",
+			success : function(result){
+				var startPage = result.startPage;
+				var endPage = result.endPage;
+				var currentPage = result.currentPage;
+				var pageCount = result.pageCount;
+				var pageGroup = result.pageGroup;
+				
+				var tag1 = "<tr>";
+				var tag2 = "";
+			
+				var memberRequestList = result.memberRequestList;
+				
+				for(var i = 0; i < memberRequestList.length; i++){
+					tag1 += "<td><small>"+memberRequestList[i].mreTitle+"</small></td>";
+					
+					if(memberRequestList[i].mreReplyCode == "01"){
+						tag1 += "<td><small>답변대기</small></td>";
+					}
+					if(memberRequestList[i].mreReplyCode == "02"){
+						tag1 += "<td><small>답변완료</small></td>";
+					}					
+					tag1 += "</tr>";
+				}
+				$(".mReqList").empty();
+				$(".mReqList").append(tag1);
+				
+
+
+				if(result.startPage > result.pageGroup){
+					tag2 += '<li class="prev"><a class="page-link myPageSelectPage" data-pageNum="1">&lt;&lt;</a></li>';
+					tag2 += '<li class="prev"><a class="page-link myPageSelectPage" href="#" data-pageNum="'+ (result.startPage - result.pageGroup) + '">&lt;</a></li>'
+				}
+
+				for(var i = startPage; i <= endPage; i++){
+					if(i == result.currentPage){
+						tag2 += '<li class="page-item active text-success" aria-current="page"><b>'+i+'</b></li>';
+					}
+					if(i != result.currentPage){
+						tag2 += '<li class="page-item"><a class="page-link myPageSelectPage" href="#" data-pageNum="'+i+'" >'+i+'</a></li>';
+					}
+				}
+
+				if(result.startPage > result.pageGroup){
+					tag2 += '<li class="next"><a class="page-link myPageSelectPage" href="#" data-pageNum="' + (result.startPage + result.pageGroup) + '">&gt;</a></li>';
+					tag2 += '<li class="next"><a class="page-link myPageSelectPage" href="#" data-pageNum="' + result.pageCount + '">&gt;&gt;</a></li>';
+				}
+			
+				
+				$(".pageGroup").empty();
+				$(".pageGroup").append(tag2);				
+				
+			},
+			error : function(){
+				alert("데이터 통신 실패. 관리자에게 문의 부탁드립니다.");
+			}	   
+		});
+
+	});
+	
+	
+	
+	$(document).on("click",".myPageWriterList",function(){
+		var mmNo = $("#mInfo_mmNo").val();
+		var pageNum = $(this).attr("data-pageNum");
+		
+		if(pageNum === 'undefined'){
+			pageNum = 1;
+		}
+		
+		$.ajax({
+			url : "myPageWriterPaging",
+			type : "POST",
+			data : { 
+					mmNo : mmNo,
+				   	pageNum : pageNum
+				   },
+			datatype : "json",
+			success : function(result){
+				var startPage = result.mwStartPage;
+				var endPage = result.mwEndPage;
+				var currentPage = result.mwCurrentPage;
+				var pageCount = result.mwPageCount;
+				var pageGroup = result.mwPageGroup;
+				
+				var tag1 = "<tr>";
+				var tag2 = "";
+			
+				var memberWriterInfoList = result.memberWriterInfoList;
+				
+				for(var i = 0; i < memberWriterInfoList.length; i++){
+					if(memberWriterInfoList[i].tableType == "01"){
+						tag1 += "<td><small>실종자 목격 게시판 </small></td>";
+					}
+					if(memberWriterInfoList[i].tableType == "02"){
+						tag1 += "<td><small>실종자 목격 게시판 </small></td>";
+					}
+					if(memberWriterInfoList[i].tableType == "11"){
+						tag1 += "<td><small>실종자 목격 게시판 </small></td>";
+					}
+					if(memberWriterInfoList[i].tableType == "12"){
+						tag1 += "<td><small>실종자 목격 게시판 </small></td>";
+					}
+					if(memberWriterInfoList[i].tableType == "13"){
+						tag1 += "<td><small>실종자 목격 게시판 </small></td>";
+					}
+					
+					tag1 += "<td><small>"+memberWriterInfoList[i].noticeTitle+"</small></td>";
+					tag1 += "</tr>";
+				}
+				$(".memberWriterInfo").empty();
+				$(".memberWriterInfo").append(tag1);
+
+
+				if(result.startPage > result.pageGroup){
+					tag2 += '<li class="prev"><a class="page-link myPageWriterList" data-pageNum="1">&lt;&lt;</a></li>';
+					tag2 += '<li class="prev"><a class="page-link myPageWriterList" href="#" data-pageNum="'+ (result.startPage - result.pageGroup) + '">&lt;</a></li>'
+				}
+
+				for(var i = startPage; i <= endPage; i++){
+					if(i == result.currentPage){
+						tag2 += '<li class="page-item active text-success" aria-current="page"><b>'+i+'</b></li>';
+					}
+					if(i != result.currentPage){
+						tag2 += '<li class="page-item"><a class="page-link myPageWriterList" href="#" data-pageNum="'+i+'" >'+i+'</a></li>';
+					}
+				}
+
+				if(result.startPage > result.pageGroup){
+					tag2 += '<li class="next"><a class="page-link myPageWriterList" href="#" data-pageNum="' + (result.startPage + result.pageGroup) + '">&gt;</a></li>';
+					tag2 += '<li class="next"><a class="page-link myPageWriterList" href="#" data-pageNum="' + result.pageCount + '">&gt;&gt;</a></li>';
+				}
+				
+				$(".memberWriterPageGroup").empty();
+				$(".memberWriterPageGroup").append(tag2);				
+				
+			},
+			error : function(){
+				alert("데이터 통신 실패. 관리자에게 문의 부탁드립니다.");
+			}	   
+		});
+
 	});
 	
 });

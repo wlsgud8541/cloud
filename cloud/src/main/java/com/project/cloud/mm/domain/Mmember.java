@@ -43,19 +43,22 @@ public class Mmember {
 	private String naverBirthyear;
 	private String naverBirthday;
 	
+	// 마이페이지
+	private int noticeNo;
+	private String noticeTitle;
+	private String tableType;
 	
 	public Mmember() {}
 	
-	
-
 	public Mmember(int mmNo, Timestamp mmUseUserInfoEdate, Timestamp mmJoinDate, Timestamp mmSecedeDate, String mmId,
 			String mmPass, String mmName, String mmBirth, String mmGen, String mmEmail, String emailId,
 			String emailDomain, String selectDomain, String mmTel, String tel1, String tel2, String tel3,
 			String mmAddr1, String mmAddr2, String mmUseUserInfoYn, String mmActivateYn, String mmIdConnKAKAO,
 			String mmIdConnGOOGLE, String mmIdConnNaver, String mmZipCode, String kakaoId, String kakaoEmail,
 			String kakaoGender, String naverId, String naverGender, String naverEmail, String naverMobile,
-			String naverName, String naverBirthyear, String naverBirthday) {
-			
+			String naverName, String naverBirthyear, String naverBirthday, int noticeNo, String noticeTitle,
+			String tableType) {
+
 			this.mmNo = mmNo;
 			this.mmUseUserInfoEdate = mmUseUserInfoEdate;
 			this.mmJoinDate = mmJoinDate;
@@ -91,10 +94,36 @@ public class Mmember {
 			this.naverName = naverName;
 			this.naverBirthyear = naverBirthyear;
 			this.naverBirthday = naverBirthday;
+			this.noticeNo = noticeNo;
+			this.noticeTitle = noticeTitle;
+			this.tableType = tableType;
 	}
 
+	// 마이페이지
+	public int getNoticeNo() {
+		return noticeNo;
+	}
 
+	public void setNoticeNo(int noticeNo) {
+		this.noticeNo = noticeNo;
+	}
 	
+	public String getNoticeTitle() {
+		return noticeTitle;
+	}
+	
+	public void setNoticeTitle(String noticeTitle) {
+		this.noticeTitle = noticeTitle;
+	}
+	
+	public String getTableType() {
+		return tableType;
+	}
+	
+	public void setTableType(String tableType) {
+		this.tableType = tableType;
+	}
+
 	// 네이버 회원 getter, setter
 	public String getNaverId() {
 		return naverId;

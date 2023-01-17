@@ -63,7 +63,9 @@
 		                    ORDER BY mreNo DESC
 		                    ) 
 		            )
+		<if test="startRow != 0 and pageSize !=0">
 		WHERE rNum BETWEEN #{startRow} AND #{startRow} + #{pageSize} - 1
+		</if>
 	</select>
 <!-- 	건의게시판 게시글 수 조회 -->
 	<select id="getMrSelectCnt" resultType="int" parameterType="hashmap">

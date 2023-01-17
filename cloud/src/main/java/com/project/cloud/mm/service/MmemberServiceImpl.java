@@ -9,7 +9,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.crypto.Mac;
@@ -28,6 +30,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.cloud.cs.dao.MrequestDao;
+import com.project.cloud.cs.domain.Mrequest;
+import com.project.cloud.gm.service.GlobalMethodService;
 import com.project.cloud.mm.dao.MmemberDao;
 import com.project.cloud.mm.domain.Mmember;
 
@@ -38,6 +43,13 @@ public class MmemberServiceImpl implements MmemberService{
 	
 	@Autowired
 	private MmemberDao mmDao;
+
+	@Autowired
+	private MrequestDao mqDao;
+	
+	// 공통 메소드 서비스
+	@Autowired
+	private GlobalMethodService gms;
 	
 	@Autowired
 	private JavaMailSenderImpl mailSender;
@@ -60,7 +72,6 @@ public class MmemberServiceImpl implements MmemberService{
 		}
 		return result;
 	}
-
 
 	@Override
 	public int idCheck(String mmId) {
@@ -118,7 +129,87 @@ public class MmemberServiceImpl implements MmemberService{
 	public Mmember mmSelectMyPage(String mmNo) {
 		return mmDao.mmSelectMyPage(mmNo);
 	}
+	
+	
+	@Override
+	public HashMap<String, Object> mmSelectRequestList(String mmNo, int pageNum) {
+		HashMap<String, Object> memberRequestMap = new HashMap<String, Object>();
+		
+		int pageSize = 5;   // 페이지 사이즈 갯수
+		int pageGroup = 5; // 페이징 그룹
+		int startRow = 0;
+		int pageCount = 0;
+		int startPage = 0;
+		int endPage = 0;
+		int currentPage = 0;
+		
+		String type = "";
+		String keyWord = "";
 
+		int listCount = mqDao.getMrSelectCnt(type,keyWord);
+		
+		Map<String , Object> mnModel = gms.pageList(listCount, pageSize, pageGroup, pageNum, type, keyWord); 
+		
+		startRow = (int)mnModel.get("startRow");
+		pageCount = (int)mnModel.get("pageCount");
+		startPage = (int)mnModel.get("startPage");
+		endPage = (int)mnModel.get("endPage");
+		currentPage = (int)mnModel.get("currentPage");
+		
+		List<Mrequest> memberRequestList = mqDao.mrSelectList(startRow, pageSize, type, keyWord);
+		memberRequestMap.put("memberRequestList", memberRequestList);
+
+		memberRequestMap.put("startRow", startRow);
+		memberRequestMap.put("pageGroup", pageGroup);
+		memberRequestMap.put("pageCount", pageCount);
+		memberRequestMap.put("startPage", startPage);
+		memberRequestMap.put("endPage", endPage);
+		memberRequestMap.put("currentPage", currentPage);
+		
+		return memberRequestMap;
+	}
+
+	
+	@Override
+	public HashMap<String, Object> mmSelectWriterInfo(String mmNo, int pageNum) {
+		HashMap<String, Object> mmSelectWriterInfoMap = new HashMap<String, Object>();
+		
+		int pageSize = 5;   // 페이지 사이즈 갯수
+		int pageGroup = 5; // 페이징 그룹
+		int startRow = 0;
+		int pageCount = 0;
+		int startPage = 0;
+		int endPage = 0;
+		int currentPage = 0;
+		
+		String type = "";
+		String keyWord = "";
+		
+		int listCount = mmDao.mmSelectWriterInfoCnt(mmNo);
+		
+		Map<String , Object> mnModel = gms.pageList(listCount, pageSize, pageGroup, pageNum, type, keyWord); 
+		
+		startRow = (int)mnModel.get("startRow");
+		pageCount = (int)mnModel.get("pageCount");
+		startPage = (int)mnModel.get("startPage");
+		endPage = (int)mnModel.get("endPage");
+		currentPage = (int)mnModel.get("currentPage");
+		
+		List<Mmember> memberWriterInfo = new ArrayList<Mmember>();
+		for (Mmember mmember : mmDao.mmSelectWriterInfo(mmNo, startRow, pageSize)) {
+			memberWriterInfo.add(mmember);
+		}
+		
+		mmSelectWriterInfoMap.put("memberWriterInfo", memberWriterInfo);
+		mmSelectWriterInfoMap.put("startRow", startRow);
+		mmSelectWriterInfoMap.put("pageGroup", pageGroup);
+		mmSelectWriterInfoMap.put("pageCount", pageCount);
+		mmSelectWriterInfoMap.put("startPage", startPage);
+		mmSelectWriterInfoMap.put("endPage", endPage);
+		mmSelectWriterInfoMap.put("currentPage", currentPage);
+		
+		return mmSelectWriterInfoMap;
+	}
 
 	@Override
 	public int sendMessege(String tel) {

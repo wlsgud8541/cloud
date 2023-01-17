@@ -33,6 +33,10 @@
 		<result property="naverMobile" column="naverMobile"/>
 		<result property="naverName" column="naverName"/>
 		<result property="naverBirthday" column="naverBirthday"/>
+		<!-- 마이페이지 -->
+		<result property="noticeNo" column="noticeNo"/>
+		<result property="noticeTitle" column="noticeTitle"/>
+		<result property="tableType" column="tableType"/>
 	</resultMap>
 	
 	<select id="mmSelectLoginCheck" resultType="String" parameterType="String">
@@ -230,6 +234,113 @@
 				,mmIdConnNaver
 		FROM MMEMBER
 		WHERE mmNo = #{mmNo}
+	</select>
+
+	<select id="mmSelectWriterInfoCnt" resultType="int" parameterType="String">
+		SELECT COUNT(*) as cnt
+		      FROM(SELECT mhf.mhfno as no
+		                 ,mhf.mhftitle as title
+		                 ,mhf.mmno as mmno
+		                 ,mhf.tableType as tableType
+		                 ,mhf.mhfRegDate as regDate
+		           FROM MHFIND mhf     
+		         
+	               UNION ALL
+		         
+		           SELECT mhr.mhrno as no
+		                 ,mhr.mhrtitle as title
+		                 ,mhr.mmno as mmno
+		                 ,mhr.tableType as tableType
+		                 ,mhr.mhrRegDate as regDate
+		           FROM MHREPORT mhr 
+		         
+	               UNION ALL
+		         
+		           SELECT mpf.mpfno as no
+		                 ,mpf.mpftitle as title
+		                 ,mpf.mmno as mmno
+		                 ,mpf.tableType as tableType
+		                 ,mpf.mpfRegDate as regDate
+		           FROM MPFIND mpf 
+		         
+	               UNION ALL
+		         
+		           SELECT mpp.mppno as no
+		               ,mpp.mpptitle as title
+		               ,mpp.mmno as mmno
+		               ,mpp.tableType as tableType
+		               ,mpp.mppRegDate as regDate
+		           FROM MPPROTECT mpp
+		         
+	               UNION ALL
+		         
+		           SELECT mpr.mprno as no
+		                 ,mpr.mprtitle as title
+		                 ,mpr.mmno as mmno
+		                 ,mpr.tableType as tableType
+		                 ,mpr.mprRegDate as regDate
+		           FROM MPREPORT mpr
+		           ORDER BY regDate DESC) notice LEFT JOIN MMEMBER mm
+		           ON notice.mmno = mm.mmno
+		           WHERE mm.mmno = #{mmNo}         
+	</select>
+	
+	<select id="mmSelectWriterInfo" resultType="Mmember" parameterType="hashmap">
+		SELECT rNum
+			 , noticeNo
+			 , noticeTitle
+			 , mmNo	
+		FROM( SELECT rownum as rNum
+				   , notice.no as noticeNo
+		           , notice.title as noticeTitle
+		           , notice.mmno as mmno
+		           , notice.tableType as tableType
+		      FROM(SELECT mhf.mhfno as no
+		                 ,mhf.mhftitle as title
+		                 ,mhf.mmno as mmno
+		                 ,mhf.tableType as tableType
+		                 ,mhf.mhfRegDate as regDate
+		           FROM MHFIND mhf     
+		         
+	               UNION ALL
+		         
+		           SELECT mhr.mhrno as no
+		                 ,mhr.mhrtitle as title
+		                 ,mhr.mmno as mmno
+		                 ,mhr.tableType as tableType
+		                 ,mhr.mhrRegDate as regDate
+		           FROM MHREPORT mhr 
+		         
+	               UNION ALL
+		         
+		           SELECT mpf.mpfno as no
+		                 ,mpf.mpftitle as title
+		                 ,mpf.mmno as mmno
+		                 ,mpf.tableType as tableType
+		                 ,mpf.mpfRegDate as regDate
+		           FROM MPFIND mpf 
+		         
+	               UNION ALL
+		         
+		           SELECT mpp.mppno as no
+		               ,mpp.mpptitle as title
+		               ,mpp.mmno as mmno
+		               ,mpp.tableType as tableType
+		               ,mpp.mppRegDate as regDate
+		           FROM MPPROTECT mpp
+		         
+	               UNION ALL
+		         
+		           SELECT mpr.mprno as no
+		                 ,mpr.mprtitle as title
+		                 ,mpr.mmno as mmno
+		                 ,mpr.tableType as tableType
+		                 ,mpr.mprRegDate as regDate
+		           FROM MPREPORT mpr
+		           ORDER BY regDate DESC) notice LEFT JOIN MMEMBER mm
+		           ON notice.mmno = mm.mmno
+		           WHERE mm.mmno = #{mmNo})
+		WHERE rNum BETWEEN #{startRow} AND #{startRow} + #{pageSize} - 1           
 	</select>
 </mapper>
 
