@@ -208,7 +208,7 @@
 					</li>
 				</ul>		
 			</div>
-		</div>
+		</div> 
 	</div>
 	<div class="row mt-5">
 		<div class="col-7 bg-white me-4 p-4 shadow-sm">
