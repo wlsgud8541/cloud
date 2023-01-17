@@ -20,7 +20,7 @@ FROM
 WHERE
 	mhfComDelYn = 'N' AND
 	mhfNo = #{mhfNo}
-ORDER BY
+ORDER BY 
 	mhfComNo DESC
 </select>
 <insert id="mhfcInsert" parameterType="MhFindComm">
