@@ -6,6 +6,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +17,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.cloud.cs.domain.Mrequest;
 import com.project.cloud.mm.domain.Mmember;
 import com.project.cloud.mm.service.MmemberService;
 
@@ -213,16 +216,83 @@ public class MmController {
 	
 	// 마이페이지
 	@RequestMapping("/mmSelectMyPage")
-	public String mmSelectMyPage(Model model, String mmNo) {
-		logger.debug("mmNo : "+mmNo);
+	public String mmSelectMyPage(Model model, String mmNo,
+								 @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum) {
 		
 		Mmember memberInfo = mmService.mmSelectMyPage(mmNo);
+		
+		HashMap<String, Object> mmSelectWriterMap = mmService.mmSelectWriterInfo(mmNo, pageNum);
+		List<Mmember> memberWriterInfoList = (List<Mmember>)mmSelectWriterMap.get("memberWriterInfo");
+		
+		
+		HashMap<String, Object> memberRequestMap = mmService.mmSelectRequestList(mmNo, pageNum);
+		List<Mrequest> memberRequestList = (List<Mrequest>)memberRequestMap.get("memberRequestList");
+		
+		// 유저정보
 		model.addAttribute("mInfo", memberInfo);
+		
+		// 유저가 작성한 글
+		model.addAttribute("memberWriterInfo", memberWriterInfoList);
+		
+		model.addAttribute("mwStartRow", mmSelectWriterMap.get("startRow"));
+		model.addAttribute("mwPageGroup", mmSelectWriterMap.get("pageGroup"));
+		model.addAttribute("mwPageCount", mmSelectWriterMap.get("pageCount"));
+		model.addAttribute("mwStartPage", mmSelectWriterMap.get("startPage"));
+		model.addAttribute("mwEndPage", mmSelectWriterMap.get("endPage"));
+		model.addAttribute("mwCurrentPage", mmSelectWriterMap.get("currentPage"));
+		
+		// 유저가 작성한 문의
+		model.addAttribute("memberRequestList", memberRequestList);
+
+		model.addAttribute("startRow", memberRequestMap.get("startRow"));
+		model.addAttribute("pageGroup", memberRequestMap.get("pageGroup"));
+		model.addAttribute("pageCount", memberRequestMap.get("pageCount"));
+		model.addAttribute("startPage", memberRequestMap.get("startPage"));
+		model.addAttribute("endPage", memberRequestMap.get("endPage"));
+		model.addAttribute("currentPage", memberRequestMap.get("currentPage"));
 		
 		return "mMemberView/mmMyPageView";
 	}
 	
-	
+	@RequestMapping("/myPagePaging")
+	@ResponseBody
+	public HashMap<String, Object> myPagePaging(Model model, String mmNo,
+								 @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum) {
+		
+		HashMap<String, Object> memberRequestMap = mmService.mmSelectRequestList(mmNo, pageNum);
+		List<Mrequest> memberRequestList = (List<Mrequest>)memberRequestMap.get("memberRequestList");
+		
+		HashMap<String, Object> ajaxReturnMap = new HashMap<String, Object>();
+		ajaxReturnMap.put("memberRequestList", memberRequestList);
+		ajaxReturnMap.put("startRow", memberRequestMap.get("startRow"));
+		ajaxReturnMap.put("pageGroup", memberRequestMap.get("pageGroup"));
+		ajaxReturnMap.put("pageCount", memberRequestMap.get("pageCount"));
+		ajaxReturnMap.put("startPage", memberRequestMap.get("startPage"));
+		ajaxReturnMap.put("endPage", memberRequestMap.get("endPage"));
+		ajaxReturnMap.put("currentPage", memberRequestMap.get("currentPage"));
+		
+		return ajaxReturnMap;
+	}
+
+	@RequestMapping("/myPageWriterPaging")
+	@ResponseBody
+	public HashMap<String, Object> myPageWriterPaging(Model model, String mmNo,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum) {
+		
+		HashMap<String, Object> mmSelectWriterMap = mmService.mmSelectWriterInfo(mmNo, pageNum);
+		List<Mmember> memberWriterInfoList = (List<Mmember>)mmSelectWriterMap.get("memberWriterInfo");
+		
+		HashMap<String, Object> ajaxReturnMap = new HashMap<String, Object>();
+		ajaxReturnMap.put("memberWriterInfoList", memberWriterInfoList);
+		ajaxReturnMap.put("mwStartRow", mmSelectWriterMap.get("startRow"));
+		ajaxReturnMap.put("mwPageGroup", mmSelectWriterMap.get("pageGroup"));
+		ajaxReturnMap.put("mwPageCount", mmSelectWriterMap.get("pageCount"));
+		ajaxReturnMap.put("mwStartPage", mmSelectWriterMap.get("startPage"));
+		ajaxReturnMap.put("mwEndPage", mmSelectWriterMap.get("endPage"));
+		ajaxReturnMap.put("mwCurrentPage", mmSelectWriterMap.get("currentPage"));
+		
+		return ajaxReturnMap;
+	}
 	
 	
 }

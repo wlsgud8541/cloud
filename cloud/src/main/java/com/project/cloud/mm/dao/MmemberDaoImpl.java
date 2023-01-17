@@ -1,5 +1,8 @@
 package com.project.cloud.mm.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -45,6 +48,20 @@ public class MmemberDaoImpl implements MmemberDao{
 	@Override
 	public Mmember mmSelectMyPage(String mmNo) {
 		return sql.selectOne("Mmember.mmSelectMyPage", mmNo);
+	}
+
+	@Override
+	public List<Mmember> mmSelectWriterInfo(String mmNo, int startRow, int pageSize) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("mmNo", mmNo);
+		paramMap.put("startRow", startRow);
+		paramMap.put("pageSize", pageSize);
+		return sql.selectList("Mmember.mmSelectWriterInfo", paramMap);
+	}
+
+	@Override
+	public int mmSelectWriterInfoCnt(String mmNo) {
+		return sql.selectOne("Mmember.mmSelectWriterInfoCnt", mmNo);
 	}
 	
 	@Override

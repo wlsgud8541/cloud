@@ -1,5 +1,7 @@
 package com.project.cloud.mm.dao;
 
+import java.util.List;
+
 import com.project.cloud.mm.domain.Mmember;
 
 public interface MmemberDao {
@@ -17,6 +19,10 @@ public interface MmemberDao {
 	public int mmInsertNaverJoin(Mmember member);
 	// 마이페이지 조회
 	public Mmember mmSelectMyPage(String mmNo);
+	// 마이페이지 내가 쓴 글 조회
+	public List<Mmember> mmSelectWriterInfo(String mmNo, int startRow, int pageSize);
+	// 마이페이지 내가 쓴 글 갯수 조회
+	public int mmSelectWriterInfoCnt(String mmNo);
 	// 카카오 유저 로그인 처리
 	public Mmember kakaoUserLogin(String kakaoUserId);
 	// 네이버 유저 로그인 처리

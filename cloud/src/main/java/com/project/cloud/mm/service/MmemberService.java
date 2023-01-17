@@ -16,6 +16,10 @@ public interface MmemberService {
 	public int mmInsertJoin(Mmember member);
 	// 마이페이지 조회
 	public Mmember mmSelectMyPage(String mmNo);
+	// 마이페이지 내가 쓴 글 조회
+	public HashMap<String, Object> mmSelectWriterInfo(String mmNo, int pageNum);
+	// 마이페이지 내가 작성한 문의
+	public HashMap<String, Object> mmSelectRequestList(String mmNo, int pageNum);
 	// 문자 인증
 	public int sendMessege(String tel);
 	// 이메일 인증
