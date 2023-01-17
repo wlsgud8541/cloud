@@ -8,6 +8,7 @@
 		<result property="mmNo" column="mmNo"/>
 		<result property="mppRegDate" column="mppRegDate"/>
 		<result property="mppInfoDate" column="mppInfoDate"/>
+		<result property="mppStatusCode" column="mppStatusCode"/>
 		<result property="mppTitle" column="mppTitle"/>
 		<result property="mppContent" column="mppContent"/>
 		<result property="mppPetType" column="mppPetType"/>
@@ -25,17 +26,20 @@
 		     , mppNo
 		     , mppReadCnt
 		     , mppRegDate
+		     , mppStatusCode
 		     , mppTitle
 		     , mppWriter
 		  FROM (SELECT rownum as rNum
 		             , mppNo
 		             , mppReadCnt
 		             , mppRegDate
+		             , mppStatusCode
 		             , mppTitle
 		             , mppWriter
 				FROM(SELECT mppNo
 		                  , mppReadCnt
 		                  , mppRegDate
+		                  , mppStatusCode
 		                  , mppTitle
 		                  , mppWriter
 		               FROM MpProtect
@@ -56,11 +60,18 @@
 	<!-- 리스트 디테일 조회 -->
 	<select id="mppSelectDetail" resultType="MpProtect" resultMap="MpProtect">
 		SELECT
-		    mppNo,mppReadCnt,
-		    mppInfoDate,mppRegDate,
-		    mppTitle,mppContent,
-		    mppLocalCode, mppPetType,
-		    mppWriter,mppGen,mppAddFile
+		    mppNo
+		    ,mppReadCnt
+		    ,mppInfoDate
+		    ,mppRegDate
+		    ,mppStatusCode
+		    ,mppTitle
+		    ,mppContent
+		    ,mppLocalCode
+		    ,mppPetType
+		    ,mppWriter
+		    ,mppGen
+		    ,mppAddFile
 		FROM
 		    MpProtect
 		WHERE
@@ -92,6 +103,7 @@
 								,mppContent
 			                    ,mppInfoDate 
 			                    ,mppLocalCode
+			                    ,mppStatusCode
 			                    ,mppPetType
 			                    ,mppWriter
 			                    ,mppRegDate
@@ -106,14 +118,15 @@
 		      ,#{mppContent}
 		      ,#{mppInfoDate}
 		      ,#{mppLocalCode}
+		      ,#{mppStatusCode}
 		      ,#{mppPetType} 
 		      ,#{mppWriter}
 		      ,SYSTIMESTAMP
 		      ,#{mmNo}
 		      ,#{mppGen}
-		       <if test="mppAddFile != null">
-			   ,#{mppAddFile}
-			   </if>
+	          <if test="mppAddFile != null">
+		      ,#{mppAddFile}
+		      </if>
 		      )
 	</insert>
 	
@@ -124,6 +137,7 @@
 			,mppContent = #{mppContent}
 			,mppInfoDate = #{mppInfoDate}
 			,mppLocalCode = #{mppLocalCode}
+			,mppStatusCode = #{mppStatusCode}
 			,mppPetType = #{mppPetType}
 			,mppGen = #{mppGen}
 			 <if test="mppAddFile != null">

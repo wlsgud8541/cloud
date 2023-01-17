@@ -20,12 +20,13 @@
 		<div>
 			<table class="table table-hover text-center">
 				<!-- 상단 리스트 -->
-				<tr class="table-success">
+				<tr class="table-primary">
 					<th>번 호</th>
 					<th>제 목</th>
 					<th>작성자</th>
 					<th>조회수</th>
 					<th>작성일</th>
+					<th>실종현황</th>
 				</tr>
 				<tbody>
 					<c:forEach var="mprSelectList" items="${mprSelectList}" varStatus="status">
@@ -33,12 +34,18 @@
 							<td style = "padding : 1.5rem 0.5rem;">${mprSelectList.mprNo }</td>
 							<td style = "padding : 1.5rem 0.5rem;">
 							<a href="mprSelectDetail?mprNo=${mprSelectList.mprNo}&pageNum=${mprModel.currentPage}">${mprSelectList.mprTitle}
-								<c:if test="${mprSelectList.mprAddFile!=null }">
+								<c:if test="${mprDetail.mprAddFile!=null }">
 									💾								
 								</c:if> </a></td>
 							<td style = "padding : 1.5rem 0.5rem;">${mprSelectList.mprWriter}</td>
 							<td style = "padding : 1.5rem 0.5rem;">${mprSelectList.mprReadCnt}</td>
 							<td style = "padding : 1.5rem 0.5rem;"><fmt:formatDate value="${mprSelectList.mprRegDate}" pattern="yy-MM-dd HH:mm" /></td>
+						<c:if test="${mprSelectList.mprStatusCode == '01' }">
+							<td class="text-danger" style = "padding : 1.5rem 0.5rem;">실종</td>
+						</c:if>
+						<c:if test="${mprSelectList.mprStatusCode == '02' }">
+							<td class="text-primary" style = "padding : 1.5rem 0.5rem;">찾았어요!</td>
+						</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -63,7 +70,7 @@
 							<!-- 페이지 그룹 -->
 							<c:forEach var="i" begin="${mprModel.startPage}" end="${mprModel.endPage}">
 								<c:if test="${i == currentPage }">
-									<li class="page-item active text-success" aria-current="page"><b>${i}</b></li>
+									<li class="page-item active text-primary" aria-current="page"><b>${i}</b></li>
 								</c:if>
 								<c:if test="${i != mprModel.currentPage }">
 									<li class="page-item"><a class="page-link" href="mprSelectList?pageNum=${ i }">${i}</a></li>
@@ -93,13 +100,13 @@
 					</div>
 					<div class="col text-start p-0">
 						<input type="text" name="keyword" id="keyword" style="left:0px; width:500px; height:54px; background:#fff;  border:1px solid #d0d0d0;">
-						<input type="submit" class="bg-success text-white bg-opacity-75" style="left:0px; top:0px; width:54px; height:56px; background:#fff;  border:1px solid #d0d0d0;" value="검색">
+						<input type="submit" class="bg-primary text-white bg-opacity-75" style="left:0px; top:0px; width:54px; height:56px; background:#fff;  border:1px solid #d0d0d0;" value="검색">
 					</div>
 				</form>
 			</div>
 			
 			<div class="board-bottom">
-				<a href="mprInsert" class="btn btn-outline-success posiRight my-2">글쓰기</a>
+				<a href="mprInsert" class="btn btn-outline-primary posiRight my-2">글쓰기</a>
 				<br>
 			</div>
 		</div>

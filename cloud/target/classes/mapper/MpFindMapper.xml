@@ -9,7 +9,6 @@
 		<result property="mpfRegDate" column="mpfRegDate"/>
 		<result property="mpfTitle" column="mpfTitle"/>
 		<result property="mpfContent" column="mpfContent"/>
-		<result property="mpfStatusCode" column="mpfStatusCode"/>
 		<result property="mpfLocalCode" column="mpfLocalCode"/>
 		<result property="mpfPetType" column="mpfPetType"/>
 		<result property="mpfAddFile" column="mpfAddFile"/>
@@ -17,7 +16,7 @@
 		<result property="mpfDelYn" column="mpfDelYn"/>
 		<result property="rNum" column="rNum"/>
 	</resultMap>
-	 
+	
 	<!-- 리스트 조회 -->
 	<select id="mpfSelectList" resultType="MpFind" parameterType="hashMap">
 		SELECT rNum
@@ -58,7 +57,7 @@
 		    mpfNo,mpfReadCnt,
 		    mpfInfoDate,mpfRegDate,
 		    mpfTitle,mpfContent,
-		    mpfStatusCode,mpfLocalCode,
+		    mpfLocalCode,
 		    mpfPetType,mpfWriter,mpfAddFile
 		FROM
 		    mpFind
@@ -89,7 +88,6 @@
 								,mpfTitle
 								,mpfContent
 			                    ,mpfInfoDate 
-			                    ,mpfStatusCode
 			                    ,mpfLocalCode
 			                    ,mpfPetType
 			                    ,mpfWriter
@@ -103,7 +101,6 @@
 		      ,#{mpfTitle} 
 		      ,#{mpfContent}
 		      ,#{mpfInfoDate}
-		      ,#{mpfStatusCode}
 		      ,#{mpfLocalCode}
 		      ,#{mpfPetType} 
 		      ,#{mpfWriter}
@@ -121,7 +118,6 @@
 		SET mpfTitle = #{mpfTitle}
 			,mpfContent = #{mpfContent}
 			,mpfInfoDate = #{mpfInfoDate}
-			,mpfStatusCode = #{mpfStatusCode}
 			,mpfLocalCode = #{mpfLocalCode}
 			,mpfPetType = #{mpfPetType}
 			 <if test="mpfAddFile != null">

@@ -5,7 +5,7 @@
 <div class="row" id="global-content">
 	<div class="row my-5 text-center">
 		<div class="col">
-			<h2 class="fs-3 fw-bold">게시글 쓰기</h2>
+			<h2 class="fs-3 fw-bold">신고 게시판 수정</h2>
 		</div>
 	</div>
 	<form name="mprUpdateProcess" action="mprUpdateProcess" id="mprUpdateForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
@@ -16,40 +16,61 @@
 	
 	<div class="col-4 offset-md-2">
 	    <label for="mprTitle" class="form-label">제목</label>
-	    <input type="text"class="form-control" name="mprTitle" id="mprTitle" value="${mpModify.mprTitle}">
+	    <input type="text"class="form-control" name="mprTitle" id="title" value="${mpModify.mprTitle}">
   	</div>
-  	<div class="col-8 offset-md-2">
-	    <label for="mprWriter" class="form-label">작성자</label>
-	    <input class="form-control" name="mprWriter" id="mprWriter" value="${mpModify.mprWriter}" readonly></input>
-  	</div>
-  	<div class="col-4">
+  	<div class="col-5 offset-md-2">
 	    <label for="mprContent" class="form-label">내용</label>
-	    <input class="form-control" name="mprContent" id="mprContent" value="${mpModify.mprContent}"></input>
+	    <textarea class="form-control" name="mprContent" id="content" >${mpModify.mprContent}</textarea>
   	</div>
-  	<div class="col-4">
+  	<div class="col-2 offset-md-1">
 	    <label for="mprInfoDate" class="form-label">실종 날짜</label>
-	    <input type="text"class="form-control" name="mprInfoDate" id="mprInfoDate" value="${mpModify.mprInfoDate}">
+	    <input type="date"class="form-control" name="mprInfoDate" id="mprInfoDate" value="${mpModify.mprInfoDate}">
   	</div>
   	<div class="col-8 offset-md-2">
-	    <label for="mprStatusCode" class="form-label">상태코드</label>
-	    <input type="text"class="form-control" name="mprStatusCode" id="mprStatusCode" value="${mpModify.mprStatusCode}">
+	    <label for="mprStatusCode" class="form-label">실종현황</label>
+	    <select class="form-control col-2" name="mprStatusCode" id="mprStatusCode">
+	    	<option value="01">실종</option>
+	    	<option value="02">찾았어요!</option>
+	    </select>
   	</div>
   	<div class="col-8 offset-md-2">
-	    <label for="mprLocalCode" class="form-label">지역 코드</label>
-	    <input class="form-control" name="mprLocalCode" id="mprLocalCode" value="${mpModify.mprLocalCode}"></input>
+	    <label for="mprContent" class="form-label">지역</label>
+	    <select class="form-control col-2" name="mprLocalCode" id="mprLocalCode">
+	    	<option value="">--선택하세요--</option>
+	    	<option value="01">서울</option>
+	    	<option value="02">경기</option>
+	    	<option value="03">인천</option>
+	    	<option value="04">대전</option>
+	    	<option value="05">광주</option>
+	    	<option value="06">대구</option>
+	    	<option value="07">울산</option>
+	    	<option value="08">부산</option>
+	    	<option value="09">세종</option>
+	    	<option value="10">강원</option>
+	    	<option value="11">충북</option>
+	    	<option value="12">충남</option>
+	    	<option value="13">전북</option>
+	    	<option value="14">전남</option>
+	    	<option value="15">경북</option>
+	    	<option value="16">경남</option>
+	    	<option value="17">제주</option>
+	    </select>
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mprPetType" class="form-label">동물 종류</label>
-	    <input class="form-control" name="mprPetType" id="mprPetType" value="${mpModify.mprPetType}"></input>
-  	</div>
- 
-  	<div class="col-8 offset-md-2">
-	    <label for="mprRegDate" class="form-label">작성일시</label>
-	    <input class="form-control" name="mprRegDate" id="mprRegDate" value="${mpModify.mprRegDate}" readonly></input>
+	    <select class="form-control col-2" name="mprPetType" id="mprPetType">
+	    	<option value="">--선택하세요--</option>
+	    	<option value="01">강아지</option>
+	    	<option value="02">고양이</option>
+	    	<option value="03">기타(내용에 동물종류를 기재해주세요)</option>
+	    </select>
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mprGen" class="form-label">동물 성별</label>
-	    <input class="form-control" name="mprGen" id="mprGen" value="${mpModify.mprGen}"></input>
+	     <select class="form-control col-2" name="mprGen" id="mprGen">
+	    	<option value="M">남</option>
+	    	<option value="F">여</option>
+    	</select>
   	</div>
   	<div class="col-8 offset-md-2">
 		    <label for="mprAddFile" class="form-label">파 일</label>

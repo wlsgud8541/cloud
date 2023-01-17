@@ -63,6 +63,37 @@ table {
 	border-bottom: 1px solid #A4BE7B;
 	text-align:center;
 }
+
+/* 실종 반려동물 디테일 폼 색깔 수정용 css*/
+.mpgunThNo { 
+	width: 90px; 
+	height: 30px;
+	border-top: 5px solid #bfd1ec;
+	border-bottom: 1px solid #bfd1ec;
+}
+.mpgunThTitle { 
+	width: 400px;
+	border-top: 5px solid #bfd1ec;
+	border-bottom: 1px solid #bfd1ec;
+}
+.mpgunThWriter { 
+	width: 110px;
+	border-top: 5px solid #bfd1ec;
+	border-bottom: 1px solid #bfd1ec;
+}
+.mpgunThDate { 
+	width: 0px;
+	border-top: 5px solid #bfd1ec;
+	border-bottom: 1px solid #bfd1ec;
+	text-align:right;
+}
+.mpgunThReadCount {
+	width: 25px;
+	border-top: 5px solid #bfd1ec;
+	border-bottom: 1px solid #bfd1ec;
+	text-align:center;
+}
+
 .gunContent {	
 	height: 300px;
 	padding: 20px;
@@ -144,6 +175,14 @@ table {
 }
 .boxLine{
 	border-bottom: 1px solid #A4BE7B;
+	width:977px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+/* 실종 반려동물 디테일 폼 색깔 수정용 css*/
+.mpboxLine{
+	border-bottom: 1px solid #bfd1ec;
 	width:977px;
 	margin-top:20px;
 	margin-bottom:20px;

@@ -20,7 +20,7 @@
 		<div>
 			<table class="table table-hover text-center">
 				<!-- 상단 리스트 -->
-				<tr class="table-success">
+				<tr class="table-primary">
 					<th>번 호</th>
 					<th>제 목</th>
 					<th>작성자</th>
@@ -63,7 +63,7 @@
 							<!-- 페이지 그룹 -->
 							<c:forEach var="i" begin="${mpfModel.startPage}" end="${mpfModel.endPage}">
 								<c:if test="${i == currentPage }">
-									<li class="page-item active text-success" aria-current="page"><b>${i}</b></li>
+									<li class="page-item active text-primary" aria-current="page"><b>${i}</b></li>
 								</c:if>
 								<c:if test="${i != mpfModel.currentPage }">
 									<li class="page-item"><a class="page-link" href="mpfSelectList?pageNum=${ i }">${i}</a></li>
@@ -93,13 +93,13 @@
 					</div>
 					<div class="col text-start p-0">
 						<input type="text" name="keyword" id="keyword" style="left:0px; width:500px; height:54px; background:#fff;  border:1px solid #d0d0d0;">
-						<input type="submit" class="bg-success text-white bg-opacity-75" style="left:0px; top:0px; width:54px; height:56px; background:#fff;  border:1px solid #d0d0d0;" value="검색">
+						<input type="submit" class="bg-primary text-white bg-opacity-75" style="left:0px; top:0px; width:54px; height:56px; background:#fff;  border:1px solid #d0d0d0;" value="검색">
 					</div>
 				</form>
 			</div>
 			
 			<div class="board-bottom">
-				<a href="mpfInsert" class="btn btn-outline-success posiRight my-2">글쓰기</a>
+				<a href="mpfInsert" class="btn btn-outline-primary posiRight my-2">글쓰기</a>
 				<br>
 			</div>
 		</div>

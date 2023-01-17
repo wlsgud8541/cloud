@@ -1,37 +1,187 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-		${mprDetail.mprNo}
-		${mprDetail.mprTitle}
-		${mprDetail.mprReadCnt}
-		${mprDetail.mprRegDate}
-		${mprDetail.mprWriter}
-		${mprDetail.mprContent}
-			<table>
-			<c:if test="${ empty mprDetail.mprAddFile }">
-				<div>첨부된 파일이 없습니다.</div>
-			</c:if>
-			<c:if test="${ not empty mprDetail.mprAddFile }">
-				<tr>		
-					<th class="table-light">파&nbsp;&nbsp;&nbsp;&nbsp;일</th>
-					<td><a href="fileDownload?fileName=${mprDetail.mprAddFile}">파일 다운로드</a></td>
-				</tr>
-			</c:if>
-			</table>
 
-		<div class="col text-center">
-			<input type="button" class="btn btn-warning" id="mprUpdate" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}" value="수정하기"/>
-			<input type="button" class="btn btn-danger" id="mprDelete" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}" value="삭제하기" />
-			<input type="button" value="목록보기" class="btn btn-primary" onclick="location.href='mprSelectList?pageNum=${pageNum}'"/>			
+<!-- content -->
+<div class="w3-content">
+	<input type="hidden" id="mprNo" value="${mprDetail.mprNo}">
+	<div class="my-4">
+		<h3>${mprDetail.mprTitle}</h3>
+	</div>
+	<div>
+		<table class="topbox">
+			<tr>
+				<td class="mpgunThWriter py-2"><b>&nbsp;&nbsp;작성자 : ${mprDetail.mprWriter}</b></td>
+				<td class="mpgunThDate py-2"><fmt:formatDate
+						value="${mprDetail.mprRegDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+				<td class="mpgunThReadCount ms-3 py-2">조회수 : ${mprDetail.mprReadCnt }</td>
+			</tr>
+			<c:if test="${mprDetail.mprAddFile != null}">
+			<tr>
+				<td class="py-2">&nbsp;&nbsp;💾 | <a href="fileDownload?fileName=${mprDetail.mprAddFile}">다운로드</a></td>
+				<c:if test="${ mprDetail.mprStatusCode == '01' }">
+					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-danger">실종</a></td>
+				</c:if>
+				<c:if test="${ mprDetail.mprStatusCode == '02' }">
+					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-primary">찾았어요!</a></td>
+				</c:if>
+			</tr>	
+			</c:if>
+			<c:if test="${mprDetail.mprAddFile == null}">
+			<tr>
+				<td class="py-2">&nbsp;&nbsp;💾 | 파일없음</td>
+				<c:if test="${ mprDetail.mprStatusCode == '01' }">
+					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-danger">실종</a></td>
+				</c:if>
+				<c:if test="${ mprDetail.mprStatusCode == '02' }">
+					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-primary">찾았어요!</a></td>
+				</c:if>
+			</tr>	
+			</c:if>
+			 
+		</table>
+	<a class="row mt-4">
+		<c:if test="${mprDetail.mprLocalCode == 01}">
+			<div class="col text-center">
+				<span class="btn btn-primary">서울</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 02}">
+			<div class="col text-center">
+				<span class="btn btn-primary">경기</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 03}">
+			<div class="col text-center">
+				<span class="btn btn-primary">인천</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 04}">
+			<div class="col text-center">
+				<span class="btn btn-primary">대전</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 05}">
+			<div class="col text-center">
+				<span class="btn btn-primary">광주</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 06}">
+			<div class="col text-center">
+				<span class="btn btn-primary">대구</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 07}">
+			<div class="col text-center">
+				<span class="btn btn-primary">울산</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 08}">
+			<div class="col text-center">
+				<span class="btn btn-primary">부산</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 09}">
+			<div class="col text-center">
+				<span class="btn btn-primary">세종</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 10}">
+			<div class="col text-center">
+				<span class="btn btn-primary">강원</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 11}">
+			<div class="col text-center">
+				<span class="btn btn-primary">충북</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 12}">
+			<div class="col text-center">
+				<span class="btn btn-primary">충남</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 13}">
+			<div class="col text-center">
+				<span class="btn btn-primary">전북</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 14}">
+			<div class="col text-center">
+				<span class="btn btn-primary">전남</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 15}">
+			<div class="col text-center">
+				<span class="btn btn-primary">경북</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 16}">
+			<div class="col text-center">
+				<span class="btn btn-primary">경남</span>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprLocalCode == 17}">
+			<div class="col text-center">
+				<span class="btn btn-primary">제주</span>
+			</div>
+			<div class="col text-center">
+				<span class="btn btn-primary">제주</span>
+			</div>
+		</c:if>
+	</a>
+	
+	<a class="row mt-4">
+		<c:if test="${mprDetail.mprPetType == 01}">
+			<div>
+				<b>종류 : 강아지</b>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprPetType == 02}">
+			<div>
+				<b>종류 : 고양이</b>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprPetType == 03}">
+			<div>
+				<b>종류 : 기타</b>
+			</div>
+		</c:if>
+	</a>
+	
+	<a class="row mt-4">
+		<b>실종 일시 : <fmt:formatDate value="${mprDetail.mprInfoDate}" pattern="yyyy-MM-dd" /></b>
+	</a>
+	
+	<a class="row mt-4">
+		<c:if test="${mprDetail.mprGen == 'M '}">
+			<div>
+				<b>성별 : 남</b>
+			</div>
+		</c:if>
+		<c:if test="${mprDetail.mprGen == 'F '}">
+			<div>
+				<b>성별 : 여</b>
+			</div>
+		</c:if>
+	</a>
+	
+		<div class="py-4 px-3">
+<pre>
+상세 내용 :
+	${mprDetail.mprContent }</pre>
 		</div>
-		
-		
-</body>
-</html>
+	</div>
+	<div class="mpboxLine"></div>
+
+
+
+	<div class="row">
+		<div class="col text-center mt-4">
+			<input type="button" class="btn btn-outline-primary" id="mprUpdate" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="수정하기"> 
+			<input type="button" class="btn btn-outline-primary  mx-3"  id="mprDelete" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+			<input type="button" onclick="location.href='mprSelectList?pageNum=${pageNum}'" class="btn btn-outline-primary" value="목록으로" />
+		</div>
+	</div>
+</div>

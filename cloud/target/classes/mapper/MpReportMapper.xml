@@ -28,17 +28,26 @@
 		     , mprRegDate
 		     , mprTitle
 		     , mprWriter
+		     , mprStatusCode
 		  FROM (SELECT rownum as rNum
 		             , mprNo
 		             , mprReadCnt
 		             , mprRegDate
 		             , mprTitle
 		             , mprWriter
+		             , mprStatusCode
+		             <if test="mprAddFile != null">
+					 ,mprAddFile
+					 </if>
 				FROM(SELECT mprNo
 		                  , mprReadCnt
 		                  , mprRegDate
 		                  , mprTitle
 		                  , mprWriter
+		                  , mprStatusCode
+	   		             <if test="mprAddFile != null">
+						 ,mprAddFile
+						 </if>
 		               FROM mpReport
 		              WHERE mprDelYn = 'N'
 		              <if test="type=='title'">
@@ -57,11 +66,18 @@
 	<!-- 리스트 디테일 조회 -->
 	<select id="mprSelectDetail" resultType="MpReport" resultMap="MpReport">
 		SELECT
-		    mprNo,mprReadCnt,
-		    mprInfoDate,mprRegDate,
-		    mprTitle,mprContent,
-		    mprStatusCode,mprLocalCode,
-		    mprPetType,mprWriter,mprGen,mprAddFile
+		     mprNo
+		    ,mprReadCnt
+		    ,mprInfoDate
+		    ,mprRegDate
+		    ,mprTitle
+		    ,mprContent
+		    ,mprStatusCode
+		    ,mprLocalCode
+		    ,mprPetType
+		    ,mprWriter
+		    ,mprGen
+		    ,mprAddFile
 		FROM
 		    mpReport
 		WHERE

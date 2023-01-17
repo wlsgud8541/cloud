@@ -28,6 +28,8 @@ import com.project.cloud.mp.service.MpReportService;
 @Controller
 public class MpController {
 	
+	/* private Logger logger= LoggerFactory.getLogger(this.getClass()); */
+	
 	// 페이징 처리 공통 메소드
 	@Autowired
 	private GlobalMethodService gms;
@@ -129,7 +131,10 @@ public class MpController {
 	// 실종 반려동물 신고 디테일 수정화면 프로세스
 	@RequestMapping("mprUpdateProcess")
 	public String mprUpdateProcess(HttpServletRequest request, @RequestParam(value = "mprAddFile", required = false) MultipartFile multipartFile,
-									int mprNo,int mmNo,String mprTitle,String mprWriter,String mprContent,Timestamp mprInfoDate,String mprStatusCode,String mprLocalCode,String mprPetType,String mprGen,int pageNum)throws IOException {
+									int mprNo,int mmNo,String mprTitle,String mprWriter,String mprContent,String mprInfoDate,String mprStatusCode,String mprLocalCode,String mprPetType,String mprGen,int pageNum)throws IOException {
+		
+		String tempDate = mprInfoDate + " 00:00:00";
+		Timestamp tDate = Timestamp.valueOf(tempDate);
 		
 		MpReport mpReport = new MpReport();
 		mpReport.setMprNo(mprNo);
@@ -137,7 +142,7 @@ public class MpController {
 		mpReport.setMprTitle(mprTitle);
 		mpReport.setMprWriter(mprWriter);
 		mpReport.setMprContent(mprContent);
-		mpReport.setMprInfoDate(mprInfoDate);
+		mpReport.setMprInfoDate(tDate);
 		mpReport.setMprStatusCode(mprStatusCode);
 		mpReport.setMprLocalCode(mprLocalCode);
 		mpReport.setMprPetType(mprPetType);
@@ -224,7 +229,7 @@ public class MpController {
 	// 실종 반려동물 목격 글쓰기 프로세스
 	@RequestMapping("/mpfInsertProcess")
 	public String mpfInsert(HttpServletRequest request, @RequestParam(value = "mpfAddFile", required = false) MultipartFile multipartFile,
-							int mmNo,String mpfTitle, String mpfContent, String mpfWriter,String mpfRegDate, String mpfInfoDate,String mpfStatusCode,String mpfLocalCode,String mpfPetType)throws IOException{
+							int mmNo,String mpfTitle, String mpfContent, String mpfWriter,String mpfRegDate, String mpfInfoDate,String mpfLocalCode,String mpfPetType)throws IOException{
 		
 		
 		String tempDate = mpfInfoDate + " 00:00:00";
@@ -236,7 +241,6 @@ public class MpController {
 		mpFind.setMpfTitle(mpfTitle);
 		mpFind.setMpfContent(mpfContent);
 		mpFind.setMpfInfoDate(tDate);
-		mpFind.setMpfStatusCode(mpfStatusCode);
 		mpFind.setMpfLocalCode(mpfLocalCode);
 		mpFind.setMpfPetType(mpfPetType);
 		
@@ -264,15 +268,19 @@ public class MpController {
 	// 실종 반려동물 목격 디테일 수정화면 프로세스
 	@RequestMapping("mpfUpdateProcess")
 	public String mpfUpdateProcess(HttpServletRequest request, @RequestParam(value = "mpfAddFile", required = false) MultipartFile multipartFile,
-			int mpfNo,int mmNo,String mpfTitle,String mpfWriter,String mpfContent,Timestamp mpfInfoDate,String mpfStatusCode,String mpfLocalCode,String mpfPetType,int pageNum)throws IOException {
+			int mpfNo,int mmNo,String mpfTitle,String mpfWriter,String mpfContent,String mpfInfoDate,String mpfStatusCode,String mpfLocalCode,String mpfPetType,int pageNum)throws IOException {
 		
 		MpFind mpFind = new MpFind();
+		
+		String tempTime = mpfInfoDate + " 00:00:00";
+		Timestamp time = Timestamp.valueOf(tempTime);
+		
 		mpFind.setMpfNo(mpfNo);
 		mpFind.setMmNo(mmNo);
 		mpFind.setMpfTitle(mpfTitle);
 		mpFind.setMpfWriter(mpfWriter);
 		mpFind.setMpfContent(mpfContent);
-		mpFind.setMpfInfoDate(mpfInfoDate);
+		mpFind.setMpfInfoDate(time);
 		mpFind.setMpfStatusCode(mpfStatusCode);
 		mpFind.setMpfLocalCode(mpfLocalCode);
 		mpFind.setMpfPetType(mpfPetType);
@@ -353,7 +361,7 @@ public class MpController {
 	// 실종 반려동물 임시보호 글쓰기 프로세스
 	@RequestMapping("/mppInsertProcess")
 	public String mppInsert(HttpServletRequest request, @RequestParam(value = "mppAddFile", required = false) MultipartFile multipartFile,
-							int mmNo,String mppTitle, String mppContent, String mppWriter,String mppRegDate, String mppInfoDate, String mppLocalCode,String mppPetType,String mppGen)throws IOException{
+							int mmNo,String mppTitle, String mppContent, String mppWriter,String mppStatusCode,String mppRegDate, String mppInfoDate, String mppLocalCode,String mppPetType,String mppGen)throws IOException{
 
 		
 		String tempDate = mppInfoDate + " 00:00:00";
@@ -365,9 +373,10 @@ public class MpController {
 		mpProtect.setMppTitle(mppTitle);
 		mpProtect.setMppContent(mppContent);
 		mpProtect.setMppInfoDate(tDate);
+		mpProtect.setMppStatusCode(mppStatusCode);
 		mpProtect.setMppLocalCode(mppLocalCode);
 		mpProtect.setMppPetType(mppPetType);
-		mpProtect.setMppGen(mppGen);
+		mpProtect.setMppGen(mppGen.trim());
 		
 		//파일 업로드 공통 처리 메소드
 		String fileName = gms.addFile(request, multipartFile);
@@ -393,7 +402,10 @@ public class MpController {
 	// 실종 반려동물 임시보호 디테일 수정화면 프로세스
 	@RequestMapping("mppUpdateProcess")
 	public String mppUpdateProcess(HttpServletRequest request, @RequestParam(value = "mppAddFile", required = false) MultipartFile multipartFile,
-									int mppNo,int mmNo,String mppTitle,String mppWriter,String mppContent,Timestamp mppInfoDate, String mppLocalCode,String mppPetType,String mppGen,int pageNum)throws IOException {
+									int mppNo,int mmNo,String mppTitle,String mppWriter,String mppContent,String mppInfoDate,String StatusCode, String mppLocalCode,String mppPetType,String mppGen,int pageNum)throws IOException {
+		
+		String tempTime = mppInfoDate + " 00:00:00";
+		Timestamp time = Timestamp.valueOf(tempTime);
 		
 		MpProtect mpProtect = new MpProtect();
 		mpProtect.setMppNo(mppNo);
@@ -401,7 +413,8 @@ public class MpController {
 		mpProtect.setMppTitle(mppTitle);
 		mpProtect.setMppWriter(mppWriter);
 		mpProtect.setMppContent(mppContent);
-		mpProtect.setMppInfoDate(mppInfoDate);
+		mpProtect.setMppInfoDate(time);
+		mpProtect.setMppStatusCode(StatusCode);
 		mpProtect.setMppLocalCode(mppLocalCode);
 		mpProtect.setMppPetType(mppPetType);
 		mpProtect.setMppGen(mppGen);
