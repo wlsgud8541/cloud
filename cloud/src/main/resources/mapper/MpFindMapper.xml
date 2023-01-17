@@ -17,7 +17,7 @@
 		<result property="mpfDelYn" column="mpfDelYn"/>
 		<result property="rNum" column="rNum"/>
 	</resultMap>
-	
+	 
 	<!-- 리스트 조회 -->
 	<select id="mpfSelectList" resultType="MpFind" parameterType="hashMap">
 		SELECT rNum

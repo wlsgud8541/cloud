@@ -43,7 +43,7 @@
 </c:if>
 		<div>
 			<%@ include file="template/header.jsp" %>
-			<div style="margin-top: 190px;"class="container">
+			<div style="margin-top: 220px;"class="container">
 <!-- 			  -->
 				<jsp:include page="${ param.body }" />
 			</div>
