@@ -27,33 +27,37 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">		
 	<link rel="stylesheet" type="text/css" href="resources/css/board.css" />	
 	<link rel="stylesheet" type="text/css" href="resources/css/member.css" />
-    <style>      	
-    </style>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+	<!-- include summernote css/js -->
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+	
 	<script src="resources/js/jquery-3.2.1.min.js"></script>
-	<script src="resources/js/main.js"></script>
 	<script src="resources/js/member.js"></script>
 	<script src="resources/js/notice.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <c:if test="${param.body == 'views/main/mainView.jsp'}">
-	<body class="bodyBg">
+<body class="bodyBg">
 </c:if>
 <c:if test="${param.body != 'main/mainView'}">
-	<body>
+<body>
 </c:if>
 	<div>
-		<c:if test="${param.body != 'views//mMemberView/mmPassChangeView.jsp'}">
-			<%@ include file="template/header.jsp" %>
-		</c:if>
-		
-		<div style="margin-top: 220px;"class="container">
-			<jsp:include page="${ param.body }" />
-		</div>
+      <c:if test="${param.body != 'views//mMemberView/mmPassChangeView.jsp'}">
+         <%@ include file="template/header.jsp" %>
+      </c:if>
+      
+      <div style="margin-top: 220px;"class="container">
+         <jsp:include page="${ param.body }" />
+      </div>
 
-		<c:if test="${param.body != 'views//mMemberView/mmPassChangeView.jsp'}">
-			<%@ include file="template/footer.jsp" %>
-		</c:if>
-	</div>
+      <c:if test="${param.body != 'views//mMemberView/mmPassChangeView.jsp'}">
+         <%@ include file="template/footer.jsp" %>
+      </c:if>
+   </div>
     <script src="resources/bootstrap/bootstrap.bundle.min.js"></script>	
 </body>
 </html>

@@ -931,5 +931,11 @@ $(document).ready(function(){
 		} 
 		return false; 
 	});
+// 텍스트에디터	
+	  $('.textEditor').summernote({
+	  height:300,
+	  minHeight:null,
+	  maxHeight:null,
+	  focus:true
+	  });
 });
-
