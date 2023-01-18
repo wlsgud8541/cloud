@@ -36,19 +36,24 @@
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <c:if test="${param.body == 'views/main/mainView.jsp'}">
-<body class="bodyBg">
+	<body class="bodyBg">
 </c:if>
 <c:if test="${param.body != 'main/mainView'}">
-<body>
+	<body>
 </c:if>
-		<div>
+	<div>
+		<c:if test="${param.body != 'views//mMemberView/mmPassChangeView.jsp'}">
 			<%@ include file="template/header.jsp" %>
-			<div style="margin-top: 220px;"class="container">
-<!-- 			  -->
-				<jsp:include page="${ param.body }" />
-			</div>
-			<%@ include file="template/footer.jsp" %>
+		</c:if>
+		
+		<div style="margin-top: 220px;"class="container">
+			<jsp:include page="${ param.body }" />
 		</div>
+
+		<c:if test="${param.body != 'views//mMemberView/mmPassChangeView.jsp'}">
+			<%@ include file="template/footer.jsp" %>
+		</c:if>
+	</div>
     <script src="resources/bootstrap/bootstrap.bundle.min.js"></script>	
 </body>
 </html>
