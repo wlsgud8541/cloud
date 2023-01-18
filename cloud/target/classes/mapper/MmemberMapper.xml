@@ -43,6 +43,7 @@
 		SELECT mmPass
 		FROM MMEMBER
 		WHERE mmId = #{mmId}
+		  AND mmActivateyn = 'N'
 	</select>
 
 	<select id="mmSelectUserInfo" resultType="Mmember" parameterType="String">
@@ -66,12 +67,14 @@
 				,mmIdConnNaver
 		FROM MMEMBER
 		WHERE mmId = #{mmId}
+		  AND mmActivateyn = 'N'
 	</select>
 	
 	<select id="idCheck" resultType="int" parameterType="String">
 		SELECT count(mmId) as cnt
 		FROM MMEMBER
 		WHERE mmId = #{mmId}
+		  AND mmActivateyn = 'N'
 	</select>
 	
 	<insert id="mmInsertJoin" parameterType="Mmember">
@@ -188,6 +191,7 @@
 				,mmIdConnNaver
 		FROM MMEMBER
     	WHERE kakaoUserRealId = #{kakaoUserId}
+    	  AND mmActivateyn = 'N'
 	</select>
 
 	<select id="naverUserLogin" parameterType="String" resultType="Mmember">
@@ -211,6 +215,7 @@
 				,mmIdConnNaver
 		FROM MMEMBER
     	WHERE naverUserRealId = #{naverUserId}
+    	  AND mmActivateyn = 'N'
 	</select>
 	
 	<select id="mmSelectMyPage" resultType="Mmember" parameterType="String">
@@ -234,6 +239,7 @@
 				,mmIdConnNaver
 		FROM MMEMBER
 		WHERE mmNo = #{mmNo}
+		  AND mmActivateyn = 'N'
 	</select>
 
 	<select id="mmSelectWriterInfoCnt" resultType="int" parameterType="String">
@@ -290,6 +296,7 @@
 			 , noticeNo
 			 , noticeTitle
 			 , mmNo	
+			 , tableType	
 		FROM( SELECT rownum as rNum
 				   , notice.no as noticeNo
 		           , notice.title as noticeTitle
@@ -342,5 +349,12 @@
 		           WHERE mm.mmno = #{mmNo})
 		WHERE rNum BETWEEN #{startRow} AND #{startRow} + #{pageSize} - 1           
 	</select>
+	
+	<update id="mmChangePassProc" parameterType="Mmember">
+		UPDATE MMEMBER
+		SET mmPass = #{mmPass}
+		WHERE mmId = #{mmId}
+		  AND mmActivateyn = 'N'
+	</update>
 </mapper>
 

@@ -27,6 +27,8 @@
 	<context:component-scan base-package="com.project.cloud" />
 	<!-- 회원가입 뷰 이동 -->
 	<view-controller path="/mmInsertJoin1" view-name="/mMemberView/mmInsertView1"/>
+	<!-- 패스워드 뷰 새창 띄우기 -->
+	<view-controller path="/mmPassChange" view-name="/mMemberView/mmPassChangeView"/>
 	<!-- 공지사항 게시판 글쓰기 뷰 이동 -->
 	<view-controller path="/mnInsert" view-name="/customerSupportView/mNoticeView/mnInsertView"/>
 	<!-- Qna 게시판  글쓰기 뷰 이동 -->
