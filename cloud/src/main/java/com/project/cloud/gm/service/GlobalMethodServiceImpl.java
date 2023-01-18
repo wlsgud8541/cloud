@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -105,4 +106,11 @@ public class GlobalMethodServiceImpl implements GlobalMethodService{
 	
 	}
 	
+	// 현재 날짜
+	@Override
+	public String todayTimeStamp() {
+		LocalDate now = LocalDate.now();
+		String nowDate = now+"";
+		return nowDate;
+	}
 }

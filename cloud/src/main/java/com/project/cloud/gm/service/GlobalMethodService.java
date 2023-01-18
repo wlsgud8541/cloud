@@ -17,4 +17,7 @@ public interface GlobalMethodService {
 	
 	// 페이징 처리
 	public Map<String, Object> pageList(int listCount, int pageSize, int pageGroup, int pageNum, String type, String keyWord);
+	
+	//현재날짜
+	public String todayTimeStamp();
 }

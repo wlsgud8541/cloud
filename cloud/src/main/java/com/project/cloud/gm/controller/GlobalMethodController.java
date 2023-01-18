@@ -20,5 +20,11 @@ public class GlobalMethodController {
 	@RequestMapping("/fileDownload")
 	public void fileDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		gms.fileDownload(request, response);
-	}	
+	}
+	
+	@RequestMapping("todayTime")
+	public String todayTimeStamp() {
+		return gms.todayTimeStamp();
+	}
+	
 }
