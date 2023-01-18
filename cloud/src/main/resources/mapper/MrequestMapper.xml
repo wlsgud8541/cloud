@@ -107,7 +107,7 @@
 	</select>
 	<insert id="mrInsert" parameterType="Mrequest">
 		INSERT INTO MREQUEST(mreNo,
-								mreTitle,
+								mreTitle, 
 								mreContent,
 								mreWriter,
 								mreRegDate,
