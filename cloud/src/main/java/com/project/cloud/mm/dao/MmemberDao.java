@@ -25,6 +25,8 @@ public interface MmemberDao {
 	public int mmSelectWriterInfoCnt(String mmNo);
 	// 마이페이지 비밀번호 변경 프로세스
 	public int mmChangePassProc(Mmember member);
+	// 마이페이지 회원 탈퇴
+	public int memberDisabled(String mmNo);
 	// 카카오 유저 로그인 처리
 	public Mmember kakaoUserLogin(String kakaoUserId);
 	// 네이버 유저 로그인 처리

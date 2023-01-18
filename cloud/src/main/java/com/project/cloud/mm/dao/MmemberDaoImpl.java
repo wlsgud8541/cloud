@@ -56,6 +56,11 @@ public class MmemberDaoImpl implements MmemberDao{
 	}
 	
 	@Override
+	public int memberDisabled(String mmNo) {
+		return sql.update("Mmember.memberDisabled", mmNo);
+	}
+
+	@Override
 	public List<Mmember> mmSelectWriterInfo(String mmNo, int startRow, int pageSize) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("mmNo", mmNo);
@@ -78,5 +83,4 @@ public class MmemberDaoImpl implements MmemberDao{
 	public Mmember naverUserLogin(String naverUserId) {
 		return sql.selectOne("Mmember.naverUserLogin", naverUserId);
 	}
-	
 }

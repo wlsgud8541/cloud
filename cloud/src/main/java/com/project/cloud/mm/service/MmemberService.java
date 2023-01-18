@@ -22,6 +22,8 @@ public interface MmemberService {
 	public HashMap<String, Object> mmSelectRequestList(String mmNo, int pageNum);
 	// 마이페이지 비밀번호 변경 프로세스
 	public int mmChangePassProc(String mmId, String mmPass);
+	// 마이페이지 회원 탈퇴
+	public int memberDisabled(String mmNo);
 	// 문자 인증
 	public int sendMessege(String tel);
 	// 이메일 인증

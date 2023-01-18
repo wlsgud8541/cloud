@@ -312,13 +312,19 @@ public class MmController {
 		result = mmService.mmChangePassProc(mmId,mmPass);
 		logger.debug("비밀번호 변경 result : "+result);
 		
-		
 		return result;
 	}
 	
 	
-	
-	
+	@RequestMapping("/memberDisabled")
+	@ResponseBody
+	public int memberDisabled(HttpSession session, String mmNo) {
+		int result = 0;
+		result = mmService.memberDisabled(mmNo);
+		session.invalidate();
+		
+		return result;
+	}
 	
 	
 	

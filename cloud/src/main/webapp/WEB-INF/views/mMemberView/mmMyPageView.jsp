@@ -31,19 +31,21 @@
 				<div class="row border-bottom pb-2 ms-3">
 					<span>${mInfo.mmAddr2}</span>
 				</div>
+				<%-- 
 				<div class="row pt-2 pb-1">
 					<span>카카오 연동 여부 : ${mInfo.mmIdConnKAKAO}</span>
 				</div>
 				<div class="row pt-2 pb-1">
 					<span>네이버 연동 여부 : ${mInfo.mmIdConnNaver}</span>
-				</div>
-				<c:if test="${mInfo.mmIdConnKAKAO == 'Y' || mInfo.mmIdConnNaver == 'Y'}">
+				</div> --%>
+				
+				<c:if test="${fn:trim(mInfo.mmIdConnKAKAO) == 'N' && fn:trim(mInfo.mmIdConnNaver) == 'N'}">
 					<div class="row pt-2 pb-1">
 						<button class="btn btn-secondary" id="changePass">비밀번호 변경하기</button>
 					</div>
 				</c:if>
 				<div class="row pt-2 pb-1">
-					<button class="btn btn-secondary">회원 탈퇴</button>
+					<button class="btn btn-secondary" id="memberDisabled">회원 탈퇴</button>
 				</div>
 			</div>
 			<div class="col-7 text-start">

@@ -816,7 +816,7 @@ $(document).ready(function(){
 		
 		var param = {
 						mmId : mmId,
-						mmPass : mmPass,
+						mmPass : mmPass
 					}
 		$.ajax({
 			url : "changePassProc",
@@ -825,7 +825,7 @@ $(document).ready(function(){
 			dataType : "json",
 			success : function(result){
 				if(result == 0){
-					alert("비밀번호 변경 중 오류가 발생했습니다.. 관리자에게 문의 부탁드립니다.");
+					alert("비밀번호 변경 중 오류가 발생했습니다. 관리자에게 문의 부탁드립니다.");
 				}
 				if(result == 1){
 					alert("비밀번호 변경이 완료되었습니다. 재로그인 부탁드립니다.");
@@ -840,7 +840,33 @@ $(document).ready(function(){
 		});
 	});
 	
-
+	$("#memberDisabled").on("click",function(){
+		var memberDisabled = confirm("회원탈퇴를 진행합니다. 정말 탈퇴하시겠습니까?");
+		var mmNo = $("#mInfo_mmNo").val(); 
+		
+		if(memberDisabled){
+			$.ajax({
+				url : "memberDisabled",
+				type : "POST",
+				data : {
+						mmNo : mmNo
+					   },
+				datatype : "json",
+				success : function(result){
+					if(result == 0){
+						alert("회원 탈퇴 처리 중 오류가 발생했습니다. 관리자에게 문의 부탁드립니다.");
+					}
+					if(result == 1){
+						alert("회원 탈퇴가 완료되었습니다. 감사합니다.");
+						location.href = "main";
+					}
+				},
+				error : function(){
+					alert("데이터 통신 실패. 관리자에게 문의 부탁드립니다.");
+				}
+			});			
+		}
+	});
 	
 
 	

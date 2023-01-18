@@ -356,5 +356,13 @@
 		WHERE mmId = #{mmId}
 		  AND mmActivateyn = 'N'
 	</update>
+	
+	<update id="memberDisabled" parameterType="String">
+		UPDATE MMEMBER
+		SET mmActivateyn = 'Y'
+		   ,mmSecedeDate = SYSTIMESTAMP
+	    WHERE mmNo = #{mmNo}	   
+	</update>
+	
 </mapper>
 

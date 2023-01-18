@@ -24,10 +24,10 @@
 		        mreTitle,
 		        mreContent,
 		        mreAddFile,
-		        mreWriter,
-		        mreDelYn,
-		        mreReplyCode,
-		        mreRecoCnt
+		        mreWriter, 
+		        mreDelYn, 
+		        mreReplyCode, 
+		        mreRecoCnt 
 		FROM    (SELECT  rownum as  rNum,
 		                        mreNo,
 		                        mreReadCnt,

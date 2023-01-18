@@ -633,6 +633,7 @@ public class MmemberServiceImpl implements MmemberService{
 		return member;
 	}
 
+	// 비밀번호 변경처리
 	public int mmChangePassProc(String mmId, String mmPass) {
 		Mmember member = new Mmember();
 		
@@ -641,6 +642,11 @@ public class MmemberServiceImpl implements MmemberService{
 		member.setMmId(mmId);
 		
 		return mmDao.mmChangePassProc(member);
+	}
+	
+	// 마이페이지 회원 탈퇴
+	public int memberDisabled(String mmNo) {
+		return mmDao.memberDisabled(mmNo);
 	}
 	
 }
