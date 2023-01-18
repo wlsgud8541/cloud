@@ -22,12 +22,12 @@
 		    <input type="text" class="form-control" name="mreTitle"  id="mreTitle">
   		</div>
 		<div class="col-8 offset-md-2">
-		    <label for="content" class="form-label">내 용</label>
+		    <label for="content" class="form-label">내 용</label> 
 		    <textarea class="form-control" name="mreContent" id="mreContent" rows="15" >※ 웹사이트이용과 관련된 건의사항을 작성해주시기 바랍니다.
 ※ 건의 게시글 작성 시 하나의 게시글 당 하나의 건의사항을 작성해주시기 바랍니다.
 ※ [필수 기재사항] 누락 시 답변 대기 게시글로 선정되지 않을 수 있습니다. (작성 양식을 그대로 사용 부탁드립니다.)
 
-
+ 
 [필수 기재 사항]
 1) 건의 내용 : 
 
