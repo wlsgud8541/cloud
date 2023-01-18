@@ -10,8 +10,8 @@
         	 <a href="main"><img src="resources/image/main/cloudLogo.png" style="width: 130px;"></a>
      	</div>
      	<div class="col search_wrap text-center">
-         <input type="text" class="search_bar rounded-pill ps-4 pe-5">
-         <button type="button" class="btn">검색</button> 
+         <input type="text" class="search_bar rounded-pill ps-4 pe-5" id = "uSearch">
+         <button type="button" class="btn" id="uSearchbtn">검색</button> 
      	</div>
 		<c:if test="${empty sessionScope.userId }">
 		<div class="col text-start pt-4 ps-5">
@@ -20,7 +20,7 @@
 				<li><a href="mmInsertJoin1" class="join">회원가입</a></li>
 			</ul>
 		</div>
-		</c:if>
+		</c:if> 
 		<c:if test="${not empty sessionScope.userId }">
 		<div class="col text-start pt-4 ps-5">
 			<ul class="nowLogin">
@@ -46,13 +46,13 @@
 			<ul class="underline-hover">
 				<li class="menu1"><a href="#">사이트소개</a>
 					<ul>
-						<li><a href="#">사이트 목적</a></li>
-						<li><a href="#">제휴 사이트</a></li>
+						<li><a href="introduceSiteView">사이트 소개</a></li>
+						<li><a href="relationSiteView">관련 사이트</a></li>
 					</ul>
 				</li>
 				<li class="menu1"><a href="#">실종자신고</a>
 					<ul>
-						<li><a href="mhrSelectList">실종자 정보</a></li>
+						<li><a href="mhiSelectList">실종자 정보</a></li>
 						<li><a href="mhrSelectList">실종자 신고</a></li>
 						<li><a href="mhfSelectList">실종자 목격</a></li>
 					</ul>

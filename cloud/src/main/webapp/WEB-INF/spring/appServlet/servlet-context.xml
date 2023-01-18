@@ -47,6 +47,10 @@
 	<view-controller path="/realTimeMhInfo" view-name="/realTimeInfo/realTimeMhInfo"/>
 	<!-- 실종 예방 실시간 동선체크(반려동물) -->
 	<view-controller path="/realTimeMpInfo" view-name="/realTimeInfo/realTimeMpInfo"/>
+	<!-- 소개 페이지 -->
+	<view-controller path="/introduceSiteView" view-name="/customerSupportView/introduceSupportView/introduceSiteView"/>
+	<!-- 관련 사이트 -->
+	<view-controller path="/realTimeMpInfo" view-name="/customerSupportView/introduceSupportView/relationSiteView"/>
 	
 	
 	<!-- 인터셉트 설정 -->

@@ -47,6 +47,17 @@ public class MpController {
 	@Autowired
 	private MpReportService mpReportService;
 	
+	@RequestMapping("/introduceSiteView")
+	public String introduceSiteView() {
+		
+		return "/customerSupportView/introduceSupportView/introduceSiteView";
+	}
+	@RequestMapping("/relationSiteView")
+	public String relationSiteView() {
+		
+		return "/customerSupportView/introduceSupportView/relationSiteView";
+	}
+	
 	// 실종 반려동물 신고 리스트 조회
 	@RequestMapping("/mprSelectList")
 	public String mprSelectList(Model model,
