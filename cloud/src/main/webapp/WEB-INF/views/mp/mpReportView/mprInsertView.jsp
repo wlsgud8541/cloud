@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<script src = "../../../js/notice.js"></script>
 <!-- content -->
 <div class="row" id="global-content">
 	<div class="row my-5 text-center">
@@ -11,7 +11,7 @@
 	<form name="mprInsert" action="mprInsertProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value=1>
-	<input type="hidden" class="form-control" name="mprRegDate" id="mprRegDate" value=2020-01-01>
+	<input type="hidden" class="form-control" name="mprRegDate" id="mprRegDate">
 	<input type="hidden" class="form-control" name="mprWriter" id="mprWriter" value="${sessionScope.userId} ">
 	
 	<div class="col-4 offset-md-2">
@@ -24,7 +24,7 @@
   	</div>
   	<div class="col-2 offset-md-1">
 	    <label for="mprInfoDate" class="form-label">실종 날짜</label>
-	    <input type="date"class="form-control" name="mprInfoDate" id="mprInfoDate">
+	    <input type="date"class="form-control" name="mprInfoDate" id="infoDate">
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mprStatusCode" class="form-label">실종현황</label>
@@ -35,7 +35,7 @@
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mprContent" class="form-label">지역</label>
-	    <select class="form-control col-2" name="mprLocalCode" id="mprLocalCode">
+	    <select class="form-control col-2" name="mprLocalCode" id="localCode">
 	    	<option value="">--선택하세요--</option>
 	    	<option value="01">서울</option>
 	    	<option value="02">경기</option>
@@ -68,14 +68,14 @@
  	
   	<div class="col-8 offset-md-2">
 	    <label for="mprGen" class="form-label">동물 성별</label>
-	     <select class="form-control col-2" name="mprGen" id="mprGen">
+	     <select class="form-control col-2" name="mprGen" id="gen">
 	    	<option value="M">남</option>
 	    	<option value="F">여</option>
     	</select>
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="title" class="form-label">파 일</label>
-	    <input type="file" class="form-control" name="mprAddFile" id="mnAddFile" >
+	    <input type="file" class="form-control" name="mprAddFile" id="addFile" >
 	</div>
   	<div class="col-8 text-center offset-md-2 text-center mt-3">
 		<input type="submit" value="등록하기" class="btn btn-primary" id="insert" />

@@ -133,7 +133,7 @@
 	<!--  수정화면 -->
 	<update id="mppUpdate" parameterType="MpProtect">
 		UPDATE MpProtect
-		SET mppTitle = #{mppTitle}
+		SET  mppTitle = #{mppTitle}
 			,mppContent = #{mppContent}
 			,mppInfoDate = #{mppInfoDate}
 			,mppLocalCode = #{mppLocalCode}

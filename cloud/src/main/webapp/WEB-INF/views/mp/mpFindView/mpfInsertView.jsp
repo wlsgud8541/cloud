@@ -11,7 +11,7 @@
 	<form name="mpfInsert" action="mpfInsertProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value=1>
-	<input type="hidden" class="form-control" name="mpfRegDate" id="mpfRegDate" value=2020-01-01>
+	<input type="hidden" class="form-control" name="mpfRegDate" id="mpfRegDate">
 	<input type="hidden" class="form-control" name="mpfWriter" id="mpfWriter" value="${sessionScope.userId} ">
 	
 	<div class="col-4 offset-md-2">
@@ -24,11 +24,11 @@
   	</div>
   	<div class="col-2 offset-md-1">
 	    <label for="mpfInfoDate" class="form-label">발견 날짜</label>
-	    <input type="date"class="form-control" name="mpfInfoDate" id="mpfInfoDate">
+	    <input type="date"class="form-control" name="mpfInfoDate" id="infoDate">
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mpfLocalCode" class="form-label">지역 코드</label>
-	    <select class="form-control col-2" name="mpfLocalCode" id="mpfLocalCode">
+	    <select class="form-control col-2" name="mpfLocalCode" id="localCode">
 	    	<option value="01">서울</option>
 	    	<option value="02">경기</option>
 	    	<option value="03">인천</option>

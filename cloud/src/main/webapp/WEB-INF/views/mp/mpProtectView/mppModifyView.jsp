@@ -16,15 +16,15 @@
 	
 	<div class="col-4 offset-md-2">
 	    <label for="mppTitle" class="form-label">제목</label>
-	    <input type="text"class="form-control" name="mppTitle" id="tiitle" value="${mpModify.mppTitle}">
+	    <input type="text"class="form-control" name="mppTitle" id="title" value="${mpModify.mppTitle}">
   	</div>
   	<div class="col-5 offset-md-2">
 	    <label for="mppContent" class="form-label">내용</label>
-	    <textarea class="form-control" name="mppContent" id="mppContent">${mpModify.mppContent}</textarea>
+	    <textarea class="form-control" name="mppContent" id="content" >${mpModify.mppContent}</textarea>
   	</div>
   	<div class="col-2 offset-md-1">
-	    <label for="mppInfoDate" class="form-label">임시보호 날짜</label>
-	    <input type="date"class="form-control" name="mppInfoDate" id="mppInfoDate" value="${mpModify.mppInfoDate}">
+	    <label for="mppInfoDate" class="form-label">실종 날짜</label>
+	    <input type="date"class="form-control" name="mppInfoDate" id="infoDate" value="${mpModify.mppInfoDate}">
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mppStatusCode" class="form-label">실종현황</label>
@@ -34,8 +34,8 @@
 	    </select>
   	</div>
   	<div class="col-8 offset-md-2">
-	    <label for="mppContent" class="form-label">지역 코드</label>
-	    <select class="form-control col-2" name="mppLocalCode" id="mppLocalCode">
+	    <label for="mppContent" class="form-label">지역</label>
+	    <select class="form-control col-2" name="mppLocalCode" id="localCode">
 	    	<option value="">--선택하세요--</option>
 	    	<option value="01">서울</option>
 	    	<option value="02">경기</option>
@@ -57,7 +57,7 @@
 	    </select>
   	</div>
   	<div class="col-8 offset-md-2">
-	    <label for="mppContent" class="form-label">동물 종류</label>
+	    <label for="mppPetType" class="form-label">동물 종류</label>
 	    <select class="form-control col-2" name="mppPetType" id="mppPetType">
 	    	<option value="">--선택하세요--</option>
 	    	<option value="01">강아지</option>
@@ -65,10 +65,9 @@
 	    	<option value="03">기타(내용에 동물종류를 기재해주세요)</option>
 	    </select>
   	</div>
- 
   	<div class="col-8 offset-md-2">
-	    <label for="mppLocalCode" class="form-label">동물 성별</label>
-	     <select class="form-control col-2" name="mppGen" id="mppGen">
+	    <label for="mppGen" class="form-label">동물 성별</label>
+	     <select class="form-control col-2" name="mppGen" id="gen">
 	    	<option value="M">남</option>
 	    	<option value="F">여</option>
     	</select>
@@ -78,7 +77,7 @@
 		    <input type="file" class="form-control" name="mppAddFile"  id="addFile" >
   		</div>
   	<div class="col-8 text-center offset-md-2 text-center mt-3">
-		<input type="submit" value="등록하기" class="btn btn-primary" />
+		<input type="submit" value="등록하기" class="btn btn-primary" id="insert" />
 		<input type="button" value="목록보기" onclick="location.href='mppSelectList'" class="btn btn-primary"/>
   	</div>
 	</form>
