@@ -402,7 +402,7 @@ public class MpController {
 	// 실종 반려동물 임시보호 디테일 수정화면 프로세스
 	@RequestMapping("mppUpdateProcess")
 	public String mppUpdateProcess(HttpServletRequest request, @RequestParam(value = "mppAddFile", required = false) MultipartFile multipartFile,
-									int mppNo,int mmNo,String mppTitle,String mppWriter,String mppContent,String mppInfoDate,String StatusCode, String mppLocalCode,String mppPetType,String mppGen,int pageNum)throws IOException {
+									int mppNo,int mmNo,String mppTitle,String mppWriter,String mppContent,String mppInfoDate,String mppStatusCode, String mppLocalCode,String mppPetType,String mppGen,int pageNum)throws IOException {
 		
 		String tempTime = mppInfoDate + " 00:00:00";
 		Timestamp time = Timestamp.valueOf(tempTime);
@@ -414,7 +414,7 @@ public class MpController {
 		mpProtect.setMppWriter(mppWriter);
 		mpProtect.setMppContent(mppContent);
 		mpProtect.setMppInfoDate(time);
-		mpProtect.setMppStatusCode(StatusCode);
+		mpProtect.setMppStatusCode(mppStatusCode);
 		mpProtect.setMppLocalCode(mppLocalCode);
 		mpProtect.setMppPetType(mppPetType);
 		mpProtect.setMppGen(mppGen);

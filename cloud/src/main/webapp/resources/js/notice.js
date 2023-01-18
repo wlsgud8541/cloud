@@ -26,6 +26,7 @@ $(document).ready(function(){
 			alert("제목이 입력되지 않았습니다.");
 			return false;
 		}
+		
 		if(title.length < 2){
 			alert("제목은 한글자 이상 입력해주세요.");
 			return false;
@@ -382,7 +383,7 @@ $(document).ready(function(){
 		$("#mpfComContent").val($.trim(mpfcModify));
 	});
 	
-	// 실종 반려동물 목격 게시판 댓글 수정 서브밋
+	// 실종 반려동물 목격 게시판 댓글 서브밋
 	
 	$(document).on("submit","#modifyForm", function(evt){
 	evt.preventDefault();

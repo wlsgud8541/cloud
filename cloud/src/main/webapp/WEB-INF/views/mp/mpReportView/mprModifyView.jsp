@@ -24,7 +24,7 @@
   	</div>
   	<div class="col-2 offset-md-1">
 	    <label for="mprInfoDate" class="form-label">실종 날짜</label>
-	    <input type="date"class="form-control" name="mprInfoDate" id="mprInfoDate" value="${mpModify.mprInfoDate}">
+	    <input type="date"class="form-control" name="mprInfoDate" id="infoDate" value="${mpModify.mprInfoDate}">
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mprStatusCode" class="form-label">실종현황</label>
@@ -35,7 +35,7 @@
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mprContent" class="form-label">지역</label>
-	    <select class="form-control col-2" name="mprLocalCode" id="mprLocalCode">
+	    <select class="form-control col-2" name="mprLocalCode" id="localCode">
 	    	<option value="">--선택하세요--</option>
 	    	<option value="01">서울</option>
 	    	<option value="02">경기</option>
@@ -67,17 +67,17 @@
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mprGen" class="form-label">동물 성별</label>
-	     <select class="form-control col-2" name="mprGen" id="mprGen">
+	     <select class="form-control col-2" name="mprGen" id="gen">
 	    	<option value="M">남</option>
 	    	<option value="F">여</option>
     	</select>
   	</div>
   	<div class="col-8 offset-md-2">
 		    <label for="mprAddFile" class="form-label">파 일</label>
-		    <input type="file" class="form-control" name="mprAddFile"  id="mprAddFile" >
+		    <input type="file" class="form-control" name="mprAddFile"  id="addFile" >
   		</div>
   	<div class="col-8 text-center offset-md-2 text-center mt-3">
-		<input type="submit" value="등록하기" class="btn btn-primary" />
+		<input type="submit" value="등록하기" class="btn btn-primary" id="insert" />
 		<input type="button" value="목록보기" onclick="location.href='mprSelectList'" class="btn btn-primary"/>
   	</div>
 	</form>

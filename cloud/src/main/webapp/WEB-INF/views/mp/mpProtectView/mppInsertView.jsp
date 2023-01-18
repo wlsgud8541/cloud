@@ -11,7 +11,7 @@
 	<form name="mppInsert" action="mppInsertProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value=1>
-	<input type="hidden" class="form-control" name="mppRegDate" id="mppRegDate" value=2020-01-01>
+	<input type="hidden" class="form-control" name="mppRegDate" id="mppRegDate">
 	<input type="hidden" class="form-control" name="mppWriter" id="mppWriter" value="${sessionScope.userId} ">
 	
 	<div class="col-4 offset-md-2">
@@ -24,7 +24,7 @@
   	</div>
   	<div class="col-2 offset-md-1">
 	    <label for="mppInfoDate" class="form-label">임시보호 날짜</label>
-	    <input type="date"class="form-control" name="mppInfoDate" id="mppInfoDate">
+	    <input type="date"class="form-control" name="mppInfoDate" id="infoDate">
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mppStatusCode" class="form-label">실종현황</label>
@@ -35,7 +35,7 @@
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mppContent" class="form-label">지역 코드</label>
-	    <select class="form-control col-2" name="mppLocalCode" id="mppLocalCode">
+	    <select class="form-control col-2" name="mppLocalCode" id="localCode">
 	  	  	<option value="">--선택하세요--</option>
 	    	<option value="01">서울</option>
 	    	<option value="02">경기</option>
@@ -68,7 +68,7 @@
  
   	<div class="col-8 offset-md-2">
 	    <label for="mppLocalCode" class="form-label">동물 성별</label>
-	     <select class="form-control col-2" name="mppGen" id="mppGen">
+	     <select class="form-control col-2" name="mppGen" id="gen">
 	    	<option value="M">남</option>
 	    	<option value="F">여</option>
     	</select>
