@@ -13,7 +13,7 @@ public interface MmemberService {
 	// 아이디 중복 체크
 	public int idCheck(String mmId);
 	// 회원가입 처리
-	public int mmInsertJoin(Mmember member);
+	public int mmInsertJoin(Mmember member); 
 	// 마이페이지 조회
 	public Mmember mmSelectMyPage(String mmNo);
 	// 마이페이지 내가 쓴 글 조회
