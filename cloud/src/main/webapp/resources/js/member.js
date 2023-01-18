@@ -558,7 +558,7 @@ $(document).ready(function(){
 				var memberRequestList = result.memberRequestList;
 				
 				for(var i = 0; i < memberRequestList.length; i++){
-					tag1 += "<td><small>"+memberRequestList[i].mreTitle+"</small></td>";
+					tag1 += "<td><small><a href='mrSelectDetail?mreNo="+memberRequestList[i].mreNo+"&pageNum=1'>"+memberRequestList[i].mreTitle+"</a></small></td>";
 					
 					if(memberRequestList[i].mreReplyCode == "01"){
 						tag1 += "<td><small>답변대기</small></td>";
@@ -635,46 +635,50 @@ $(document).ready(function(){
 				var memberWriterInfoList = result.memberWriterInfoList;
 				
 				for(var i = 0; i < memberWriterInfoList.length; i++){
-					if(memberWriterInfoList[i].tableType == "01"){
+					if($.trim(memberWriterInfoList[i].tableType) == "01"){
 						tag1 += "<td><small>실종자 목격 게시판 </small></td>";
+						tag1 += "<td><small><a href='mhfDetailView?mhfNo="+memberWriterInfoList[i].noticeNo+"&pageNum=1'>"+memberWriterInfoList[i].noticeTitle+"</a></small></td>";
 					}
-					if(memberWriterInfoList[i].tableType == "02"){
-						tag1 += "<td><small>실종자 목격 게시판 </small></td>";
+					if($.trim(memberWriterInfoList[i].tableType) == "02"){
+						tag1 += "<td><small>실종자 신고 게시판 </small></td>";
+						tag1 += "<td><small><a href='mhrDetailView?mhrNo="+memberWriterInfoList[i].noticeNo+"&pageNum=1'>"+memberWriterInfoList[i].noticeTitle+"</a></small></td>";
 					}
-					if(memberWriterInfoList[i].tableType == "11"){
-						tag1 += "<td><small>실종자 목격 게시판 </small></td>";
+					if($.trim(memberWriterInfoList[i].tableType) == "11"){
+						tag1 += "<td><small>반려동물 목격 게시판 </small></td>";
+						tag1 += "<td><small><a href='mpfSelectDetail?mpfNo="+memberWriterInfoList[i].noticeNo+"&pageNum=1'>"+memberWriterInfoList[i].noticeTitle+"</a></small></td>";
 					}
-					if(memberWriterInfoList[i].tableType == "12"){
-						tag1 += "<td><small>실종자 목격 게시판 </small></td>";
+					if($.trim(memberWriterInfoList[i].tableType) == "12"){
+						tag1 += "<td><small>반려동물 임시보호 게시판 </small></td>";
+						tag1 += "<td><small><a href='mppSelectDetail?mppNo="+memberWriterInfoList[i].noticeNo+"&pageNum=1'>"+memberWriterInfoList[i].noticeTitle+"</a></small></td>";
 					}
-					if(memberWriterInfoList[i].tableType == "13"){
-						tag1 += "<td><small>실종자 목격 게시판 </small></td>";
+					if($.trim(memberWriterInfoList[i].tableType) == "13"){
+						tag1 += "<td><small>반려동물 실종신고 게시판 </small></td>";
+						tag1 += "<td><small><a href='mprSelectDetail?mprNo="+memberWriterInfoList[i].noticeNo+"&pageNum=1'>"+memberWriterInfoList[i].noticeTitle+"</a></small></td>";
 					}
 					
-					tag1 += "<td><small>"+memberWriterInfoList[i].noticeTitle+"</small></td>";
 					tag1 += "</tr>";
 				}
 				$(".memberWriterInfo").empty();
 				$(".memberWriterInfo").append(tag1);
 
 
-				if(result.startPage > result.pageGroup){
+				if(startPage > pageGroup){
 					tag2 += '<li class="prev"><a class="page-link myPageWriterList" data-pageNum="1">&lt;&lt;</a></li>';
-					tag2 += '<li class="prev"><a class="page-link myPageWriterList" href="#" data-pageNum="'+ (result.startPage - result.pageGroup) + '">&lt;</a></li>'
+					tag2 += '<li class="prev"><a class="page-link myPageWriterList" href="#" data-pageNum="'+ (startPage - pageGroup) + '">&lt;</a></li>'
 				}
 
 				for(var i = startPage; i <= endPage; i++){
-					if(i == result.currentPage){
+					if(i == currentPage){
 						tag2 += '<li class="page-item active text-success" aria-current="page"><b>'+i+'</b></li>';
 					}
-					if(i != result.currentPage){
+					if(i != currentPage){
 						tag2 += '<li class="page-item"><a class="page-link myPageWriterList" href="#" data-pageNum="'+i+'" >'+i+'</a></li>';
 					}
 				}
 
-				if(result.startPage > result.pageGroup){
-					tag2 += '<li class="next"><a class="page-link myPageWriterList" href="#" data-pageNum="' + (result.startPage + result.pageGroup) + '">&gt;</a></li>';
-					tag2 += '<li class="next"><a class="page-link myPageWriterList" href="#" data-pageNum="' + result.pageCount + '">&gt;&gt;</a></li>';
+				if(startPage > pageGroup){
+					tag2 += '<li class="next"><a class="page-link myPageWriterList" href="#" data-pageNum="' + (startPage + pageGroup) + '">&gt;</a></li>';
+					tag2 += '<li class="next"><a class="page-link myPageWriterList" href="#" data-pageNum="' + pageCount + '">&gt;&gt;</a></li>';
 				}
 				
 				$(".memberWriterPageGroup").empty();
@@ -687,5 +691,162 @@ $(document).ready(function(){
 		});
 
 	});
+	
+	$("#changePass").on("click",function(){
+		window.open('mmPassChange', '네이버팝업', 'width=500px,height=300px,scrollbars=no');
+	});
+	
+	$("#passCkBtn").on("click",function(e){
+		e.preventDefault();
+		
+		var mmId = $("#mmId").val();
+		var mmPass = $("#mmPass").val();
+		
+		if(mmPass.length == 0){
+			alert("패스워드가 입력되지 않았습니다. 확인 후 재로그인 부탁드립니다.");
+			return false;
+		}
+		
+		var params = {
+						mmId : mmId,
+						mmPass : mmPass
+					 }
+		
+				
+		$.ajax({
+			url : "mmSelectLoginCheck",
+			type : "POST",
+			data : params,
+			dataType : "json",
+			success : function(result){
+				// 패스워드가 일치하지 않을시 : -1
+				// 패스워드 일치시 : 1
+				var loginCheck = result.result;
+			
+				if(loginCheck == 0){
+					alert("존재하지 않는 아이디 입니다.");
+				}
+				if(loginCheck == -1){
+					alert("패스워드가 일치하지 않습니다.");
+				}
+				if(loginCheck == 1){
+					var tag = '';
+
+					tag += '<input type="password" id="mmPass" name="mmPass" placeholder="새 비밀번호 입력" class="form-field" />';
+					tag += '<div class="passCheck1" ></div>';
+					tag += '<input type="password" id="checkPass" name="checkPass" placeholder="새 비밀번호 확인" class="form-field"  />';
+					tag += '<div class="passCheck2"></div>';
+					tag += '<button class="button primary" type="submit" id="passChangeBtn">비밀번호 변경</button>';
+					
+					$(".changePassword").empty();
+					$(".changePassword").append(tag);
+				}
+			},
+			error : function(){
+				alert("데이터 통신 실패. 관리자에게 문의 부탁드립니다.");
+			}
+		});
+	});
+	
+	var changePassBool1 = false;
+	var changePassBool2 = false;
+	
+	$(document).on("keyup","#mmPass",function(){
+		// 비밀번호 체크 정규식(8~16자 영문, 숫자 조합)
+		var passCheck = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
+		var pass1 = $("#mmPass").val();
+		var tag1 = '<p class="text-primary">사용 할 수 있는 패스워드 입니다.</p>'
+		var tag2 = '<p class="text-danger">패스워드는 8~16자 영문, 숫자 조합으로 입력해주세요.</p>';
+		
+		if(passCheck.test(pass1) == true){
+			$(".passCheck1").empty();
+			$(".passCheck1").append(tag1);
+			changePassBool1 = true;
+		}
+		
+		if(passCheck.test(pass1) == false){
+			$(".passCheck1").empty();
+			$(".passCheck1").append(tag2);
+			changePassBool1 = false;
+		}
+	});
+		
+	$(document).on("keyup","#checkPass",function(){
+		var pass1 = $("#mmPass").val();
+		var pass2 = $("#checkPass").val();
+		var tag1 = '<p class="text-danger">패스워드가 일치하지 않습니다.</p>';
+		var tag2 = '<p class="text-primary">패스워드가 일치합니다.</p>';
+		
+		// 비밀번호가 일치하지 않는 경우
+		if(!(pass2 == pass1)){ 
+			$(".passCheck2").empty();
+			$(".passCheck2").append(tag1);
+			changePassBool2 = false;
+		}
+		
+		// 비밀번호가 일치하는 경우
+		if(pass2 == pass1){
+			$(".passCheck2").empty();
+			$(".passCheck2").append(tag2);
+			changePassBool2 = true;
+		}
+	});
+	
+	$(document).on("click","#passChangeBtn",function(e){
+		e.preventDefault();
+		
+		var mmId = $("#mmId").val();
+		var mmPass = $("#mmPass").val();
+		var checkPass = $("#checkPass").val();
+		
+		if(mmPass != checkPass){
+			alert("비밀번호를 다시 확인해주세요.");
+			return false;
+		}
+		
+		if(changePassBool1 == false){
+			alert("비밀번호를 다시 확인해주세요.");
+			return false;
+		}
+
+		if(changePassBool2 == false){
+			alert("비밀번호를 다시 확인해주세요.");
+			return false;
+		}
+		
+		var param = {
+						mmId : mmId,
+						mmPass : mmPass,
+					}
+		$.ajax({
+			url : "changePassProc",
+			type : "POST",
+			data : param,
+			dataType : "json",
+			success : function(result){
+				if(result == 0){
+					alert("비밀번호 변경 중 오류가 발생했습니다.. 관리자에게 문의 부탁드립니다.");
+				}
+				if(result == 1){
+					alert("비밀번호 변경이 완료되었습니다. 재로그인 부탁드립니다.");
+					opener.location.href = "mmLogout?passChange=passSuc";
+					window.close();
+				}
+			},
+			error : function(){
+				alert("데이터 통신 실패. 관리자에게 문의 부탁드립니다.");
+			}
+			
+		});
+	});
+	
+
+	
+
+	
+	
+	
+	
+	
 	
 });

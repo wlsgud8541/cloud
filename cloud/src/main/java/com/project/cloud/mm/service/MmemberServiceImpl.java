@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,17 +55,21 @@ public class MmemberServiceImpl implements MmemberService{
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	
+	@Autowired
+	private BCryptPasswordEncoder passEncoder;
+	
 	@Override
 	public int mmSelectLoginCheck(String mmId, String mmPass) {
 		// 아이디가 존재하지 않을시 : 0
 		// 패스워드가 일치하지 않을시 : -1
 		// 로그인 성공시 : 1
 
-		String idCheck = mmDao.mmSelectLoginCheck(mmId);
+		String dbPass = mmDao.mmSelectLoginCheck(mmId);
 
 		int result = 0;
-		if (idCheck != null) {
-			if (!idCheck.equals(mmPass)) {
+		if (dbPass != null) {
+			//if (!dbPass.equals(mmPass)) {
+			if (!passEncoder.matches(mmPass, dbPass)) {
 				result = -1;
 			}else {
 				result = 1;
@@ -89,6 +94,12 @@ public class MmemberServiceImpl implements MmemberService{
 		String tel1 = member.getTel1();
 		String tel2 = member.getTel2();
 		String tel3 = member.getTel3();
+		
+		String pass = member.getMmPass();
+		String encPass = passEncoder.encode(pass);
+
+		member.setMmPass(encPass);
+		
 		int result = 0;
 		
 		// 이메일 세팅
@@ -119,7 +130,6 @@ public class MmemberServiceImpl implements MmemberService{
 			result = mmDao.mmInsertJoin(member);
 			result = mmDao.mmInsertNaverJoin(member);
 			logger.debug("네이버 회원 insert");
-			
 		}
 		
 		return result;
@@ -145,8 +155,8 @@ public class MmemberServiceImpl implements MmemberService{
 		
 		String type = "";
 		String keyWord = "";
-
-		int listCount = mqDao.getMrSelectCnt(type,keyWord);
+		
+		int listCount = mqDao.getMrSelectCnt(type,keyWord,mmNo);
 		
 		Map<String , Object> mnModel = gms.pageList(listCount, pageSize, pageGroup, pageNum, type, keyWord); 
 		
@@ -156,7 +166,7 @@ public class MmemberServiceImpl implements MmemberService{
 		endPage = (int)mnModel.get("endPage");
 		currentPage = (int)mnModel.get("currentPage");
 		
-		List<Mrequest> memberRequestList = mqDao.mrSelectList(startRow, pageSize, type, keyWord);
+		List<Mrequest> memberRequestList = mqDao.mrSelectList(startRow, pageSize, type, keyWord, mmNo);
 		memberRequestMap.put("memberRequestList", memberRequestList);
 
 		memberRequestMap.put("startRow", startRow);
@@ -623,6 +633,15 @@ public class MmemberServiceImpl implements MmemberService{
 		return member;
 	}
 
+	public int mmChangePassProc(String mmId, String mmPass) {
+		Mmember member = new Mmember();
+		
+		String pass = passEncoder.encode(mmPass);
+		member.setMmPass(pass);
+		member.setMmId(mmId);
+		
+		return mmDao.mmChangePassProc(member);
+	}
 	
 }
 	

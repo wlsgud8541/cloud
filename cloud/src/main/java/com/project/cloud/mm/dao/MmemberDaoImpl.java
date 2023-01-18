@@ -51,6 +51,11 @@ public class MmemberDaoImpl implements MmemberDao{
 	}
 
 	@Override
+	public int mmChangePassProc(Mmember member) {
+		return sql.update("Mmember.mmChangePassProc", member);
+	}
+	
+	@Override
 	public List<Mmember> mmSelectWriterInfo(String mmNo, int startRow, int pageSize) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("mmNo", mmNo);

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -146,13 +147,22 @@ public class MmController {
 	
 	// 로그아웃 처리
 	@RequestMapping("mmLogout*")
-	public void mmLogout(HttpSession session, HttpServletResponse response, PrintWriter writer) {
+	public void mmLogout(HttpSession session, HttpServletRequest request ,HttpServletResponse response, PrintWriter writer) {
+		String passChange = request.getParameter("passChange");
+		
 		response.setContentType("text/html; charset=utf-8");
 		session.invalidate();
-		writer.println("<script>");
-		writer.println("	alert('정상적으로 로그아웃 되셨습니다.')");
-		writer.println("	location.href='main';");
-		writer.println("</script>");
+		
+		if (passChange != null && passChange.equals("passSuc")) {
+			writer.println("<script>");
+			writer.println("	location.href='loginView';");
+			writer.println("</script>");
+		}else {
+			writer.println("<script>");
+			writer.println("	alert('정상적으로 로그아웃 되셨습니다.')");
+			writer.println("	location.href='main';");
+			writer.println("</script>");
+		}
 	}
 	
 	
@@ -293,6 +303,29 @@ public class MmController {
 		
 		return ajaxReturnMap;
 	}
+	
+	
+	@RequestMapping("/changePassProc")
+	@ResponseBody
+	public int changePassProc(String mmId, String mmPass) {
+		int result = 0;
+		result = mmService.mmChangePassProc(mmId,mmPass);
+		logger.debug("비밀번호 변경 result : "+result);
+		
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
