@@ -39,6 +39,32 @@ public class MrequestDaoImpl implements MrequestDao{
 		
 		return sql.selectOne("Mrequest.getMrSelectCnt");
 	}
+
+	// 건의게시판 리스트
+	@Override
+	public List<Mrequest> mrSelectList(int startRow, int pageSize, String type, String keyword, String mmNo) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("startRow", startRow);
+		params.put("pageSize", pageSize);
+		params.put("type", type);
+		params.put("keyword", keyword);
+		params.put("mmNo", mmNo);
+		
+		return sql.selectList("Mrequest.mrSelectList",params);
+	}
+	
+	// 건의게시판 전체 게시글 수 반환 메서드
+	@Override
+	public int getMrSelectCnt(String type, String keyword, String mmNo) {
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("type", type);
+		params.put("keyword", keyword);
+		params.put("mmNo", mmNo);
+		
+		return sql.selectOne("Mrequest.getMrSelectCnt",params);
+	}
 	
 	@Override
 	public Mrequest mrSelectDetail(int mreNo) {

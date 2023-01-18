@@ -59,13 +59,18 @@
 								</if>
 								<if test="type=='content'">
 									content LIKE CONCAT('%', #{keyWord}, '%')
+								</if>
+								<if test="startRow != 0 and pageSize !=0">
+									AND mmNo = #{mmNo}
 								</if>		                    	
 		                    ORDER BY mreNo DESC
 		                    ) 
 		            )
-		<if test="startRow != 0 and pageSize !=0">
-		WHERE rNum BETWEEN #{startRow} AND #{startRow} + #{pageSize} - 1
-		</if>
+		<where>
+			<if test="startRow != 0 and pageSize !=0">
+			AND rNum BETWEEN #{startRow} AND #{startRow} + #{pageSize} - 1
+			</if>
+		</where>
 	</select>
 <!-- 	건의게시판 게시글 수 조회 -->
 	<select id="getMrSelectCnt" resultType="int" parameterType="hashmap">
@@ -80,6 +85,9 @@
 				</if>
 					<if test="type=='content'">
 					content LIKE CONCAT('%', #{keyWord}, '%')
+				</if>
+				<if test="startRow != 0 and pageSize !=0">
+					AND mmNo = #{mmNo}
 				</if>
 	</select>
 	
