@@ -20,7 +20,7 @@
   	</div>
   	<div class="col-5 offset-md-2">
 	    <label for="mprContent" class="form-label">내용</label>
-	    <textarea class="form-control" name="mprContent" id="content"></textarea>
+	    <textarea class="form-control textEditor" name="mprContent" id="content"></textarea>
   	</div>
   	<div class="col-2 offset-md-1">
 	    <label for="mprInfoDate" class="form-label">실종 날짜</label>

@@ -7,7 +7,7 @@
 	<!-- 상단 게시판 제목 -->
 	<div class="textTop row">
 		<div class="col fs-2">
-			<b>실종 반려동물 신고 게시판</b>
+			<b>실종 임시보호 신고 게시판</b>
 		</div>
 		<div class="col board-bottom text-end">
 			<a href="mppInsert" class="btn btn-secondary posiRight my-2">글쓰기</a>
@@ -22,6 +22,7 @@
 				<!-- 상단 리스트 -->
 				<tr class="table-primary">
 					<th>번 호</th>
+					<th>지 역</th>
 					<th>제 목</th>
 					<th>작성자</th>
 					<th>조회수</th>
@@ -32,6 +33,57 @@
 					<c:forEach var="mppSelectList" items="${mppSelectList}" varStatus="status">
 						<tr>
 							<td style = "padding : 1.5rem 0.5rem;">${mppSelectList.mppNo }</td>
+							<c:if test="${mppSelectList.mppLocalCode == 01}">
+								<td style = "padding : 1.5rem 0.5rem;">서울</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 02}">
+								<td style = "padding : 1.5rem 0.5rem;">경기</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 03}">
+								<td style = "padding : 1.5rem 0.5rem;">인천</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 04}">
+								<td style = "padding : 1.5rem 0.5rem;">대전</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 05}">
+								<td style = "padding : 1.5rem 0.5rem;">광주</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 06}">
+								<td style = "padding : 1.5rem 0.5rem;">대구</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 07}">
+								<td style = "padding : 1.5rem 0.5rem;">울산</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 08}">
+								<td style = "padding : 1.5rem 0.5rem;">부산</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 09}">
+								<td style = "padding : 1.5rem 0.5rem;">세종</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 10}">
+								<td style = "padding : 1.5rem 0.5rem;">강원</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 11}">
+								<td style = "padding : 1.5rem 0.5rem;">충북</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 12}">
+								<td style = "padding : 1.5rem 0.5rem;">충남</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 13}">
+								<td style = "padding : 1.5rem 0.5rem;">전북</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 14}">
+								<td style = "padding : 1.5rem 0.5rem;">전남</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 15}">
+								<td style = "padding : 1.5rem 0.5rem;">경북</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 16}">
+								<td style = "padding : 1.5rem 0.5rem;">경남</td>
+							</c:if>
+							<c:if test="${mppSelectList.mppLocalCode == 17}">
+								<td style = "padding : 1.5rem 0.5rem;">제주</td>
+							</c:if>
 							<td style = "padding : 1.5rem 0.5rem;">
 							<a href="mppSelectDetail?mppNo=${mppSelectList.mppNo}&pageNum=${mppModel.currentPage}">${mppSelectList.mppTitle}
 								<c:if test="${mppDetail.mppAddFile!=null }">

@@ -29,6 +29,7 @@
 		     , mppStatusCode
 		     , mppTitle
 		     , mppWriter
+		     , mppLocalCode
 		  FROM (SELECT rownum as rNum
 		             , mppNo
 		             , mppReadCnt
@@ -36,12 +37,14 @@
 		             , mppStatusCode
 		             , mppTitle
 		             , mppWriter
+		             , mppLocalCode
 				FROM(SELECT mppNo
 		                  , mppReadCnt
 		                  , mppRegDate
 		                  , mppStatusCode
 		                  , mppTitle
 		                  , mppWriter
+		                  , mppLocalCode
 		               FROM MpProtect
 		              WHERE mppDelYn = 'N'
 		              <if test="type=='title'">

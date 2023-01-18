@@ -22,6 +22,7 @@
 				<!-- 상단 리스트 -->
 				<tr class="table-primary">
 					<th>번 호</th>
+					<th>지 역</th>
 					<th>제 목</th>
 					<th>작성자</th>
 					<th>조회수</th>
@@ -31,6 +32,57 @@
 					<c:forEach var="mpfSelectList" items="${mpfSelectList}" varStatus="status">
 						<tr>
 							<td style = "padding : 1.5rem 0.5rem;">${mpfSelectList.mpfNo }</td>
+							<c:if test="${mpfSelectList.mpfLocalCode == 01}">
+								<td style = "padding : 1.5rem 0.5rem;">서울</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 02}">
+								<td style = "padding : 1.5rem 0.5rem;">경기</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 03}">
+								<td style = "padding : 1.5rem 0.5rem;">인천</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 04}">
+								<td style = "padding : 1.5rem 0.5rem;">대전</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 05}">
+								<td style = "padding : 1.5rem 0.5rem;">광주</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 06}">
+								<td style = "padding : 1.5rem 0.5rem;">대구</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 07}">
+								<td style = "padding : 1.5rem 0.5rem;">울산</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 08}">
+								<td style = "padding : 1.5rem 0.5rem;">부산</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 09}">
+								<td style = "padding : 1.5rem 0.5rem;">세종</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 10}">
+								<td style = "padding : 1.5rem 0.5rem;">강원</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 11}">
+								<td style = "padding : 1.5rem 0.5rem;">충북</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 12}">
+								<td style = "padding : 1.5rem 0.5rem;">충남</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 13}">
+								<td style = "padding : 1.5rem 0.5rem;">전북</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 14}">
+								<td style = "padding : 1.5rem 0.5rem;">전남</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 15}">
+								<td style = "padding : 1.5rem 0.5rem;">경북</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 16}">
+								<td style = "padding : 1.5rem 0.5rem;">경남</td>
+							</c:if>
+							<c:if test="${mpfSelectList.mpfLocalCode == 17}">
+								<td style = "padding : 1.5rem 0.5rem;">제주</td>
+							</c:if>
 							<td style = "padding : 1.5rem 0.5rem;">
 							<a href="mpfSelectDetail?mpfNo=${mpfSelectList.mpfNo}&pageNum=${mpfModel.currentPage}">${mpfSelectList.mpfTitle}
 								<c:if test="${mpfSelectList.mpfAddFile!=null }">

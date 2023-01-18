@@ -25,17 +25,20 @@
 		     , mpfRegDate
 		     , mpfTitle
 		     , mpfWriter
+		     , mpfLocalCode
 		  FROM (SELECT rownum as rNum
 		             , mpfNo
 		             , mpfReadCnt
 		             , mpfRegDate
 		             , mpfTitle
 		             , mpfWriter
+		             , mpfLocalCode
 				FROM(SELECT mpfNo
 		                  , mpfReadCnt
 		                  , mpfRegDate
 		                  , mpfTitle
 		                  , mpfWriter
+		                  , mpfLocalCode
 		               FROM mpFind
 		              WHERE mpfDelYn = 'N'
 		              <if test="type=='title'">

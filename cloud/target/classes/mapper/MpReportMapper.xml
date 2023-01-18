@@ -29,6 +29,7 @@
 		     , mprTitle
 		     , mprWriter
 		     , mprStatusCode
+		     , mprLocalCode
 		  FROM (SELECT rownum as rNum
 		             , mprNo
 		             , mprReadCnt
@@ -36,6 +37,7 @@
 		             , mprTitle
 		             , mprWriter
 		             , mprStatusCode
+		             , mprLocalCode
 		             <if test="mprAddFile != null">
 					 ,mprAddFile
 					 </if>
@@ -45,6 +47,7 @@
 		                  , mprTitle
 		                  , mprWriter
 		                  , mprStatusCode
+		                  , mprLocalCode
 	   		             <if test="mprAddFile != null">
 						 ,mprAddFile
 						 </if>
