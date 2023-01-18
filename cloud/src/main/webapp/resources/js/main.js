@@ -1,10 +1,50 @@
-const tabList = document.querySelectorAll('.tab_menu .list li');
-for(var i = 0; i < tabList.length; i++){
-  tabList[i].querySelector('.btn').addEventListener('click', function(e){
-    e.preventDefault();
-    for(var j = 0; j < tabList.length; j++){
-      tabList[j].classList.remove('is_on');
+$(function(){
+// 사진 슬라이드
+      var swiper = new Swiper(".mySwiper", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        spaceBetween: 10,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        autoplay :{
+        	delay:3500,
+        	disableOnInteraction: false,
+        }
+      });
+ 
+// 그래프     
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
     }
-    this.parentNode.classList.add('is_on');
   });
-}
+  
+//탭메뉴
+  $('.tabcontent > div').hide();
+  $('.tabnav a').click(function () {
+    $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+    $('.tabnav a').removeClass('active');
+    $(this).addClass('active');
+    return false;
+  }).filter(':eq(0)').click(); 	
+});
+

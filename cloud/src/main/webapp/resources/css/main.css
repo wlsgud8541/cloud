@@ -177,22 +177,6 @@ li.user{
 .search_date > input{
 	width: 120px!important;
 }
-.main_Blist{
-	width: 100%;
-}
-.main_Blist li{
-	width: 150px;
-}
-
-.main_Blist li a{
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-.main_Blist li span{
-	position: relative;
-	right: 0;
-}
 .swiper {
   width: 100%;
   height: 100%;
@@ -224,10 +208,33 @@ li.user{
   height: 180px;;
   object-fit: cover;
 }
-.tab_menu{position:relative;}
-.tab_menu .list{overflow:hidden;}
-.tab_menu .list li{display: inline-block;}
-.tab_menu .list .btn{font-size:13px; margin-right:14px;}
-.tab_menu .list .cont{display:none; position:absolute; background:#555; color:#fff; text-align:center; width:250px; height:100px;}
-.tab_menu .list li.is_on .btn{font-weight:bold; color:green;}
-.tab_menu .list li.is_on .cont{display:block;}
+/* .swiper-button-next,
+.swiper-button-prev{
+	background: none;
+} */
+/*tab css*/
+.tab{float:left; width:395px;}
+.tabnav{font-size:0;}
+.tabnav li{display: inline-block;  height:46px; text-align:center; border:1px solid #ddd;}
+.tabnav li a:before{content:""; position:absolute; left:0; top:0px; width:100%; height:3px; }
+.tabnav li a.active:before{background:#7ea21e;}
+.tabnav li a.active{border-bottom:1px solid #fff; font-weight: bold;}
+.tabnav li a{ position:relative; display:block; background: #f8f8f8; color: #bcbcbc; padding:0 30px; line-height:46px; text-decoration:none; font-size:16px;}
+.tabnav li a:hover,
+.tabnav li a.active{background:#fff; color:#7ea21e; }
+.tabcontent{padding: 20px; height:244px; border:1px solid #ddd;}
+
+.tab{
+	position: relative;
+}
+.xi-plus-thin{
+ 	position: absolute;
+    right: -15px;
+    top: -66px;
+    font-size: 40px;
+}
+/* 공지 */
+.notice_main{
+	position:relative;
+	border: 1px solid lightgray;
+}

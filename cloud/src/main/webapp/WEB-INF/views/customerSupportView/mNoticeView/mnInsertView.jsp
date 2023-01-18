@@ -8,8 +8,8 @@
 			<h2 class="fs-3 fw-bold">공지사항 게시판 글쓰기</h2>
 		</div>
 	</div>  
-	 <form name="mnInsertForm" action="mnInsertProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
-	<!-- <form name="mnInsertForm" action="mnInsertProcess" id="mnInsertForm" class="row g-3 border-primary" method="post"> -->
+	 <form name="mnInsertForm" action="mnInsertProcess" id="insertForm" class="row g-3 border-success" method="post" enctype="multipart/form-data">
+	<!-- <form name="mnInsertForm" action="mnInsertProcess" id="mnInsertForm" class="row g-3 border-success" method="post"> -->
 	  	<!-- 테스트를 위한 임시 회원 번호 -->
 	  	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${sessionScope.mmNo}">
 	  	
@@ -23,7 +23,7 @@
   		</div>
 		<div class="col-8 offset-md-2">
 		    <label for="content" class="form-label">내 용</label>
-		    <textarea class="form-control" name="mnContent" id="content" rows="10"></textarea>
+		    <textarea class="form-control textEditor" name="mnContent" id="content" rows="10"></textarea>
   		</div>	
   		<div class="col-8 offset-md-2">
 		    <label for="title" class="form-label">파 일</label>
@@ -35,8 +35,8 @@
 		    <input type="radio" name="mnFixTopYn" id="fixTopYn" value="Y"> 고정
   		</div>
   		<div class="col-8 offset-md-2 text-center mt-5">
-		   <input type="submit" id="insert" value="등록하기" class="btn btn-primary"/>&nbsp;&nbsp;
-		   <input type="button" value="목록보기" onclick="location.href='mnSelectList'" class="btn btn-primary"/>
+		   <input type="submit" id="insert" value="등록하기" class="btn btn-success"/>&nbsp;&nbsp;
+		   <input type="button" value="목록보기" onclick="location.href='mnSelectList'" class="btn btn-success"/>
   		</div>	
 	</form>
 </div>    

@@ -108,7 +108,7 @@
 						<div class="row my-3">
 							<div class="col-md-10">
 								<input type="text" class="form-control" id="mreComTitle" name="mreComTitle" value="${mrequestcomm.mreComTitle}">
-								<textarea name="mreComContent" id="mreComContent" class="form-control mt-2" rows="4"></textarea>
+								<textarea name="mreComContent textEditor" id="mreComContent" class="form-control mt-2" rows="4"></textarea>
 								<label for="title" class="form-label">파 일</label>
 		    					<input type="file" class="form-control" name="mreAddFile"  id="mreAddFile" >
 							</div>
@@ -131,3 +131,4 @@
 		</div>
 	</div>
 </div>
+

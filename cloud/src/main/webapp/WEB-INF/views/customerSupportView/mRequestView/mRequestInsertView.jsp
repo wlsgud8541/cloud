@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
  
 <div class="row" id="global-content">
 	<div class="row my-5 text-center">
@@ -23,7 +22,8 @@
   		</div>
 		<div class="col-8 offset-md-2">
 		    <label for="content" class="form-label">내 용</label> 
-		    <textarea class="form-control" name="mreContent" id="mreContent" rows="15" >※ 웹사이트이용과 관련된 건의사항을 작성해주시기 바랍니다.
+		    <pre style="width:100%;">
+		    <textarea class="form-control textEditor" name="mreContent" id="mreContent" rows="15" >※ 웹사이트이용과 관련된 건의사항을 작성해주시기 바랍니다.
 ※ 건의 게시글 작성 시 하나의 게시글 당 하나의 건의사항을 작성해주시기 바랍니다.
 ※ [필수 기재사항] 누락 시 답변 대기 게시글로 선정되지 않을 수 있습니다. (작성 양식을 그대로 사용 부탁드립니다.)
 
@@ -34,6 +34,7 @@
 2) 건의 사유 : 
 
 3) 개선 방안 : </textarea>
+		    </pre>
   		</div>	
   		<div class="col-8 offset-md-2">
 		    <label for="title" class="form-label">파 일</label>

@@ -25,7 +25,7 @@
   		</div>
 		<div class="col-8 offset-md-2">
 		    <label for="content" class="form-label">내 용</label>
-		    <textarea class="form-control" name="mreContent" id="mreContent" rows="10">${mrequest.mreContent}</textarea>
+		    <pre><textarea class="form-control textEditor" name="mreContent" id="mreContent" rows="10">${mrequest.mreContent}</textarea></pre>
   		</div>	
   		<div class="col-8 offset-md-2">
 		    <label for="title" class="form-label">첨부파일</label>
