@@ -20,7 +20,7 @@
 				<li><a href="mmInsertJoin1" class="join">회원가입</a></li>
 			</ul>
 		</div>
-		</c:if>
+		</c:if> 
 		<c:if test="${not empty sessionScope.userId }">
 		<div class="col text-start pt-4 ps-5">
 			<ul class="nowLogin">
