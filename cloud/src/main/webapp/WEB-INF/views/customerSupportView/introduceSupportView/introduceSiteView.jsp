@@ -11,5 +11,8 @@
 	<div class="col ps-5 pe-0 text-center">
      	 <a href="main"><img src="resources/image/main/cloudLogo.png" style="width: 300px;"></a>
  	</div>
+ 	<div class="text-center">
+     	 <a href="main"><img src="resources/image/intro/chart.jpg" style="width: 600px;"></a>
+ 	</div>
 	</div>
 </body>

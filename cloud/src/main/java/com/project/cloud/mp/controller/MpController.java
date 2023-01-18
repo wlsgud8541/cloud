@@ -464,7 +464,7 @@ public class MpController {
 	}
 	
 	// 실종자 목격 게시판 댓글 수정
-	@RequestMapping("/mpfcUpdate")
+	@RequestMapping("mpfcUpdate")
 	@ResponseBody
 	public List<MpFindComm> mpfComUpdate(MpFindComm mpfindCom){
 		System.out.println("getMpfComNo : "+mpfindCom.getMpfComNo());
