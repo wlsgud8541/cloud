@@ -41,7 +41,7 @@
 			</c:if>
 			 
 		</table>
-	<a class="row mt-4">
+	<div class="row mt-4">
 		<c:if test="${mprDetail.mprLocalCode == 01}">
 			<div class="col text-center">
 				<span class="btn btn-primary">서울</span>
@@ -126,13 +126,12 @@
 			<div class="col text-center">
 				<span class="btn btn-primary">제주</span>
 			</div>
-			<div class="col text-center">
-				<span class="btn btn-primary">제주</span>
-			</div>
 		</c:if>
-	</a>
-	
-	<a class="row mt-4">
+	</div>
+	<div class="row mt-4">
+		<b>상세위치 : ${mprDetail.mprLocalDetail}</b>
+	</div>
+	<div class="row mt-4">
 		<c:if test="${mprDetail.mprPetType == 01}">
 			<div>
 				<b>종류 : 강아지</b>
@@ -148,29 +147,40 @@
 				<b>종류 : 기타</b>
 			</div>
 		</c:if>
-	</a>
+	</div>
 	
-	<a class="row mt-4">
+	<div class="row mt-4">
 		<b>실종 일시 : <fmt:formatDate value="${mprDetail.mprInfoDate}" pattern="yyyy-MM-dd" /></b>
-	</a>
+	</div>
 	
-	<a class="row mt-4">
+	<div class="row mt-4">
 		<c:if test="${mprDetail.mprGen == 'M '}">
 			<div>
-				<b>성별 : 남</b>
+				<b>성별 : 암컷</b>
 			</div>
 		</c:if>
 		<c:if test="${mprDetail.mprGen == 'F '}">
 			<div>
-				<b>성별 : 여</b>
+				<b>성별 : 수컷</b>
 			</div>
 		</c:if>
-	</a>
+	</div>
 	
 		<div class="py-4 px-3">
 <pre>
 상세 내용 :
-	${mprDetail.mprContent }</pre>
+	${mprDetail.mprContent }
+</pre>
+	<c:if test="${mprDetail.mprAddFile != null}">
+		<div class="text-center">
+			<img src="fileDownload?fileName=${mprDetail.mprAddFile}" style="width: 500px;">
+		</div>
+	</c:if>
+	<c:if test="${empty mprDetail.mprAddFile}">
+		<div class="text-center text-success p-4">
+			등록된 사진이 없습니다.
+		</div>
+	</c:if>
 		</div>
 	</div>
 	<div class="mpboxLine"></div>

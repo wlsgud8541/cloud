@@ -18,6 +18,7 @@
 		<result property="mppGen" column="mppGen"/>
 		<result property="rNum" column="rNum"/>
 		<result property="mppLocalCode" column="mppLocalCode"/>
+		<result property="mppLocalDetail" column="mppLocalDetail"/>
 	</resultMap>
 	
 	<!-- 리스트 조회 -->
@@ -30,6 +31,8 @@
 		     , mppTitle
 		     , mppWriter
 		     , mppLocalCode
+		     , mppLocalDetail
+		     , mppAddFile
 		  FROM (SELECT rownum as rNum
 		             , mppNo
 		             , mppReadCnt
@@ -38,6 +41,8 @@
 		             , mppTitle
 		             , mppWriter
 		             , mppLocalCode
+		             , mppLocalDetail
+		             , mppAddFile
 				FROM(SELECT mppNo
 		                  , mppReadCnt
 		                  , mppRegDate
@@ -45,6 +50,8 @@
 		                  , mppTitle
 		                  , mppWriter
 		                  , mppLocalCode
+		                  , mppLocalDetail
+		                  , mppAddFile
 		               FROM MpProtect
 		              WHERE mppDelYn = 'N'
 		              <if test="type=='title'">
@@ -75,6 +82,7 @@
 		    ,mppWriter
 		    ,mppGen
 		    ,mppAddFile
+		    ,mppLocalDetail
 		FROM
 		    MpProtect
 		WHERE
@@ -112,6 +120,7 @@
 			                    ,mppRegDate
 			                    ,mmNo
 			                    ,mppGen
+			                    ,mppLocalDetail
 			                    <if test="mppAddFile != null">
 								,mppAddFile
 								</if>
@@ -127,6 +136,7 @@
 		      ,SYSTIMESTAMP
 		      ,#{mmNo}
 		      ,#{mppGen}
+		      ,#{mppLocalDetail}
 	          <if test="mppAddFile != null">
 		      ,#{mppAddFile}
 		      </if>
@@ -143,6 +153,7 @@
 			,mppStatusCode = #{mppStatusCode}
 			,mppPetType = #{mppPetType}
 			,mppGen = #{mppGen}
+			,mppLocalDetail = #{mppLocalDetail}
 			 <if test="mppAddFile != null">
 		     ,mppAddFile = #{mppAddFile}
 		     </if>

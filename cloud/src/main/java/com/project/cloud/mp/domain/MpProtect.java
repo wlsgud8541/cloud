@@ -18,11 +18,12 @@ public class MpProtect {
 	private String mppWriter;
 	private String mppDelYn	;
 	private String mppGen;
+	private String mppLocalDetail;
 	
 	public MpProtect() {}
 	
 	public MpProtect(int mppNo, int mppReadCnt, int mmNo,int rNum, Timestamp mppRegDate, Timestamp mppInfoDate, String mppTitle,
-			String mppContent,String mppLocalCode , String mppStatusCode,  String mppPetType, String mppAddFile, String mppWriter, String mppDelYn, String mppGen) {
+			String mppContent,String mppLocalCode , String mppStatusCode,  String mppPetType, String mppAddFile, String mppWriter, String mppDelYn, String mppGen, String mppLocalDetail) {
 
 			this.mppNo = mppNo;
 			this.mppReadCnt = mppReadCnt;
@@ -39,6 +40,15 @@ public class MpProtect {
 			this.mppWriter = mppWriter;
 			this.mppDelYn = mppDelYn;
 			this.mppGen = mppGen;
+			this.mppLocalDetail = mppLocalDetail;
+	}
+
+	public String getMppLocalDetail() {
+		return mppLocalDetail;
+	}
+
+	public void setMppLocalDetail(String mppLocalDetail) {
+		this.mppLocalDetail = mppLocalDetail;
 	}
 
 	public String getMppStatusCode() {

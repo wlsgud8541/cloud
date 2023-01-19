@@ -56,7 +56,15 @@
 	    	<option value="17">제주</option>
 	    </select>
   	</div>
-  	<div class="col-8 offset-md-2">
+  	<div class="col-5 offset-md-2">
+	    <input type="text"class="form-control" name="mprLocalDetail" id="localdetail">
+  	</div>
+     <div class="col-5 offset-md-2">
+       	<label for="zipcode" class="form-label">상세위치</label><br>
+		<input type="text" class="form-control" name="mprLocalDetail" id="addr1" readonly>
+		<input type="button" class="btn btn-secondary" id="btnZipcode" value="상세위치 찾기"><br>
+	</div>
+  	<div class="col-5 offset-md-2">
 	    <label for="mprPetType" class="form-label">동물 종류</label>
 	    <select class="form-control col-2" name="mprPetType" id="mprPetType">
 	    	<option value="">--선택하세요--</option>
@@ -69,8 +77,8 @@
   	<div class="col-8 offset-md-2">
 	    <label for="mprGen" class="form-label">동물 성별</label>
 	     <select class="form-control col-2" name="mprGen" id="gen">
-	    	<option value="M">남</option>
-	    	<option value="F">여</option>
+	    	<option value="M">암컷</option>
+	    	<option value="F">수컷</option>
     	</select>
   	</div>
   	<div class="col-8 offset-md-2">

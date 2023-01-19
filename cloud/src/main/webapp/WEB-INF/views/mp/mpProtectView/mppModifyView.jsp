@@ -20,7 +20,7 @@
   	</div>
   	<div class="col-5 offset-md-2">
 	    <label for="mppContent" class="form-label">내용</label>
-	    <textarea class="form-control" name="mppContent" id="content" >${mpModify.mppContent}</textarea>
+	    <textarea class="form-control textEditor" name="mppContent" id="content" >${mpModify.mppContent}</textarea>
   	</div>
   	<div class="col-2 offset-md-1">
 	    <label for="mppInfoDate" class="form-label">실종 날짜</label>
@@ -56,6 +56,11 @@
 	    	<option value="17">제주</option>
 	    </select>
   	</div>
+     <div class="col-5 offset-md-2">
+       	<label for="zipcode" class="form-label">상세위치</label><br>
+		<input type="text" class="form-control" name="mppLocalDetail" id="addr1" readonly>
+		<input type="button" class="btn btn-secondary" id="btnZipcode" value="상세위치 찾기"><br>
+	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mppPetType" class="form-label">동물 종류</label>
 	    <select class="form-control col-2" name="mppPetType" id="mppPetType">
@@ -68,8 +73,8 @@
   	<div class="col-8 offset-md-2">
 	    <label for="mppGen" class="form-label">동물 성별</label>
 	     <select class="form-control col-2" name="mppGen" id="gen">
-	    	<option value="M">남</option>
-	    	<option value="F">여</option>
+	    	<option value="M">암컷</option>
+	    	<option value="F">수컷</option>
     	</select>
   	</div>
   	<div class="col-8 offset-md-2">

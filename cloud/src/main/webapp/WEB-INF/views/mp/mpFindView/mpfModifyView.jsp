@@ -20,7 +20,7 @@
   	</div>
   	<div class="col-5 offset-md-2">
 	    <label for="mpfContent" class="form-label">내용</label>
-	    <textarea class="form-control" name="mpfContent" id="content">${mpModify.mpfContent}</textarea>
+	    <textarea class="form-control textEditor" name="mpfContent" id="content">${mpModify.mpfContent}</textarea>
   	</div>
   	<div class="col-2 offset-md-1">
 	    <label for="mpfInfoDate" class="form-label">발견 일시</label>
@@ -49,6 +49,11 @@
 	    	<option value="17">제주</option>
 	    </select>
   	</div>
+     <div class="col-5 offset-md-2">
+       	<label for="zipcode" class="form-label">상세위치</label><br>
+		<input type="text" class="form-control" name="mpfLocalDetail" id="addr1" readonly>
+		<input type="button" class="btn btn-secondary" id="btnZipcode" value="상세위치 찾기"><br>
+	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mpfPetType" class="form-label">동물 종류</label>
 	    <select class="form-control col-2" name="mpfPetType" id="mpfPetType">

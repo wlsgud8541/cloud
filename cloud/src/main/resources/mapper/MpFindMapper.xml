@@ -14,6 +14,7 @@
 		<result property="mpfAddFile" column="mpfAddFile"/>
 		<result property="mpfWriter" column="mpfWriter"/>
 		<result property="mpfDelYn" column="mpfDelYn"/>
+		<result property="mpfLocalDetail" column="mpfLocalDetail"/>
 		<result property="rNum" column="rNum"/>
 	</resultMap>
 	
@@ -26,6 +27,8 @@
 		     , mpfTitle
 		     , mpfWriter
 		     , mpfLocalCode
+		     , mpfAddFile
+		     , mpfLocalDetail
 		  FROM (SELECT rownum as rNum
 		             , mpfNo
 		             , mpfReadCnt
@@ -33,12 +36,16 @@
 		             , mpfTitle
 		             , mpfWriter
 		             , mpfLocalCode
+		             , mpfAddFile
+		             , mpfLocalDetail
 				FROM(SELECT mpfNo
 		                  , mpfReadCnt
 		                  , mpfRegDate
 		                  , mpfTitle
 		                  , mpfWriter
 		                  , mpfLocalCode
+		                  , mpfAddFile
+		                  , mpfLocalDetail
 		               FROM mpFind
 		              WHERE mpfDelYn = 'N'
 		              <if test="type=='title'">
@@ -57,11 +64,17 @@
 	<!-- 리스트 디테일 조회 -->
 	<select id="mpfSelectDetail" resultType="MpFind" resultMap="MpFind">
 		SELECT
-		    mpfNo,mpfReadCnt,
-		    mpfInfoDate,mpfRegDate,
-		    mpfTitle,mpfContent,
-		    mpfLocalCode,
-		    mpfPetType,mpfWriter,mpfAddFile
+		      mpfNo
+		    , mpfReadCnt
+		    , mpfInfoDate
+		    , mpfRegDate
+		    , mpfTitle
+		    , mpfContent
+		    , mpfLocalCode
+		    , mpfPetType
+		    , mpfWriter
+		    , mpfAddFile
+		    , mpfLocalDetail
 		FROM
 		    mpFind
 		WHERE
@@ -87,7 +100,7 @@
 	
 	<!-- 글쓰기 -->
 	<insert id="mpfInsert" parameterType="MpFind">
-		INSERT INTO mpfind(		mpfNo
+		INSERT INTO mpfind(		 mpfNo
 								,mpfTitle
 								,mpfContent
 			                    ,mpfInfoDate 
@@ -99,6 +112,7 @@
 			                    <if test="mpfAddFile != null">
 								,mpfAddFile
 								</if>
+								,mpfLocalDetail
 								)
 		VALUES(mpfind_seq.NEXTVAL
 		      ,#{mpfTitle} 
@@ -109,9 +123,10 @@
 		      ,#{mpfWriter}
 		      ,SYSTIMESTAMP
 		      ,#{mmNo}
-		       <if test="mpfAddFile != null">
-			   ,#{mpfAddFile}
-			   </if>
+		      <if test="mpfAddFile != null">
+			  ,#{mpfAddFile}
+			  </if>
+			  ,#{mpfLocalDetail}
 		      )
 	</insert>
 	
@@ -123,9 +138,10 @@
 			,mpfInfoDate = #{mpfInfoDate}
 			,mpfLocalCode = #{mpfLocalCode}
 			,mpfPetType = #{mpfPetType}
-			 <if test="mpfAddFile != null">
-		     ,mpfAddFile = #{mpfAddFile}
-		     </if>
+			<if test="mpfAddFile != null">
+		    ,mpfAddFile = #{mpfAddFile}
+		    </if>
+		    ,mpfLocalDetail = #{mpfLocalDetail}
 		 WHERE mpfNo = #{mpfNo}
 	</update>
 	

@@ -23,6 +23,7 @@
 				<tr class="table-primary">
 					<th>번 호</th>
 					<th>지 역</th>
+					<th>상세위치</th>
 					<th>제 목</th>
 					<th>작성자</th>
 					<th>조회수</th>
@@ -84,9 +85,10 @@
 							<c:if test="${mppSelectList.mppLocalCode == 17}">
 								<td style = "padding : 1.5rem 0.5rem;">제주</td>
 							</c:if>
+							<td style = "padding : 1.5rem 0.5rem;">${mppSelectList.mppLocalDetail}</td>
 							<td style = "padding : 1.5rem 0.5rem;">
 							<a href="mppSelectDetail?mppNo=${mppSelectList.mppNo}&pageNum=${mppModel.currentPage}">${mppSelectList.mppTitle}
-								<c:if test="${mppDetail.mppAddFile!=null }">
+								<c:if test="${mppSelectList.mppAddFile!=null }">
 									💾								
 								</c:if> </a></td>
 							<td style = "padding : 1.5rem 0.5rem;">${mppSelectList.mppWriter}</td>

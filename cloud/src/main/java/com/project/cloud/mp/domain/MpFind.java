@@ -18,12 +18,13 @@ public class MpFind {
 	private String mpfAddFile;
 	private String mpfWriter;
 	private String mpfDelYn;
+	private String mpfLocalDetail;
 	
 	public MpFind() {}
 	
 	public MpFind(int mpfNo, int mpfReadCnt, int mmNo,int rNum, Timestamp mpfInfoDate, Timestamp mpfRegDate, String mpfTitle,
 			String mpfContent, String mpfStatusCode, String mpfLocalCode, String mpfPetType, String mpfAddFile,
-			String mpfWriter, String mpfDelYn) {
+			String mpfWriter, String mpfDelYn, String mpfLocalDetail) {
 
 			this.mpfNo = mpfNo;
 			this.mpfReadCnt = mpfReadCnt;
@@ -39,6 +40,15 @@ public class MpFind {
 			this.mpfAddFile = mpfAddFile;
 			this.mpfWriter = mpfWriter;
 			this.mpfDelYn = mpfDelYn;
+			this.mpfLocalDetail = mpfLocalDetail;
+	}
+
+	public String getMpfLocalDetail() {
+		return mpfLocalDetail;
+	}
+
+	public void setMpfLocalDetail(String mpfLocalDetail) {
+		this.mpfLocalDetail = mpfLocalDetail;
 	}
 
 	public int getMpfNo() {

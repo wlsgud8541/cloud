@@ -23,6 +23,7 @@
 				<tr class="table-primary">
 					<th>번 호</th>
 					<th>지 역</th>
+					<th>상세위치</th>
 					<th>제 목</th>
 					<th>작성자</th>
 					<th>조회수</th>
@@ -83,6 +84,7 @@
 							<c:if test="${mpfSelectList.mpfLocalCode == 17}">
 								<td style = "padding : 1.5rem 0.5rem;">제주</td>
 							</c:if>
+							<td style = "padding : 1.5rem 0.5rem;">${mpfSelectList.mpfLocalDetail}</td>
 							<td style = "padding : 1.5rem 0.5rem;">
 							<a href="mpfSelectDetail?mpfNo=${mpfSelectList.mpfNo}&pageNum=${mpfModel.currentPage}">${mpfSelectList.mpfTitle}
 								<c:if test="${mpfSelectList.mpfAddFile!=null }">

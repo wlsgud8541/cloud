@@ -18,12 +18,13 @@ public class MpReport {
 	private String mprWriter;
 	private String mprDelYn;
 	private String mprGen;
+	private String mprLocalDetail;
 	
 	public MpReport() {}
 	
 	public MpReport(int mprNo, int mprReadCnt, int mmNo, int rNum, Timestamp mprInfoDate, Timestamp mprRegDate, String mprTitle,
 			String mprContent, String mprStatusCode, String mprLocalCode, String mprPetType, String mprAddFile,
-			String mprWriter, String mprDelYn, String mprGen) {
+			String mprWriter, String mprDelYn, String mprGen, String mprLocalDetail) {
 		
 			this.mprNo = mprNo;
 			this.mprReadCnt = mprReadCnt;
@@ -40,6 +41,15 @@ public class MpReport {
 			this.mprWriter = mprWriter;
 			this.mprDelYn = mprDelYn;
 			this.mprGen = mprGen;
+			this.mprLocalDetail = mprLocalDetail;
+	}
+
+	public String getMprLocalDetail() {
+		return mprLocalDetail;
+	}
+
+	public void setMprLocalDetail(String mprLocalDetail) {
+		this.mprLocalDetail = mprLocalDetail;
 	}
 
 	public int getrNum() {

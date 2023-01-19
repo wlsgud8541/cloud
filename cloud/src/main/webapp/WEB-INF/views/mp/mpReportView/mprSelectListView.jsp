@@ -24,6 +24,7 @@
 					<th>번 호</th>
 					<th>지 역</th>
 					<th>제 목</th>
+					<th>상세위치</th>
 					<th>작성자</th>
 					<th>조회수</th>
 					<th>작성일</th>
@@ -84,12 +85,16 @@
 							<c:if test="${mprSelectList.mprLocalCode == 17}">
 								<td style = "padding : 1.5rem 0.5rem;">제주</td>
 							</c:if>
-							
+							<td style = "padding : 1.5rem 0.5rem;">${mprSelectList.mprLocalDetail}</td>
 							<td style = "padding : 1.5rem 0.5rem;">
-							<a href="mprSelectDetail?mprNo=${mprSelectList.mprNo}&pageNum=${mprModel.currentPage}">${mprSelectList.mprTitle}
-								<c:if test="${mprDetail.mprAddFile!=null }">
-									💾								
-								</c:if> </a></td>
+								<a href="mprSelectDetail?mprNo=${mprSelectList.mprNo}&pageNum=${mprModel.currentPage}">${mprSelectList.mprTitle}
+									<!-- 💾 -->	
+									<c:if test="${not empty mprSelectList.mprAddFile}">
+										<img src="fileDownload?fileName=${mprSelectList.mprAddFile}" height="100px;" width="100px;">
+									</c:if>							
+									<%-- <img src="../../../resources/upload/${mprSelectList.mprAddFile}"> --%>
+								</a>
+							</td>
 							<td style = "padding : 1.5rem 0.5rem;">${mprSelectList.mprWriter}</td>
 							<td style = "padding : 1.5rem 0.5rem;">${mprSelectList.mprReadCnt}</td>
 							<td style = "padding : 1.5rem 0.5rem;"><fmt:formatDate value="${mprSelectList.mprRegDate}" pattern="yy-MM-dd HH:mm" /></td>
@@ -102,9 +107,8 @@
 						</tr>
 					</c:forEach>
 				</tbody>
-
-				<!-- 하단 리스트 -->
 			</table>
+				<!-- 하단 리스트 -->
 			<div class="cl-pagination-wrap mt-5">
 				<div class="col">
 					<nav aria-label="Page navigation">

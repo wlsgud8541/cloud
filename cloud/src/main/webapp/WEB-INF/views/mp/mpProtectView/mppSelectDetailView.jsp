@@ -126,13 +126,17 @@
 			<div class="col text-center">
 				<span class="btn btn-primary">제주</span>
 			</div>
-			<div class="col text-center">
-				<span class="btn btn-primary">제주</span>
-			</div>
 		</c:if>
 	</a>
+		<div class="row mt-4">
+			<b>상세위치 : ${mppDetail.mppLocalDetail}</b>
+		</div>
 	
-	<a class="row mt-4">
+	<div class="row mt-4">
+		<b>발견 일시 : <fmt:formatDate value="${mppDetail.mppInfoDate}" pattern="yyyy-MM-dd" /></b>
+	</div>
+		
+	<div class="row mt-4">
 		<c:if test="${mppDetail.mppPetType == 01}">
 			<div>
 				<b>종류 : 강아지</b>
@@ -148,29 +152,37 @@
 				<b>종류 : 기타</b>
 			</div>
 		</c:if>
-	</a>
+	</div>
 	
-	<a class="row mt-4">
-		<b>발견 일시 : <fmt:formatDate value="${mppDetail.mppInfoDate}" pattern="yyyy-MM-dd" /></b>
-	</a>
 	
-	<a class="row mt-4">
+	<div class="row mt-4">
 		<c:if test="${mppDetail.mppGen == 'M '}">
 			<div>
-				<b>성별 : 남</b>
+				<b>성별 : 수컷</b>
 			</div>
 		</c:if>
 		<c:if test="${mppDetail.mppGen == 'F '}">
 			<div>
-				<b>성별 : 여</b>
+				<b>성별 : 암컷</b>
 			</div>
 		</c:if>
-	</a>
+	</div>
 	
 		<div class="py-4 px-3">
 <pre>
 상세 내용 :
-	${mppDetail.mppContent }</pre>
+	${mppDetail.mppContent }
+</pre>
+	<c:if test="${not empty mppDetail.mppAddFile}">
+		<div class="text-center">
+			<img src="fileDownload?fileName=${mppDetail.mppAddFile}" style="width: 500px;">
+		</div>
+	</c:if>
+	<c:if test="${empty mppDetail.mppAddFile}">
+		<div class="text-center text-success p-4">
+			등록된 사진이 없습니다.
+		</div>
+	</c:if>
 		</div>
 	</div>
 	<div class="mpboxLine"></div>
