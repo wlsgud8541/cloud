@@ -112,97 +112,112 @@
 		</div>
 		<div class="col-4  p-4 bg-white shadow-sm ">
 			<h3><b>실종자/반려동물 검색</b></h3>	
-			<form class="w3-light-gray p-4 main_Blist ">
-				<div class="main_search">
-				<label>분 류</label>
-					<select id="search">
-						<option value="mh">실종자</option>
-						<option value="mp">실종 반려동물</option>
-					</select>
-				</div>
 				<div class="mhpSearch">
-					<div class="mhSearch">
-						<div class="main_search">
-							<label>이 름</label>
-							<input type="text" name="mhrName">
-						</div>
-						<div class="main_search">
-							<label>성 별</label>
-							<select>
-								<option>남 자</option>
-								<option>여 자</option>
-							</select>
-						</div>
-						<div class="main_search search_date">
-							<label class="">발생일</label>
-							<input type="date">~<input type="date">
-						</div>
-						<div class="main_search">
-							<label>발생지</label>
-							<select>
-								<option value="">--선택하세요--</option>
-						    	<option value="01">서울</option>
-						    	<option value="02">경기</option>
-						    	<option value="03">인천</option>
-						    	<option value="04">대전</option>
-						    	<option value="05">광주</option>
-						    	<option value="06">대구</option>
-						    	<option value="07">울산</option>
-						    	<option value="08">부산</option>
-						    	<option value="09">세종</option>
-						    	<option value="10">강원</option>
-						    	<option value="11">충북</option>
-						    	<option value="12">충남</option>
-						    	<option value="13">전북</option>
-						    	<option value="14">전남</option>
-						    	<option value="15">경북</option>
-						    	<option value="16">경남</option>
-						    	<option value="17">제주</option>
-							</select>
-						</div>
-						<div class="main_search">
-							<label>목격지역</label>
-							<select>
-								<option value="">--선택하세요--</option>
-						    	<option value="01">서울</option>
-						    	<option value="02">경기</option>
-						    	<option value="03">인천</option>
-						    	<option value="04">대전</option>
-						    	<option value="05">광주</option>
-						    	<option value="06">대구</option>
-						    	<option value="07">울산</option>
-						    	<option value="08">부산</option>
-						    	<option value="09">세종</option>
-						    	<option value="10">강원</option>
-						    	<option value="11">충북</option>
-						    	<option value="12">충남</option>
-						    	<option value="13">전북</option>
-						    	<option value="14">전남</option>
-						    	<option value="15">경북</option>
-						    	<option value="16">경남</option>
-						    	<option value="17">제주</option>
-							</select>
-						</div>
+					<form class="w3-light-gray p-4 main_Blist mhSearch">
+					<div class="main_search">
+					<label>분 류</label>
+						<select id="search">
+							<option value="mh">실종자</option>
+							<option value="mp">실종 반려동물</option>
+						</select>
 					</div>
-					<div class="mpSearch">
+						<div class="mhSearch">
+							<div class="main_search">
+								<label>이 름</label>
+								<input type="text" name="mhName">
+							</div>
+							<div class="main_search">
+								<label>성 별</label>
+								<select name="mhGen">
+									<option value="male">남 자</option>
+									<option value="female">여 자</option>
+								</select>
+							</div>
+							<div class="main_search search_date">
+								<label class="">발생일</label>
+								<input type="date" name="mhInfoDate1">~<input type="date" name="mhInfoDate2">
+							</div>
+							<div class="main_search">
+								<label>발생지</label>
+								<select name="mhrLocalCode">
+									<option value="">--선택하세요--</option>
+							    	<option value="01">서울</option>
+							    	<option value="02">경기</option>
+							    	<option value="03">인천</option>
+							    	<option value="04">대전</option>
+							    	<option value="05">광주</option>
+							    	<option value="06">대구</option>
+							    	<option value="07">울산</option>
+							    	<option value="08">부산</option>
+							    	<option value="09">세종</option>
+							    	<option value="10">강원</option>
+							    	<option value="11">충북</option>
+							    	<option value="12">충남</option>
+							    	<option value="13">전북</option>
+							    	<option value="14">전남</option>
+							    	<option value="15">경북</option>
+							    	<option value="16">경남</option>
+							    	<option value="17">제주</option>
+								</select>
+							</div>
+							<div class="main_search">
+								<label>목격지역</label>
+								<select name="mhfLocalCode">
+									<option value="">--선택하세요--</option>
+							    	<option value="01">서울</option>
+							    	<option value="02">경기</option>
+							    	<option value="03">인천</option>
+							    	<option value="04">대전</option>
+							    	<option value="05">광주</option>
+							    	<option value="06">대구</option>
+							    	<option value="07">울산</option>
+							    	<option value="08">부산</option>
+							    	<option value="09">세종</option>
+							    	<option value="10">강원</option>
+							    	<option value="11">충북</option>
+							    	<option value="12">충남</option>
+							    	<option value="13">전북</option>
+							    	<option value="14">전남</option>
+							    	<option value="15">경북</option>
+							    	<option value="16">경남</option>
+							    	<option value="17">제주</option>
+								</select>
+							</div>
+						</div>
+						<div class="text-end mt-2 color text-secondary">
+							<small>※ 입력란이 채워지지 않을 시 전체를 검색합니다. ※&nbsp;&nbsp;&nbsp;</small>
+							<button type="submit" class="btn btn-secondary">검 색</button>
+						</div>
+					</form>
+					
+					
+					<form class="w3-light-gray p-4 main_Blist mpSearch">
+					<div class="">
+						<div class="main_search">
+						<label>분 류</label>
+							<select id="search">
+								<option value="mh">실종자</option>
+								<option value="mp">실종 반려동물</option>
+							</select>
+						</div>
 						<div class="main_search">
 							<label>성 별</label>
-							<select>
-								<option>수 컷</option>
-								<option>암 컷</option>
+							<select name="mpGen">
+								<option value="boy">수 컷</option>
+								<option value="girl">암 컷</option>
 							</select>
 						<div class="main_search">
 							<label>키워드</label>
-							<input type="text">
+							<input type="text" name="mpContent">
 						</div>
 						</div>
 						<div class="main_search search_date">
-							<label class="">발생일</label>
-							<input type="date">~<input type="date">
+							<label>발생일</label>
+							<input type="date" name="mpDate1">~<input type="date" name="mpdate2">
 						</div>
 						<div class="main_search">
 							<label>발생지</label>
-							<select>
+							<select name="mpLocalCode">
 								<option value="">--선택하세요--</option>
 						    	<option value="01">서울</option>
 						    	<option value="02">경기</option>
@@ -225,7 +240,7 @@
 						</div>
 						<div class="main_search">
 							<label>목격지역</label>
-							<select>
+							<select name="mpfLocalCode">
 								<option value="">--선택하세요--</option>
 						    	<option value="01">서울</option>
 						    	<option value="02">경기</option>
@@ -247,12 +262,12 @@
 							</select>
 						</div>
 					</div>
-				</div>
-				<div class="text-end mt-2 color text-secondary">
-					<small>※ 입력란이 채워지지 않을 시 전체를 검색합니다. ※&nbsp;&nbsp;&nbsp;</small>
-					<button type="submit" class="btn btn-secondary">검 색</button>
-				</div>
-			</form>
+					<div class="text-end mt-2 color text-secondary">
+						<small>※ 입력란이 채워지지 않을 시 전체를 검색합니다. ※&nbsp;&nbsp;&nbsp;</small>
+						<button type="submit" class="btn btn-secondary">검 색</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 	<div class="row mt-4 ">
