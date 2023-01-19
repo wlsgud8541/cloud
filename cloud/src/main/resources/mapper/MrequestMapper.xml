@@ -15,7 +15,7 @@
 		<result property="mreSecretYn" column="mreSecretYn"/>
 		<result property="mreReplyCode" column="mreReplyCode"/>
 		<result property="mreDelYn" column="mreDelYn"/>
-	</resultMap>
+	</resultMap> 
 	<select id="mrSelectList" resultType="Mrequest" parameterType="hashmap">
 		SELECT  rNum,
 		        mreNo,
@@ -52,13 +52,13 @@
 		                    FROM    MREQUEST
 		                    where   mreDelYn = 'N'
 								<if test="type=='title'">
-									title LIKE CONCAT('%', #{keyWord}, '%')
+									AND mreTitle LIKE '%' || #{keyWord} || '%'
 								</if>
 								<if test="type=='writer'">
-									writer LIKE CONCAT('%', #{keyWord}, '%')
+									AND mreWriter LIKE '%' || #{keyWord} || '%'
 								</if>
 								<if test="type=='content'">
-									content LIKE CONCAT('%', #{keyWord}, '%')
+									AND mreContent LIKE '%' || #{keyWord} || '%'
 								</if>
 								<if test="mmNo != '' and mmNo != null">
 									AND mmNo = #{mmNo}
@@ -78,13 +78,13 @@
 		FROM MREQUEST
 		WHERE mreDelYn = 'N'
 				<if test="type=='title'">
-					title LIKE CONCAT('%', #{keyWord}, '%')
+					AND mreTitle LIKE '%' || #{keyWord} || '%'
 				</if>
 					<if test="type=='writer'">
-					writer LIKE CONCAT('%', #{keyWord}, '%')
+					AND mreWriter LIKE '%' || #{keyWord} || '%'
 				</if>
 					<if test="type=='content'">
-					content LIKE CONCAT('%', #{keyWord}, '%')
+					AND mreContent LIKE '%' || #{keyWord} || '%'
 				</if>
 				<if test="mmNo != '' and mmNo != null">
 					AND mmNo = #{mmNo}

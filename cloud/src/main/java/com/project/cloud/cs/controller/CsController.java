@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ import com.project.cloud.cs.service.MqnaService;
 import com.project.cloud.cs.service.MrequestCommService;
 import com.project.cloud.cs.service.MrequestService;
 import com.project.cloud.gm.service.GlobalMethodService;
+import com.project.cloud.mm.controller.MmController;
 @Controller
 public class CsController {
 	
@@ -46,18 +49,22 @@ public class CsController {
 	@Autowired
 	private MrequestCommService mrequestCommService;
 	
+	private Logger logger = LoggerFactory.getLogger(CsController.class);
+	
 	// 공지사항 게시판 리스트 조회
 	@RequestMapping("/mnSelectList")
 	public String mnSelectList(Model model,
 							   @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
-							   @RequestParam(value = "type", required = false, defaultValue = "null") String type,
-							   @RequestParam(value = "keyWord", required = false, defaultValue = "null") String keyWord) {
+							   @RequestParam(value = "type", required = false, defaultValue = "title") String type,
+							   @RequestParam(value = "keyWord", required = false, defaultValue = "") String keyWord) {
 		
+		logger.debug("keyWord : "+keyWord);
 
 		// 페이징 처리 시작
 		int pageSize = 10;   // 페이지 사이즈 갯수
 		int pageGroup = 10; // 페이징 그룹
 		int listCount = mnoticeService.mnSelectListCount(type, keyWord); // 게시글 갯수 조회
+		
 		
 		/* 
 		 * pageList : 페이징 처리 메서드
@@ -71,6 +78,8 @@ public class CsController {
 		mnModel.put("mnList", mnSelectList);
 		mnModel.put("listCount", listCount);
 		mnModel.put("pageGroup", pageGroup);
+		mnModel.put("keyWord", keyWord);
+		mnModel.put("type", type);
 		
 		model.addAllAttributes(mnModel);
 		
@@ -83,7 +92,7 @@ public class CsController {
 		
 		// readCount 증가 service method
 		int result = mnoticeService.mnUpdateReadCount(mnNo);
-		System.out.println("read cound 조회 결과 : "+result);
+		logger.debug("read cound 조회 결과 : "+result);
 		
 		// 게시판 상세내용 조회 service method
 		Mnotice mnotice = mnoticeService.mnSelectDetail(mnNo);
@@ -112,7 +121,7 @@ public class CsController {
 		
 		int result = mnoticeService.mnInsert(mnotice);
 		
-		System.out.println("데이터 insert 결과 : " + result);
+		logger.debug("데이터 insert 결과 : " + result);
 		
 		return "redirect:mnSelectList";
 	}
@@ -147,7 +156,7 @@ public class CsController {
 		
 		int result = mnoticeService.mnUpdate(mnotice);
 		
-		System.out.println("데이터 update 결과 : " + result);
+		logger.debug("데이터 update 결과 : " + result);
 		
 		return "redirect:mnSelectList?pageNum="+pageNum;
 	}
@@ -158,7 +167,7 @@ public class CsController {
 		
 		int result = mnoticeService.mnDelete(mnNo);
 		
-		System.out.println("데이터 delete 결과 : " + result);
+		logger.debug("데이터 delete 결과 : " + result);
 		
 		return "redirect:mnSelectList?pageNum="+pageNum;
 	}
@@ -179,7 +188,7 @@ public class CsController {
 	public String mqInsertProcess(Mqna mqna) {
 
 		int result = mqnaService.mqInsert(mqna);
-		System.out.println("qna게시판 insert 결과 : " + result);
+		logger.debug("qna게시판 insert 결과 : " + result);
 		
 		return "redirect:mqSelectList";
 	}
@@ -188,10 +197,10 @@ public class CsController {
 	@RequestMapping("/mqModifyProcess")
 	@ResponseBody
 	public List<Mqna> mqUpdate(int mqNo, String mqTitle, String mqContent, String mqWriter) {
-		System.out.println("mqNo : "+mqNo);
-		System.out.println("mqTitle : "+mqTitle);
-		System.out.println("mqContent"+mqContent);
-		System.out.println("mqWriter : "+mqWriter);
+		logger.debug("mqNo : "+mqNo);
+		logger.debug("mqTitle : "+mqTitle);
+		logger.debug("mqContent"+mqContent);
+		logger.debug("mqWriter : "+mqWriter);
 		
 		// Q&A 게시판 수정 처리
 		mqnaService.mqUpdate(mqNo, mqTitle, mqContent, mqWriter);
@@ -206,7 +215,7 @@ public class CsController {
 		// Q&A 게시판 삭제 처리
 		int result = mqnaService.mqDelete(mqNo);
 		
-		System.out.println("qna 게시판 삭제 결과 : "+ result);
+		logger.debug("qna 게시판 삭제 결과 : "+ result);
 		
 		return mqnaService.mqSelectList();
 	}
@@ -216,8 +225,8 @@ public class CsController {
 	@RequestMapping("/mrSelectList")
 	public String mrSelectList(Model model,
 								@RequestParam(value = "pageNum",required = false, defaultValue = "1")int pageNum,
-								@RequestParam(value = "type", required = false, defaultValue = "null") String type,
-								@RequestParam(value = "keyword", required = false, defaultValue = "null") String keyword) {
+								@RequestParam(value = "type", required = false, defaultValue = "") String type,
+								@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) {
 		int pageSize = 15;
 		int pageGroup = 10;
 		int listCnt = mrequestService.getMrSelectCnt(type,keyword);
@@ -231,6 +240,8 @@ public class CsController {
 		mrModel.put("mrList", mrSelectList);
 		mrModel.put("listCnt", listCnt);
 		mrModel.put("pageGroup", pageGroup);
+		mrModel.put("type", type);
+		mrModel.put("keyWord", keyword);
 		
 		model.addAllAttributes(mrModel);
 		
@@ -247,7 +258,7 @@ public class CsController {
 		
 		// 건의게시판 조회수 업데이트
 		int readCnt = mrequestService.mreUpdateReadCnt(mreNo);
-		System.out.println("조회수 : " + readCnt);
+		logger.debug("조회수 : " + readCnt);
 		
 		model.addAttribute("mrequest",mrequest);
 		model.addAttribute("pageNum",pageNum);
@@ -273,7 +284,7 @@ public class CsController {
 		mrequest.setMreAddFile(fileName);
 		
 		int result = mrequestService.mrInsert(mrequest);
-		System.out.println("데이터 insert : " + result);
+		logger.debug("데이터 insert : " + result);
 		
 		return "redirect:mrSelectList";
 	}
@@ -305,7 +316,7 @@ public class CsController {
 		mrequest.setMreAddFile(fileName);
 		
 		int result = mrequestService.mrUpdate(mrequest);
-		System.out.println("데이터 update : " + result);
+		logger.debug("데이터 update : " + result);
 		
 		return "redirect:mrSelectList?pageNum=" + pageNum;
 	}
@@ -315,7 +326,7 @@ public class CsController {
 	public String mrDeleteProcess(int mreNo, int pageNum) {
 		int result = mrequestService.mrDelete(mreNo);
 		
-		System.out.println("데이터 delete : " + result);
+		logger.debug("데이터 delete : " + result);
 		
 		return "redirect:mrSelectList?pageNum=" + pageNum;
 		

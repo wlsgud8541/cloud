@@ -24,7 +24,7 @@ public class MrequestDaoImpl implements MrequestDao{
 		params.put("startRow", startRow);
 		params.put("pageSize", pageSize);
 		params.put("type", type);
-		params.put("keyword", keyword);
+		params.put("keyWord", keyword);
 		
 		return sql.selectList("Mrequest.mrSelectList",params);
 	}
@@ -35,9 +35,9 @@ public class MrequestDaoImpl implements MrequestDao{
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("type", type);
-		params.put("keyword", keyword);
+		params.put("keyWord", keyword);
 		
-		return sql.selectOne("Mrequest.getMrSelectCnt");
+		return sql.selectOne("Mrequest.getMrSelectCnt",params);
 	}
 
 	// 건의게시판 리스트

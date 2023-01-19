@@ -110,25 +110,40 @@ $(document).ready(function(){
 	
 	
 	// qna게시판 js 설정
-	
 	$(".mqContent").css("display", "none");
+
 	// qna게시판 글 제목 클릭시
 	$(document).on("click",".mqTilte",function(){
-		var flagCheck = $(this).next().children(".mqUpdate").hasClass("updateSuccess");
-		var mqNo = $(this).next().children(".mqUpdate").attr("data-mqNo");
+		var sessionId = $("#mqWriter").val();
+		console.log("sessionId : "+sessionId);
 
-		console.log(flagCheck);
-		
-		if(flagCheck){
-			return false;
+		if(sessionId != ''){
+			var flagCheck = $(this).next().children(".mqUpdate").hasClass("updateSuccess");
+			var mqNo = $(this).next().children(".mqUpdate").attr("data-mqNo");
+	
+			console.log(flagCheck);
+			
+			if(flagCheck){
+				return false;
+			}else{
+				if(!($("#mqDiv"+mqNo).is(":visible"))){
+					$("#mqDiv"+mqNo).slideDown(300);
+					$("#mqDiv"+mqNo).css("display", "block");	
+				
+				}else if($("#mqDiv"+mqNo).is(":visible")){
+					$("#mqDiv"+mqNo).slideUp(300);
+				}
+			}
 		}else{
+			var mqNo = $(this).attr("data-mqNo");
+			
 			if(!($("#mqDiv"+mqNo).is(":visible"))){
 				$("#mqDiv"+mqNo).slideDown(300);
 				$("#mqDiv"+mqNo).css("display", "block");	
 			
 			}else if($("#mqDiv"+mqNo).is(":visible")){
 				$("#mqDiv"+mqNo).slideUp(300);
-			}
+			}	
 		}
 	});	
 
@@ -137,6 +152,12 @@ $(document).ready(function(){
 		var mqNo = $(this).attr("data-mqNo");
 		var beforeTitle = $("#beforeTitle"+mqNo).html();
 		var beforeCont = $("#beforeCont"+mqNo).html();
+		var sessionId = $("#mqWriter").val();
+		
+		if(sessionId != ''){
+			alert("해당 서비스는 로그인 후 사용 할 수 있습니다.");
+			return false;
+		}
 		
 		// 수정 버튼시 : updateSuccess 클래스 포함 여부로 확인
 		if($(this).hasClass("updateSuccess") === false){
@@ -167,7 +188,7 @@ $(document).ready(function(){
 		}else{
 			var mqTitle = $("#beforeTitle"+mqNo).val();
 			var mqContent = $("#beforeCont"+mqNo).val();
-			var mqWriter = $("#mqWriter"+mqNo).val();
+			var mqWriter = $("#mqWriter").val();
 			
 			console.log("mqWriter : "+mqWriter);
 			
@@ -196,32 +217,39 @@ $(document).ready(function(){
  								+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
  								+ (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
 
-
-						var tag = '<div class="row border border-top-0">'
-							  +'     <input type="hidden" class="form-control" name="mqWriter" id="mqWriter'+data.mqNo+'" value="${sessionScope.userId}">'
-							  +'	 <div class="col">'
-							  +'		<div class="row bg-light p-2">'
-							  +'			<div id="mqTilte' + data.mqNo + '" class="mqTilte col-4">'
-							  +'				<span class="member" id="beforeTitle' + data.mqNo + '">' + data.mqTitle + '</span>'
-							  +'				<span class="me-3">' + formatDate + '</span>'
-							  +'			</div>'
-							  +'			<div class="col-8 text-end">'
-							  +'				<button class="mqUpdate btn btn-outline-success btn-sm" data-mqNo="' + data.mqNo + '">'
-							  +'					<i class="bi bi-journal-text" >수정</i>'
-							  +'				</button>'
-							  +'				<button class="mqDelete btn btn-outline-warning btn-sm" data-mqNo="' + data.mqNo + '">'
-							  +'					<i class="bi bi-trash">삭제</i>'
-							  +'				</button>'
-							  +'			</div>'
-							  +'		</div>'
-							  +'		<div id="mqDiv' + data.mqNo + '" class="mqContent row">'
-							  +'			<div class="col p-3">'
-							  +'				<pre><span id="beforeCont' + data.mqNo + '">' + data.mqContent + '</span></pre>'
-							  +'			</div>'
-							  +'		</div>'
-							  +'  </div>'
-							  +'</div>'
+						var tag = '';
 						
+						tag += '<div class="row mt-3 border rounded-4">';
+						tag += '<div class="col">';
+						tag += '<div class="row bg-light p-2 rounded-4">';
+						tag += '<div class="mqTilte col pt-3 pb-2" id="mqTilte' + data.mqNo + '" data-mqNo="'+data.mqNo+'">';
+						tag += '<span class="member"id="beforeTitle' + data.mqNo + '">'+data.mqTitle+'</span>';
+						tag += '<br>';
+						tag += '<span class="me-3">';
+						tag += '<small>';
+						tag +=	formatDate
+						tag += '</small>';
+						tag += '</span>';
+						tag += '</div>';
+						if(sessionId != ''){
+							tag += '<div class="col-2 text-end">';
+							tag += '<button class="mqUpdate btn btn-outline-success btn-sm" data-mqNo="' + data.mqNo + '">';
+							tag += '<i class="bi bi-journal-text" >수정</i>';
+							tag += '</button>';
+							tag += '<button class="mqDelete btn btn-outline-warning btn-sm" data-mqNo="' + data.mqNo + '">';
+							tag += '<i class="bi bi-trash">삭제</i>';
+							tag += '</button>';
+							tag += '</div>';
+						}
+						tag += '</div>';
+						tag += '<div id="mqDiv' + data.mqNo + '" class="mqContent row">';
+						tag += '<div class="col p-3">';
+						tag += '<pre><span id="beforeCont' + data.mqNo + '">'+data.mqContent+'</span></pre>';
+						tag += '</div>';
+						tag += '</div>';
+						tag += '</div>';
+						tag += '</div>';
+							
 						$("#qnaList").append(tag);	  
 					});
 					
@@ -242,8 +270,13 @@ $(document).ready(function(){
 	// 삭제 버튼 클릭시
 	$(document).on("click",".mqDelete",function(){
 	
-		var delCk = confirm("해당 게시글이 삭제됩니다. 정말 삭제하시겠습니까?");
+		var sessionId = $("#mqWriter").val();
+		if(sessionId != ''){
+			alert("해당 서비스는 로그인 후 사용 할 수 있습니다.");
+			return false;
+		}
 
+		var delCk = confirm("해당 게시글이 삭제됩니다. 정말 삭제하시겠습니까?");
 		if(delCk){
 			var mqNo = $(this).attr("data-mqNo");
 			var params = {
@@ -268,30 +301,38 @@ $(document).ready(function(){
 								+ (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
 	
 	
-						var tag = '<div class="row border border-top-0">'
-							  +'     <input type="hidden" class="form-control" name="mqWriter" id="mqWriter'+data.mqNo+'" value="${sessionScope.userId}">'
-							  +'	 <div class="col">'
-							  +'		<div class="row bg-light p-2">'
-							  +'			<div id="mqTilte' + data.mqNo + '" class="mqTilte col-4">'
-							  +'				<span class="member" id="beforeTitle' + data.mqNo + '">' + data.mqTitle + '</span>'
-							  +'				<span class="me-3">' + formatDate + '</span>'
-							  +'			</div>'
-							  +'			<div class="col-8 text-end">'
-							  +'				<button class="mqUpdate btn btn-outline-success btn-sm" data-mqNo="' + data.mqNo + '">'
-							  +'					<i class="bi bi-journal-text" >수정</i>'
-							  +'				</button>'
-							  +'				<button class="mqDelete btn btn-outline-warning btn-sm" data-mqNo="' + data.mqNo + '">'
-							  +'					<i class="bi bi-trash">삭제</i>'
-							  +'				</button>'
-							  +'			</div>'
-							  +'		</div>'
-							  +'		<div id="mqDiv' + data.mqNo + '" class="mqContent row">'
-							  +'			<div class="col p-3">'
-							  +'				<pre><span id="beforeCont' + data.mqNo + '">' + data.mqContent + '</span></pre>'
-							  +'			</div>'
-							  +'		</div>'
-							  +'  </div>'
-							  +'</div>'
+						var tag = '';
+						
+							tag += '<div class="row mt-3 border rounded-4">';
+							tag += '<div class="col">';
+							tag += '<div class="row bg-light p-2 rounded-4">';
+							tag += '<div class="mqTilte col pt-3 pb-2" id="mqTilte' + data.mqNo + '" data-mqNo="'+data.mqNo+'">';
+							tag += '<span class="member"id="beforeTitle' + data.mqNo + '">'+data.mqTitle+'</span>';
+							tag += '<br>';
+							tag += '<span class="me-3">';
+							tag += '<small>';
+							tag +=	formatDate
+							tag += '</small>';
+							tag += '</span>';
+							tag += '</div>';
+							if(sessionId != ''){
+								tag += '<div class="col-2 text-end">';
+								tag += '<button class="mqUpdate btn btn-outline-success btn-sm" data-mqNo="' + data.mqNo + '">';
+								tag += '<i class="bi bi-journal-text" >수정</i>';
+								tag += '</button>';
+								tag += '<button class="mqDelete btn btn-outline-warning btn-sm" data-mqNo="' + data.mqNo + '">';
+								tag += '<i class="bi bi-trash">삭제</i>';
+								tag += '</button>';
+								tag += '</div>';
+							}	
+							tag += '</div>';
+							tag += '<div id="mqDiv' + data.mqNo + '" class="mqContent row">';
+							tag += '<div class="col p-3">';
+							tag += '<pre><span id="beforeCont' + data.mqNo + '">'+data.mqContent+'</span></pre>';
+							tag += '</div>';
+							tag += '</div>';
+							tag += '</div>';
+							tag += '</div>';
 						
 						$("#qnaList").append(tag);	
 					});

@@ -30,26 +30,33 @@
 					<th>작성일</th>
 				</tr>
 				<tbody>
-					<c:forEach var="mrList" items="${mrList}" varStatus="status">
-						<tr>
-							<c:if test="${mrList.mreReplyCode == '01' }">
-								<td class="text-secondary" style = "padding : 1.5rem 0.5rem;">답변대기</td>
-							</c:if>
-							<c:if test="${mrList.mreReplyCode == '02' }">
-								<td class="text-success" style = "padding : 1.5rem 0.5rem;"><b>답변완료</b></td>
-							</c:if>
-							<td style = "padding : 1.5rem 0.5rem;">${mrList.mreNo }</td>
-							<td style = "padding : 1.5rem 0.5rem;">
-							<a href="mrSelectDetail?mreNo=${mrList.mreNo}&pageNum=${currentPage}">${mrList.mreTitle}
-								<c:if test="${mrList.mreAddFile!=null }">
-									💾								
-								</c:if> </a></td>
-							<td style = "padding : 1.5rem 0.5rem;">${mrList.mreWriter}</td>
-							<td style = "padding : 1.5rem 0.5rem;">${mrList.mreReadCnt}</td>
-							<td style = "padding : 1.5rem 0.5rem;">${mrList.mreRecoCnt}</td>
-							<td style = "padding : 1.5rem 0.5rem;"><fmt:formatDate value="${mrList.mreRegDate}" pattern="yy-MM-dd HH:mm" /></td>
+					<c:if test="${not empty mrList}">
+						<c:forEach var="mrList" items="${mrList}" varStatus="status">
+							<tr>
+								<c:if test="${mrList.mreReplyCode == '01' }">
+									<td class="text-secondary" style = "padding : 1.5rem 0.5rem;">답변대기</td>
+								</c:if>
+								<c:if test="${mrList.mreReplyCode == '02' }">
+									<td class="text-success" style = "padding : 1.5rem 0.5rem;"><b>답변완료</b></td>
+								</c:if>
+								<td style = "padding : 1.5rem 0.5rem;">${mrList.mreNo }</td>
+								<td style = "padding : 1.5rem 0.5rem;">
+								<a href="mrSelectDetail?mreNo=${mrList.mreNo}&pageNum=${currentPage}">${mrList.mreTitle}
+									<c:if test="${mrList.mreAddFile!=null }">
+										💾								
+									</c:if> </a></td>
+								<td style = "padding : 1.5rem 0.5rem;">${mrList.mreWriter}</td>
+								<td style = "padding : 1.5rem 0.5rem;">${mrList.mreReadCnt}</td>
+								<td style = "padding : 1.5rem 0.5rem;">${mrList.mreRecoCnt}</td>
+								<td style = "padding : 1.5rem 0.5rem;"><fmt:formatDate value="${mrList.mreRegDate}" pattern="yy-MM-dd HH:mm" /></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty mrList}">
+						<tr class="text-center">
+							<td colspan="7" style = "padding : 1.5rem 0.5rem;"><h3>'${keyWord}' 에 대한 검색결과가 없습니다.</h3></td>
 						</tr>
-					</c:forEach>
+					</c:if>
 				</tbody>
 
 				<!-- 하단 리스트 -->
@@ -92,16 +99,16 @@
 				</div>
 			</div>
 			<div class="row text-center my-4">
-				<form class="col row" name="searchForm" id="searchForm">
+				<form class="col row" action="mrSelectList" name="searchForm" id="searchForm" method="post">
 					<div class="col text-end p-0">
 						<select name="type" id="type" class="border border-end-0" style="left:0px;width:102px; height:54px;">
-							<option value="title">제 목</option>
-							<option value="content">내 용</option>
-							<option value="writer">작성자</option>
+							<option value="title" ${type == 'title'? 'selected' : '' }>제 목</option>
+							<option value="content" ${type == 'content'? 'selected' : '' }>내 용</option>
+							<option value="writer" ${type == 'writer'? 'selected' : '' }>작성자</option>
 						</select>
 					</div>
 					<div class="col text-start p-0">
-						<input type="text" name="keyword" id="keyword" style="left:0px; width:500px; height:54px; background:#fff;  border:1px solid #d0d0d0;">
+						<input type="text" name="keyword" id="keyword" value="${keyWord}" style="left:0px; width:500px; height:54px; background:#fff;  border:1px solid #d0d0d0;">
 						<input type="submit" class="bg-success text-white bg-opacity-75" style="left:0px; top:0px; width:54px; height:56px; background:#fff;  border:1px solid #d0d0d0;" value="검색">
 					</div>
 				</form>

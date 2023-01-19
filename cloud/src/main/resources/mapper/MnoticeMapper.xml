@@ -53,13 +53,13 @@
 		            	  FROM MNOTICE
 		             	 WHERE mnDelYn = 'N'
 	                      <if test="type=='title'">
-							title LIKE CONCAT('%', #{keyWord}, '%')
+							AND mnTitle LIKE '%' || #{keyWord} || '%'
 						  </if>
 						  <if test="type=='writer'">
-							writer LIKE CONCAT('%', #{keyWord}, '%')
+							AND mnWriter LIKE '%' || #{keyWord} || '%'
 						  </if>
 						  <if test="type=='content'">
-							content LIKE CONCAT('%', #{keyWord}, '%')
+							AND mnContent LIKE '%' || #{keyWord} || '%'
 						  </if>
 				    	ORDER BY mnNo DESC
 	               		 )
@@ -75,13 +75,13 @@
 		FROM MNOTICE
 		WHERE mnDelYn = 'N'
 		<if test="type=='title'">
-			title LIKE CONCAT('%', #{keyWord}, '%')
+			AND mnTitle LIKE '%' || #{keyWord} || '%'
 		</if>
 		<if test="type=='writer'">
-			title LIKE CONCAT('%', #{keyWord}, '%')
+			AND mnWriter LIKE '%' || #{keyWord} || '%'
 		</if>
 		<if test="type=='content'">
-			title LIKE CONCAT('%', #{keyWord}, '%')
+			AND mnContent LIKE '%' || #{keyWord} || '%'
 		</if>
 	</select>
 

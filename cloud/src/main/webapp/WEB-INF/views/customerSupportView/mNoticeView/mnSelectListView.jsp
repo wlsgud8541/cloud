@@ -10,13 +10,15 @@
 		<div class="col fs-2">
 			<b>공지사항</b>
 		</div>
-		<div class="col board-bottom text-end">
-			<a href="mnInsert" class="btn btn-secondary posiRight my-2">글쓰기</a>
-			<br>
-		</div>
+		<c:if test="${not empty sessionScope.userId && sessionScope.userId == 'admin0001'}">
+			<div class="col board-bottom text-end">
+				<a href="mnInsert" class="btn btn-secondary posiRight my-2">글쓰기</a>
+				<br>
+			</div>
+		</c:if>
 	</div>
 	 
-	<div class="divtablebox">
+	<div class="divtablebox ${sessionScope.userId != 'admin0001' ? 'mt-4' : '' }">
 		<!-- 게시판 리스트 -->
 		<div>
 			<table class="table table-hover text-center">
@@ -29,21 +31,27 @@
 					<th>작성일</th>
 				</tr>
 				<tbody>
-					<c:forEach var="mnList" items="${mnList}" varStatus="status">
-						<tr>
-							<td style = "padding : 1.5rem 0.5rem;">${mnList.mnNo }</td>
-							<td style = "padding : 1.5rem 0.5rem;">
-							<a href="mnSelectDetail?mnNo=${mnList.mnNo}&pageNum=${currentPage}">${mnList.mnTitle}
-								<c:if test="${mnList.mnAddFile!=null }">
-									💾								
-								</c:if> </a></td>
-							<td style = "padding : 1.5rem 0.5rem;">${mnList.mnWriter}</td>
-							<td style = "padding : 1.5rem 0.5rem;">${mnList.mnReadCnt}</td>
-							<td style = "padding : 1.5rem 0.5rem;"><fmt:formatDate value="${mnList.mnRegDate}" pattern="yy-MM-dd HH:mm" /></td>
+					<c:if test="${not empty mnList}">
+						<c:forEach var="mnList" items="${mnList}" varStatus="status">
+							<tr>
+								<td style = "padding : 1.5rem 0.5rem;">${mnList.mnNo }</td>
+								<td style = "padding : 1.5rem 0.5rem;">
+								<a href="mnSelectDetail?mnNo=${mnList.mnNo}&pageNum=${currentPage}">${mnList.mnTitle}
+									<c:if test="${mnList.mnAddFile!=null }">
+										💾								
+									</c:if> </a></td>
+								<td style = "padding : 1.5rem 0.5rem;">${mnList.mnWriter}</td>
+								<td style = "padding : 1.5rem 0.5rem;">${mnList.mnReadCnt}</td>
+								<td style = "padding : 1.5rem 0.5rem;"><fmt:formatDate value="${mnList.mnRegDate}" pattern="yyyy-MM-dd" /></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty mnList}">
+						<tr class="text-center">
+							<td colspan="5" style = "padding : 1.5rem 0.5rem;"><h3>'${keyWord}' 에 대한 검색결과가 없습니다.</h3></td>
 						</tr>
-					</c:forEach>
+					</c:if>
 				</tbody>
-
 				<!-- 하단 리스트 -->
 			</table>
 			<div class="cl-pagination-wrap mt-5">
@@ -83,17 +91,18 @@
 					</nav>
 				</div>
 			</div>
+			
 			<div class="row text-center my-4">
-				<form class="col row" name="searchForm" id="searchForm">
+				<form class="col row" action="mnSelectList" name="searchForm" id="searchForm" method="post">
 					<div class="col text-end p-0">
-						<select name="type" id="type" class="border border-end-0" style="left:0px;width:102px; height:54px;">
-							<option value="title">제 목</option>
-							<option value="content">내 용</option>
-							<option value="writer">작성자</option>
+						<select name="type" class="border border-end-0" style="left:0px;width:102px; height:54px;">
+							<option value="title" ${type == 'title'? 'selected' : '' }>제 목</option>
+							<option value="content" ${type == 'content'? 'selected' : '' }>내 용</option>
+							<option value="writer" ${type == 'writer'? 'selected' : '' }>작성자</option>
 						</select>
 					</div>
 					<div class="col text-start p-0">
-						<input type="text" name="keyword" id="keyword" style="left:0px; width:500px; height:54px; background:#fff;  border:1px solid #d0d0d0;">
+						<input type="text" name="keyWord" value="${keyWord}" style="left:0px; width:500px; height:54px; background:#fff; border:1px solid #d0d0d0;">
 						<input type="submit" class="bg-success text-white bg-opacity-75" style="left:0px; top:0px; width:54px; height:56px; background:#fff;  border:1px solid #d0d0d0;" value="검색">
 					</div>
 				</form>
