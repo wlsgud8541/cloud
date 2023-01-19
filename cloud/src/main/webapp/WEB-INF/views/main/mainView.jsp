@@ -15,138 +15,244 @@
 		<div class="col-7 me-4 bg-white p-4 shadow-sm  ">
 			<h3><b>실종자</b></h3>
 			<div class=" border border-4 border-danger border-opacity-25 p-5 ">
-			    <div class="swiper mySwiper ">
-			      <div class="swiper-wrapper ">
-			        <div class="swiper-slide">
-			        	<div class="row">
-				        	<div class="col me-2 text-center"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/dndud.jpg">
-				        		<div>정우영(32)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/wlsgud.jpg">
-				        		<div>전진형(30)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/ruddnr.jpg">
-				        		<div>김경욱(30)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/alsgur.jpg">
-				        		<div>정민혁(27)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-			        	</div>
-			        </div>
-			        <div class="swiper-slide">
-			        	<div class="row">
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/dndud.jpg">
-				        		<div>정우영(32)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/wlsgud.jpg">
-				        		<div>전진형(30)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/ruddnr.jpg">
-				        		<div>김경욱(30)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/alsgur.jpg">
-				        		<div>정민혁(27)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-			        	</div>
-			        </div>
-			        <div class="swiper-slide">
-			        	<div class="row">
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/dndud.jpg">
-				        		<div>정우영(32)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/wlsgud.jpg">
-				        		<div>전진형(30)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/ruddnr.jpg">
-				        		<div>김경욱(30)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-				        	<div class="col  me-2"style="width: 150px; height: 100%;">
-				        		<img alt="" src="resources/image/main/alsgur.jpg">
-				        		<div>정민혁(27)</div>
-				        		<div>오늘</div>
-				        		<div>학원</div>
-				        	</div>
-			        	</div>
-			        </div>
-			      </div>
-			      <div class="swiper-button-next"></div>
-<!-- 			       -->
-			      <div class="swiper-button-prev"></div>
-<!-- 			      -->
-			      <div class="swiper-pagination"></div>
-    </div>	
-    </div>	
-	    </div>
+				<div class="swiper mySwiper ">
+					<div class="swiper-wrapper ">
+						<div class="swiper-slide">
+							<div class="row">
+								<div class="col me-2 text-center"style="width: 150px; height: 100%;">
+									<img alt="" src="resources/image/main/dndud.jpg">
+									<div>정우영(32)</div>
+									<div>오늘</div>
+									<div>학원</div>
+								</div>
+								<div class="col  me-2"style="width: 150px; height: 100%;">
+									<img alt="" src="resources/image/main/wlsgud.jpg">
+									<div>전진형(30)</div>
+									<div>오늘</div>
+									<div>학원</div>
+								</div>
+								<div class="col  me-2"style="width: 150px; height: 100%;">
+									<img alt="" src="resources/image/main/ruddnr.jpg">
+									<div>김경욱(30)</div>
+									<div>오늘</div>
+									<div>학원</div>
+								</div>
+								<div class="col  me-2"style="width: 150px; height: 100%;">
+								 		<img alt="" src="resources/image/main/alsgur.jpg">
+								 		<div>정민혁(27)</div>
+								 		<div>오늘</div>
+								 		<div>학원</div>
+								 	</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="row">
+								 	<div class="col  me-2"style="width: 150px; height: 100%;">
+									<img alt="" src="resources/image/main/dndud.jpg">
+									<div>정우영(32)</div>
+									<div>오늘</div>
+									<div>학원</div>
+								</div>
+								<div class="col  me-2"style="width: 150px; height: 100%;">
+									<img alt="" src="resources/image/main/wlsgud.jpg">
+									<div>전진형(30)</div>
+									<div>오늘</div>
+									<div>학원</div>
+								</div>
+								<div class="col  me-2"style="width: 150px; height: 100%;">
+									<img alt="" src="resources/image/main/ruddnr.jpg">
+									<div>김경욱(30)</div>
+									<div>오늘</div>
+									<div>학원</div>
+								</div>
+								<div class="col  me-2"style="width: 150px; height: 100%;">
+								 		<img alt="" src="resources/image/main/alsgur.jpg">
+								 		<div>정민혁(27)</div>
+								 		<div>오늘</div>
+								 		<div>학원</div>
+								 	</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="row">
+								 	<div class="col  me-2"style="width: 150px; height: 100%;">
+									<img alt="" src="resources/image/main/dndud.jpg">
+									<div>정우영(32)</div>
+									<div>오늘</div>
+									<div>학원</div>
+								</div>
+								<div class="col  me-2"style="width: 150px; height: 100%;">
+									<img alt="" src="resources/image/main/wlsgud.jpg">
+									<div>전진형(30)</div>
+									<div>오늘</div>
+									<div>학원</div>
+								</div>
+								<div class="col  me-2"style="width: 150px; height: 100%;">
+									<img alt="" src="resources/image/main/ruddnr.jpg">
+									<div>김경욱(30)</div>
+									<div>오늘</div>
+									<div>학원</div>
+								</div>
+								<div class="col  me-2"style="width: 150px; height: 100%;">
+								   		<img alt="" src="resources/image/main/alsgur.jpg">
+								   		<div>정민혁(27)</div>
+								   		<div>오늘</div>
+								   		<div>학원</div>
+								</div>
+	  						</div>
+	 					</div>
+					</div>
+					<div class="swiper-button-next"></div>
+					<!-- 			       -->
+					<div class="swiper-button-prev"></div>
+					<!-- 			      -->
+					<div class="swiper-pagination"></div>
+				</div>	
+			</div>	
+		</div>
 		<div class="col-4  p-4 bg-white shadow-sm ">
 			<h3><b>실종자/반려동물 검색</b></h3>	
-			<div class="w3-light-gray p-4 main_Blist ">
+			<form class="w3-light-gray p-4 main_Blist ">
 				<div class="main_search">
 				<label>분 류</label>
-					<select>
-						<option>실종자</option>
-						<option>실종 반려동물</option>
+					<select id="search">
+						<option value="mh">실종자</option>
+						<option value="mp">실종 반려동물</option>
 					</select>
 				</div>
-				<div class="main_search">
-					<label>이 름</label>
-					<input type="text">
+				<div class="mhpSearch">
+					<div class="mhSearch">
+						<div class="main_search">
+							<label>이 름</label>
+							<input type="text" name="mhrName">
+						</div>
+						<div class="main_search">
+							<label>성 별</label>
+							<select>
+								<option>남 자</option>
+								<option>여 자</option>
+							</select>
+						</div>
+						<div class="main_search search_date">
+							<label class="">발생일</label>
+							<input type="date">~<input type="date">
+						</div>
+						<div class="main_search">
+							<label>발생지</label>
+							<select>
+								<option value="">--선택하세요--</option>
+						    	<option value="01">서울</option>
+						    	<option value="02">경기</option>
+						    	<option value="03">인천</option>
+						    	<option value="04">대전</option>
+						    	<option value="05">광주</option>
+						    	<option value="06">대구</option>
+						    	<option value="07">울산</option>
+						    	<option value="08">부산</option>
+						    	<option value="09">세종</option>
+						    	<option value="10">강원</option>
+						    	<option value="11">충북</option>
+						    	<option value="12">충남</option>
+						    	<option value="13">전북</option>
+						    	<option value="14">전남</option>
+						    	<option value="15">경북</option>
+						    	<option value="16">경남</option>
+						    	<option value="17">제주</option>
+							</select>
+						</div>
+						<div class="main_search">
+							<label>목격지역</label>
+							<select>
+								<option value="">--선택하세요--</option>
+						    	<option value="01">서울</option>
+						    	<option value="02">경기</option>
+						    	<option value="03">인천</option>
+						    	<option value="04">대전</option>
+						    	<option value="05">광주</option>
+						    	<option value="06">대구</option>
+						    	<option value="07">울산</option>
+						    	<option value="08">부산</option>
+						    	<option value="09">세종</option>
+						    	<option value="10">강원</option>
+						    	<option value="11">충북</option>
+						    	<option value="12">충남</option>
+						    	<option value="13">전북</option>
+						    	<option value="14">전남</option>
+						    	<option value="15">경북</option>
+						    	<option value="16">경남</option>
+						    	<option value="17">제주</option>
+							</select>
+						</div>
+					</div>
+					<div class="mpSearch">
+						<div class="main_search">
+							<label>성 별</label>
+							<select>
+								<option>수 컷</option>
+								<option>암 컷</option>
+							</select>
+						<div class="main_search">
+							<label>키워드</label>
+							<input type="text">
+						</div>
+						</div>
+						<div class="main_search search_date">
+							<label class="">발생일</label>
+							<input type="date">~<input type="date">
+						</div>
+						<div class="main_search">
+							<label>발생지</label>
+							<select>
+								<option value="">--선택하세요--</option>
+						    	<option value="01">서울</option>
+						    	<option value="02">경기</option>
+						    	<option value="03">인천</option>
+						    	<option value="04">대전</option>
+						    	<option value="05">광주</option>
+						    	<option value="06">대구</option>
+						    	<option value="07">울산</option>
+						    	<option value="08">부산</option>
+						    	<option value="09">세종</option>
+						    	<option value="10">강원</option>
+						    	<option value="11">충북</option>
+						    	<option value="12">충남</option>
+						    	<option value="13">전북</option>
+						    	<option value="14">전남</option>
+						    	<option value="15">경북</option>
+						    	<option value="16">경남</option>
+						    	<option value="17">제주</option>
+							</select>
+						</div>
+						<div class="main_search">
+							<label>목격지역</label>
+							<select>
+								<option value="">--선택하세요--</option>
+						    	<option value="01">서울</option>
+						    	<option value="02">경기</option>
+						    	<option value="03">인천</option>
+						    	<option value="04">대전</option>
+						    	<option value="05">광주</option>
+						    	<option value="06">대구</option>
+						    	<option value="07">울산</option>
+						    	<option value="08">부산</option>
+						    	<option value="09">세종</option>
+						    	<option value="10">강원</option>
+						    	<option value="11">충북</option>
+						    	<option value="12">충남</option>
+						    	<option value="13">전북</option>
+						    	<option value="14">전남</option>
+						    	<option value="15">경북</option>
+						    	<option value="16">경남</option>
+						    	<option value="17">제주</option>
+							</select>
+						</div>
+					</div>
 				</div>
-				<div class="main_search">
-					<label>성 별</label>
-					<select>
-						<option>남 자</option>
-						<option>여 자</option>
-					</select>
-				</div>
-				<div class="main_search search_date">
-					<label class="">발생일</label>
-					<input type="date">~<input type="date">
-				</div>
-				<div class="main_search">
-					<label>발생지</label>
-					<input type="text" >
-				</div>
-				<div class="main_search">
-					<label>목격장소</label>
-					<input type="text">
-				</div>
-				<div class="text-end mt-2">
+				<div class="text-end mt-2 color text-secondary">
+					<small>※ 입력란이 채워지지 않을 시 전체를 검색합니다. ※&nbsp;&nbsp;&nbsp;</small>
 					<button type="submit" class="btn btn-secondary">검 색</button>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 	<div class="row mt-4 ">

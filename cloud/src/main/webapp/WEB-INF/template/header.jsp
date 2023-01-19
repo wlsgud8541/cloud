@@ -6,15 +6,15 @@
 <!-- header  -->
 <div class="header fixed-top">
 	<div class="row headerMain border-bottom bg-white">  
-		<div class="col ps-5 pe-0 text-center">
+		<div class="col-4 ps-5 pe-0 text-center">
         	 <a href="main"><img src="resources/image/main/cloudLogo.png" style="width: 130px;"></a>
      	</div>
-     	<div class="col search_wrap text-center">
-         <input type="text" class="search_bar rounded-pill ps-4 pe-5" id = "uSearch">
-         <button type="button" class="btn" id="uSearchbtn">검색</button> 
+     	<div class="col-5 search_wrap text-center">
+	        <input type="text" class="search_bar rounded-pill ps-4 pe-5" id = "uSearch">
+	        <button type="button" class="btn" id="uSearchbtn">검색</button> 
      	</div>
 		<c:if test="${empty sessionScope.userId }">
-		<div class="col text-start pt-4 ps-5">
+		<div class="col-3 text-center pt-4 ps-5">
 			<ul class="nowLogin">
 				<li><a href="loginView" class="login">로그인</a></li>
 				<li><a href="mmInsertJoin1" class="join">회원가입</a></li>
@@ -22,7 +22,7 @@
 		</div>
 		</c:if> 
 		<c:if test="${not empty sessionScope.userId }">
-		<div class="col text-start pt-4 ps-5">
+		<div class="col-3 text-start pt-4 ps-5">
 			<ul class="nowLogin">
 				<li class="user"><span><b>${sessionScope.userId}</b>님</span><br><span>로그인하셨습니다.</span></li>
 				<li><a href="mmSelectMyPage?mmNo=${sessionScope.mmNo}" class="myPage">마이페이지</a></li>
