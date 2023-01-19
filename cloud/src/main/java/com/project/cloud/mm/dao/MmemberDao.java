@@ -31,4 +31,8 @@ public interface MmemberDao {
 	public Mmember kakaoUserLogin(String kakaoUserId);
 	// 네이버 유저 로그인 처리
 	public Mmember naverUserLogin(String naverUserId);
+	// 유저 아이디 찾기
+	public String idSearch(String mmEmail);
+	// 유저 아이디 찾기
+	public int idSearch(Mmember member);
 }

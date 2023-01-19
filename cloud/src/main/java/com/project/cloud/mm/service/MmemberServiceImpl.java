@@ -249,7 +249,7 @@ public class MmemberServiceImpl implements MmemberService{
 		bodyJson.put("type", "SMS");
 		bodyJson.put("contentType", "COMM"); // AD : 광고 | COMM : 일반용
 		bodyJson.put("from", "01027608541");
-		bodyJson.put("content", "[Cloud Sercice] 인증번호 ["+strCN+"]를 입력해주세요.");
+		bodyJson.put("content", "[Cloud Service] 인증번호 ["+strCN+"]를 입력해주세요.");
 		bodyJson.put("messages", toArr);
 		
 		String body = bodyJson.toString();
@@ -341,16 +341,49 @@ public class MmemberServiceImpl implements MmemberService{
 		
 		String fromEmail = "wlsgud8541@naver.com";
 		String toEmail = email;
-		String title = "cloud service 회원가입 인증 이메일입니다.";
-		String content =  "cloud service 홈페이지 방문을 환영합니다."
+		String title = "[Cloud service 인증]";
+		String content =  "Cloud Service 홈페이지 방문을 환영합니다."
 						+ "<br><br>"
 						+ "인증을 완료하시려면 해당 인증번호를 입력해주세요"
 						+ "<br><br>"
-						+ "인증번호 : "+strCN;
+						+ "인증번호 : <b>"+strCN+"</b>";
 		
 		int result = mailSend(fromEmail, toEmail, title, content);
 		resultMap.put("result", result);
 		resultMap.put("strCN", strCN);
+		
+		return resultMap;
+	}
+
+	// 이메일 비밀번호 전송
+	@Override
+	public Map<String,Object> sendEmail(String email, String type, String mmId) {
+		
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+
+		String strCN = certificationNumber();
+		String fromEmail = "wlsgud8541@naver.com";
+		String toEmail = email;
+		String title = "[Cloud service 임시 비밀번호 안내]";
+		String content =  "Cloud Service 홈페이지 방문을 환영합니다."
+				+ "<br><br>"
+				+ mmId+"님의 임시 비밀 번호는 [ <b>" + strCN + "</b> ] 입니다."
+				+ "<br><br>"
+				+ "계정 로그인 후 비밀번호를 변경해주세요."
+				+ "<br><br>"
+				+ "감사합니다.";
+		
+
+		String mmPass = passEncoder.encode(strCN); 
+		Mmember member = new Mmember();
+		member.setMmId(mmId);
+		member.setMmPass(mmPass);
+		
+		int passChangeResult = mmDao.mmChangePassProc(member);
+		
+		int result = mailSend(fromEmail, toEmail, title, content);
+		resultMap.put("result", result);
+		resultMap.put("passChangeResult", passChangeResult);
 		
 		return resultMap;
 	}
@@ -649,6 +682,38 @@ public class MmemberServiceImpl implements MmemberService{
 		return mmDao.memberDisabled(mmNo);
 	}
 	
+	// 아이디 찾기
+	public HashMap<String, Object> idSearch(String mmEmail){
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		String userEmail = mmDao.idSearch(mmEmail);
+
+		if (userEmail != null && userEmail != "") {
+			resultMap.put("resultCnt", 1);
+		}else {
+			resultMap.put("resultCnt", 0);
+		}
+		resultMap.put("mmEmail", userEmail);
+		
+		return resultMap;
+	}
+
+	// 비밀번호 찾기 아이디 체크
+	public HashMap<String, Object> idSearch(String mmEmail, String mmId){
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		Mmember member = new Mmember();
+		member.setMmEmail(mmEmail);
+		member.setMmId(mmId);
+		
+		int userIdCheck = mmDao.idSearch(member);
+		
+		if (userIdCheck == 1) {
+			resultMap.put("resultCnt", 1);
+		}else {
+			resultMap.put("resultCnt", 0);
+		}
+		
+		return resultMap;
+	}
 }
 	
 	

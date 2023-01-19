@@ -868,11 +868,209 @@ $(document).ready(function(){
 		}
 	});
 	
+	// 아이디 찾기, 비밀번호 찾기 인증 처리
+	var strCN = "";
+	
+	$("#btnSearch").on("click", function(){
+		
+		var userInfoSearchType = $(this).attr("data-type");
+		var searchEmail = "";
+		
+		// 아이디 찾기를 실행했을 경우 벨류 세팅
+		if(userInfoSearchType == 'id'){
+			searchEmail = $("#searchIdEmail").val();
+		}
+		
+		// 비밀번호 찾기를 실행했을 경우 벨류 세팅
+		if(userInfoSearchType == 'pass'){
+			searchEmail = $("#searchPassEmail").val();
+		}
 
+		if(searchEmail == ""){
+			alert("이메일 아이디가 입력되지 않았습니다. 이메일을 확인해주세요.");
+			return false;
+		}
+
+		alert("이메일이 전송되었습니다. 입력하신 이메일을 확인해주세요.");
+		$("#btnSearch").attr("disabled","disabled");
+		$("#btnSearch").removeClass("button secondary");
+		$("#btnSearch").addClass("btn-success");
+		
+		$.ajax({
+			url : "sendEmail",
+			type : "POST",
+			data : {email : searchEmail},
+			datatype : "json",
+			success : function(result){
+				// 0:전송 실패 | 1:전송 성공
+				if(result.result = 0){
+					alert("이메일이 전송 중 오류가 발생했습니다. 관리자에게 문의해주세요.");
+				}
+				
+				if(result.result = 1){
+					strCN = result.strCN;
+				}
+			},
+			error : function(){
+				alert("데이터 통신 실패. 관리자에게 문의 부탁드립니다.");
+			}
+		});
+	});
+
+	// 인증 완료시 아이디 찾기 처리
+	$("#checkNum").on("click", function(){
+		var userInfoSearchType = $(this).attr("data-type");
+		
+		// 아이디 찾기 시 프로세스
+		if(userInfoSearchType == 'id'){
+			var searchIdEmail = $("#searchIdEmail").val();
+			var searchIdCheckNum = $("#searchIdCheckNum").val();
+			var tag = "";
+			
+			if(strCN != searchIdCheckNum){
+				alert("인증번호가 일치하지 않습니다. 확인 후 다시 시도해주세요.");
+			}
+			
+			if(strCN == searchIdCheckNum){
+				$("#checkNum").attr("disabled","disabled");
+				$("#checkNum").removeClass("button secondary");
+				$("#checkNum").addClass("btn-success");
+				alert("인증이 확인되었습니다.");
+				
+				$.ajax({
+					url : "idSearch",
+					type : "POST",
+					data : {mmEmail : searchIdEmail},
+					datatype : "json",
+					success : function(result){
+						
+						if(result.resultCnt == 0){
+							tag += '<h4 class="text-center pt-1">해당 이메일로 등록된 아이디가 존재하지 않습니다.<br><br>확인 후 다시 시도 부탁드립니다.</h4>';
+							tag += '<div class="text-center">';
+							tag += '<button class="button secondary mt-4" type="button" id="redirectLoginView">로그인 화면</button>';
+							tag += '</div>';
+							$(".userInfoSearch").empty();
+							$(".userInfoSearch").append(tag);
+							
+						}else{
+							var userId = result.mmEmail;
+							var userBeginId = userId.substring(0,3);
+							var userEndId = userId.slice(-3,userId.length);
+							var userBeginIdLen = userBeginId.length;
+							var userEndIdLen = userEndId.length;
+							var masking = "";
+							for(var i = 0; i < (userId.length - (userBeginIdLen + userEndIdLen)); i++){
+								masking += "*";
+							}
+							userId = userBeginId + masking + userEndId; 
+						
+							//admin0001
+							//adm***0001
+							tag += '<h4 class="text-center pt-5">회원님께서 등록하신 아이디는 [<b>'+userId+'</b>] 입니다.</h4>';
+							tag += '<div class="text-center">';
+							tag += '<button class="button secondary mt-5" type="button" id="redirectLoginView">로그인 화면</button>';
+							tag += '</div>';
+							$(".userInfoSearch").empty();
+							$(".userInfoSearch").append(tag);
+						}
+					},
+					error : function(){
+						alert("데이터 통신 실패. 관리자에게 문의 부탁드립니다.");
+					}
+				});
+			}
+		}
+		
+		// 비밀번호 찾기 시 프로세스
+		if(userInfoSearchType == 'pass'){
+			var searchPassId = $("#searchPassId").val();
+			var searchPassEmail = $("#searchPassEmail").val();
+			var searchPassCheckNum = $("#searchPassCheckNum").val();
+			var tag = "";
+			
+			if(strCN != searchPassCheckNum){
+				alert("인증번호가 일치하지 않습니다. 확인 후 다시 시도해주세요.");
+			}
+			
+			if(strCN == searchPassCheckNum){
+				$("#checkNum").attr("disabled","disabled");
+				$("#checkNum").removeClass("button secondary");
+				$("#checkNum").addClass("btn-success");
+				alert("인증이 확인되었습니다.");
+				
+				$.ajax({
+					url : "idSearch",
+					type : "POST",
+					data : {
+							mmEmail : searchPassEmail,
+							mmId : searchPassId
+							},
+					datatype : "json",
+					success : function(result){
+						
+						if(result.resultCnt == 0){
+							tag += '<h4 class="text-center pt-1">해당 이메일로 등록된 아이디가 존재하지 않습니다.<br><br>확인 후 다시 시도 부탁드립니다.</h4>';
+							tag += '<div class="text-center">';
+							tag += '<button class="button secondary mt-4" type="button" id="redirectLoginView">로그인 화면</button>';
+							tag += '</div>';
+							$(".userInfoSearch").empty();
+							$(".userInfoSearch").append(tag);
+							
+						}else{
+							tag += '<h4 class="text-center pt-1">회원님의 이메일로 임시 비밀번호를 발송했습니다.<br><br>로그인 후 비밀번호를 변경 부탁드립니다.</h4>';
+							tag += '<div class="text-center">';
+							tag += '<button class="button secondary mt-5" type="button" id="redirectLoginView">로그인 화면</button>';
+							tag += '</div>';
+							$(".userInfoSearch").empty();
+							$(".userInfoSearch").append(tag);
+							
+							$.ajax({
+								url : "sendEmail",
+								type : "POST",
+								data : {
+										email : searchPassEmail,
+										type : "searchPass",
+										mmId : searchPassId
+										},
+								datatype : "json",
+								success : function(result){
+									// 0:전송 실패 | 1:전송 성공
+									if(result.resultCnt = 0){
+										alert("이메일이 전송 중 오류가 발생했습니다. 관리자에게 문의해주세요.");
+									}
+								},
+								error : function(){
+									alert("데이터 통신 실패. 관리자에게 문의 부탁드립니다.");
+								}
+							});
+						}
+					},
+					
+					error : function(){
+						alert("데이터 통신 실패. 관리자에게 문의 부탁드립니다.");
+					}
+				});
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		}
+	});
 	
-	
-	
-	
+	$(document).on("click","#redirectLoginView",function(){
+		location.href = "loginView";
+	});
 	
 	
 });

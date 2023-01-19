@@ -364,5 +364,20 @@
 	    WHERE mmNo = #{mmNo}	   
 	</update>
 	
+	<select id="idSearch" resultType="String" parameterType="String">
+		SELECT mmId 
+		FROM MMEMBER
+		WHERE mmActivateyn = 'N' 
+		AND mmEmail = #{mmEmail} 
+	</select>
+
+	<select id="idSearchForPass" resultType="int" parameterType="hashmap">
+		SELECT COUNT(mmId) as cnt 
+		FROM MMEMBER
+		WHERE mmActivateyn = 'N'
+		AND mmEmail = #{mmEmail}
+		AND mmId = #{mmId} 
+	</select>
+	
 </mapper>
 

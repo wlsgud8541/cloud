@@ -4,6 +4,11 @@
 		<div class="fs-5 text-center pb-3 fw-bold">Cloud</div>
 		<input type="text" id="mmId" name="mmId" placeholder="ID" class="form-field" />
 		<input type="password" id="mmPass" name="mmPass" placeholder="Password" class="form-field"/>
+		
+		<div class="text-center mb-2">
+		<a href="searchUserInfo?type=id"><small>아이디 찾기</small></a>&nbsp;|&nbsp;
+		<a href="searchUserInfo?type=pass"><small>비밀번호 찾기</small></a>
+		</div>
 
 		<button class="button primary" type="submit" id="btnLogin">로그인</button>
 		<button class="button secondary" type="button" id="btnJoin">회원가입</button> 

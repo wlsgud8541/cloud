@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -177,7 +176,14 @@ public class MmController {
 	// 이메일 인증
 	@RequestMapping("sendEmail")
 	@ResponseBody
-	public Map<String,Object> sendEmail(String email) {
+	public Map<String,Object> sendEmail(String email,
+										@RequestParam(name = "type", required = false, defaultValue = "") String type,
+										@RequestParam(name = "mmId", required = false, defaultValue = "") String mmId) {
+		
+		if (type.equals("searchPass")) {
+			return mmService.sendEmail(email, type, mmId);
+		}
+		
 		return mmService.sendEmail(email);
 	}
 	
@@ -326,11 +332,26 @@ public class MmController {
 		return result;
 	}
 	
+	@RequestMapping("/searchUserInfo")
+	public String searchUserInfo(Model model, String type) {
+		model.addAttribute("type",type);
+		return "mMemberView/mmSearchUserInfo";
+	}
 	
-	
-	
-	
-	
+	@RequestMapping("/idSearch")
+	@ResponseBody
+	public HashMap<String, Object> idSearch(String mmEmail, 
+											@RequestParam(name = "mmId", required = false, defaultValue = "") String mmId){
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+		if (mmId != null && mmId != "") { // 비밀번호 찾기 시 실행
+			resultMap = mmService.idSearch(mmEmail, mmId);
+		}else { // 아이디 찾기 시 실행
+			resultMap = mmService.idSearch(mmEmail);
+		}
+		
+		return resultMap;
+	} 
 	
 	
 	

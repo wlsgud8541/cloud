@@ -83,4 +83,14 @@ public class MmemberDaoImpl implements MmemberDao{
 	public Mmember naverUserLogin(String naverUserId) {
 		return sql.selectOne("Mmember.naverUserLogin", naverUserId);
 	}
+	
+	@Override
+	public String idSearch(String mmEmail){
+		return sql.selectOne("Mmember.idSearch", mmEmail);
+	}
+
+	@Override
+	public int idSearch(Mmember member){
+		return sql.selectOne("Mmember.idSearchForPass", member);
+	}
 }
