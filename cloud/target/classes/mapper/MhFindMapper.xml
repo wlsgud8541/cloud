@@ -16,7 +16,14 @@
 		<result property="mhfDelYn" column="mhfDelYn"/>
 		<result property="mhfGen" column="mhfGen"/>
 	</resultMap>
-
+<sql id ="mhfSearch">
+		<if test="type == 'title'">
+			AND mhfTitle LIKE '%' ||#{keyword}|| '%'
+		</if>
+		<if test="type == 'writer'">
+			AND mhfWriter LIKE '%' ||#{keyword}|| '%'
+		</if>
+</sql>
 <select id="mhfSelectList" resultType="MhFind" parameterType="hashMap">
 SELECT rNum
         ,mhfNo
@@ -39,6 +46,7 @@ FROM (SELECT rownum as rNum
                 mhfind
              WHERE 
               mhfDelYn = 'N'
+              <include refid="mhfSearch"></include>
              ORDER BY 
                 mhfNo DESC)
                     )

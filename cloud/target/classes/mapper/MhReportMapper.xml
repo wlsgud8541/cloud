@@ -29,6 +29,14 @@
 		<result property="mhrDelYn" column="mhrDelYn"/>
 		<result property="mhrAddFile" column="mhrAddFile"/>
 	</resultMap>
+	<sql id="mhSearch">
+		<if test="type == 'title'">
+			AND mhrTitle LIKE '%' ||#{keyword}|| '%'
+		</if>
+		<if test="type == 'writer'">
+			AND mhrWriter LIKE '%' ||#{keyword}|| '%'
+		</if>
+	</sql>
 	<select id="mhrSelectList" resultType="MhReport">
 		SELECT rNum
         ,mhrNo
@@ -36,12 +44,12 @@
         ,mhrRegDate
         ,mhrTitle
         ,mhrWriter
-FROM (SELECT rownum as rNum
+	FROM (SELECT rownum as rNum
             ,mhrNo
             ,mhrReadCnt
             ,mhrRegDate
             ,mhrTitle
-            ,mhrWriter 
+            ,mhrWriter
         FROM(SELECT mhrNo
                    ,mhrReadCnt
                    ,mhrRegDate
@@ -51,6 +59,7 @@ FROM (SELECT rownum as rNum
                 mhreport
              WHERE 
               mhrDelYn = 'N'
+              <include refid="mhSearch"></include>
              ORDER BY 
                 mhrNo DESC)
                     )

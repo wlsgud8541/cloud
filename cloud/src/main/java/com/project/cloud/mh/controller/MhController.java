@@ -2,16 +2,15 @@ package com.project.cloud.mh.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.cloud.gm.service.GlobalMethodService;
 import com.project.cloud.mh.dao.MhInfoDao;
 import com.project.cloud.mh.domain.MhFind;
@@ -51,6 +49,8 @@ public class MhController {
 	private MhFindCommService mhfCommService;
 	@Autowired
 	private MhInfoService mhiService;
+	
+	private Logger logger = LoggerFactory.getLogger(MhController.class);
 	public void setMhReportService(MhReportService service) {
 		this.service = service;
 	}
@@ -66,13 +66,15 @@ public class MhController {
 		int pagegroup = 10;
 		// 총 게시글 수 조회
 		int listCount = service.mhrListCount(type,keyword);
-		System.out.println(listCount);
+		logger.debug("실종자 정보 게시판 리스트카운트"+listCount);
 		Map<String,Object> mhrList = gm.pageList(listCount, pagesize, pagegroup, pageNum, type, keyword);
 		int startRow = (int)mhrList.get("startRow");
 		List<MhReport> list = service.mhrSelectList(startRow,pagesize,type,keyword);
 		mhrList.put("list", list);
 		mhrList.put("listCount", listCount);
 		mhrList.put("pagegroup", pagegroup);
+		mhrList.put("type", type);
+		mhrList.put("keyword", keyword);
 		model.addAllAttributes(mhrList);
 		return "mh/mhReportView/mhrSelectListView";
 	}
@@ -82,7 +84,7 @@ public class MhController {
 		MhReport report = service.mhrSelectDetail(mhrNo);
 		MhReport reportReadCount = service.mhrReadCount(mhrNo,true);
 		model.addAttribute("reportReadCount",reportReadCount);
-		System.out.println(mhrNo);
+		logger.debug("실종자 정보 상세보기 mhrNo"+mhrNo);
 		model.addAttribute("report",report);
 		model.addAttribute("pageNum",pageNum);
 		return "mh/mhReportView/mhrDetailView";
@@ -107,7 +109,7 @@ public class MhController {
 		String tempDate = mhrInfoDate + " 00:00:00";
 		Timestamp tsDate = Timestamp.valueOf(tempDate);
 		
-		System.out.println("mhrLocalCode : "+mhrLocalCode);
+		logger.debug("mhrLocalCode : "+mhrLocalCode);
 		String FileName = gm.addFile(request, file);
 		mhReport.setMmNo(mmNo);
 		mhReport.setMhrMage(mhrMage);
@@ -130,7 +132,7 @@ public class MhController {
 		mhReport.setMhrInfoDate(tsDate);
 		mhReport.setMhrAddFile(FileName);
 		int result = service.mhrInsert(mhReport);
-		System.out.println("글추가"+result);
+		logger.debug("글추가"+result);
 		return "redirect:mhrSelectList";
 	}
 	// 실종자 정보 수정화면 이동
@@ -150,7 +152,7 @@ public class MhController {
 										@RequestParam(value="mhrAddFile",required=false)MultipartFile file, String mhrInfoDate) throws IOException {
 		MhReport mhReport = new MhReport();
 		String tempDate = mhrInfoDate + " 00:00:00";
-		System.out.println(tempDate);
+		logger.debug(tempDate);
 		Timestamp temp = Timestamp.valueOf(tempDate);
 		mhReport.setMhrNo(mhrNo);
 		mhReport.setMhrTitle(mhrTitle);
@@ -173,16 +175,16 @@ public class MhController {
 		String FileName = gm.addFile(request, file);
 		mhReport.setMhrAddFile(FileName);
 		int tmp = service.mhrUpdate(mhReport);
-		System.out.println("수정 결과:"+tmp);
+		logger.debug("수정 결과:"+tmp);
 		
 		return "redirect:mhrSelectList";
 	}
 	// 실종자 정보 게시글 삭제 프로세스
 	@RequestMapping("/mhrDeleteProcess")
 	public String mhrDeleteProcess(int mhrNo) {
-		System.out.println("딜리트:"+mhrNo);
+		logger.debug("딜리트:"+mhrNo);
 		int tmp = service.mhrDelete(mhrNo);
-		System.out.println("삭제 결과:"+tmp);
+		logger.debug("삭제 결과:"+tmp);
 		return "redirect:mhrSelectList";
 	}
 	
@@ -197,13 +199,15 @@ public class MhController {
 		int pageGroup = 10;
 		//페이지 총 게시글의 수
 		int listCount = mhfService.mhfSelectListCount(type, keyword);
-		System.out.println("listCount:"+listCount);
+		logger.debug("listCount:"+listCount);
 		Map<String, Object> mhfMap = gm.pageList(listCount, pageSize, pageGroup, pageNum, type, keyword);
 		int startRow = (int) mhfMap.get("startRow");
 		List<MhFind> mhfList = mhfService.mhfSelectList(startRow, pageSize, type, keyword);
 		mhfMap.put("mhfList", mhfList);
 		mhfMap.put("listCount", listCount);
 		mhfMap.put("pageGroup", pageGroup);
+		mhfMap.put("type", type);
+		mhfMap.put("keyword", keyword);
 		model.addAllAttributes(mhfMap);
 		return "mh/mhFindView/mhfSelectListView";
 	}
@@ -242,7 +246,7 @@ public class MhController {
 		mhfind.setMhfRegDate(mhfRegDate);
 		mhfind.setMmNo(mmNo);
 		int result = mhfService.mhfInsert(mhfind);
-		System.out.println("실종자 목격 게시판 등록"+result);
+		logger.debug("실종자 목격 게시판 등록"+result);
 		
 		return "redirect:mhfSelectList";
 	}
@@ -267,12 +271,12 @@ public class MhController {
 		mhfind.setmhfGen(mhfGen);
 		mhfind.setMhfSecretYn(mhfSecretYn);
 		mhfind.setMhfNo(mhfNo);
-		System.out.println(mhfInfoDate);
+		logger.debug(mhfInfoDate);
 		mhfind.setMhfInfoDate(tmp);
 		String FileName = gm.addFile(request, file);
 		mhfind.setMhfAddFile(FileName);
 		int result = mhfService.mhfUpdate(mhfind);
-		System.out.println("목격 게시판 수정:"+result);
+		logger.debug("목격 게시판 수정:"+result);
 	
 		return "redirect:mhfSelectList";
 	}
@@ -280,7 +284,7 @@ public class MhController {
 	@RequestMapping("/mhfDeleteProcess")
 	public String mhfDeleteProcess(int mhfNo) {
 		int result = mhfService.mhfDelete(mhfNo);
-		System.out.println("삭제프로세스:"+result);
+		logger.debug("삭제프로세스:"+result);
 		return "redirect:mhfSelectList";
 	}
 
@@ -289,7 +293,7 @@ public class MhController {
 	@ResponseBody
 	public List<MhFindComm> mhfComInsert(MhFindComm mhfCom) {
 		int result = mhfCommService.mhfcInsert(mhfCom);
-		System.out.println("댓글쓰기결과:"+result);
+		logger.debug("댓글쓰기결과:"+result);
 		return mhfCommService.mhfcSelectList(mhfCom.getMhfNo());
 	}
 	
@@ -297,11 +301,11 @@ public class MhController {
 	@RequestMapping("/mhfcUpdate")
 	@ResponseBody
 	public List<MhFindComm> mhfComUpdate(MhFindComm mhfCom){
-		System.out.println("getMhfComNo : "+mhfCom.getMhfComNo());
-		System.out.println("getMhfComContent : "+mhfCom.getMhfComContent());
+		logger.debug("getMhfComNo : "+mhfCom.getMhfComNo());
+		logger.debug("getMhfComContent : "+mhfCom.getMhfComContent());
 		
 		int result = mhfCommService.mhfcUpdate(mhfCom);
-		System.out.println("댓글 수정:"+result);
+		logger.debug("댓글 수정:"+result);
 		return mhfCommService.mhfcSelectList(mhfCom.getMhfNo());
 	}
 	
@@ -310,7 +314,7 @@ public class MhController {
 	@ResponseBody
 	public List<MhFindComm> mhfcDelete(MhFindComm mhfCom) {
 		int result = mhfCommService.mhfcDelete(mhfCom);
-		System.out.println("댓글삭제:"+result);
+		logger.debug("댓글삭제:"+result);
 		return mhfCommService.mhfcSelectList(mhfCom.getMhfNo());
 	}
 	
