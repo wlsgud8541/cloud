@@ -13,4 +13,6 @@ public interface MainService {
 	public List<MhFind> mainMhfList();
 	//메인 반려동물 목격
 	public List<MpFind> mainMpfList();
+	// 메인 통합검색
+	public List<Object> uSearch(String type, String keyword);
 }

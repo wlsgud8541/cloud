@@ -42,4 +42,11 @@ public class MainDaoImpl implements MainDao {
 		paramMap.put("pageSize", 6);
 		return sql.selectList("MpFind.mpfSelectList",paramMap);
 	}
+	@Override
+	public List<Object> mainUsearch(String type, String keyword) {
+		HashMap<String, Object> search = new HashMap<String, Object>();
+		search.put("type", type);
+		search.put("keyword", keyword);
+		return sql.selectList("MhReport.uSearch",search);
+	}
 }

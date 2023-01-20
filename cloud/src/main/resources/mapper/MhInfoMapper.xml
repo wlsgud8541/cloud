@@ -8,19 +8,171 @@
 		<result property="mhiAlldressingDscd" column="mhiAlldressingDscd"/>
 		<result property="mhiAgeNow" column="mhiAgeNow"/>
 		<result property="mhiAge" column="mhiAge"/>
-		<result property="mhiWritingTrgetDscd" column="mhiWritingTrgetDscd"/>
+		<result property="mhiWritngTrgetDscd" column="mhiWritngTrgetDscd"/>
 		<result property="mhiSexdstnDscd" column="mhiSexdstnDscd"/>
 		<result property="mhiOccrAres" column="mhiOccrAres"/>
 		<result property="mhiNm" column="mhiNm"/>
 		<result property="mhiTknphotolength" column="mhiTknphotolength"/>
 		<result property="mhiBdwgh" column="mhiBdwgh"/>
 	</resultMap>
+	<select id="mhInfoSelect" resultType="MhInfo" parameterType="hashMap">
+		SELECT rNum
+        ,mhiNo
+         ,mhiOccrde
+                   ,mhiAlldressingDscd
+                   ,mhiAgeNow
+                   ,mhiAge
+                   ,mhiWritngTrgetDscd
+                   ,mhiSexdstnDscd
+                   ,mhiOccrAres
+                   ,mhiNm
+                   ,mhiTknphotolength
+                   ,mhiBdwgh
+                   ,mhiMsspsnIdntfccd
+FROM (SELECT rownum as rNum
+            ,mhiNo
+            ,mhiOccrde
+                   ,mhiAlldressingDscd
+                   ,mhiAgeNow
+                   ,mhiAge
+                   ,mhiWritngTrgetDscd
+                   ,mhiSexdstnDscd
+                   ,mhiOccrAres
+                   ,mhiNm
+                   ,mhiTknphotolength
+                   ,mhiBdwgh
+                   ,mhiMsspsnIdntfccd
+        FROM(SELECT mhiNo
+                   ,mhiOccrde
+                   ,mhiAlldressingDscd
+                   ,mhiAgeNow
+                   ,mhiAge
+                   ,mhiWritngTrgetDscd
+                   ,mhiSexdstnDscd
+                   ,mhiOccrAres
+                   ,mhiNm
+                   ,mhiTknphotolength
+                   ,mhiBdwgh
+                   ,mhiMsspsnIdntfccd
+              FROM
+                mhinfo
+             ORDER BY 
+                mhiOccrde DESC)
+                    )
+WHERE
+    rNum BETWEEN #{startRow} AND #{startRow} + #{pageSize} -1
+	</select>
 	<insert id = "mhInfoInsert" parameterType="MhInfo">
 	INSERT INTO
-		mhinfo
-	VALUES(#{mhiNo}, #{mhiOccrde, jdbcType=VARCHAR}, #{mhiAlldressingDscd, jdbcType=VARCHAR}, #{mhiAgeNow, jdbcType=VARCHAR}, #{mhiAge, jdbcType=VARCHAR}, #{mhiWritingTrgetDscd, jdbcType=VARCHAR},
-				#{mhiSexdstnDscd, jdbcType=VARCHAR}, #{mhiOccrAres, jdbcType=VARCHAR}, #{mhiNm, jdbcType=VARCHAR}, #{mhiTknphotolength, jdbcType=VARCHAR}, #{mhiBdwgh, jdbcType=VARCHAR})
+					mhinfo(mhiNo, 
+					mhiOccrde, 
+					mhiAlldressingDscd, 
+					mhiAgeNow, 
+					mhiAge, 
+					mhiWritngTrgetDscd
+					,mhiSexdstnDscd
+					, mhiOccrAres
+					, mhiNm
+					, mhiTknphotolength
+					, mhiBdwgh,
+					 mhiMsspsnIdntfccd
+					 )
+	VALUES(MHINFO_SEQ.nextval, 
+				#{mhiOccrde, jdbcType=VARCHAR}, 
+				#{mhiAlldressingDscd, jdbcType=VARCHAR}, 
+				#{mhiAgeNow, jdbcType=VARCHAR},
+				 #{mhiAge, jdbcType=VARCHAR}, 
+				 #{mhiWritngTrgetDscd, jdbcType=VARCHAR},
+				#{mhiSexdstnDscd, jdbcType=VARCHAR}, 
+				#{mhiOccrAres, jdbcType=VARCHAR}, 
+				#{mhiNm, jdbcType=VARCHAR}, 
+				#{mhiTknphotolength, jdbcType=VARCHAR}, 
+				#{mhiBdwgh, jdbcType=VARCHAR}
+				,#{mhiMsspsnIdntfccd, jdbcType=CHAR})
 	</insert>
+<select id ="lastIndex" resultType="MhInfo" parameterType="hashMap">
+SELECT      
+        rownum as rno        
+        ,mhiNo
+        ,mhiOccrde
+       ,mhiAlldressingDscd
+       ,mhiAgeNow
+       ,mhiAge
+       ,mhiWritngTrgetDscd
+       ,mhiSexdstnDscd
+       ,mhiOccrAres
+       ,mhiNm
+       ,mhiTknphotolength
+       ,mhiBdwgh
+       ,mhiMsspsnIdntfccd
+FROM
+	    (
+	        SELECT
+	        	mhiNo
+	             ,mhiOccrde
+                   ,mhiAlldressingDscd
+                   ,mhiAgeNow
+                   ,mhiAge
+                   ,mhiWritngTrgetDscd
+                   ,mhiSexdstnDscd
+                   ,mhiOccrAres
+                   ,mhiNm
+                   ,mhiTknphotolength
+                   ,mhiBdwgh
+                   ,mhiMsspsnIdntfccd
+	        FROM    
+	            mhinfo
+	        ORDER BY
+	            updateday ASC
+	    )
+WHERE
+	rownum = 1
+</select>
+<insert id="mhiBackup" parameterType="hashMap">
+ begin
+	insert into tmpmhinfo
+	select mhiNo
+			, mhiOccrde
+			, mhiAlldressingDscd
+			, mhiAgeNow
+			, mhiAge
+			, mhiWritngTrgetDscd
+			, mhiSexdstnDscd
+			, mhiOccrAres
+			, mhiNm
+			, mhiTknphotolength
+			, mhiBdwgh
+			, mhiMsspsnIdntfccd
+			, tableType
+			, updateDay  
+	from mhinfo;
+	delete from mhinfo;
+end; 
+</insert>
+<delete id="deleteMhi" parameterType="MhInfo">
+	delete from mhinfo
+</delete>
+<select id="updateday" resultType="String">
+	SELECT
+	    updateDay
+	FROM
+	    (
+	    SELECT
+	        updateDay
+	    FROM
+	        mhinfo
+	    ORDER BY
+	        updateDay DESC
+	    )
+	WHERE
+	    rownum = 1
+</select>
+<select id="mhiCount" resultType="int">
+SELECT
+	count(mhiNo)
+FROM
+	mhinfo
+</select>
 </mapper>
 
 

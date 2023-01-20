@@ -2,29 +2,37 @@ package com.project.cloud.mh.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.cloud.gm.service.GlobalMethodService;
+import com.project.cloud.mh.dao.MhInfoDao;
 import com.project.cloud.mh.domain.MhFind;
 import com.project.cloud.mh.domain.MhFindComm;
+import com.project.cloud.mh.domain.MhInfo;
 import com.project.cloud.mh.domain.MhReport;
 import com.project.cloud.mh.service.MhFindCommService;
 import com.project.cloud.mh.service.MhFindService;
 import com.project.cloud.mh.service.MhInfoService;
 import com.project.cloud.mh.service.MhReportService;
+
 
 @Controller
 public class MhController {
@@ -32,7 +40,8 @@ public class MhController {
 	// 공통 메소드 서비스 주입
 	@Autowired
 	private GlobalMethodService gm;
-	
+	@Autowired
+	MhInfoDao mhiDao;
 	// 실종자 게시판 service 어노테이션 주입
 	@Autowired
 	private MhReportService service;
@@ -198,7 +207,7 @@ public class MhController {
 		model.addAllAttributes(mhfMap);
 		return "mh/mhFindView/mhfSelectListView";
 	}
-	// 실종자 목겨 게시판 상세화면 뷰
+	// 실종자 목격 게시판 상세화면 뷰
 	@RequestMapping("/mhfDetailView")
 	public String mhfDetailView(int mhfNo, 
 								@RequestParam(value="pageNum",required=false,defaultValue="1")int pageNum, Model model) {
@@ -308,11 +317,51 @@ public class MhController {
 	
 	// 실종자 정보 게시판 api
 	
-	@RequestMapping("/mhInfoData")
-	public String mhInfoList(Model model)throws IOException, ParseException {
-		 Map<String, Object> map = mhiService.mhiSelectList();
-		 model.addAttribute("jMap",map);
-		return "mh/mhInfoView/mhiDetailView";
+	@RequestMapping("/mhInfo")
+	public String mhInfoList(Model model,
+										@RequestParam(value="pageNum",required=false, defaultValue="1") int pageNum,
+										@RequestParam(value="keyword", required=false, defaultValue="null") String keyword,
+										@RequestParam(value="type",required=false, defaultValue="null") String type)throws IOException, ParseException, java.text.ParseException {
+		int pageGroup = 10;
+		int pageSize = 10;
+		int currentPage = pageNum;
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int pageCnt = 1;
+		
+//		HashMap<String, Object> jsonobj = new ObjectMapper().readValue(
+//				mhiService.mhiSelectList(startRow, pageSize, type, keyword, pageCnt).get("jsonobj").toString(), HashMap.class);
+		
+		
+		int totalCount = mhiService.mhiCount();
+		
+		Map<String, Object> mapList = gm.pageList(totalCount, pageSize, pageGroup, pageNum, type, keyword);
+		
+		List<MhInfo> mhiList = mhiService.mhiSelectList(startRow, pageSize, type, keyword, pageCnt);
+		mapList.put("jMap", mhiList);
+		mapList.put("pagegroup", pageGroup);
+		mapList.put("listCount", totalCount);
+		model.addAllAttributes(mapList);
+		 
+		return "mh/mhInfoView/mhiSelectList";
 	}
-
+	@Scheduled(cron="0 0/5 * * * ?")
+//	@Scheduled(cron="0/10 * * * * ?")
+	public void mhiScheduler() throws IOException, ParseException {
+		
+		int pageCnt = 1;
+		mhiService.mhinfoBackup();
+		Map<String, Object> map = new HashMap<String, Object>();
+		boolean flag = true;
+		do {
+			map = mhiService.mhiScheduler(pageCnt);
+			Map<String, Object> tempMap = (HashMap<String, Object>) map.get("jsonobj");
+			List list = (List)tempMap.get("list");
+			
+			if (list.size() == 0) {
+				flag = false;
+			}else {
+				pageCnt++;
+			}
+		} while (flag);
+	}
 } 

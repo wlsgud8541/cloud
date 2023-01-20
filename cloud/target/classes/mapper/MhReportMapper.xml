@@ -153,4 +153,57 @@ WHERE
 	WHERE
 		mhrNo = #{mhrNo}
 	</update>
+	<!-- 통합검색 -->
+	<select id="uSearch" resultType="Object">
+	SELECT
+    rno, searchNo, searchTitle, searchContent, searchTableType, searchRegdate, searchWriter
+	FROM
+	    (SELECT
+	        rownum as rno, search.no as searchNo, search.title as searchTitle, search.content as searchContent, search.tableType as searchTableType, search.regdate as searchRegdate, search.writer as searchWriter
+	    FROM
+	        (SELECT
+	             mhf.mhfNo as no, mhf.mhfTitle as title, mhf.mhfContent as content, mhf.tableType as tableType, mhf.mhfRegDate as regdate, mhf.mhfWriter as writer
+	        FROM
+	            mhfind mhf
+	        UNION ALL
+	        SELECT
+	            mhr.mhrNo as no, mhr.mhrTitle as title, mhr.mhrContent as content, mhr.tableType as tableType, mhr.mhrRegDate as regdate, mhr.mhrWriter as writer
+	        FROM
+	            mhreport mhr
+	        UNION ALL
+	        SELECT
+	            mn.mnNo as no, mn.mnTitle as title, mn.mnContent as content, mn.tableType as tabletype, mn.mnRegDate as regdate, mn.mnWriter as writer
+	        FROM
+	            mnotice mn
+	        UNION ALL
+	        SELECT
+	            mq.mqNo as no, mq.mqTitle as title, mq.mqContent as content, mq.tableType as tableType, mq.mqRegDate as regdate, mq.mqWriter as writer
+	        FROM
+	            mqna mq
+	        UNION ALL
+	        SELECT
+	            mpf.mpfNo as no, mpf.mpfTitle as title, mpf. mpfContent as content, mpf.tableType as tableType, mpf.mpfRegDate as regdate, mpf.mpfWriter as writer
+	        FROM
+	            mpfind mpf
+	        UNION ALL
+	        SELECT
+	            mpp.mppNo as no, mpp.mppTitle as title, mpp.mppContent as content, mpp.tableType as tableType, mpp.mppRegDate as regdate, mpp.mppwriter as writer
+	        FROM
+	            mpprotect mpp
+	        UNION ALL
+	        SELECT
+	            mpr.mprNo as no, mpr.mprTitle as title, mpr.mprContent as content, mpr.tableType as tableType, mpr.mprRegDate as regdate, mpr.mprWriter as writer
+	        FROM
+	            mpreport mpr
+	        UNION ALL
+	        SELECT
+	            mre.mreNo as no, mre.mreTitle as title, mre.mreContent as content, mre.tableType as tableType, mre.mreRegDate as regdate, mre.mreWriter as writer
+	        FROM
+	            mrequest mre
+	        ORDER BY
+	            tableType asc, regdate desc, no desc) search
+	    WHERE
+	    	 search.title LIKE '%'||'#{keyword}'||'%' or search.content LIKE '%'||'#{keyword}'||'%' or search.regdate LIKE '%'||'#{keyword}'||'%'
+        or search.writer LIKE '%'||'#{keyword}'||'%')
+	</select>
 </mapper>

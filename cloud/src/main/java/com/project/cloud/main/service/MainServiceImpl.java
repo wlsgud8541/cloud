@@ -30,5 +30,11 @@ public class MainServiceImpl implements MainService {
 	public List<MpFind> mainMpfList() {
 		return mainDao.mainMpfList();
 	}
+
+	@Override
+	public List<Object> uSearch(String type, String keyword) {
+		
+		return mainDao.mainUsearch(type, keyword);
+	}
 	
 }

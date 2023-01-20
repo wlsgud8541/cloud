@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.cloud.cs.domain.Mnotice;
 import com.project.cloud.main.service.MainService;
@@ -33,5 +34,12 @@ public class MainController {
 		return "main/mainView";
 	}
 	
-
+	@RequestMapping("search")
+	public String mainUsearch(Model model, 
+											@RequestParam(value="type",required=false,defaultValue="null")String type,
+											@RequestParam(value="keyword",required=false,defaultValue="null")String keyword) {
+		List<Object> searchList = mainService.uSearch(type, keyword);
+		model.addAttribute("searchList",searchList);
+		return "main/searchView";
+	}
 }
