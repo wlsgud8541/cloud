@@ -4,28 +4,75 @@ $(document).ready(function(){
 	var arrLinePath = []; // 라인 정보
 	var latitude = ""; // 위도
 	var longitude = ""; // 경도
-
-	if(latitude == ""){
-		kakaoMapApi(latitude, longitude);
-	};
+	var locationArr = []; // 좌표로 주소 찾기용 배열
+	var sessionCheck = $("#realTimeMmNo").val(); // 세션 체크
 	
-	//var test = 0.001; // 마커 테스트
+	
+	if(sessionCheck != null && sessionCheck != ''){
+		var mmNo = $("#realTimeMmNo").val();
+		$.ajax({
+			url : "realTimeMhInfoAjax",
+			type : "POST",
+			data : {
+					 mmNo : mmNo,
+				   },
+			datatype : "json",
+			success : function(result){
+			
+				if(result.length == 0){
+					kakaoMapApi(latitude, longitude);
+				}
+			
+				if(result.length > 0){
+					for(var i = 0; i < result.length; i++){
+					
+					latitude = result[i].rthLatitude;   // 위도 값
+					longitude = result[i].rthLongitude; // 경도 값
+								
+					// 마커 위치 정보
+					var defaultPositions = {
+							title : '1',
+							latlng : new kakao.maps.LatLng(latitude, longitude)
+						}; 
+					
+					// 라인 좌표 정보
+					var defaultLinePath = new kakao.maps.LatLng(latitude, longitude);
+					
+					// 마커 위치 정보 배열로 저장			
+					arrPositions.push(defaultPositions);		
+					arrLinePath.push(defaultLinePath);
+					}	
+					kakaoMapApi(result[0].rthLatitude, result[0].rthLongitude, arrPositions, arrLinePath);
+				}
+			},
+			error : function(){
+				alert("위치 등록 중 문제가 발생했습니다. 관리자에 문의 부탁드립니다.");
+			}
+		});
+	}
+	
+	
+	var test = 0.0005;
 	
 	// Geolocation API 위치 확인
 	$("#locationCheck").on("click",function(){
+		
+		if(sessionCheck == null || sessionCheck == ''){
+			alert("로그인 후 해당 기능을 사용하실 수 있습니다.");
+			return false;
+		}
+	
+	
 		//참조 사이트 : https://www.zerocho.com/category/HTML&DOM/post/59155228a22a5d001827ea5d
 		if(navigator.geolocation){
 			navigator.geolocation.getCurrentPosition(function(position){
 				
 				latitude = position.coords.latitude;   // 위도 값
 				longitude = position.coords.longitude; // 경도 값
-				
-				// 마커 테스트
-				/*
-				latitude = latitude + test;
-				longitude = longitude + test;
-				test = test + 0.001;
-				*/
+
+				//latitude = latitude + test;
+				//longitude = longitude + test;
+				//test = test+0.0005;
 								
 				// 마커 위치 정보
 				var positions = {
@@ -38,10 +85,22 @@ $(document).ready(function(){
 				
 				// 마커 위치 정보 배열로 저장			
 				arrPositions.push(positions);			
+			
 				// 라인 좌표 정보 배열로 저장
 				arrLinePath.push(linePath);
-
+				
+				
+				console.log("arrPositions2222 : "+arrPositions);
+				console.log("arrLinePath2222 : "+arrLinePath);
+				
+				
 				kakaoMapApi(latitude, longitude, arrPositions, arrLinePath);
+				
+				// 해당 위치주소 가져오기
+				var locationInfo = {latitude,longitude}; // 좌표 배열로 저장
+				locationArr.push(locationInfo); // 배열에 좌표배열 저장
+				callBackAddr(locationArr,latitude,longitude); // 함수호출
+				
 			},
 			function(error){
 				console.error(error);
@@ -72,6 +131,7 @@ $(document).ready(function(){
 				level : 3
 			};
 			var map = new kakao.maps.Map(container, options);
+			
 		}
 		
 		if(latitude != ""){
@@ -87,6 +147,7 @@ $(document).ready(function(){
 	// kakao 지도 Marker API
 	// 참조 사이트 : https://apis.map.kakao.com/web/sample/multipleMarkerImage/
 	function kakaoMapMarkerApi(arrPositions, map, arrLinePath){
+		
 		var markerImg = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 		var imgSize = new kakao.maps.Size(24, 35); 				        // 마커 이미지 크기
 		var markerImg = new kakao.maps.MarkerImage(markerImg, imgSize); // 마커 이미지 생성
@@ -112,5 +173,62 @@ $(document).ready(function(){
 		
 		// 지도에 선 그리기
 		mapLineInfo.setMap(map);
+	}
+	
+	// 좌표로 주소 가져오기
+	var geocoder = new kakao.maps.services.Geocoder();
+	var addr = '';
+	var addrArr = [];
+	function callBackAddr(locationArr,latitudeData,longitudeData){
+		addrArr = [];
+		for(var i = 0; i < locationArr.length; i++ ){
+			searchDetailAddrFromCoords(locationArr[i].longitude,locationArr[i].latitude, function(result, status) {
+		        if (status === kakao.maps.services.Status.OK) {
+					rthPlace = !!result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name;
+					addrArr.push(rthPlace);
+		        }
+		        if (addrArr.length == locationArr.length){
+		        	var mmNo = $("#realTimeMmNo").val();
+		        	var strAddr = addrArr[addrArr.length-1];
+		        	
+		        	console.log("strAddr : " + strAddr);
+		        	 
+					$.ajax({
+						url : "realTimeInfoData",
+						type : "POST",
+						data : {
+								 mmNo : mmNo,
+								 strAddr : strAddr,
+								 latitude : latitudeData,
+								 longitude : longitudeData
+							   },
+						datatype : "json",
+						success : function(result){
+							console.log(result);
+							
+							var tag = "";
+							for(var i = 0; i < result.length; i++){
+								tag += "<tr>";
+								tag += "<td>"+result[i].rthPlace+"</td>";
+								tag += "<td>"+result[i].rthRegTime+"</td>";
+								tag += "</tr>";
+							}
+							
+							$(".realTimeInfos").empty();
+							$(".realTimeInfos").append(tag);
+							
+						},
+						error : function(){
+							alert("위치 등록 중 문제가 발생했습니다. 관리자에 문의 부탁드립니다.");
+						}
+					});
+		        }
+		    });
+		}
+
+	    // 좌표로 법정동 상세 주소 정보를 요청합니다
+		function searchDetailAddrFromCoords(longitude,latitude, callback) {
+		    geocoder.coord2Address(longitude, latitude, callback);
+		}
 	}
 });

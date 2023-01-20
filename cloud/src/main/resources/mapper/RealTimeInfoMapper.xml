@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="RealTime">
+	<resultMap type="RealTime" id="RealTime">
+		<id property="rthNo" column="rthNo"/>
+		<id property="rtpNo" column="rtpNo"/>
+		<result property="mmNo" column="mmNo"/>
+		<result property="rthPlace" column="rthPlace"/>
+		<result property="rthRegTime" column="rthRegTime"/>
+		<result property="rthRegDate" column="rthRegDate"/>
+		<result property="rtpPlace" column="rtpPlace"/>
+		<result property="rtpRegTime" column="rtpRegTime"/>
+		<result property="rtpRegDate" column="rtpRegDate"/>
+	</resultMap> 
+	
+	<insert id="realTimeInfoDataInsert" parameterType="hashmap">
+		    INSERT INTO realTimeMhInfo (rthNo
+		                               ,mmNo
+		                               ,rthPlace
+		                               ,rthLatitude
+		                               ,rthLongitude)
+		    VALUES(
+		    	     REALTIMEINFO_MH_SEQ.NEXTVAL
+		           , #{mmNo}
+		           , #{strAddr}
+		           , #{latitude}
+		           , #{longitude}
+		           )
+	</insert>
+	
+	<select id="realTimeInfoData" resultType="RealTime" parameterType="String">
+			SELECT rthNo
+				  ,mmNo
+				  ,rthPlace
+				  ,rthRegTime
+				  ,rthRegDate
+				  ,rthLatitude
+				  ,rthLongitude
+			FROM realTimeMhInfo
+			WHERE mmNo = #{mmNo}
+			  AND rthRegDate = TO_CHAR(SYSTIMESTAMP, 'yyyy-MM-dd') 	  
+			ORDER BY rthNo DESC  
+	</select>
+	
+</mapper>
+
+
