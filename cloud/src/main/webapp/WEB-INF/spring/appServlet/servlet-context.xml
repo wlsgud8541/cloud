@@ -45,8 +45,6 @@
 	<view-controller path="/mpfInsert" view-name="/mp/mpFindView/mpfInsertView"/>
 	<!-- 반려동물 임시보호 게시판 등록화면 뷰 이동 -->
 	<view-controller path="/mppInsert" view-name="/mp/mpProtectView/mppInsertView"/>
-	<!-- 실종 예방 실시간 동선체크(반려동물) -->
-	<view-controller path="/realTimeMpInfo" view-name="/realTimeInfo/realTimeMpInfo"/>
 	<!-- 소개 페이지 -->
 	<view-controller path="/introduceSiteView" view-name="/customerSupportView/introduceSupportView/introduceSiteView"/>
 	<!-- 관련 사이트 -->
@@ -65,6 +63,9 @@
 			<mapping path="/*ModifyProcess"/>
 			<mapping path="/*Delete"/>
 			<mapping path="/*DeleteProcess"/>
+			<mapping path="/*DeleteProcess"/>
+			<mapping path="/realTimeMhInfo"/>
+			<mapping path="/realTimeMpInfo"/>
 			<beans:ref bean="globalInterceptor"/>
 		</interceptor>		
 	</interceptors>
