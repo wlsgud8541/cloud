@@ -33,7 +33,7 @@
 
 			<c:forEach var="mqList" items="${mQnaList}" >
 				<div class="row mt-3 border rounded-4">
-					<div class="col">
+					<div class="col"> 
 						<div class="row bg-light p-2 rounded-4">
 							<div class="mqTilte col pt-3 pb-2" id="mqTilte${mqList.mqNo}" data-mqNo="${mqList.mqNo}">
 								<span class="member" id="beforeTitle${mqList.mqNo}">${mqList.mqTitle}</span>
