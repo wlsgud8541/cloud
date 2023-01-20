@@ -344,8 +344,7 @@ public class MhController {
 		 
 		return "mh/mhInfoView/mhiSelectList";
 	}
-	@Scheduled(cron="0 0/5 * * * ?")
-//	@Scheduled(cron="0/10 * * * * ?")
+	@Scheduled(cron="0 0 0/1 * * *")
 	public void mhiScheduler() throws IOException, ParseException {
 		
 		int pageCnt = 1;
