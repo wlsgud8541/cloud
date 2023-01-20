@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=edab573809fed3c259c4cef10f07faec"></script> -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=edab573809fed3c259c4cef10f07faec&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="resources/js/realTimeInfo.js"></script>
@@ -27,13 +28,16 @@
 		<div class="col my-5">
 			<table class="table table-hover text-center shadow-sm">
 				<tr class="table-dark">
+					<th>번호</th>
 					<th>주소</th>
 					<th>시간</th>
 				</tr>	
 				<tbody class="realTimeInfos">
 					<c:if test="${not empty rtList}">
-						<c:forEach var="rtList" items="${rtList}">
+						<c:set var="rLength" value="${fn:length(rtList)}" />
+						<c:forEach var="rtList" items="${rtList}" varStatus="status">
 							<tr>
+								<td>${rLength - status.index}</td>
 								<td>${rtList.rthPlace}</td>
 								<td>${rtList.rthRegTime}</td>
 							</tr>
@@ -46,6 +50,4 @@
 			</div>
 		</div>
 	</div>			
-	
-	
 </div>

@@ -33,34 +33,77 @@ public class RealTimeController {
 		
 		List<RealTime> rtList = new ArrayList<RealTime>();
 		//조회
-		rtList = rtService.realTimeInfoData(mmNo);
+		rtList = rtService.realTimeMhInfo(mmNo);
 		model.addAttribute("rtList", rtList);
 		
 		return "/realTimeInfo/realTimeMhInfo";
 	}
-
+	
 	@RequestMapping("realTimeMhInfoAjax")
 	@ResponseBody
 	public List<RealTime> realTimeMhInfoAjax(String mmNo){
 		List<RealTime> rtList = new ArrayList<RealTime>();
-		rtList = rtService.realTimeInfoData(mmNo);
+		rtList = rtService.realTimeMhInfo(mmNo);
 		
 		return rtList;
 	}
 	
-	@RequestMapping("realTimeInfoData")
+	@RequestMapping("/realTimeMfInfoDataInsert")
 	@ResponseBody
-	public List<RealTime> realTimeInfoData(String mmNo, String strAddr, String latitude, String longitude){
+	public List<RealTime> realTimeMfInfoDataInsert(String mmNo, String strAddr, String latitude, String longitude){
 		
 		List<RealTime> rtList = new ArrayList<RealTime>();
 		logger.debug("데이터 전송 테스트");
 		logger.debug("mmNo : " + mmNo);
 		logger.debug("strAddr : "+strAddr);
 		//추가
-		int result = rtService.realTimeInfoDataInsert(mmNo,strAddr,latitude,longitude);
+		int result = rtService.realTimeMfInfoDataInsert(mmNo,strAddr,latitude,longitude);
 		//조회
-		rtList = rtService.realTimeInfoData(mmNo);
+		rtList = rtService.realTimeMhInfo(mmNo);
 		
 		return rtList;
 	}
+
+	
+	@RequestMapping("/realTimeMpInfo")
+	public String realTimeMpInfo(Model model, HttpSession session){
+		Object sessionMmNo = session.getAttribute("mmNo");
+		String mmNo = sessionMmNo.toString();
+		
+		logger.debug("mmNo : "+mmNo);
+		
+		List<RealTime> rtList = new ArrayList<RealTime>();
+		//조회
+		rtList = rtService.realTimeMpInfo(mmNo);
+		model.addAttribute("rtList", rtList);
+		
+		return "/realTimeInfo/realTimeMpInfo";
+	}
+	
+	@RequestMapping("realTimeMpInfoAjax")
+	@ResponseBody
+	public List<RealTime> realTimeMpInfoAjax(String mmNo){
+		List<RealTime> rtList = new ArrayList<RealTime>();
+		rtList = rtService.realTimeMpInfo(mmNo);
+		
+		return rtList;
+	}
+	
+	@RequestMapping("/realTimeMpInfoDataInsert")
+	@ResponseBody
+	public List<RealTime> realTimeMpInfoDataInsert(String mmNo, String strAddr, String latitude, String longitude){
+		
+		List<RealTime> rtList = new ArrayList<RealTime>();
+		logger.debug("데이터 전송 테스트");
+		logger.debug("mmNo : " + mmNo);
+		logger.debug("strAddr : "+strAddr);
+		//추가
+		int result = rtService.realTimeMpInfoDataInsert(mmNo,strAddr,latitude,longitude);
+		//조회
+		rtList = rtService.realTimeMpInfo(mmNo);
+		
+		return rtList;
+	}
+	
 }
+	

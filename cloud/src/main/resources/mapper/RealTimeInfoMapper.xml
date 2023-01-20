@@ -14,7 +14,7 @@
 		<result property="rtpRegDate" column="rtpRegDate"/>
 	</resultMap> 
 	
-	<insert id="realTimeInfoDataInsert" parameterType="hashmap">
+	<insert id="realTimeMfInfoDataInsert" parameterType="hashmap">
 		    INSERT INTO realTimeMhInfo (rthNo
 		                               ,mmNo
 		                               ,rthPlace
@@ -28,8 +28,23 @@
 		           , #{longitude}
 		           )
 	</insert>
+
+	<insert id="realTimeMpInfoDataInsert" parameterType="hashmap">
+		    INSERT INTO realTimeMpInfo (rtpNo
+		                               ,mmNo
+		                               ,rtpPlace
+		                               ,rtpLatitude
+		                               ,rtpLongitude)
+		    VALUES(
+		    	     REALTIMEINFO_MP_SEQ.NEXTVAL
+		           , #{mmNo}
+		           , #{strAddr}
+		           , #{latitude}
+		           , #{longitude}
+		           )
+	</insert>
 	
-	<select id="realTimeInfoData" resultType="RealTime" parameterType="String">
+	<select id="realTimeMhInfo" resultType="RealTime" parameterType="String">
 			SELECT rthNo
 				  ,mmNo
 				  ,rthPlace
@@ -41,6 +56,20 @@
 			WHERE mmNo = #{mmNo}
 			  AND rthRegDate = TO_CHAR(SYSTIMESTAMP, 'yyyy-MM-dd') 	  
 			ORDER BY rthNo DESC  
+	</select>
+
+	<select id="realTimeMpInfo" resultType="RealTime" parameterType="String">
+			SELECT rtpNo
+				  ,mmNo
+				  ,rtpPlace
+				  ,rtpRegTime
+				  ,rtpRegDate
+				  ,rtpLatitude
+				  ,rtpLongitude
+			FROM realTimeMpInfo
+			WHERE mmNo = #{mmNo}
+			  AND rtpRegDate = TO_CHAR(SYSTIMESTAMP, 'yyyy-MM-dd') 	  
+			ORDER BY rtpNo DESC  
 	</select>
 	
 </mapper>

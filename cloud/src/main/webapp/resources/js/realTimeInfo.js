@@ -6,54 +6,116 @@ $(document).ready(function(){
 	var longitude = ""; // 경도
 	var locationArr = []; // 좌표로 주소 찾기용 배열
 	var sessionCheck = $("#realTimeMmNo").val(); // 세션 체크
+	var beginNum = 0;
 	
+	var loc = window.location.href;
+	loc = loc.substring(loc.lastIndexOf('/')+1);
+	console.log(loc);
 	
-	if(sessionCheck != null && sessionCheck != ''){
-		var mmNo = $("#realTimeMmNo").val();
-		$.ajax({
-			url : "realTimeMhInfoAjax",
-			type : "POST",
-			data : {
-					 mmNo : mmNo,
-				   },
-			datatype : "json",
-			success : function(result){
+	if(loc == "realTimeMhInfo"){
+		if(sessionCheck != null && sessionCheck != ''){
+			var mmNo = $("#realTimeMmNo").val();
 			
-				if(result.length == 0){
-					kakaoMapApi(latitude, longitude);
+			$.ajax({
+				url : "realTimeMhInfoAjax",
+				type : "POST",
+				data : {
+						 mmNo : mmNo,
+					   },
+				datatype : "json",
+				success : function(result){
+				
+					if(result.length == 0){
+						kakaoMapApi(latitude, longitude);
+					}
+				
+					if(result.length > 0){
+						for(var i = 0; i < result.length; i++){
+						
+							latitude = result[i].rthLatitude;   // 위도 값
+							longitude = result[i].rthLongitude; // 경도 값
+							
+							beginNum = result.length-i;
+										
+							// 마커 위치 정보
+							var defaultPositions = {
+									title : beginNum,
+									latlng : new kakao.maps.LatLng(latitude, longitude)
+								}; 
+							
+							// 라인 좌표 정보
+							var defaultLinePath = new kakao.maps.LatLng(latitude, longitude);
+							
+							// 마커 위치 정보 배열로 저장			
+							arrPositions.push(defaultPositions);		
+							arrLinePath.push(defaultLinePath);
+						}
+						
+						beginNum=result.length;	
+						kakaoMapApi(result[0].rthLatitude, result[0].rthLongitude, arrPositions, arrLinePath);
+					}
+				},
+				error : function(){
+					alert("위치 등록 중 문제가 발생했습니다. 관리자에 문의 부탁드립니다.");
 				}
+			});
+		}
+	}
+	
+	if(loc == "realTimeMpInfo"){
+		if(sessionCheck != null && sessionCheck != ''){
+			var mmNo = $("#realTimeMmNo").val();
 			
-				if(result.length > 0){
-					for(var i = 0; i < result.length; i++){
-					
-					latitude = result[i].rthLatitude;   // 위도 값
-					longitude = result[i].rthLongitude; // 경도 값
-								
-					// 마커 위치 정보
-					var defaultPositions = {
-							title : '1',
-							latlng : new kakao.maps.LatLng(latitude, longitude)
-						}; 
-					
-					// 라인 좌표 정보
-					var defaultLinePath = new kakao.maps.LatLng(latitude, longitude);
-					
-					// 마커 위치 정보 배열로 저장			
-					arrPositions.push(defaultPositions);		
-					arrLinePath.push(defaultLinePath);
-					}	
-					kakaoMapApi(result[0].rthLatitude, result[0].rthLongitude, arrPositions, arrLinePath);
+			$.ajax({
+				url : "realTimeMpInfoAjax",
+				type : "POST",
+				data : {
+						 mmNo : mmNo,
+					   },
+				datatype : "json",
+				success : function(result){
+				
+					if(result.length == 0){
+						kakaoMapApi(latitude, longitude);
+					}
+				
+					if(result.length > 0){
+						for(var i = 0; i < result.length; i++){
+						
+							latitude = result[i].rtpLatitude;   // 위도 값
+							longitude = result[i].rtpLongitude; // 경도 값
+							
+							beginNum = result.length-i;
+										
+							// 마커 위치 정보
+							var defaultPositions = {
+									title : beginNum,
+									latlng : new kakao.maps.LatLng(latitude, longitude)
+								}; 
+							
+							// 라인 좌표 정보
+							var defaultLinePath = new kakao.maps.LatLng(latitude, longitude);
+							
+							// 마커 위치 정보 배열로 저장			
+							arrPositions.push(defaultPositions);		
+							arrLinePath.push(defaultLinePath);
+						}
+						
+						beginNum=result.length;	
+						kakaoMapApi(result[0].rtpLatitude, result[0].rtpLongitude, arrPositions, arrLinePath);
+					}
+				},
+				error : function(){
+					alert("위치 등록 중 문제가 발생했습니다. 관리자에 문의 부탁드립니다.");
 				}
-			},
-			error : function(){
-				alert("위치 등록 중 문제가 발생했습니다. 관리자에 문의 부탁드립니다.");
-			}
-		});
+			});
+		}
 	}
 	
 	
 	var test = 0.0005;
-	
+	var num = 1;
+	var num2 = 0;
 	// Geolocation API 위치 확인
 	$("#locationCheck").on("click",function(){
 		
@@ -67,18 +129,27 @@ $(document).ready(function(){
 		if(navigator.geolocation){
 			navigator.geolocation.getCurrentPosition(function(position){
 				
+				console.log("beginNum : "+beginNum);
+				
 				latitude = position.coords.latitude;   // 위도 값
 				longitude = position.coords.longitude; // 경도 값
 
 				//latitude = latitude + test;
 				//longitude = longitude + test;
 				//test = test+0.0005;
-								
+				
+				
+				if(beginNum > 1){
+					num2 = num+beginNum;
+					 
+				}				
+				
 				// 마커 위치 정보
 				var positions = {
-									title : '1',
+									title : num2,
 									latlng : new kakao.maps.LatLng(latitude, longitude)
 								}; 
+				num++;
 				
 				// 라인 좌표 정보
 				var linePath = new kakao.maps.LatLng(latitude, longitude);
@@ -193,35 +264,72 @@ $(document).ready(function(){
 		        	
 		        	console.log("strAddr : " + strAddr);
 		        	 
-					$.ajax({
-						url : "realTimeInfoData",
-						type : "POST",
-						data : {
-								 mmNo : mmNo,
-								 strAddr : strAddr,
-								 latitude : latitudeData,
-								 longitude : longitudeData
-							   },
-						datatype : "json",
-						success : function(result){
-							console.log(result);
-							
-							var tag = "";
-							for(var i = 0; i < result.length; i++){
-								tag += "<tr>";
-								tag += "<td>"+result[i].rthPlace+"</td>";
-								tag += "<td>"+result[i].rthRegTime+"</td>";
-								tag += "</tr>";
+		        	 
+		        	if(loc == "realTimeMhInfo"){
+						$.ajax({
+							url : "realTimeMfInfoDataInsert",
+							type : "POST",
+							data : {
+									 mmNo : mmNo,
+									 strAddr : strAddr,
+									 latitude : latitudeData,
+									 longitude : longitudeData
+								   },
+							datatype : "json",
+							success : function(result){
+								console.log(result);
+								
+								var tag = "";
+								for(var i = 0; i < result.length; i++){
+									tag += "<tr>";
+									tag += "<td>"+(result.length-i)+"</td>";
+									tag += "<td>"+result[i].rthPlace+"</td>";
+									tag += "<td>"+result[i].rthRegTime+"</td>";
+									tag += "</tr>";
+								}
+								
+								$(".realTimeInfos").empty();
+								$(".realTimeInfos").append(tag);
+								
+							},
+							error : function(){
+								alert("위치 등록 중 문제가 발생했습니다. 관리자에 문의 부탁드립니다.");
 							}
-							
-							$(".realTimeInfos").empty();
-							$(".realTimeInfos").append(tag);
-							
-						},
-						error : function(){
-							alert("위치 등록 중 문제가 발생했습니다. 관리자에 문의 부탁드립니다.");
-						}
-					});
+						});
+		        	}
+		        	if(loc == "realTimeMpInfo"){
+		        		$.ajax({
+							url : "realTimeMpInfoDataInsert",
+							type : "POST",
+							data : {
+									 mmNo : mmNo,
+									 strAddr : strAddr,
+									 latitude : latitudeData,
+									 longitude : longitudeData
+								   },
+							datatype : "json",
+							success : function(result){
+								console.log(result);
+								
+								var tag = "";
+								for(var i = 0; i < result.length; i++){
+									tag += "<tr>";
+									tag += "<td>"+(result.length-i)+"</td>";
+									tag += "<td>"+result[i].rtpPlace+"</td>";
+									tag += "<td>"+result[i].rtpRegTime+"</td>";
+									tag += "</tr>";
+								}
+								
+								$(".realTimeInfos").empty();
+								$(".realTimeInfos").append(tag);
+								
+							},
+							error : function(){
+								alert("위치 등록 중 문제가 발생했습니다. 관리자에 문의 부탁드립니다.");
+							}
+						});
+		        	}
+		        	
 		        }
 		    });
 		}

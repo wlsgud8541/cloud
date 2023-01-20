@@ -16,20 +16,35 @@ public class RealTimeServiceImpl implements RealTimeService{
 	private RealTimeDao rtDao;
 
 	@Override
-	public int realTimeInfoDataInsert(String mmNo, String strAddr,String latitude, String longitude) {
+	public int realTimeMfInfoDataInsert(String mmNo, String strAddr,String latitude, String longitude) {
 		HashMap<String, String> paramMap = new HashMap<String, String>();
 		paramMap.put("mmNo",mmNo);
 		paramMap.put("strAddr",strAddr);
 		paramMap.put("latitude",latitude);
 		paramMap.put("longitude",longitude);
 		
-		return rtDao.realTimeInfoDataInsert(paramMap);
+		return rtDao.realTimeMfInfoDataInsert(paramMap);
+	}
+
+	@Override
+	public int realTimeMpInfoDataInsert(String mmNo, String strAddr,String latitude, String longitude) {
+		HashMap<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("mmNo",mmNo);
+		paramMap.put("strAddr",strAddr);
+		paramMap.put("latitude",latitude);
+		paramMap.put("longitude",longitude);
+		
+		return rtDao.realTimeMpInfoDataInsert(paramMap);
 	}
 	
 	@Override
-	public List<RealTime> realTimeInfoData(String mmNo) {
-		
-		return rtDao.realTimeInfoData(mmNo);
+	public List<RealTime> realTimeMhInfo(String mmNo) {
+		return rtDao.realTimeMhInfo(mmNo);
+	}
+
+	@Override
+	public List<RealTime> realTimeMpInfo(String mmNo) {
+		return rtDao.realTimeMpInfo(mmNo);
 	}
 
 

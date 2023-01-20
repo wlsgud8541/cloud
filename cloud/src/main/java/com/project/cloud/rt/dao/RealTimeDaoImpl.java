@@ -20,13 +20,22 @@ public class RealTimeDaoImpl implements RealTimeDao{
 	}
 	
 	@Override
-	public int realTimeInfoDataInsert(HashMap<String, String> paramMap) {
-		return sql.insert("RealTime.realTimeInfoDataInsert", paramMap);
+	public int realTimeMfInfoDataInsert(HashMap<String, String> paramMap) {
+		return sql.insert("RealTime.realTimeMfInfoDataInsert", paramMap);
 	}
 	
+	@Override
+	public int realTimeMpInfoDataInsert(HashMap<String, String> paramMap) {
+		return sql.insert("RealTime.realTimeMpInfoDataInsert", paramMap);
+	}
 	
 	@Override
-	public List<RealTime> realTimeInfoData(String mmNo) {
-		return sql.selectList("RealTime.realTimeInfoData", mmNo);
+	public List<RealTime> realTimeMhInfo(String mmNo) {
+		return sql.selectList("RealTime.realTimeMhInfo", mmNo);
+	}
+
+	@Override
+	public List<RealTime> realTimeMpInfo(String mmNo) {
+		return sql.selectList("RealTime.realTimeMpInfo", mmNo);
 	}
 }
