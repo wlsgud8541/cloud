@@ -98,18 +98,16 @@
 					</nav>
 				</div>
 			</div>
-			<div class="row text-center my-4">
-				<form class="col row" action="mrSelectList" name="searchForm" id="searchForm" method="post">
-					<div class="col text-end p-0">
-						<select name="type" id="type" class="border border-end-0" style="left:0px;width:102px; height:54px;">
-							<option value="title" ${type == 'title'? 'selected' : '' }>제 목</option>
-							<option value="content" ${type == 'content'? 'selected' : '' }>내 용</option>
-							<option value="writer" ${type == 'writer'? 'selected' : '' }>작성자</option>
-						</select>
-					</div>
-					<div class="col text-start p-0">
-						<input type="text" name="keyword" id="keyword" value="${keyWord}" style="left:0px; width:500px; height:54px; background:#fff;  border:1px solid #d0d0d0;">
-						<input type="submit" class="bg-success text-white bg-opacity-75" style="left:0px; top:0px; width:54px; height:56px; background:#fff;  border:1px solid #d0d0d0;" value="검색">
+			<div class="text-center my-4 ">
+				<form class="row" action="mrSelectList" name="searchForm" id="searchForm" method="post">
+					<select name="type" id="type" class="border border-end-0" style="left:0px;width:102px; height:54px;">
+						<option value="title" ${type == 'title'? 'selected' : '' }>제 목</option>
+						<option value="content" ${type == 'content'? 'selected' : '' }>내 용</option>
+						<option value="writer" ${type == 'writer'? 'selected' : '' }>작성자</option>
+					</select>
+					<div class="col text-start p-0" >
+						<input type="text" name="keyword" id="keyword" value="${keyWord}" style="left:0px; width:500px; height:53px; background:#fff;  border:1px solid #d0d0d0;">
+						<input type="submit" class="bg-success text-white bg-opacity-75" style="left:0px; top:0px; width:53px; height:53px; background:#fff;  border:1px solid #d0d0d0;" value="검색">
 					</div>
 				</form>
 			</div>

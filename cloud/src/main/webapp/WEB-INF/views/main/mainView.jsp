@@ -10,7 +10,7 @@
 <script src="resources/js/main.js"></script>
 
 <!-- 메인페이지 -->
-<div>
+<div>	
 	<div class="row mt-5">
 		<div class="col-7 me-4 bg-white p-4 shadow-sm  ">
 			<h3><b>실종자</b></h3>
@@ -20,25 +20,25 @@
 						<div class="swiper-slide">
 							<div class="row">
 								<div class="col me-2 text-center"style="width: 150px; height: 100%;">
-									<img alt="" src="resources/image/main/dndud.jpg">
+									<img  src="resources/image/main/dndud.jpg">
 									<div>정우영(32)</div>
 									<div>오늘</div>
 									<div>학원</div>
 								</div>
 								<div class="col  me-2"style="width: 150px; height: 100%;">
-									<img alt="" src="resources/image/main/wlsgud.jpg">
+									<img  src="resources/image/main/wlsgud.jpg">
 									<div>전진형(30)</div>
 									<div>오늘</div>
 									<div>학원</div>
 								</div>
 								<div class="col  me-2"style="width: 150px; height: 100%;">
-									<img alt="" src="resources/image/main/ruddnr.jpg">
+									<img  src="resources/image/main/ruddnr.jpg">
 									<div>김경욱(30)</div>
 									<div>오늘</div>
 									<div>학원</div>
 								</div>
 								<div class="col  me-2"style="width: 150px; height: 100%;">
-								 		<img alt="" src="resources/image/main/alsgur.jpg">
+								 		<img  src="resources/image/main/alsgur.jpg">
 								 		<div>정민혁(27)</div>
 								 		<div>오늘</div>
 								 		<div>학원</div>
@@ -48,25 +48,25 @@
 								<div class="swiper-slide">
 									<div class="row">
 								 	<div class="col  me-2"style="width: 150px; height: 100%;">
-									<img alt="" src="resources/image/main/dndud.jpg">
+									<img  src="resources/image/main/dndud.jpg">
 									<div>정우영(32)</div>
 									<div>오늘</div>
 									<div>학원</div>
 								</div>
 								<div class="col  me-2"style="width: 150px; height: 100%;">
-									<img alt="" src="resources/image/main/wlsgud.jpg">
+									<img  src="resources/image/main/wlsgud.jpg">
 									<div>전진형(30)</div>
 									<div>오늘</div>
 									<div>학원</div>
 								</div>
 								<div class="col  me-2"style="width: 150px; height: 100%;">
-									<img alt="" src="resources/image/main/ruddnr.jpg">
+									<img  src="resources/image/main/ruddnr.jpg">
 									<div>김경욱(30)</div>
 									<div>오늘</div>
 									<div>학원</div>
 								</div>
 								<div class="col  me-2"style="width: 150px; height: 100%;">
-								 		<img alt="" src="resources/image/main/alsgur.jpg">
+								 		<img  src="resources/image/main/alsgur.jpg">
 								 		<div>정민혁(27)</div>
 								 		<div>오늘</div>
 								 		<div>학원</div>
@@ -76,25 +76,25 @@
 								<div class="swiper-slide">
 									<div class="row">
 								 	<div class="col  me-2"style="width: 150px; height: 100%;">
-									<img alt="" src="resources/image/main/dndud.jpg">
+									<img  src="resources/image/main/dndud.jpg">
 									<div>정우영(32)</div>
 									<div>오늘</div>
 									<div>학원</div>
 								</div>
 								<div class="col  me-2"style="width: 150px; height: 100%;">
-									<img alt="" src="resources/image/main/wlsgud.jpg">
+									<img  src="resources/image/main/wlsgud.jpg">
 									<div>전진형(30)</div>
 									<div>오늘</div>
 									<div>학원</div>
 								</div>
 								<div class="col  me-2"style="width: 150px; height: 100%;">
-									<img alt="" src="resources/image/main/ruddnr.jpg">
+									<img  src="resources/image/main/ruddnr.jpg">
 									<div>김경욱(30)</div>
 									<div>오늘</div>
 									<div>학원</div>
 								</div>
 								<div class="col  me-2"style="width: 150px; height: 100%;">
-								   		<img alt="" src="resources/image/main/alsgur.jpg">
+								   		<img  src="resources/image/main/alsgur.jpg">
 								   		<div>정민혁(27)</div>
 								   		<div>오늘</div>
 								   		<div>학원</div>
@@ -110,59 +110,40 @@
 				</div>	
 			</div>	
 		</div>
-		<div class="col-4  p-4 bg-white shadow-sm ">
+		<div class="col-4  p-4 bg-white shadow-sm">
 			<h3><b>실종자/반려동물 검색</b></h3>	
-				<div class="mhpSearch">
-					<form class="w3-light-gray p-4 main_Blist mhSearch">
-					<div class="main_search">
-					<label>분 류</label>
+				<div class="w3-light-gray p-4 main_Blist mhpSearch text-center">
+					<div class="main_search ">
+					<label class="text-start">분 류</label>
 						<select id="search">
 							<option value="mh">실종자</option>
 							<option value="mp">실종 반려동물</option>
 						</select>
 					</div>
+					<form class=" mhSearch" action="mhpSearch">
 						<div class="mhSearch">
 							<div class="main_search">
-								<label>이 름</label>
-								<input type="text" name="mhName">
+								<label class="text-start">이 름</label>
+								<input type="text" name="mhName" value="${mhName}">
 							</div>
 							<div class="main_search">
-								<label>성 별</label>
+								<label class="text-start">성 별</label>
 								<select name="mhGen">
-									<option value="male">남 자</option>
-									<option value="female">여 자</option>
+									<option value="M">남 자</option>
+									<option value="F">여 자</option>
 								</select>
 							</div>
 							<div class="main_search search_date">
-								<label class="">발생일</label>
+								<label class="text-start">발생일</label>
 								<input type="date" name="mhInfoDate1">~<input type="date" name="mhInfoDate2">
 							</div>
-							<div class="main_search">
-								<label>발생지</label>
-								<select name="mhrLocalCode">
-									<option value="">--선택하세요--</option>
-							    	<option value="01">서울</option>
-							    	<option value="02">경기</option>
-							    	<option value="03">인천</option>
-							    	<option value="04">대전</option>
-							    	<option value="05">광주</option>
-							    	<option value="06">대구</option>
-							    	<option value="07">울산</option>
-							    	<option value="08">부산</option>
-							    	<option value="09">세종</option>
-							    	<option value="10">강원</option>
-							    	<option value="11">충북</option>
-							    	<option value="12">충남</option>
-							    	<option value="13">전북</option>
-							    	<option value="14">전남</option>
-							    	<option value="15">경북</option>
-							    	<option value="16">경남</option>
-							    	<option value="17">제주</option>
-								</select>
+							<div class="main_search search_date">
+								<label class="text-start">목격일</label>
+								<input type="date" name="mhfDate1">~<input type="date" name="mhfDate2">
 							</div>
-							<div class="main_search">
-								<label>목격지역</label>
-								<select name="mhfLocalCode">
+							<div class="main_search ">
+								<label class="text-start">발생지</label>
+								<select name="mhrLocalCode">
 									<option value="">--선택하세요--</option>
 							    	<option value="01">서울</option>
 							    	<option value="02">경기</option>
@@ -191,56 +172,37 @@
 					</form>
 					
 					
-					<form class="w3-light-gray p-4 main_Blist mpSearch">
+					<form class="mpSearch" action="mhpSearch">
 					<div class="">
+<!-- 						<div class="main_search"> -->
+<!-- 						<label class="text-start">분 류</label> -->
+<!-- 							<select id="search"> -->
+<!-- 								<option value="mh">실종자</option> -->
+<!-- 								<option value="mp">실종 반려동물</option> -->
+<!-- 							</select> -->
+<!-- 						</div> -->
 						<div class="main_search">
-						<label>분 류</label>
-							<select id="search">
-								<option value="mh">실종자</option>
-								<option value="mp">실종 반려동물</option>
-							</select>
-						</div>
-						<div class="main_search">
-							<label>성 별</label>
+							<label class="text-start">성 별</label>
 							<select name="mpGen">
-								<option value="boy">수 컷</option>
-								<option value="girl">암 컷</option>
+								<option value="M">수 컷</option>
+								<option value="F">암 컷</option>
 							</select>
 						<div class="main_search">
-							<label>키워드</label>
+							<label class="text-start">키워드</label>
 							<input type="text" name="mpContent">
 						</div>
 						</div>
 						<div class="main_search search_date">
-							<label>발생일</label>
-							<input type="date" name="mpDate1">~<input type="date" name="mpdate2">
+							<label class="text-start">발생일</label>
+							<input type="date" name="mpDate1">~<input type="date" name="mpDate2">
+						</div>
+						<div class="main_search search_date">
+							<label class="text-start">목격일</label>
+							<input type="date" name="mpfDate1">~<input type="date" name="mpfDate2">
 						</div>
 						<div class="main_search">
-							<label>발생지</label>
-							<select name="mpLocalCode">
-								<option value="">--선택하세요--</option>
-						    	<option value="01">서울</option>
-						    	<option value="02">경기</option>
-						    	<option value="03">인천</option>
-						    	<option value="04">대전</option>
-						    	<option value="05">광주</option>
-						    	<option value="06">대구</option>
-						    	<option value="07">울산</option>
-						    	<option value="08">부산</option>
-						    	<option value="09">세종</option>
-						    	<option value="10">강원</option>
-						    	<option value="11">충북</option>
-						    	<option value="12">충남</option>
-						    	<option value="13">전북</option>
-						    	<option value="14">전남</option>
-						    	<option value="15">경북</option>
-						    	<option value="16">경남</option>
-						    	<option value="17">제주</option>
-							</select>
-						</div>
-						<div class="main_search">
-							<label>목격지역</label>
-							<select name="mpfLocalCode">
+							<label class="text-start">발생지</label>
+							<select name="mprLocalCode">
 								<option value="">--선택하세요--</option>
 						    	<option value="01">서울</option>
 						    	<option value="02">경기</option>
@@ -366,5 +328,5 @@
 </div>
 
 <!-- <span>
-	<img alt="" src="resources/image/main/mainTmp.jpg">
+	<img  src="resources/image/main/mainTmp.jpg">
 </span> -->

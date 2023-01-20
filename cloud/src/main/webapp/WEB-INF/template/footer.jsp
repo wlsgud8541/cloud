@@ -3,10 +3,10 @@
 <!-- footer -->
 <footer class="row bd-footer py-3 py-md-3 mt-5 bg-light border-top"
 	id="global-footer">
-	<div class="col text-end pt-3 pe-5">
+	<div class="col-5 text-end pt-3 pe-5">
 		<img alt="" src="resources/image/main/footerLogo.png" style="width:130px;">
 	</div>
-	<div class="col text-start text-secondary pt-3">
+	<div class="col-7 text-start text-secondary pt-3">
 		<p>
 			<small>클라우드 고객센터 : 1555-5555 (평일 09:00 ~ 19:00, 주말공휴일 휴무)<br>
 				이메일 : help@cloud.co.kr, Fax : 02-3206-6304(대표)<br>
