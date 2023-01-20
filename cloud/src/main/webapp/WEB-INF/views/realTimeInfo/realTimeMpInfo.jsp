@@ -12,7 +12,7 @@
 	<input type="hidden" id="realTimeMmNo" value="${sessionScope.mmNo}">
 	<div class="row text-center">
 		<div class="col text-center">
-			<h2 class="fs-3 fw-bold mb-1"><b>반려동물 실시간 동선체크</b></h2>
+			<h2 class="fs-3 fw-bold mb-1"><b>반려동물 실시간 동선체크</b></h2> 
 			<p class="border border-bottom border-dark border-2" style="width: 310px; display: inline-block; margin-bottom: 0px;"></p>
 		</div>
 	</div>  
