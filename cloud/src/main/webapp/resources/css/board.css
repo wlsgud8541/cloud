@@ -200,7 +200,14 @@ table {
 }
 .board tr td{
 	width: auto;
-	
+}
+.list-overflow{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: no-wrap;
+}
+.picBoard{
+ 	width: auto;
 }
 /* 페이징 */
 .cl-pagination-wrap {position:relative;text-align:center;padding:7px;margin-top:20px}

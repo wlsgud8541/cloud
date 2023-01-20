@@ -156,12 +156,12 @@
 	<div class="row mt-4">
 		<c:if test="${mprDetail.mprGen == 'M '}">
 			<div>
-				<b>성별 : 암컷</b>
+				<b>성별 : 수컷</b>
 			</div>
 		</c:if>
 		<c:if test="${mprDetail.mprGen == 'F '}">
 			<div>
-				<b>성별 : 수컷</b>
+				<b>성별 : 암컷</b>
 			</div>
 		</c:if>
 	</div>

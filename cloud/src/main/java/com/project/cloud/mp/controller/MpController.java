@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +30,7 @@ import com.project.cloud.mp.service.MpReportService;
 @Controller
 public class MpController {
 	
-	/* private Logger logger= LoggerFactory.getLogger(this.getClass()); */
+	 private Logger logger= LoggerFactory.getLogger(this.getClass()); 
 	
 	// 페이징 처리 공통 메소드
 	@Autowired
@@ -65,7 +67,7 @@ public class MpController {
 			   @RequestParam(value = "type", required = false, defaultValue = "null") String type,
 			   @RequestParam(value = "keyWord", required = false, defaultValue = "null") String keyWord) {
 		
-		int pageSize = 10; 
+		int pageSize = 12; 
 		int pageGroup = 10; 
 		int listCount = mpReportService.mprSelectListCount(type, keyWord);
 		
@@ -203,6 +205,8 @@ public class MpController {
 			@RequestParam(value = "type", required = false, defaultValue = "null") String type,
 			@RequestParam(value = "keyWord", required = false, defaultValue = "null") String keyWord) {
 		
+		logger.debug("keyWord : "+keyWord);
+		
 		int pageSize = 10; 
 		int pageGroup = 10; 
 		int listCount = mpFindService.mpfSelectListCount(type, keyWord);
@@ -214,6 +218,8 @@ public class MpController {
 		mpfModel.put("mpfList", mpfSelectList);
 		mpfModel.put("listCount", listCount);
 		mpfModel.put("pageGroup", pageGroup);
+		mpfModel.put("keyWord", keyWord);
+		mpfModel.put("type", type);
 		
 		model.addAttribute("mpfModel",mpfModel);
 		model.addAttribute("mpfSelectList",mpfSelectList);
@@ -340,6 +346,8 @@ public class MpController {
 			   @RequestParam(value = "type", required = false, defaultValue = "null") String type,
 			   @RequestParam(value = "keyWord", required = false, defaultValue = "null") String keyWord) {
 		
+		logger.debug("keyword : " + keyWord);
+		
 		int pageSize = 10; 
 		int pageGroup = 10; 
 		int listCount = mpProtectService.mppSelectListCount(type, keyWord);
@@ -351,6 +359,8 @@ public class MpController {
 		mppModel.put("mppList", mppSelectList);
 		mppModel.put("listCount", listCount);
 		mppModel.put("pageGroup", pageGroup);
+		mppModel.put("keyWord", keyWord);
+		mppModel.put("type", type);
 		
 		model.addAttribute("mppModel",mppModel);
 		model.addAttribute("mppSelectList",mppSelectList);

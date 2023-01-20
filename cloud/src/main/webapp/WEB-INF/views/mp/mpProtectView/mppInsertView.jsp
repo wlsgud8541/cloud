@@ -74,8 +74,8 @@
   	<div class="col-8 offset-md-2">
 	    <label for="mppLocalCode" class="form-label">동물 성별</label>
 	     <select class="form-control col-2" name="mppGen" id="gen">
-	    	<option value="M">암컷</option>
-	    	<option value="F">수컷</option>
+	    	<option value="M">수컷</option>
+	    	<option value="F">암컷</option>
     	</select>
   	</div>
   	<div class="col-8 offset-md-2">

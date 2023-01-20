@@ -49,13 +49,13 @@
 		               FROM mpFind
 		              WHERE mpfDelYn = 'N'
 		              <if test="type=='title'">
-						  title LIKE CONCAT('%', #{keyWord}, '%')
+						 AND mpfTitle LIKE '%' || #{keyWord} || '%'
 					  </if>
 					  <if test="type=='writer'">
-						  writer LIKE CONCAT('%', #{keyWord}, '%')
+						 AND mpfWriter LIKE '%' || #{keyWord} || '%'
 					  </if>
 					  <if test="type=='content'">
-						  content LIKE CONCAT('%', #{keyWord}, '%')
+						 AND mpfContent LIKE '%' || #{keyWord} || '%'
 					  </if>
 		        ORDER BY mpfNo DESC))
 		WHERE rNum between ${startRow} and ${startRow} + ${pageSize} - 1
@@ -88,13 +88,13 @@
 		FROM MpFind
 		WHERE mpfDelYn = 'N'
 		<if test="type=='title'">
-			title LIKE CONCAT('%', #{keyWord}, '%')
+			AND mpfTitle LIKE '%' || #{keyWord} || '%'
 		</if>
 		<if test="type=='writer'">
-			writer LIKE CONCAT('%', #{keyWord}, '%')
+			AND mpfWriter LIKE '%' || #{keyWord} || '%'
 		</if>
 		<if test="type=='content'">
-			content LIKE CONCAT('%', #{keyWord}, '%')
+			AND mpfContent LIKE '%' || #{keyWord} || '%'
 		</if>
 	</select>
 	

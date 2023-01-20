@@ -55,13 +55,13 @@
 		               FROM MpProtect
 		              WHERE mppDelYn = 'N'
 		              <if test="type=='title'">
-						  title LIKE CONCAT('%', #{keyWord}, '%')
+						 AND mppTitle LIKE '%' || #{keyWord} || '%'
 					  </if>
 					  <if test="type=='writer'">
-						  writer LIKE CONCAT('%', #{keyWord}, '%')
+						 AND mppWriter LIKE '%' || #{keyWord} || '%'
 					  </if>
 					  <if test="type=='content'">
-						  content LIKE CONCAT('%', #{keyWord}, '%')
+						 AND mppContent LIKE '%' || #{keyWord} || '%'
 					  </if>
 		        ORDER BY mppNo DESC))
 		WHERE rNum between ${startRow} and ${startRow} + ${pageSize} - 1
@@ -97,13 +97,13 @@
 		FROM MpProtect
 		WHERE mppDelYn = 'N'
 		<if test="type=='title'">
-			title LIKE CONCAT('%', #{keyWord}, '%')
+			AND mppTitle LIKE '%' || #{keyWord} || '%'
 		</if>
 		<if test="type=='writer'">
-			writer LIKE CONCAT('%', #{keyWord}, '%')
+			AND mppWriter LIKE '%' || #{keyWord} || '%'
 		</if>
 		<if test="type=='content'">
-			content LIKE CONCAT('%', #{keyWord}, '%')
+			AND mppContent LIKE '%' || #{keyWord} || '%'
 		</if>
 	</select>
 	

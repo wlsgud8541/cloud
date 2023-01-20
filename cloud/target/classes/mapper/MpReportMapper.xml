@@ -33,6 +33,8 @@
 		     , mprLocalCode
 			 , mprAddFile
 			 , mprLocalDetail
+			 , mprGen
+			 , mprPetType
 		  FROM (SELECT rownum as rNum
 		             , mprNo
 		             , mprReadCnt
@@ -43,6 +45,8 @@
 		             , mprLocalCode
 					 , mprAddFile
 					 , mprLocalDetail
+					 , mprGen
+					 , mprPetType
 				FROM(SELECT mprNo
 		                  , mprReadCnt
 		                  , mprRegDate
@@ -52,6 +56,8 @@
 		                  , mprLocalCode
 						  , mprAddFile
 						  , mprLocalDetail
+						  , mprGen
+						  , mprPetType
 		               FROM mpReport
 		              WHERE mprDelYn = 'N'
 		              <if test="type=='title'">
