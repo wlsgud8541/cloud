@@ -177,6 +177,7 @@ li.user{
 .search_date > input{
 	width: 120px!important;
 }
+
 .swiper {
   width: 100%;
   height: 100%;
@@ -218,7 +219,18 @@ li.user{
 	position: absolute;
 	bottom:0;
 } */
-
+.inblock{
+	display : inline-block;
+}
+.checks{
+	display : inline-block;
+	padding-right : 20px;	
+}
+.categ{
+	width : 92.42px;
+	display : inline-block;
+	padding-right : 20px;	
+}
 /*tab css*/
 .tab{float:left; width:395px;}
 .tabnav{font-size:0;}
