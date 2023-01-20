@@ -45,7 +45,7 @@ public class MhController {
 	// 실종자 게시판 service 어노테이션 주입
 	@Autowired
 	private MhReportService service;
-	@Autowired
+	@Autowired 
 	private MhFindService mhfService;
 	@Autowired
 	private MhFindCommService mhfCommService;
