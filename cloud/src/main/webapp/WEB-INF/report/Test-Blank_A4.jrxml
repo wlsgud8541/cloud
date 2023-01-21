@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Test-Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3a3d009f-db25-477f-a31f-54d532336c0b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<parameter name="AAA" class="java.lang.String">
+		<parameterDescription><![CDATA[test]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM MMEMBER]]>
+	</queryString>
+	<field name="MMNO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="MMNO"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMNO"/>
+	</field>
+	<field name="MMID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMID"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMID"/>
+	</field>
+	<field name="MMPASS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMPASS"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMPASS"/>
+	</field>
+	<field name="MMNAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMNAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMNAME"/>
+	</field>
+	<field name="MMBIRTH" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMBIRTH"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMBIRTH"/>
+	</field>
+	<field name="MMGEN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMGEN"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMGEN"/>
+	</field>
+	<field name="MMEMAIL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMEMAIL"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMEMAIL"/>
+	</field>
+	<field name="MMTEL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMTEL"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMTEL"/>
+	</field>
+	<field name="MMADDR1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMADDR1"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMADDR1"/>
+	</field>
+	<field name="MMADDR2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMADDR2"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMADDR2"/>
+	</field>
+	<field name="MMUSEUSERINFOYN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMUSEUSERINFOYN"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMUSEUSERINFOYN"/>
+	</field>
+	<field name="MMUSEUSERINFOEDATE" class="oracle.sql.TIMESTAMP">
+		<property name="com.jaspersoft.studio.field.name" value="MMUSEUSERINFOEDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMUSEUSERINFOEDATE"/>
+	</field>
+	<field name="MMACTIVATEYN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMACTIVATEYN"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMACTIVATEYN"/>
+	</field>
+	<field name="MMJOINDATE" class="oracle.sql.TIMESTAMP">
+		<property name="com.jaspersoft.studio.field.name" value="MMJOINDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMJOINDATE"/>
+	</field>
+	<field name="MMSECEDEDATE" class="oracle.sql.TIMESTAMP">
+		<property name="com.jaspersoft.studio.field.name" value="MMSECEDEDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMSECEDEDATE"/>
+	</field>
+	<field name="MMIDCONNKAKAO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMIDCONNKAKAO"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMIDCONNKAKAO"/>
+	</field>
+	<field name="MMIDCONNGOOGLE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMIDCONNGOOGLE"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMIDCONNGOOGLE"/>
+	</field>
+	<field name="MMIDCONNNAVER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMIDCONNNAVER"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMIDCONNNAVER"/>
+	</field>
+	<field name="MMZIPCODE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MMZIPCODE"/>
+		<property name="com.jaspersoft.studio.field.label" value="MMZIPCODE"/>
+	</field>
+	<field name="KAKAOUSERREALID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="KAKAOUSERREALID"/>
+		<property name="com.jaspersoft.studio.field.label" value="KAKAOUSERREALID"/>
+	</field>
+	<field name="NAVERUSERREALID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NAVERUSERREALID"/>
+		<property name="com.jaspersoft.studio.field.label" value="NAVERUSERREALID"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="160" y="20" width="100" height="30" uuid="5d4f6d22-c367-4fa1-aa7a-cc875378fb2b"/>
+				<textFieldExpression><![CDATA[$F{MMNO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="20" width="100" height="30" uuid="f25794a8-8450-4780-b012-c5bffd9bb24e"/>
+				<textElement textAlignment="Left" verticalAlignment="Top"/>
+				<text><![CDATA[Static Text]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="300" y="20" width="100" height="30" uuid="29ccdd54-6114-469e-938b-567e5d60e89d"/>
+				<textElement>
+					<font fontName="나눔고딕"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{AAA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

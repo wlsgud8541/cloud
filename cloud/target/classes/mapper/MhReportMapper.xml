@@ -37,7 +37,7 @@
 			AND mhrWriter LIKE '%' ||#{keyword}|| '%'
 		</if>
 	</sql>
-	<select id="mhrSelectList" resultType="MhReport">
+	<select id="mhrSelectList" resultType="MhReport" parameterType="hashmap">
 		SELECT rNum
         ,mhrNo
         ,mhrReadCnt

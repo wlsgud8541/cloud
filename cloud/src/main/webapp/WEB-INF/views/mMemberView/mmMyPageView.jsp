@@ -31,6 +31,9 @@
 				<div class="row border-bottom pb-2 ms-3">
 					<span>${mInfo.mmAddr2}</span>
 				</div>
+				<div class="row border-bottom pb-2 ms-3">
+					<a href="printTest?code=mh">문서출력 테스트</a>
+				</div>
 				<%-- 
 				<div class="row pt-2 pb-1">
 					<span>카카오 연동 여부 : ${mInfo.mmIdConnKAKAO}</span>

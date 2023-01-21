@@ -134,9 +134,9 @@ $(document).ready(function(){
 				latitude = position.coords.latitude;   // 위도 값
 				longitude = position.coords.longitude; // 경도 값
 
-				//latitude = latitude + test;
-				//longitude = longitude + test;
-				//test = test+0.0005;
+				latitude = latitude + test;
+				longitude = longitude + test;
+				test = test+0.0005;
 				
 				
 				if(beginNum > 1){
