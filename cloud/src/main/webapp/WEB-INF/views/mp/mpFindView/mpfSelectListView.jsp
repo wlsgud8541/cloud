@@ -134,7 +134,7 @@
 							</c:if>
 						</ul>
 					</nav>
-				</div>
+				</div> 
 			</div>
 			<div class="row text-center my-4">
 				<form class="col row" action="mpfSelectList" name="searchForm" id="searchForm" method="post">

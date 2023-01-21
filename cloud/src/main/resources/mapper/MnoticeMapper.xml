@@ -36,7 +36,7 @@
 						,mnRegDate
 						,mnTitle
 						,mnContent
-						,mnAddFile
+						,mnAddFile 
 						,mnWriter
 						,mnFixTopYn
 						,mnDelYn 

@@ -48,7 +48,7 @@
 		                  , mppRegDate
 		                  , mppStatusCode
 		                  , mppTitle
-		                  , mppWriter
+		                  , mppWriter 
 		                  , mppLocalCode
 		                  , mppLocalDetail
 		                  , mppAddFile

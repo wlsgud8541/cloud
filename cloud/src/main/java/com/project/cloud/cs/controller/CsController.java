@@ -63,7 +63,7 @@ public class CsController {
 		int pageSize = 10;   // 페이지 사이즈 갯수
 		int pageGroup = 10; // 페이징 그룹
 		int listCount = mnoticeService.mnSelectListCount(type, keyWord); // 게시글 갯수 조회
-		
+		 
 		
 		/* 
 		 * pageList : 페이징 처리 메서드

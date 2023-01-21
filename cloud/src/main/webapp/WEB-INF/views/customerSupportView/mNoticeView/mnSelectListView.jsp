@@ -82,7 +82,7 @@
 							<c:if test="${ endPage < pageCount }">
 								<li class="next"><a class="page-link" href="mnSelectList?pageNum=${ startPage + pageGroup }">&gt;</a>
 								</li>
-							</c:if>
+							</c:if> 
 							<c:if test="${ endPage < pageCount }">
 								<li class="next"><a class="page-link" href="mnSelectList?pageNum=${pageCount}">&gt;&gt;</a>
 								</li>

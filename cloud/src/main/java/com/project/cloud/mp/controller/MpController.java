@@ -79,7 +79,7 @@ public class MpController {
 		
 		mprModel.put("mprList", mprSelectList);
 		mprModel.put("listCount", listCount);
-		mprModel.put("pageGroup", pageGroup);
+		mprModel.put("pageGroup", pageGroup); 
 		mprModel.put("keyWord", keyWord);
 		mprModel.put("type", type);
 		

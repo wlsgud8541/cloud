@@ -109,7 +109,7 @@
 	<select id="mprSelectListCount" resultType="int" parameterType="hashmap">
 		SELECT COUNT(*) AS cnt
 		FROM MpReport
-		WHERE mprDelYn = 'N'
+		WHERE mprDelYn = 'N' 
 		<if test="type=='title'">
 						 AND mprTitle LIKE '%' || #{keyWord} || '%'
 					  </if>

@@ -134,7 +134,7 @@
 							<c:if test="${ mppModel.endPage < mppModel.pageCount }">
 								<li class="next"><a class="page-link" href="mppSelectList?pageNum=${ mppModel.startPage + mppModel.pageGroup }">&gt;</a>
 								</li>
-							</c:if>
+							</c:if> 
 							<c:if test="${ mppModel.endPage < mppModel.pageCount }">
 								<li class="next"><a class="page-link" href="mppSelectList?pageNum=${mppModel.pageCount}">&gt;&gt;</a>
 								</li>
