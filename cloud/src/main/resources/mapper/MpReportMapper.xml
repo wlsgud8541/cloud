@@ -61,13 +61,22 @@
 		               FROM mpReport
 		              WHERE mprDelYn = 'N'
 		              <if test="type=='title'">
-						  title LIKE CONCAT('%', #{keyWord}, '%')
+						 AND mprTitle LIKE '%' || #{keyWord} || '%'
 					  </if>
 					  <if test="type=='writer'">
-						  writer LIKE CONCAT('%', #{keyWord}, '%')
+						 AND mprWriter LIKE '%' || #{keyWord} || '%'
 					  </if>
 					  <if test="type=='content'">
-						  content LIKE CONCAT('%', #{keyWord}, '%')
+						 AND mprContent LIKE '%' || #{keyWord} || '%'
+					  </if>
+					  <if test="type=='pettype'">
+						 AND mprPetType LIKE '%' || #{keyWord} || '%'
+					  </if>
+					  <if test="type=='gen'">
+						 AND mprGen LIKE '%' || #{keyWord} || '%'
+					  </if>
+					  <if test="type=='localcode'">
+						 AND mprLocalCode LIKE '%' || #{keyWord} || '%'
 					  </if>
 		        ORDER BY mprNo DESC))
 		WHERE rNum between ${startRow} and ${startRow} + ${pageSize} - 1
@@ -102,14 +111,23 @@
 		FROM MpReport
 		WHERE mprDelYn = 'N'
 		<if test="type=='title'">
-			title LIKE CONCAT('%', #{keyWord}, '%')
-		</if>
-		<if test="type=='writer'">
-			writer LIKE CONCAT('%', #{keyWord}, '%')
-		</if>
-		<if test="type=='content'">
-			content LIKE CONCAT('%', #{keyWord}, '%')
-		</if>
+						 AND mprTitle LIKE '%' || #{keyWord} || '%'
+					  </if>
+					  <if test="type=='writer'">
+						 AND mprWriter LIKE '%' || #{keyWord} || '%'
+					  </if>
+					  <if test="type=='content'">
+						 AND mprContent LIKE '%' || #{keyWord} || '%'
+					  </if>
+					  <if test="type=='pettype'">
+						 AND mprPetType LIKE '%' || #{keyWord} || '%'
+					  </if>
+					  <if test="type=='gen'">
+						 AND mprGen LIKE '%' || #{keyWord} || '%'
+					  </if>
+					  <if test="type=='localcode'">
+						 AND mprLocalCode LIKE '%' || #{keyWord} || '%'
+					  </if>
 	</select>
 	
 	<!-- 글쓰기 -->

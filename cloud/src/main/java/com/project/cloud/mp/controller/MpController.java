@@ -67,6 +67,8 @@ public class MpController {
 			   @RequestParam(value = "type", required = false, defaultValue = "null") String type,
 			   @RequestParam(value = "keyWord", required = false, defaultValue = "null") String keyWord) {
 		
+		logger.debug("keyWord : "+keyWord);
+		
 		int pageSize = 12; 
 		int pageGroup = 10; 
 		int listCount = mpReportService.mprSelectListCount(type, keyWord);
@@ -78,6 +80,8 @@ public class MpController {
 		mprModel.put("mprList", mprSelectList);
 		mprModel.put("listCount", listCount);
 		mprModel.put("pageGroup", pageGroup);
+		mprModel.put("keyWord", keyWord);
+		mprModel.put("type", type);
 		
 		model.addAttribute("mprModel",mprModel);
 		model.addAttribute("mprSelectList",mprSelectList);

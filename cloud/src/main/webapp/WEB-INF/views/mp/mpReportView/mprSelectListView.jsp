@@ -13,23 +13,23 @@
             <div class="p-4 inblock">
                <div class="mb-4 inblock row">
                   <div class="checks">
-                     <label class="categ">
+                     <div class="categ">
                         <b>동물종류</b>
-                     </label>
+                     </div>
                      <div class="checks col2">
-                        <input type="checkbox">
+                        <input type="radio">
                         <label> 전체 </label>
                      </div>
                      <div class="checks col2">
-                        <input type="checkbox">
+                        <input type="radio">
                         <label> 강아지 </label>
                      </div>
                      <div class="checks col2">
-                        <input type="checkbox">
+                        <input type="radio">
                         <label> 고양이 </label>
                      </div>
                      <div class="checks col2">
-                        <input type="checkbox">
+                        <input type="radio">
                         <label> 기타 </label>
                      </div>
                   </div>
@@ -50,7 +50,7 @@
                   </div>
                   <div class="checks col-lg-5 col-sm-4">
                      <label class=categ>
-                        <b>이름</b>
+                        <b>제목</b>
                      </label>
                      <div class="checks">
                         <input type="text" class="form-control">
@@ -71,33 +71,29 @@
                      </div>
                   </div>
                   <label class="categ">
-                     <b>당시나이</b>
+                     <b>작성자</b>
                   </label>
                   <div class="inblock col-lg-5 col-sm-4">
                      <div class="inblock">
-                        <input type="text" class="form-control">
-                     </div>
-                        ~
-                     <div class="inblock">
-                        <input type="text"  class="form-control">
+                        <input type="text" name="keyWord" value="${keyWord}" class="form-control">
                      </div>
                   </div>
                </div>
                <div class="mb-4">
                   <label class="categ">
-                     <b>키워드</b>
-                  </label>
-                  <div class="checks col-lg-5 col-sm-4">
-                     <div class="checks">
-                        <input type="text" class="form-control">
-                     </div>
-                  </div>
-                  <label class=categ>
                      <b>실종위치</b>
                   </label>
                   <div class="checks col-lg-5 col-sm-4">
                      <div class="checks">
-                        <input type="text" class="form-control" placeholder="예)서울시 관악구">
+                        <input type="text" class="form-control" placeholder="예)관악구">
+                     </div>
+                  </div>
+                  <label class=categ>
+                     <b>내용</b>
+                  </label>
+                  <div class="checks col-lg-5 col-sm-4">
+                     <div class="checks">
+                        <input type="text" class="form-control">
                      </div>
                   </div>
                </div>
