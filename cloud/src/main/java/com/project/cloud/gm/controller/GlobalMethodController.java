@@ -56,8 +56,9 @@ public class GlobalMethodController {
 	@RequestMapping("printTest")
 	public void printTest(HttpSession session, HttpServletRequest request, HttpServletResponse response
 						  ,@RequestParam Map<String, Object> mhReportMap) {
-		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		String filePath = request.getServletContext().getRealPath("resources/upload/");
+		
 		String reportType = "";
 		String code = mhReportMap.get("code").toString();
 		String mhrName = mhReportMap.get("mhrName").toString();
@@ -68,22 +69,29 @@ public class GlobalMethodController {
 		String mhrHairColor = mhReportMap.get("mhrHairColor").toString();
 		String mhrWear = mhReportMap.get("mhrWear").toString();
 		String mhrContent = mhReportMap.get("mhrContent").toString();
+		String mhrAddFile = mhReportMap.get("mhrAddFile").toString();
 		String memberTell = mhReportMap.get("memberTell").toString();
 
 		String characteristic = mhrHair + ", " + mhrHairColor + ", " + mhrWear;
 		
-		if (mhrGen.trim().equals("M")) {
+		if (mhrGen != null && mhrGen.trim().equals("M")) {
 			mhrGen = "남자";
 		}
-		if (mhrGen.trim().equals("F")) {
+		if (mhrGen != null && mhrGen.trim().equals("F")) {
 			mhrGen = "여자";
 		}
-		mhrInfoDate = mhrInfoDate.substring(0,10);
+		if (mhrInfoDate != null && !mhrInfoDate.equals("")) {
+			mhrInfoDate = mhrInfoDate.substring(0,10);
+		}
+		if (mhrAddFile != null && mhrAddFile != "") {
+			mhrAddFile = filePath + mhrAddFile;
+		}
 		
 		if (code != null && code.equals("mh")) { // 실종자의 경우
 			reportType = "mhPrint.jrxml";
 			
 			//벨류 세팅
+			paramMap.put("img",mhrAddFile); 
 			paramMap.put("name",mhrName); 
 			paramMap.put("age",mhrage); 
 			paramMap.put("gen",mhrGen); 

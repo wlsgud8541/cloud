@@ -5,6 +5,7 @@
 
 <body>
 	<!-- 제스퍼 리포트용 벨류세팅 -->
+	<input type="hidden" value="${report.mhrAddFile}" id="jxv_mhrAddFile">
 	<input type="hidden" value="${report.mhrName}" id="jxv_mhrName"> 
 	<input type="hidden" value="${report.mhrage}" id="jxv_mhrage">
 	<input type="hidden" value="${report.mhrGen}" id="jxv_mhrGen">

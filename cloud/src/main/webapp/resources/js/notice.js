@@ -1042,6 +1042,7 @@ $(document).ready(function(){
 		var mhrHair = $("#jxv_mhrHair").val();
 		var mhrWear = $("#jxv_mhrWear").val();
 		var mhrContent = $("#jxv_mhrContent").val();
+		var mhrAddFile = $("#jxv_mhrAddFile").val();
 		var memberTell = $("#jxv_memberTell").val();
 		
 		var url = "";
@@ -1055,6 +1056,7 @@ $(document).ready(function(){
 		url += "&mhrHair="+mhrHair;
 		url += "&mhrWear="+mhrWear;
 		url += "&mhrContent="+mhrContent;
+		url += "&mhrAddFile="+mhrAddFile;
 		url += "&memberTell="+memberTell;
 		
 		location.href = url;
