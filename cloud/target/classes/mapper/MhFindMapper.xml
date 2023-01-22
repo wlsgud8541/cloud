@@ -30,32 +30,26 @@ SELECT rNum
         ,mhfReadCnt
         ,mhfRegDate
         ,mhfTitle
+        ,mhfContent
         ,mhfWriter
 FROM (SELECT rownum as rNum
             ,mhfNo
             ,mhfReadCnt
             ,mhfRegDate
             ,mhfTitle
+      		,mhfContent
             ,mhfWriter 
         FROM(SELECT mhfNo
                    ,mhfReadCnt
                    ,mhfRegDate
                    ,mhfTitle
+                   ,mhfContent
                    ,mhfWriter
               FROM
                 mhfind
              WHERE 
               mhfDelYn = 'N'
               <include refid="mhfSearch"></include>
-              <if test="(mhfDate1 != null and mhfDate1 != '') and (mhfDate2 != null and mhfDate2 != '')">
-					AND mhfInfoDate BETWEEN #{mhfDate1} AND #{mhfDate2}
-				</if>
-				<if test="(mhfDate1 == null or mhfDate1 == '') and (mhfDate2 != null and mhfDate2 != '')">
-					AND mhfInfoDate <![CDATA[ < ]]> #{mhfDate2}
-				</if>
-				<if test="(mhfDate1 != null and mhfDate1 != '') and (mhfDate2 == null or mhfDate2 == '')">
-					AND mhfInfoDate <![CDATA[ > ]]> #{mhfDate1}
-				</if>
              ORDER BY 
                 mhfNo DESC)
                     )

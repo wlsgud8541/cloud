@@ -50,7 +50,7 @@
          <%@ include file="template/header.jsp" %>
       </c:if>
       
-      <div style="margin-top: 220px;"class="container">
+      <div style="margin-top: 220px; min-height: 696px;"class="container">
          <jsp:include page="${ param.body }" />
       </div>
 

@@ -58,9 +58,8 @@
 						</tr>
 					</c:if>
 				</tbody>
-
-				<!-- 하단 리스트 -->
 			</table>
+				<!-- 하단 리스트 -->
 			<div class="cl-pagination-wrap mt-5">
 				<div class="col">
 					<nav aria-label="Page navigation">

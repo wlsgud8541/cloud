@@ -47,7 +47,9 @@ h5 {
 /*   flex-direction: column; */
   justify-content: center; 
 }
-
+.loginForm{
+	margin-top: 300px;
+}
 .form-wrapper {
   background-color: white;
   width: 300px;
@@ -55,7 +57,7 @@ h5 {
   padding: 20px 0;
   margin: 20px auto;
   border-radius: 15px;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 8%;
 }
 .join-wrapper {
@@ -64,10 +66,10 @@ h5 {
   height: 100%;
   padding: 20px 0;
   margin: 20px auto;
-  border-radius: 15px;
-  border: 1px solid lightgray;
+/*   border-radius: 15px; */
+  border: 2px solid lightgray;
   box-shadow: 0px 5px 5px -5px rgba(53, 64, 82, 0.2);
-  border-radius: 8%;
+/*   border-radius: 8%; */
 }
 /* 로그인 */
 .form-wrapper button {

@@ -40,13 +40,13 @@ public class MainServiceImpl implements MainService {
 	
 //	소검색
 	@Override
-	public List<MhFind> mhfSrch(int startRow, int pageSize, String mhfDate1, String mhfDate2) {
-		return mainDao.mhfSrch(startRow, pageSize, mhfDate1, mhfDate2);
+	public List<MhReport> mhrSrchList(int startRow, int pageSize, String mhName, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode) {
+		return mainDao.mhrSrchList(startRow, pageSize, mhName, mhGen, mhInfoDate1, mhInfoDate2, mhrLocalCode);
 	}
-
+//	소검색 글 갯수
 	@Override
-	public List<MhReport> mhrSrch(int startRow, int pageSize, String mhName, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode) {
-		return mainDao.mhrSrch(startRow, pageSize, mhName, mhGen, mhInfoDate1, mhInfoDate2, mhrLocalCode);
+	public int mhrCnt(String mhName, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode) {
+		return mainDao.mhrCnt( mhName,  mhGen, mhInfoDate1,  mhInfoDate2,  mhrLocalCode);
 	}
 	
 

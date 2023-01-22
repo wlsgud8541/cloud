@@ -17,6 +17,8 @@ public interface MainService {
 	// 메인 통합검색
 	public List<Object> uSearch(String type, String keyword);
 	//소검색
-	public List<MhFind> mhfSrch(int startRow, int pageSize, String mhfDate1, String mhfDate2);
-	public List<MhReport> mhrSrch(int startRow, int pageSize, String mhName, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
+	public List<MhReport> mhrSrchList(int startRow, int pageSize, String mhName, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
+	//소검색 글 갯수
+	public int mhrCnt(String mhName, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
+	
 }

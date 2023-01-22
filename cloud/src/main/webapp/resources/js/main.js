@@ -59,7 +59,7 @@ $(function(){
 	}).filter(':eq(0)').click();
 
 //메인화면 소검색
-	$('.mpSearch').hide();
+	$('.mpSearch').css('display','none');
 	$("#search").on("change",function(){
 		var searchVal = $("#search option:selected").val();
 		console.log("searchVal : "+searchVal);

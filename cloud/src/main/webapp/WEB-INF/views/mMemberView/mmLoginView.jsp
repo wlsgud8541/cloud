@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<form class="my-5" id="loginForm" action="mmSelectLoginCheck" method="post">
-	<div class="form-wrapper">
+<form class="loginForm" id="loginForm" action="mmSelectLoginCheck" method="post">
+	<div class="form-wrapper shadow">
 		<div class="fs-5 text-center pb-3 fw-bold">Cloud</div>
 		<input type="text" id="mmId" name="mmId" placeholder="ID" class="form-field" />
 		<input type="password" id="mmPass" name="mmPass" placeholder="Password" class="form-field"/>

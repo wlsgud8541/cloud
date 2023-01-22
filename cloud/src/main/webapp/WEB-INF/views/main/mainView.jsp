@@ -120,7 +120,7 @@
 							<option value="mp">실종 반려동물</option>
 						</select>
 					</div>
-					<form class=" mhSearch" action="mhpSearch">
+					<form class="mhSearch" action="mhpSearch" method="post">
 						<div class="mhSearch">
 							<div class="main_search">
 								<label class="text-start">이 름</label>
@@ -129,6 +129,7 @@
 							<div class="main_search">
 								<label class="text-start">성 별</label>
 								<select name="mhGen">
+									<option value="">--성별--</option>
 									<option value="M">남 자</option>
 									<option value="F">여 자</option>
 								</select>
@@ -136,10 +137,6 @@
 							<div class="main_search search_date">
 								<label class="text-start">발생일</label>
 								<input type="date" name="mhInfoDate1">~<input type="date" name="mhInfoDate2">
-							</div>
-							<div class="main_search search_date">
-								<label class="text-start">목격일</label>
-								<input type="date" name="mhfDate1">~<input type="date" name="mhfDate2">
 							</div>
 							<div class="main_search ">
 								<label class="text-start">발생지</label>
@@ -165,7 +162,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="text-end mt-2 color text-secondary">
+						<div class="text-end mt-4 color text-danger">
 							<small>※ 입력란이 채워지지 않을 시 전체를 검색합니다. ※&nbsp;&nbsp;&nbsp;</small>
 							<button type="submit" class="btn btn-secondary">검 색</button>
 						</div>
@@ -196,10 +193,6 @@
 							<label class="text-start">발생일</label>
 							<input type="date" name="mpDate1">~<input type="date" name="mpDate2">
 						</div>
-						<div class="main_search search_date">
-							<label class="text-start">목격일</label>
-							<input type="date" name="mpfDate1">~<input type="date" name="mpfDate2">
-						</div>
 						<div class="main_search">
 							<label class="text-start">발생지</label>
 							<select name="mprLocalCode">
@@ -224,7 +217,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="text-end mt-2 color text-secondary">
+					<div class="text-end mt-4 color text-danger">
 						<small>※ 입력란이 채워지지 않을 시 전체를 검색합니다. ※&nbsp;&nbsp;&nbsp;</small>
 						<button type="submit" class="btn btn-secondary">검 색</button>
 					</div>

@@ -1,6 +1,7 @@
 package com.project.cloud.main.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.cloud.cs.domain.Mnotice;
+import com.project.cloud.gm.service.GlobalMethodService;
 import com.project.cloud.main.service.MainService;
 import com.project.cloud.mh.domain.MhFind;
 import com.project.cloud.mh.domain.MhReport;
@@ -18,6 +20,8 @@ import com.project.cloud.mp.domain.MpFind;
 public class MainController {
 	@Autowired
 	private MainService mainService;
+	@Autowired
+	private GlobalMethodService gms;
 	
 	@RequestMapping("main")
 	public String mainBoardList(Model model) {
@@ -48,30 +52,36 @@ public class MainController {
 	public String mhpSearch(Model model,
 							@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
 							@RequestParam(value = "mhName",required = false, defaultValue = "") String mhName, 
-							@RequestParam(value = "mhGen",required = false, defaultValue = "M") String mhGen, 
+							@RequestParam(value = "mhGen",required = false, defaultValue = "") String mhGen, 
 							@RequestParam(value = "mhInfoDate1",required = false, defaultValue = "") String mhInfoDate1, 
 							@RequestParam(value = "mhInfoDate2",required = false, defaultValue = "") String mhInfoDate2, 
-							@RequestParam(value = "mhrLocalCode",required = false, defaultValue = "01") String mhrLocalCode, 
-							@RequestParam(value = "mhfDate1",required = false, defaultValue = "") String mhfDate1, 
-							@RequestParam(value = "mhfDate2",required = false, defaultValue = "") String mhfDate2) {
+							@RequestParam(value = "mhrLocalCode",required = false, defaultValue = "") String mhrLocalCode) {
 		
-//		int pageSize = 4;
-//		int pageGroup = 5;
-//		String type = "";
-//		String keyWord = "";
-		int startRow = 0;
 		int pageSize = 10;
+		int pageGroup = 5;
+		int listCount = mainService.mhrCnt(mhName, mhGen, mhInfoDate1, mhInfoDate2, mhrLocalCode);
+		
+		String type = "";
+		String keyWord = "";
+		
+		
 		System.out.println("mhName : "+mhName);
 		System.out.println("mhGen : "+mhGen);
-//		int listCount = mainService.mhrSrch(startRow, pageSize, mhName, mhGen, mhInfoDate1, mhInfoDate2, mhrLocalCode);
-//		Map<String, Object> mhrSrch = gms.pageList(listCount, pageSize, pageGroup, pageNum, type, keyWord);
 		
-		List<MhReport> mhrSrch = mainService.mhrSrch(startRow, pageSize, mhName, mhGen, mhInfoDate1, mhInfoDate2, mhrLocalCode);
-		model.addAttribute("mhrSrch",mhrSrch);
+		Map<String, Object> mhrSrchPage = gms.pageList(listCount, pageSize, pageGroup, pageNum, type, keyWord);
+		int startRow1 = (int)mhrSrchPage.get("startRow");
+		List<MhReport> mhrSrch = mainService.mhrSrchList(startRow1, pageSize, mhName, mhGen, mhInfoDate1, mhInfoDate2, mhrLocalCode);
 		
-		List<MhFind> mhfSrch = mainService.mhfSrch(startRow, pageSize, mhfDate1, mhfDate2);
-		model.addAttribute("mhfSrch",mhfSrch);
+		mhrSrchPage.put("mhrSrch", mhrSrch);
+		mhrSrchPage.put("listCount", listCount);
+		mhrSrchPage.put("pageGroup", pageGroup);
+		mhrSrchPage.put("mhName", mhName);
+		mhrSrchPage.put("mhGen", mhGen);
+		mhrSrchPage.put("mhInfoDate1", mhInfoDate1);
+		mhrSrchPage.put("mhInfoDate2", mhInfoDate2);
+		mhrSrchPage.put("mhrLocalCode", mhrLocalCode);
 		
+		model.addAllAttributes(mhrSrchPage);
 		
 		return"main/mhpSearchView";
 	}

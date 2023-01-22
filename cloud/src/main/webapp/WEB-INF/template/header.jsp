@@ -9,10 +9,10 @@
 		<div class="col-4 ps-5 pe-0 text-center">
         	 <a href="main"><img src="resources/image/main/cloudLogo.png" style="width: 130px;"></a>
      	</div>
-     	<div class="col-5 search_wrap text-center">
+     	<form action="search" method="post" class="col-5 search_wrap text-center">
 	        <input type="text" class="search_bar rounded-pill ps-4 pe-5" id = "uSearch">
-	        <button type="button" class="btn" id="uSearchbtn">검색</button> 
-     	</div>
+	        <button type="submit" class="btn btn-outline-secondary" id="uSearchbtn">검색</button> 
+     	</form>
 		<c:if test="${empty sessionScope.userId }">
 		<div class="col-3 text-center pt-4 ps-5">
 			<ul class="nowLogin">

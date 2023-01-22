@@ -37,6 +37,29 @@
 			AND mhrWriter LIKE '%' ||#{keyword}|| '%'
 		</if>
 	</sql>
+	<sql id="subMhSrch">
+		<if test="mhName != null and mhName != ''">
+				AND (mhrName LIKE '%' || #{mhName} || '%'
+				OR mhrTitle LIKE '%' || #{mhName} || '%'
+				OR mhrContent LIKE '%' || #{mhName} || '%')
+		</if> 
+		<if test="(mhInfoDate1 != null and mhInfoDate1 != '') and (mhInfoDate2 != null and mhInfoDate2 != '')">
+			AND mhrInfoDate BETWEEN #{mhInfoDate1} AND #{mhInfoDate2} 
+		</if>
+            	<if test="(mhInfoDate1 == null or mhInfoDate1 == '') and (mhInfoDate2 != null and mhInfoDate2 != '')">
+			AND mhrInfoDate <![CDATA[ < ]]> #{mhInfoDate2}
+		</if>
+
+            	<if test="(mhInfoDate1 != null and mhInfoDate1 != '') and (mhInfoDate2 == null or mhInfoDate2 == '')">
+			AND mhrInfoDate <![CDATA[ > ]]> #{mhInfoDate1}
+		</if>
+		<if test="(mhrLocalCode != null and mhrLocalCode != '')">
+			AND mhrLocalCode = #{mhrLocalCode}
+		</if>   
+          	<if test="mhGen != null and mhGen !=''">
+			AND mhrGen LIKE '%' || #{mhGen} || '%'
+		</if> 
+	</sql>
 	<select id="mhrSelectList" resultType="MhReport" parameterType="hashmap">
 		SELECT rNum
         ,mhrNo
@@ -60,29 +83,7 @@
              WHERE 
               mhrDelYn = 'N'
               <include refid="mhSearch"></include>
-              <if test="mhName != null and mhName != ''">
-					AND mhrName LIKE '%' || #{mhName} || '%'
-					OR mhrTitle LIKE '%' || #{mhName} || '%'
-					OR mhrContent LIKE '%' || #{mhName} || '%'
-				</if> 	  
-               <if test="mhGen != null">
-					AND mhrGen = #{mhGen}
-				</if>
-            
-             <!--	
-              <if test="(mhInfoDate1 != null and mhInfoDate1 != '') and (mhInfoDate2 != null and mhInfoDate2 != '')">
-					AND mhrInfoDate BETWEEN #{mhInfoDate1} AND #{mhInfoDate2} 
-				</if>
-              	<if test="(mhInfoDate1 == null or mhInfoDate1 == '') and (mhInfoDate2 != null and mhInfoDate2 != '')">
-					AND mhrInfoDate <![CDATA[ < ]]> #{mhInfoDate2}
-				</if>
-
-              	<if test="(mhInfoDate1 != null and mhInfoDate1 != '') and (mhInfoDate2 == null or mhInfoDate2 == '')">
-					AND mhrInfoDate <![CDATA[ > ]]> #{mhInfoDate1}
-				</if>
-              	<if test="(mhrLocalCode != null and mhrLocalCode != '')">
-					AND mhrLocalCode = #{mhrLocalCode}
-				</if> -->
+              <include refid="subMhSrch"></include>
              ORDER BY 
                 mhrNo DESC)
                     )
@@ -172,6 +173,7 @@ WHERE
 			mhreport
 		WHERE
 			mhrDelYn = 'N'
+			<include refid="subMhSrch"></include>
 	</select>
 	<update id="mhrReadCount" parameterType="int">
 	UPDATE

@@ -17,13 +17,13 @@
 	</div>
 	
 	<c:if test="${not empty sessionScope.userId && sessionScope.userId == 'admin0001'}">
-		<div class="row rounded-4" style="background: #d1e7dd;">
-			<p class="pt-3" style="font-weight: bold; vertical-align: middle; padding-top: 12px; padding-left: 25px;  font-size: 20px;">자주 묻는 질문</p>
+		<div class="row rounded-4 mt-3 shadow-sm" style="background: #d1e7dd;">
+			<div class="p-3 m-0 fw-bold fs-4" >자주 묻는 질문📣</div>
 		</div>
 	</c:if>
 	<c:if test="${empty sessionScope.userId}">
-		<div class="row rounded-4 mt-5" style="background: #d1e7dd;">
-			<p class="pt-3" style="font-weight: bold; vertical-align: middle; padding-top: 12px; padding-left: 25px;  font-size: 20px;">자주 묻는 질문</p>
+		<div class="row rounded-4 mt-3 shadow-sm" style="background: #d1e7dd;">
+			<div class="p-3 m-0 fw-bold fs-4">자주 묻는 질문📣</div>
 		</div>
 	</c:if>
 	 
@@ -32,7 +32,7 @@
 		<div class="col" id="qnaList">
 
 			<c:forEach var="mqList" items="${mQnaList}" >
-				<div class="row mt-3 border rounded-4">
+				<div class="row mt-3 border rounded-4 shadow-sm">
 					<div class="col"> 
 						<div class="row bg-light p-2 rounded-4">
 							<div class="mqTilte col pt-3 pb-2" id="mqTilte${mqList.mqNo}" data-mqNo="${mqList.mqNo}">
