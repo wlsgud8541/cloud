@@ -1030,11 +1030,43 @@ $(document).ready(function(){
 		} 
 		return false; 
 	});
-// 텍스트에디터	
-	  $('.textEditor').summernote({
-	  height:300,
-	  minHeight:null,
-	  maxHeight:null,
-	  focus:true
-	  });
+	
+	// 제스퍼 리포트 출력
+	$("#jsReport").on("click",function(){
+		var code = $(this).attr("data-code");
+		var mhrName = $("#jxv_mhrName").val();
+		var mhrage = $("#jxv_mhrage").val();
+		var mhrGen = $("#jxv_mhrGen").val();
+		var mhrInfoDate = $("#jxv_mhrInfoDate").val();
+		var mhrHairColor = $("#jxv_mhrHairColor").val();
+		var mhrHair = $("#jxv_mhrHair").val();
+		var mhrWear = $("#jxv_mhrWear").val();
+		var mhrContent = $("#jxv_mhrContent").val();
+		var memberTell = $("#jxv_memberTell").val();
+		
+		var url = "";
+		
+		url += "printTest?code="+code;
+		url += "&mhrName="+mhrName;
+		url += "&mhrage="+mhrage;
+		url += "&mhrGen="+mhrGen;
+		url += "&mhrInfoDate="+mhrInfoDate;
+		url += "&mhrHairColor="+mhrHairColor;
+		url += "&mhrHair="+mhrHair;
+		url += "&mhrWear="+mhrWear;
+		url += "&mhrContent="+mhrContent;
+		url += "&memberTell="+memberTell;
+		
+		location.href = url;
+		
+	});
+	
+	
+	// 텍스트에디터	
+  	$('.textEditor').summernote({
+		height:300,
+		minHeight:null,
+		maxHeight:null,
+		focus:true
+  	});
 }); 

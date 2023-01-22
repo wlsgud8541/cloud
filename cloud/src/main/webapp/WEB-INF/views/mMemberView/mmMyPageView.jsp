@@ -31,17 +31,17 @@
 				<div class="row border-bottom pb-2 ms-3">
 					<span>${mInfo.mmAddr2}</span>
 				</div>
+				<%-- 
 				<div class="row border-bottom pb-2 ms-3">
 					<a href="printTest?code=mh">문서출력 테스트</a>
 				</div>
-				<%-- 
 				<div class="row pt-2 pb-1">
 					<span>카카오 연동 여부 : ${mInfo.mmIdConnKAKAO}</span>
 				</div>
 				<div class="row pt-2 pb-1">
 					<span>네이버 연동 여부 : ${mInfo.mmIdConnNaver}</span>
-				</div> --%>
-				
+				</div> 
+				--%>
 				<c:if test="${fn:trim(mInfo.mmIdConnKAKAO) == 'N' && fn:trim(mInfo.mmIdConnNaver) == 'N'}">
 					<div class="row pt-2 pb-1">
 						<button class="btn btn-secondary" id="changePass">비밀번호 변경하기</button>

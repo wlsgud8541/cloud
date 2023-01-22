@@ -28,6 +28,8 @@
 		<result property="mhrWear" column="mhrWear"/>
 		<result property="mhrDelYn" column="mhrDelYn"/>
 		<result property="mhrAddFile" column="mhrAddFile"/>
+		<!-- 번호 가져오기 추가 -->
+		<result property="memberTell" column="memberTell"/>
 	</resultMap>
 	<sql id="mhSearch">
 		<if test="type == 'title'">
@@ -91,16 +93,36 @@ WHERE
     rNum BETWEEN #{startRow} and #{startRow} + #{pagesize} -1
 	</select>
 	<select id="mhrSelectDetail" resultType="MhReport" resultMap="MhReport">
-		SELECT
-			mhrNo, mhrName,mhrMage, mhrage,mhrIllCode, mhrGen, mhrHeight,mhrWeight,mhrFace,mhrHairColor, 
-			mhrHair, mhrWear, mhrStatusCode, mhrLocalCode, mhrTitle, mhrContent,mhrDelYn,mhrRegDate,
-			mhrReadCnt,mhrAddFile,mhrInfoDate
+		SELECT mhr.mhrNo as mhrNo
+			 , mhr.mhrName as mhrName
+			 , mhr.mhrMage as mhrMage
+			 , mhr.mhrage as mhrage
+			 , mhr.mhrIllCode as mhrIllCode
+			 , mhr.mhrGen as mhrGen
+			 , mhr.mhrHeight as mhrHeight
+			 , mhr.mhrWeight as mhrWeight
+			 , mhr.mhrFace as mhrFace
+			 , mhr.mhrHairColor as mhrHairColor
+			 , mhr.mhrHair as mhrHair
+			 , mhr.mhrWear as mhrWear
+			 , mhr.mhrStatusCode as mhrStatusCode
+			 , mhr.mhrLocalCode as mhrLocalCode
+			 , mhr.mhrTitle as mhrTitle
+			 , mhr.mhrContent as mhrContent
+			 , mhr.mhrDelYn as mhrDelYn
+			 , mhr.mhrRegDate as mhrRegDate
+			 , mhr.mhrReadCnt as mhrReadCnt
+			 , mhr.mhrAddFile as mhrAddFile
+			 , mhr.mhrInfoDate as mhrInfoDate
+			 , mhr.mmNo as mmNo
+			 , (SELECT m.mmTel 
+			 	FROM MMEMBER m
+			 	WHERE m.mmNo = mhr.mmNo) AS memberTell
 		FROM
-			mhreport
-			
+			mhreport mhr
 		WHERE
-			mhrNo = #{mhrNo} and
-			mhrDelYn = 'N'
+			mhrNo = #{mhrNo} 
+			and mhrDelYn = 'N'
 			
 	</select>
 	<insert id="mhrInsert" parameterType="MhReport">

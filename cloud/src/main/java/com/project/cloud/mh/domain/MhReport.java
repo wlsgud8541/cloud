@@ -18,7 +18,7 @@ public class MhReport {
 	private String mhrStatusCode;
 	private String mhrLocalCode;
 	private String mhrAddFile;
-	private String mhrWriter	;
+	private String mhrWriter;
 	private String mhrDelYn;
 	private String mhrGen;
 	private String mhrHeight;
@@ -29,6 +29,9 @@ public class MhReport {
 	private String mhrHair;
 	private String mhrWear;
 	
+	private String memberTell;
+	private String code;
+	
 
 	public MhReport() {}
 	
@@ -36,7 +39,7 @@ public class MhReport {
 			String mhrContent, String mhrName, String mhrMage, String mhrage, String mhrNation, String mhrIllCode,
 			String mhrStatusCode, String mhrLocalCode, String mhrAddFile, String mhrWriter, String mhrDelYn,
 			String mhrGen, String mhrHeight, String mhrWeight, String mhrPhysical, String mhrFace, String mhrHairColor,
-			String mhrHair, String mhrWear) {
+			String mhrHair, String mhrWear, String memberTell, String code) {
 
 			this.mhrNo = mhrNo;
 			this.mhrReadCnt = mhrReadCnt;
@@ -63,8 +66,28 @@ public class MhReport {
 			this.mhrHairColor = mhrHairColor;
 			this.mhrHair = mhrHair;
 			this.mhrWear = mhrWear;
+			this.memberTell = memberTell;
+			this.code = code;
 	}
 	
+	
+	public String getCode() {
+		return code;
+	}
+	
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	public String getMemberTell() {
+		
+		return memberTell;
+	}
+
+	public void setMemberTell(String memberTell) {
+		this.memberTell = memberTell;
+	}
+
 	public int getMhrNo() {
 		return mhrNo;
 	}

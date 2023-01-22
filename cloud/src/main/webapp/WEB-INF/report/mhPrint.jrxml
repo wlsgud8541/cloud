@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mhPrint" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3a3d009f-db25-477f-a31f-54d532336c0b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="name" class="java.lang.String"/>
+	<parameter name="age" class="java.lang.String"/>
+	<parameter name="date" class="java.lang.String"/>
+	<parameter name="characteristic" class="java.lang.String"/>
+	<parameter name="content" class="java.lang.String"/>
+	<parameter name="tel" class="java.lang.String"/>
+	<parameter name="gen" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select 1 as s from dual]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<staticText>
+				<reportElement x="70" y="50" width="420" height="54" uuid="f25794a8-8450-4780-b012-c5bffd9bb24e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="35" isBold="true"/>
+				</textElement>
+				<text><![CDATA[사람을 찾습니다.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="236" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="299" y="13" width="90" height="27" uuid="5fc08499-7a97-4b82-8cf5-e23f2ad71f45"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="15"/>
+				</textElement>
+				<text><![CDATA[이        름 : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="50" width="90" height="27" uuid="8ce689f8-9482-4595-a9ab-12ecc31beb3c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="15"/>
+				</textElement>
+				<text><![CDATA[나        이 : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="123" width="90" height="27" uuid="2652618b-28a3-44f4-9996-3ab68c73b9a6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="15"/>
+				</textElement>
+				<text><![CDATA[실종 일시 : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="161" width="90" height="27" uuid="7fc48067-321a-4a26-9638-7d9c3a438752"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="15"/>
+				</textElement>
+				<text><![CDATA[특        징 : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="389" y="13" width="120" height="27" uuid="c191e00c-de91-4118-bbb8-ae795c5f64f5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="50" width="120" height="27" uuid="d91a3758-2a75-4bbb-a0d6-bbb08cf07ec0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{age}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="123" width="120" height="27" uuid="47071451-b09f-40be-83a1-842bff9b1aa6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="161" width="120" height="27" uuid="d2220c67-c110-453c-bb4e-e38342789024"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{characteristic}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="69" y="10" width="191" height="219" uuid="c98d1540-d291-4c5c-b7cc-7d979d62b25b"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="35" isBold="true"/>
+				</textElement>
+				<text><![CDATA[사진]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="87" width="90" height="27" uuid="d613801b-110e-4e2f-94d2-59b2a7ea47d4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="15"/>
+				</textElement>
+				<text><![CDATA[성        별 : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="389" y="87" width="120" height="26" uuid="a8c8e7e5-232b-4f0f-82ec-12d8b586fd43"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{gen}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="390">
+			<frame>
+				<reportElement x="69" y="50" width="451" height="220" uuid="20e756c5-a659-44fc-a906-7bd947a7ac01"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+			</frame>
+			<staticText>
+				<reportElement x="68" y="280" width="110" height="42" uuid="8ec3ac42-f810-427b-9428-7337833a2295"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="15"/>
+				</textElement>
+				<text><![CDATA[신고자 연락처 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="10" width="110" height="27" uuid="72246898-3eef-4ba9-ac65-7d946ab842ea"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="15"/>
+				</textElement>
+				<text><![CDATA[신고자 내용]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="79" y="60" width="422" height="195" uuid="e97ae331-bdd0-475f-9c83-78db730b2d30"/>
+				<textElement>
+					<font fontName="나눔고딕" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{content}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="279" width="341" height="44" uuid="9fc7cf17-6a51-4bc2-8560-d1ec6c77dfd1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="70" y="350" width="450" height="26" forecolor="#F75754" uuid="e68716a5-3b6d-489f-81fe-7a4ba2b584b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="나눔고딕" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[* 보호중이거나 목격하신 분은 신고자에게 꼭 연락부탁드립니다.]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>
