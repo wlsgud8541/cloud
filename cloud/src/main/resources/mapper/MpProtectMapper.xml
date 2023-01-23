@@ -20,9 +20,35 @@
 		<result property="mppLocalCode" column="mppLocalCode"/>
 		<result property="mppLocalDetail" column="mppLocalDetail"/>
 	</resultMap>
+
+<sql id="mpSubSrch">
+	<if test="mpGen != null and mpGen !=''">
+	  	AND mppGen LIKE '%' || #{mpGen} || '%'
+	</if>
+	<if test="mpType != null and mpType !=''">
+	  	AND mppPetType = #{mpType}
+	</if>
+	<if test="mpKeyword != null and mpKeyword !=''">
+	  	AND (mppTitle LIKE '%' || #{mpKeyword} || '%'
+	  	OR mppContent LIKE '%' || #{mpKeyword} || '%')
+	</if>
+	<if test="(mpDate1 != null and mpDate1 != '') and (mpDate2 != null and mpDate2 != '')">
+		AND mppInfoDate BETWEEN #{mpDate1} AND #{mpDate2} 
+	</if>
+	<if test="(mpDate1 == null or mpDate1 == '') and (mpDate2 != null and mpDate2 != '')">
+		AND mppInfoDate <![CDATA[ < ]]> #{mpDate2}
+	</if>
+	
+    <if test="(mpDate1 != null and mpDate1 != '') and (mpDate2 == null or mpDate2 == '')">
+		AND mppInfoDate <![CDATA[ > ]]> #{mpDate1}
+	</if>
+	<if test="(mpLocalCode != null and mpLocalCode != '')">
+		AND mppLocalCode = #{mpLocalCode}
+	</if>  
+</sql>	
 	
 	<!-- 리스트 조회 -->
-	<select id="mppSelectList" resultType="MpProtect">
+	<select id="mppSelectList" resultType="MpProtect" parameterType="hashMap">
 		SELECT rNum
 		     , mppNo
 		     , mppReadCnt
@@ -63,6 +89,7 @@
 					  <if test="type=='content'">
 						 AND mppContent LIKE '%' || #{keyWord} || '%'
 					  </if>
+					  <include refid="mpSubSrch"/>
 		        ORDER BY mppNo DESC))
 		WHERE rNum between ${startRow} and ${startRow} + ${pageSize} - 1
 	</select>

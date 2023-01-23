@@ -7,34 +7,16 @@
 		<div class="border row">
 			<div class="p-4 inblock">
 				<div class="mb-4 inblock row">
-					<div class="checks">
-						<label class="categ">
-							<b>대상</b>
-						</label>
-						<div class="checks col2">
-							<input type="checkbox">
-							<label> 전체 </label>
-						</div>
-						<div class="checks col2">
-							<input type="checkbox">
-							<label> 비장애아동(18세 미만) </label>
-						</div>
-						<div class="checks col2">
-							<input type="checkbox">
-							<label> 장애인(지적.자폐성.정신)</label>
-						</div>
-						<div class="checks col2">
-							<input type="checkbox">
-							<label> 치매환자 </label>
-						</div>
-						<div class="checks col2">
-							<input type="checkbox">
-							<label> 가출인 </label>
-						</div>
-						<div class="checks col2">
-							<input type="checkbox">
-							<label> 기타 </label>
-						</div>
+					<div class="main_search">
+						<label class="text-start fw-bold">대상</label>
+						<select name="mhCode">
+							<option value="">--선택하세요--</option>
+							<option value="01">비장애아동(18세 미만)</option>
+							<option value="02">장애인(지적.자폐성.정신)</option>
+							<option value="03">치매환자</option>
+							<option value="04">가출인</option>
+							<option value="05">기타</option>
+						</select>
 					</div>
 				</div>
 				<div class="mb-4">
@@ -129,43 +111,6 @@
 	<c:forEach var="mhrSrch" items="${mhrSrch}">
 		<a href="mhrDetailView?mhrNo=${mhrSrch.mhrNo}&pageNum=1">${mhrSrch.mhrTitle}</a>||${mhrSrch.mhrContent}||${mhrSrch.mhrWriter }||<fmt:formatDate value="${mhrSrch.mhrRegDate }" pattern="yy-MM-dd"/> <br> <br>
 	</c:forEach>
-	</div>
-	<div class="cl-pagination-wrap mt-5">
-		<div class="col">
-			<nav aria-label="Page navigation">
-				<ul class="cl-pagination justify-content-center">
-					<!-- 이젠 페이지 그룹 -->
-					<c:if test="${ startPage > pageGroup }">
-						<li class="prev"><a class="page-link"
-							href="mhSearch?pageNum=1">&lt;&lt;</a>
-						</li>
-					</c:if>
-					<c:if test="${ startPage > pageGroup }">
-						<li class="prev"><a class="page-link"
-							href="mhSearch?pageNum=${ startPage - pageGroup }">&lt;</a>
-						</li>
-					</c:if>
-					<!-- 페이지 그룹 -->
-					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<c:if test="${i == currentPage }">
-							<li class="page-item active text-success" aria-current="page"><b>${i}</b></li>
-						</c:if>
-						<c:if test="${i != currentPage }">
-							<li class="page-item"><a class="page-link" href="mhSearch?pageNum=${i}">${i}</a></li>
-						</c:if>
-					</c:forEach>
-					<!-- 다음페이지 그룹 -->
-					<c:if test="${ endPage < pageCount }">
-						<li class="next"><a class="page-link" href="mhSearch?pageNum=${startPage + pageGroup }">&gt;</a>
-						</li>
-					</c:if>
-					<c:if test="${ endPage < pageCount }">
-						<li class="next"><a class="page-link" href="mhSearch?pageNum=${pageCount}">&gt;&gt;</a>
-						</li>
-					</c:if>
-				</ul>
-			</nav>
-		</div>
 	</div>
 	</c:if>
 </div>

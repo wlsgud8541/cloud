@@ -127,16 +127,27 @@
 								<input type="text" name="mhName" value="${mhName}">
 							</div>
 							<div class="main_search">
+								<label class="text-start">대 상</label>
+								<select name="mhCode">
+									<option value="">--선택하세요--</option>
+									<option value="01">비장애아동(18세 미만)</option>
+									<option value="02">장애인(지적.자폐성.정신)</option>
+									<option value="03">치매환자</option>
+									<option value="04">가출인</option>
+									<option value="05">기타</option>
+								</select>
+							</div>
+							<div class="main_search">
 								<label class="text-start">성 별</label>
 								<select name="mhGen">
-									<option value="">--성별--</option>
+									<option value="">--선택하세요--</option>
 									<option value="M">남 자</option>
 									<option value="F">여 자</option>
 								</select>
 							</div>
 							<div class="main_search search_date">
 								<label class="text-start">발생일</label>
-								<input type="date" name="mhInfoDate1">~<input type="date" name="mhInfoDate2">
+								<input type="date" name="mhInfoDate1"class="text-center" style="padding: 0;">~<input type="date" name="mhInfoDate2"class="text-center" style="padding: 0;">
 							</div>
 							<div class="main_search ">
 								<label class="text-start">발생지</label>
@@ -201,7 +212,7 @@
 						</div>
 						<div class="main_search search_date">
 							<label class="text-start">발생일</label>
-							<input type="date" name="mpDate1" class="p-4">~<input type="date" name="mpDate2">
+							<input type="date" name="mpDate1" class="text-center" style="padding: 0;">~<input type="date" name="mpDate2"class="text-center" style="padding: 0;">
 						</div>
 						<div class="main_search">
 							<label class="text-start">발생지</label>

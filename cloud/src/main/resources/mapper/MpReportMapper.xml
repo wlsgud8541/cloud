@@ -29,8 +29,8 @@
 	  	AND mprPetType = #{mpType}
 	</if>
 	<if test="mpKeyword != null and mpKeyword !=''">
-	  	AND mprTitle LIKE '%' || #{mpKeyword} || '%'
-	  	OR mprContent LIKE '%' || #{mpKeyword} || '%'
+	  	AND (mprTitle LIKE '%' || #{mpKeyword} || '%'
+	  	OR mprContent LIKE '%' || #{mpKeyword} || '%')
 	</if>
 	<if test="(mpDate1 != null and mpDate1 != '') and (mpDate2 != null and mpDate2 != '')">
 		AND mprInfoDate BETWEEN #{mpDate1} AND #{mpDate2} 

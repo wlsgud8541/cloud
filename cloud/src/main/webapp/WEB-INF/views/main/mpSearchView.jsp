@@ -130,92 +130,18 @@
 		<a href="mprSelectDetail?mprNo=${mprSrchList.mprNo}&pageNum=1">${mprSrchList.mprTitle}</a>||${mprSrchList.mprContent}||${mprSrchList.mprWriter }||<fmt:formatDate value="${mprSrchList.mprRegDate }" pattern="yy-MM-dd"/> <br> <br>
 	</c:forEach>
 	</div>
-	<div class="cl-pagination-wrap mt-5">
-		<div class="col">
-			<nav aria-label="Page navigation">
-				<ul class="cl-pagination justify-content-center">
-					<!-- 이젠 페이지 그룹 -->
-					<c:if test="${ startPage > pageGroup }">
-						<li class="prev"><a class="page-link"
-							href="mpSearch?pageNum=1">&lt;&lt;</a>
-						</li>
-					</c:if>
-					<c:if test="${ startPage > pageGroup }">
-						<li class="prev"><a class="page-link"
-							href="mpSearch?pageNum=${ startPage - pageGroup }">&lt;</a>
-						</li>
-					</c:if>
-					<!-- 페이지 그룹 -->
-					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<c:if test="${i == currentPage }">
-							<li class="page-item active text-success" aria-current="page"><b>${i}</b></li>
-						</c:if>
-						<c:if test="${i != currentPage }">
-							<li class="page-item"><a class="page-link" href="mpSearch?pageNum=${i}">${i}</a></li>
-						</c:if>
-					</c:forEach>
-					<!-- 다음페이지 그룹 -->
-					<c:if test="${ endPage < pageCount }">
-						<li class="next"><a class="page-link" href="mpSearch?pageNum=${startPage + pageGroup }">&gt;</a>
-						</li>
-					</c:if>
-					<c:if test="${ endPage < pageCount }">
-						<li class="next"><a class="page-link" href="mpSearch?pageNum=${pageCount}">&gt;&gt;</a>
-						</li>
-					</c:if>
-				</ul>
-			</nav>
-		</div>
-	</div>
 	</c:if>
 </div>
 <div>
 	<div class="fs-3 fw-bold border-bottom border-primary border-4 d-inline-block"><a href="mppSelectList">실종 반려동물 임시보호</a></div>
-	<c:if test="${empty mprSrchList}">
+	<c:if test="${empty mppSrchList}">
 		<div class="text-center fw-bold fw-3 mt-4"> 검색 결과가 없습니다.</div>
 	</c:if>
-	<c:if test="${not empty mprSrchList}">
+	<c:if test="${not empty mppSrchList}">
 	<div class="mt-4">
-	<c:forEach var="mprSrchList" items="${mprSrchList}">
-		<a href="mprSelectDetail?mprNo=${mprSrchList.mprNo}&pageNum=1">${mprSrchList.mprTitle}</a>||${mprSrchList.mprContent}||${mprSrchList.mprWriter }||<fmt:formatDate value="${mprSrchList.mprRegDate }" pattern="yy-MM-dd"/> <br> <br>
+	<c:forEach var="mppSrchList" items="${mppSrchList}">
+		<a href="mppSelectDetail?mppNo=${mppSrchList.mppNo}&pageNum=1">${mppSrchList.mppTitle}</a>||${mppSrchList.mppContent}||${mppSrchList.mppWriter }||<fmt:formatDate value="${mppSrchList.mppRegDate }" pattern="yy-MM-dd"/> <br> <br>
 	</c:forEach>
-	</div>
-	<div class="cl-pagination-wrap mt-5">
-		<div class="col">
-			<nav aria-label="Page navigation">
-				<ul class="cl-pagination justify-content-center">
-					<!-- 이젠 페이지 그룹 -->
-					<c:if test="${ startPage > pageGroup }">
-						<li class="prev"><a class="page-link"
-							href="mpSearch?pageNum=1">&lt;&lt;</a>
-						</li>
-					</c:if>
-					<c:if test="${ startPage > pageGroup }">
-						<li class="prev"><a class="page-link"
-							href="mpSearch?pageNum=${ startPage - pageGroup }">&lt;</a>
-						</li>
-					</c:if>
-					<!-- 페이지 그룹 -->
-					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<c:if test="${i == currentPage }">
-							<li class="page-item active text-success" aria-current="page"><b>${i}</b></li>
-						</c:if>
-						<c:if test="${i != currentPage }">
-							<li class="page-item"><a class="page-link" href="mpSearch?pageNum=${i}">${i}</a></li>
-						</c:if>
-					</c:forEach>
-					<!-- 다음페이지 그룹 -->
-					<c:if test="${ endPage < pageCount }">
-						<li class="next"><a class="page-link" href="mpSearch?pageNum=${startPage + pageGroup }">&gt;</a>
-						</li>
-					</c:if>
-					<c:if test="${ endPage < pageCount }">
-						<li class="next"><a class="page-link" href="mpSearch?pageNum=${pageCount}">&gt;&gt;</a>
-						</li>
-					</c:if>
-				</ul>
-			</nav>
-		</div>
 	</div>
 	</c:if>
 </div>

@@ -19,15 +19,9 @@ public interface MainDao {
 // 메인 통합검색
 	public List<Object> mainUsearch(String type, String keyword);
 //	소검색 실종자 신고
-	public List<MhReport> mhrSrchList(int startRow, int pageSize, String mhName, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
-//	소검색 실종자 글 갯수
-	public int mhrCnt(String mhName, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
+	public List<MhReport> mhrSrchList(String mhName, String mhCode, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
 //	소검색 반려동물 신고
-	public List<MpReport> mprSrchList(int startRow, int pageSize, String mpGen,String mpType ,String mpKeyword, String mpInfoDate1, String mpInfoDate2, String mpLocalCode);
-//	소검색 반려동물 신고 글 갯수
-	public int mprCnt();
+	public List<MpReport> mprSrchList(String mpGen,String mpType ,String mpKeyword, String mpInfoDate1, String mpInfoDate2, String mpLocalCode);
 //	소검색 반려동물 임보
-	public List<MpProtect> mppSrchList(int startRow, int pageSize, String mpGen,String mpType ,String mpKeyword, String mpInfoDate1, String mpInfoDate2, String mpLocalCode);
-//	소검색 반려동물 임보 글 갯수
-	public int mppCnt();
+	public List<MpProtect> mppSrchList(String mpGen,String mpType ,String mpKeyword, String mpInfoDate1, String mpInfoDate2, String mpLocalCode);
 }

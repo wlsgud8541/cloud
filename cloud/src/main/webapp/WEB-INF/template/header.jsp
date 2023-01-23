@@ -52,7 +52,7 @@
 				</li>
 				<li class="menu1"><a href="#">실종자신고</a>
 					<ul>
-						<li><a href="mhiSelectList">실종자 정보</a></li>
+						<li><a href="mhInfo">실종자 정보</a></li>
 						<li><a href="mhrSelectList">실종자 신고</a></li>
 						<li><a href="mhfSelectList">실종자 목격</a></li>
 					</ul>

@@ -45,6 +45,9 @@
 				OR mhrTitle LIKE '%' || #{mhName} || '%'
 				OR mhrContent LIKE '%' || #{mhName} || '%')
 		</if> 
+		<if test="mhCode != null and mhCode != ''">
+			AND mhrIllCode = #{mhCode}
+		</if>   
 		<if test="(mhInfoDate1 != null and mhInfoDate1 != '') and (mhInfoDate2 != null and mhInfoDate2 != '')">
 			AND mhrInfoDate BETWEEN #{mhInfoDate1} AND #{mhInfoDate2} 
 		</if>
@@ -68,17 +71,20 @@
         ,mhrReadCnt
         ,mhrRegDate
         ,mhrTitle
+        ,mhrContent
         ,mhrWriter
 	FROM (SELECT rownum as rNum
             ,mhrNo
             ,mhrReadCnt
             ,mhrRegDate
             ,mhrTitle
+      		,mhrContent
             ,mhrWriter
         FROM(SELECT mhrNo
                    ,mhrReadCnt
                    ,mhrRegDate
                    ,mhrTitle
+        			,mhrContent
                    ,mhrWriter
               FROM
                 mhreport
@@ -195,7 +201,6 @@ WHERE
 			mhreport
 		WHERE
 			mhrDelYn = 'N'
-			<include refid="subMhSrch"></include>
 	</select>
 	<update id="mhrReadCount" parameterType="int">
 	UPDATE
