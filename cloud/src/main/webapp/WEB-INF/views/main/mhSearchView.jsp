@@ -137,12 +137,12 @@
 					<!-- 이젠 페이지 그룹 -->
 					<c:if test="${ startPage > pageGroup }">
 						<li class="prev"><a class="page-link"
-							href="mhpSearch?pageNum=1">&lt;&lt;</a>
+							href="mhSearch?pageNum=1">&lt;&lt;</a>
 						</li>
 					</c:if>
 					<c:if test="${ startPage > pageGroup }">
 						<li class="prev"><a class="page-link"
-							href="mhpSearch?pageNum=${ startPage - pageGroup }">&lt;</a>
+							href="mhSearch?pageNum=${ startPage - pageGroup }">&lt;</a>
 						</li>
 					</c:if>
 					<!-- 페이지 그룹 -->
@@ -151,16 +151,16 @@
 							<li class="page-item active text-success" aria-current="page"><b>${i}</b></li>
 						</c:if>
 						<c:if test="${i != currentPage }">
-							<li class="page-item"><a class="page-link" href="mhpSearch?pageNum=${i}">${i}</a></li>
+							<li class="page-item"><a class="page-link" href="mhSearch?pageNum=${i}">${i}</a></li>
 						</c:if>
 					</c:forEach>
 					<!-- 다음페이지 그룹 -->
 					<c:if test="${ endPage < pageCount }">
-						<li class="next"><a class="page-link" href="mhpSearch?pageNum=${ startPage + pageGroup }">&gt;</a>
+						<li class="next"><a class="page-link" href="mhSearch?pageNum=${startPage + pageGroup }">&gt;</a>
 						</li>
 					</c:if>
 					<c:if test="${ endPage < pageCount }">
-						<li class="next"><a class="page-link" href="mhpSearch?pageNum=${pageCount}">&gt;&gt;</a>
+						<li class="next"><a class="page-link" href="mhSearch?pageNum=${pageCount}">&gt;&gt;</a>
 						</li>
 					</c:if>
 				</ul>

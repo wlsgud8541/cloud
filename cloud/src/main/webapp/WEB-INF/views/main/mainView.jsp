@@ -120,7 +120,7 @@
 							<option value="mp">실종 반려동물</option>
 						</select>
 					</div>
-					<form class="mhSearch" action="mhpSearch" method="post">
+					<form class="mhSearch" action="mhSearch" method="post">
 						<div class="mhSearch">
 							<div class="main_search">
 								<label class="text-start">이 름</label>
@@ -169,7 +169,7 @@
 					</form>
 					
 					
-					<form class="mpSearch" action="mhpSearch">
+					<form class="mpSearch" action="mpSearch">
 					<div class="">
 <!-- 						<div class="main_search"> -->
 <!-- 						<label class="text-start">분 류</label> -->
@@ -181,21 +181,31 @@
 						<div class="main_search">
 							<label class="text-start">성 별</label>
 							<select name="mpGen">
+								<option value="">--선택하세요--</option>
 								<option value="M">수 컷</option>
 								<option value="F">암 컷</option>
 							</select>
+						</div>
+						<div class="main_search">
+							<label class="text-start">동물종류</label>
+							<select name="mpType">
+								<option value="">--선택하세요--</option>
+								<option value="01">강아지</option>
+								<option value="02">고양이</option>
+								<option value="03">기타</option>
+							</select>
+						</div>
 						<div class="main_search">
 							<label class="text-start">키워드</label>
-							<input type="text" name="mpContent">
-						</div>
+							<input type="text" name="mpKeyword">
 						</div>
 						<div class="main_search search_date">
 							<label class="text-start">발생일</label>
-							<input type="date" name="mpDate1">~<input type="date" name="mpDate2">
+							<input type="date" name="mpDate1" class="p-4">~<input type="date" name="mpDate2">
 						</div>
 						<div class="main_search">
 							<label class="text-start">발생지</label>
-							<select name="mprLocalCode">
+							<select name="mpLocalCode">
 								<option value="">--선택하세요--</option>
 						    	<option value="01">서울</option>
 						    	<option value="02">경기</option>
@@ -217,7 +227,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="text-end mt-4 color text-danger">
+					<div class="text-end mt-1 color text-danger">
 						<small>※ 입력란이 채워지지 않을 시 전체를 검색합니다. ※&nbsp;&nbsp;&nbsp;</small>
 						<button type="submit" class="btn btn-secondary">검 색</button>
 					</div>

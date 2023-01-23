@@ -15,6 +15,7 @@ import com.project.cloud.main.service.MainService;
 import com.project.cloud.mh.domain.MhFind;
 import com.project.cloud.mh.domain.MhReport;
 import com.project.cloud.mp.domain.MpFind;
+import com.project.cloud.mp.domain.MpReport;
 
 @Controller
 public class MainController {
@@ -48,8 +49,8 @@ public class MainController {
 		return "main/searchView";
 	}
 	
-	@RequestMapping("mhpSearch")
-	public String mhpSearch(Model model,
+	@RequestMapping("mhSearch")
+	public String mhSearch(Model model,
 							@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
 							@RequestParam(value = "mhName",required = false, defaultValue = "") String mhName, 
 							@RequestParam(value = "mhGen",required = false, defaultValue = "") String mhGen, 
@@ -83,6 +84,42 @@ public class MainController {
 		
 		model.addAllAttributes(mhrSrchPage);
 		
-		return"main/mhpSearchView";
+		return"main/mhSearchView";
+	}
+	
+	@RequestMapping("mpSearch")
+	public String mpSearch(Model model,
+							@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
+							@RequestParam(value = "mpGen",required = false, defaultValue = "") String mpGen, 
+							@RequestParam(value = "mpType",required = false, defaultValue = "") String mpType, 
+							@RequestParam(value = "mpKeyword",required = false, defaultValue = "") String mpKeyword, 
+							@RequestParam(value = "mpInfoDate1",required = false, defaultValue = "") String mpInfoDate1, 
+							@RequestParam(value = "mpInfoDate2",required = false, defaultValue = "") String mpInfoDate2, 
+							@RequestParam(value = "mpLocalCode",required = false, defaultValue = "") String mpLocalCode) {
+		
+		int pageSize= 5;
+		int pageGroup = 5;
+		int listCount1 = mainService.mprCnt();
+		
+		String type="";
+		String keyWord="";
+		
+		Map<String, Object> mprSrchPage = gms.pageList(listCount1, pageSize, pageGroup, pageNum, type, keyWord);
+		int startRow =(int)mprSrchPage.get("startRow");
+		List<MpReport> mprSrchList = mainService.mprSrchList(startRow, pageSize, mpGen, mpType, mpKeyword, mpInfoDate1, mpInfoDate2, mpLocalCode);
+		
+		mprSrchPage.put("mprSrchList", mprSrchList);
+		mprSrchPage.put("listCount1", listCount1);
+		mprSrchPage.put("pageGroup", pageGroup);
+		mprSrchPage.put("mpGen", mpGen);
+		mprSrchPage.put("mpType", mpType);
+		mprSrchPage.put("mpKeyword", mpKeyword);
+		mprSrchPage.put("mpInfoDate1", mpInfoDate1);
+		mprSrchPage.put("mpInfoDate2", mpInfoDate2);
+		mprSrchPage.put("mpLocalCode", mpLocalCode);
+		
+		model.addAllAttributes(mprSrchPage);
+		
+		return "main/mpSearchView";
 	}
 }

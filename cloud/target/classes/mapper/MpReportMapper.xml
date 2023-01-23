@@ -20,44 +20,71 @@
 		<result property="mprLocalDetail" column="mprLocalDetail"/>
 		<result property="rNum" column="rNum"/>
 	</resultMap>
+<sql id="mpSubSrch">
+	<if test="mpGen != null and mpGen !=''">
+	  	AND mprGen LIKE '%' || #{mpGen} || '%'
+	</if>
+	<if test="mpType != null and mpType !=''">
+	  	AND mprPetType = #{mpType}
+	</if>
+	<if test="mpKeyword != null and mpKeyword !=''">
+	  	AND mprTitle LIKE '%' || #{mpKeyword} || '%'
+	  	OR mprContent LIKE '%' || #{mpKeyword} || '%'
+	</if>
+	<if test="(mpDate1 != null and mpDate1 != '') and (mpDate2 != null and mpDate2 != '')">
+		AND mprInfoDate BETWEEN #{mpDate1} AND #{mpDate2} 
+	</if>
+	<if test="(mpDate1 == null or mpDate1 == '') and (mpDate2 != null and mpDate2 != '')">
+		AND mprInfoDate <![CDATA[ < ]]> #{mpDate2}
+	</if>
 	
+    <if test="(mpDate1 != null and mpDate1 != '') and (mpDate2 == null or mpDate2 == '')">
+		AND mprInfoDate <![CDATA[ > ]]> #{mpDate1}
+	</if>
+	<if test="(mpLocalCode != null and mpLocalCode != '')">
+		AND mprLocalCode = #{mpLocalCode}
+	</if>  
+</sql>	
 	<!-- 리스트 조회 -->
-	<select id="mprSelectList" resultType="MpReport">
+	<select id="mprSelectList" resultType="MpReport"  parameterType="hashMap">
 		SELECT rNum
-		     , mprNo
-		     , mprReadCnt
-		     , mprRegDate
-		     , mprTitle
-		     , mprWriter
-		     , mprStatusCode
-		     , mprLocalCode
-			 , mprAddFile
-			 , mprLocalDetail
-			 , mprGen
-			 , mprPetType
+		     ,mprNo
+		     ,mprReadCnt
+		     ,mprRegDate
+		     ,mprTitle
+		     ,mprContent
+		     ,mprWriter
+		     ,mprStatusCode
+		     ,mprLocalCode
+			 ,mprAddFile
+			 ,mprLocalDetail
+			 ,mprGen
+			 ,mprPetType
 		  FROM (SELECT rownum as rNum
-		             , mprNo
-		             , mprReadCnt
-		             , mprRegDate
-		             , mprTitle
-		             , mprWriter
-		             , mprStatusCode
-		             , mprLocalCode
-					 , mprAddFile
-					 , mprLocalDetail
-					 , mprGen
-					 , mprPetType
+		             ,mprNo
+		             ,mprReadCnt
+		             ,mprRegDate
+		             ,mprTitle
+		    		 ,mprContent
+		             ,mprWriter
+		             ,mprStatusCode
+		             ,mprLocalCode
+					 ,mprAddFile
+					 ,mprLocalDetail
+					 ,mprGen
+					 ,mprPetType
 				FROM(SELECT mprNo
-		                  , mprReadCnt
-		                  , mprRegDate
-		                  , mprTitle
-		                  , mprWriter
-		                  , mprStatusCode
-		                  , mprLocalCode
-						  , mprAddFile
-						  , mprLocalDetail
-						  , mprGen
-						  , mprPetType
+		                  ,mprReadCnt
+		                  ,mprRegDate
+		                  ,mprTitle
+		   				  ,mprContent	
+		                  ,mprWriter
+		                  ,mprStatusCode
+		                  ,mprLocalCode
+						  ,mprAddFile
+						  ,mprLocalDetail
+						  ,mprGen
+						  ,mprPetType
 		               FROM mpReport
 		              WHERE mprDelYn = 'N'
 		              <if test="type=='title'">
@@ -69,35 +96,28 @@
 					  <if test="type=='content'">
 						 AND mprContent LIKE '%' || #{keyWord} || '%'
 					  </if>
-					  <if test="type=='pettype'">
-						 AND mprPetType LIKE '%' || #{keyWord} || '%'
-					  </if>
-					  <if test="type=='gen'">
-						 AND mprGen LIKE '%' || #{keyWord} || '%'
-					  </if>
-					  <if test="type=='localcode'">
-						 AND mprLocalCode LIKE '%' || #{keyWord} || '%'
-					  </if>
-		        ORDER BY mprNo DESC))
-		WHERE rNum between ${startRow} and ${startRow} + ${pageSize} - 1
+						<include refid="mpSubSrch"/>
+		        ORDER BY mprNo DESC)
+		        )
+		WHERE rNum BETWEEN ${startRow} AND ${startRow} + ${pageSize} - 1
 	</select>
 	
 	<!-- 리스트 디테일 조회 -->
 	<select id="mprSelectDetail" resultType="MpReport" resultMap="MpReport">
 		SELECT
 		      mprNo
-		    , mprReadCnt
-		    , mprInfoDate
-		    , mprRegDate
-		    , mprTitle
-		    , mprContent
-		    , mprStatusCode
-		    , mprLocalCode
-		    , mprPetType
-		    , mprWriter
-		    , mprGen
-		    , mprAddFile
-		    , mprLocalDetail
+		    ,mprReadCnt
+		    ,mprInfoDate
+		    ,mprRegDate
+		    ,mprTitle
+		    ,mprContent
+		    ,mprStatusCode
+		    ,mprLocalCode
+		    ,mprPetType
+		    ,mprWriter
+		    ,mprGen
+		    ,mprAddFile
+		    ,mprLocalDetail
 		FROM
 		    mpReport
 		WHERE
@@ -119,15 +139,7 @@
 					  <if test="type=='content'">
 						 AND mprContent LIKE '%' || #{keyWord} || '%'
 					  </if>
-					  <if test="type=='pettype'">
-						 AND mprPetType LIKE '%' || #{keyWord} || '%'
-					  </if>
-					  <if test="type=='gen'">
-						 AND mprGen LIKE '%' || #{keyWord} || '%'
-					  </if>
-					  <if test="type=='localcode'">
-						 AND mprLocalCode LIKE '%' || #{keyWord} || '%'
-					  </if>
+					  <include refid="mpSubSrch"/>
 	</select>
 	
 	<!-- 글쓰기 -->
