@@ -5,7 +5,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface GlobalMethodService {
@@ -20,4 +22,6 @@ public interface GlobalMethodService {
 	
 	//현재날짜
 	public String todayTimeStamp();
+	
+	public void jpReport(HttpSession session, HttpServletRequest request, HttpServletResponse response ,Map<String, Object> jpReportMap);
 }

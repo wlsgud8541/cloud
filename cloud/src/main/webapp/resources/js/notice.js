@@ -1034,32 +1034,58 @@ $(document).ready(function(){
 	// 제스퍼 리포트 출력
 	$("#jsReport").on("click",function(){
 		var code = $(this).attr("data-code");
-		var mhrName = $("#jxv_mhrName").val();
-		var mhrage = $("#jxv_mhrage").val();
-		var mhrGen = $("#jxv_mhrGen").val();
-		var mhrInfoDate = $("#jxv_mhrInfoDate").val();
-		var mhrHairColor = $("#jxv_mhrHairColor").val();
-		var mhrHair = $("#jxv_mhrHair").val();
-		var mhrWear = $("#jxv_mhrWear").val();
-		var mhrContent = $("#jxv_mhrContent").val();
-		var mhrAddFile = $("#jxv_mhrAddFile").val();
-		var memberTell = $("#jxv_memberTell").val();
 		
-		var url = "";
+		if(code == 'mh'){
+			var mhrName = $("#jxv_mhrName").val();
+			var mhrage = $("#jxv_mhrage").val();
+			var mhrGen = $("#jxv_mhrGen").val();
+			var mhrInfoDate = $("#jxv_mhrInfoDate").val();
+			var mhrHairColor = $("#jxv_mhrHairColor").val();
+			var mhrHair = $("#jxv_mhrHair").val();
+			var mhrWear = $("#jxv_mhrWear").val();
+			var mhrContent = $("#jxv_mhrContent").val();
+			var mhrAddFile = $("#jxv_mhrAddFile").val();
+			var memberTell = $("#jxv_memberTell").val();
+			
+			var url = "";
+			
+			url += "jpReport?code="+code;
+			url += "&mhrName="+mhrName;
+			url += "&mhrage="+mhrage;
+			url += "&mhrGen="+mhrGen;
+			url += "&mhrInfoDate="+mhrInfoDate;
+			url += "&mhrHairColor="+mhrHairColor;
+			url += "&mhrHair="+mhrHair;
+			url += "&mhrWear="+mhrWear;
+			url += "&mhrContent="+mhrContent;
+			url += "&mhrAddFile="+mhrAddFile;
+			url += "&memberTell="+memberTell;
+			
+			location.href = url;
+		}
 		
-		url += "printTest?code="+code;
-		url += "&mhrName="+mhrName;
-		url += "&mhrage="+mhrage;
-		url += "&mhrGen="+mhrGen;
-		url += "&mhrInfoDate="+mhrInfoDate;
-		url += "&mhrHairColor="+mhrHairColor;
-		url += "&mhrHair="+mhrHair;
-		url += "&mhrWear="+mhrWear;
-		url += "&mhrContent="+mhrContent;
-		url += "&mhrAddFile="+mhrAddFile;
-		url += "&memberTell="+memberTell;
-		
-		location.href = url;
+		if(code == 'mp'){
+			var mprPetType = $("#jxv_mprPetType").val();
+			var mprGen = $("#jxv_mprGen").val();
+			var mprLocalCode = $("#jxv_mprLocalCode").val();
+			var mprInfoDate = $("#jxv_mprInfoDate").val();
+			var mprContent = $("#jxv_mprContent").val();
+			var mprAddFile = $("#jxv_mprAddFile").val();
+			var memberTell = $("#jxv_memberTell").val();
+			
+			var url = "";
+
+			url += "jpReport?code="+code;
+			url += "&mprPetType="+mprPetType;
+			url += "&mprGen="+mprGen;
+			url += "&mprLocalCode="+mprLocalCode;
+			url += "&mprInfoDate="+mprInfoDate;
+			url += "&mprContent="+mprContent;
+			url += "&mprAddFile="+mprAddFile;
+			url += "&memberTell="+memberTell;
+			
+			location.href = url;
+		}
 		
 	});
 	

@@ -29,9 +29,9 @@ public class MhReport {
 	private String mhrHair;
 	private String mhrWear;
 	
+	
 	private String memberTell;
 	private String code;
-	
 
 	public MhReport() {}
 	

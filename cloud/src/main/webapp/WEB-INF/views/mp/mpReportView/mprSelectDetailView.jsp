@@ -6,6 +6,18 @@
 <!-- content -->
 <div class="w3-content">
 	<input type="hidden" id="mprNo" value="${mprDetail.mprNo}">
+	
+	<!-- 제스퍼 리포트용 벨류세팅 -->
+	<input type="hidden" value="${mprDetail.mprAddFile}" id="jxv_mprAddFile"><!-- 사진 -->
+	<input type="hidden" value="${mprDetail.mprPetType}" id="jxv_mprPetType"> <!-- 동물종류 -->
+	<input type="hidden" value="${mprDetail.mprGen}" id="jxv_mprGen"> <!-- 성별 -->
+	<input type="hidden" value="${mprDetail.mprLocalCode}" id="jxv_mprLocalCode"> <!-- 실종지역코드 -->
+	<input type="hidden" value="${mprDetail.mprInfoDate}" id="jxv_mprInfoDate"> <!-- 실종일시 -->
+	<!-- 특징 -->
+	<input type="hidden" value="${mprDetail.mprContent}" id="jxv_mprContent">
+	<input type="hidden" value="${mprDetail.memberTell}" id="jxv_memberTell">
+	<!-- 제스퍼 리포트용 벨류세팅 end -->
+	
 	<div class="my-4">
 		<h3>${mprDetail.mprTitle}</h3>
 	</div>
@@ -189,6 +201,7 @@
 
 	<div class="row">
 		<div class="col text-center mt-4">
+			<input type="button" class="btn" value="전단지 출력" id ="jsReport" data-code="mp" />
 			<input type="button" class="btn btn-outline-primary" id="mprUpdate" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="수정하기"> 
 			<input type="button" class="btn btn-outline-primary  mx-3"  id="mprDelete" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
 			<input type="button" onclick="location.href='mprSelectList?pageNum=${pageNum}'" class="btn btn-outline-primary" value="목록으로" />

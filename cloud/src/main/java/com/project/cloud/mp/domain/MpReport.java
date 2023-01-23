@@ -20,11 +20,14 @@ public class MpReport {
 	private String mprGen;
 	private String mprLocalDetail;
 	
+	private String memberTell;
+	private String code;
+	
 	public MpReport() {}
 	
 	public MpReport(int mprNo, int mprReadCnt, int mmNo, int rNum, Timestamp mprInfoDate, Timestamp mprRegDate, String mprTitle,
 			String mprContent, String mprStatusCode, String mprLocalCode, String mprPetType, String mprAddFile,
-			String mprWriter, String mprDelYn, String mprGen, String mprLocalDetail) {
+			String mprWriter, String mprDelYn, String mprGen, String mprLocalDetail, String memberTell, String code) {
 		
 			this.mprNo = mprNo;
 			this.mprReadCnt = mprReadCnt;
@@ -42,8 +45,27 @@ public class MpReport {
 			this.mprDelYn = mprDelYn;
 			this.mprGen = mprGen;
 			this.mprLocalDetail = mprLocalDetail;
+			this.memberTell = memberTell;
+			this.code = code;
 	}
 
+	public String getCode() {
+		return code;
+	}
+	
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	public String getMemberTell() {
+		
+		return memberTell;
+	}
+
+	public void setMemberTell(String memberTell) {
+		this.memberTell = memberTell;
+	}
+	
 	public String getMprLocalDetail() {
 		return mprLocalDetail;
 	}

@@ -19,6 +19,7 @@
 		<result property="mprGen" column="mprGen"/>
 		<result property="mprLocalDetail" column="mprLocalDetail"/>
 		<result property="rNum" column="rNum"/>
+		<result property="memberTell" column="memberTell"/>
 	</resultMap>
 <sql id="mpSubSrch">
 	<if test="mpGen != null and mpGen !=''">
@@ -105,24 +106,27 @@
 	<!-- 리스트 디테일 조회 -->
 	<select id="mprSelectDetail" resultType="MpReport" resultMap="MpReport">
 		SELECT
-		      mprNo
-		    ,mprReadCnt
-		    ,mprInfoDate
-		    ,mprRegDate
-		    ,mprTitle
-		    ,mprContent
-		    ,mprStatusCode
-		    ,mprLocalCode
-		    ,mprPetType
-		    ,mprWriter
-		    ,mprGen
-		    ,mprAddFile
-		    ,mprLocalDetail
+		     mpr.mprNo as mprNo
+		    ,mpr.mprReadCnt as mprReadCnt
+		    ,mpr.mprInfoDate as mprInfoDate
+		    ,mpr.mprRegDate as mprRegDate
+		    ,mpr.mprTitle as mprTitle
+		    ,mpr.mprContent as mprContent
+		    ,mpr.mprStatusCode as mprStatusCode
+		    ,mpr.mprLocalCode as mprLocalCode
+		    ,mpr.mprPetType as mprPetType
+		    ,mpr.mprWriter as mprWriter
+		    ,mpr.mprGen as mprGen
+		    ,mpr.mprAddFile as mprAddFile
+		    ,mpr.mprLocalDetail as mprLocalDetail
+		    ,(SELECT m.mmTel 
+			    FROM MMEMBER m
+			   WHERE m.mmNo = mpr.mmNo) AS memberTell
 		FROM
-		    mpReport
+		    mpReport mpr
 		WHERE
 			mprNo = #{mprNo}
-		ORDER BY mprNo DESC
+			AND mprDelYn = 'N'	
 	</select>
 	
 	<!-- 리스트 카운트 조회 -->
