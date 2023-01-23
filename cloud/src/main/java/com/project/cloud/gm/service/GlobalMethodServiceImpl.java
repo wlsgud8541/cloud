@@ -193,6 +193,9 @@ public class GlobalMethodServiceImpl implements GlobalMethodService{
 		if (mhrAddFile != null && mhrAddFile != "") {
 			mhrAddFile = filePath + mhrAddFile;
 		}
+		if (mhrContent != null && mhrContent != "") {
+			mhrContent = mhrContent.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+		}
 		
 		
 		// 실종 반려동물 관련 벨류 세팅
@@ -266,7 +269,9 @@ public class GlobalMethodServiceImpl implements GlobalMethodService{
 		if (mprAddFile != null && mprAddFile != "") {
 			mprAddFile = filePath + mprAddFile;
 		}
-
+		if (mprContent != null && mprContent != "") {
+			mprContent = mprContent.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+		}
 		
 		if (code != null && code.equals("mh")) { // 실종자의 경우
 			reportType = "mhPrint.jrxml";
