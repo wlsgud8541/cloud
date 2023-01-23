@@ -73,7 +73,7 @@
                   <label class="categ">
                      <b>작성자</b>
                   </label>
-                  <div class="inblock col-lg-5 col-sm-4"> 
+                  <div class="inblock col-lg-5 col-sm-4">
                      <div class="inblock">
                         <input type="text" name="keyWord" value="${keyWord}" class="form-control">
                      </div>

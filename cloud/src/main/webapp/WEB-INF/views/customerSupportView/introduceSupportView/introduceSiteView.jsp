@@ -16,5 +16,26 @@
      	 <a href="main"><img src="resources/image/intro/chart.jpg" style="width: 600px;"></a>
  	</div>
 	</div>
+	<div class="p-5">
+		<div class="display-4 font-weight-bold text-center p-5">개발자 소개 및 인사말</div>
+		<img src="resources/image/main/wlsgud.jpg" style="width: 200px;">
+		<span class="display-5 text-top align-top px-5"> 전진형</span>
+		<span class="text-muted">인사말 및 소개</span>
+	</div>
+	<div class="p-5">
+		<img src="resources/image/main/dndud.jpg" style="width: 200px;">
+		<span class="display-5 text-top align-top px-5">정우영</span>
+		<span class="text-muted">인사말 및 소개</span>
+	</div>
+	<div class="p-5">
+		<img src="resources/image/main/ruddnr.jpg" style="width: 200px;">
+		<span class="display-5 text-top align-top px-5">김경욱</span>
+		<span class="text-muted text-left">인사말 및 소개</span>
+	</div>
+	<div class="p-5">
+		<img src="resources/image/main/alsgur.jpg" style="width: 200px;">
+		<span class="display-5 text-top align-top px-5">정민혁</span>
+		<span class="text-muted text-left">인사말 및 소개</span>
+	</div>
 </body>
-<img src="fileDownload?fileName=90971683-f393-42ea-ae88-2a922c2d48d1_ㅠㅠ.jpg">
+<!-- <img src="fileDownload?fileName=90971683-f393-42ea-ae88-2a922c2d48d1_ㅠㅠ.jpg"> -->
