@@ -9,15 +9,15 @@
 			</div> 
 		</div>
 		<form action="mmInsertJoin" name="insertJoin" method="POST" id="insertJoin">
-			<input type="text" id="mmUseUserInfoYn" name="mmUseUserInfoYn" value="${member.mmUseUserInfoYn}">
+			<input type="hidden" id="mmUseUserInfoYn" name="mmUseUserInfoYn" value="${member.mmUseUserInfoYn}">
 		
-			<input type="text" id="naverId" name="naverId" value="${member.naverId}">
-			<input type="text" id="naverGender" name="naverGender" value="${member.naverGender}">
-			<input type="text" id="naverEmail" name="naverEmail" value="${member.naverEmail}">
-			<input type="text" id="naverMobile" name="naverMobile" value="${member.naverMobile}">
-			<input type="text" id="naverName" name="naverName" value="${member.naverName}">
-			<input type="text" id="naverBirthyear" name="naverBirthyear" value="${member.naverBirthyear}">
-			<input type="text" id="naverBirthday" name="naverBirthday" value="${member.naverBirthday}">
+			<input type="hidden" id="naverId" name="naverId" value="${member.naverId}">
+			<input type="hidden" id="naverGender" name="naverGender" value="${member.naverGender}">
+			<input type="hidden" id="naverEmail" name="naverEmail" value="${member.naverEmail}">
+			<input type="hidden" id="naverMobile" name="naverMobile" value="${member.naverMobile}">
+			<input type="hidden" id="naverName" name="naverName" value="${member.naverName}">
+			<input type="hidden" id="naverBirthyear" name="naverBirthyear" value="${member.naverBirthyear}">
+			<input type="hidden" id="naverBirthday" name="naverBirthday" value="${member.naverBirthday}">
 			
 		
 			<div class="row mt-5 mb-3">

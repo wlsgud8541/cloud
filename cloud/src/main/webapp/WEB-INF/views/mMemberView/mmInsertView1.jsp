@@ -14,12 +14,12 @@
 					<label class="form-label">개인정보 수집 및 이용 동의</label>
 				</div>
 				<!-- 확인용 -->
-				<c:if test="${not empty kakaoId}">
+				<%-- <c:if test="${not empty kakaoId}">
 					<h5>카카오</h5>
 					<h5>${kakaoId}</h5>
 					<h5>${kakaoEmail}</h5>
 					<h5>${kakaoGender}</h5>
-				</c:if>
+				</c:if> --%>
 				
 				<form action="mmInsertJoin2" id="mmInsertJoin2Form" method="post">
 					<!-- 카카오  -->
