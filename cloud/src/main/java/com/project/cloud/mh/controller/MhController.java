@@ -59,7 +59,14 @@ public class MhController {
 	public String mhrSelectList(Model model,
 											@RequestParam(value="type",required=false, defaultValue="null")String type,
 											@RequestParam(value="keyword",required=false, defaultValue="null")String keyword,
-											@RequestParam(value="pageNum",required=false,defaultValue="1")int pageNum) {
+											@RequestParam(value="pageNum",required=false,defaultValue="1")int pageNum,
+											@RequestParam(value = "mpGen",required = false, defaultValue = "") String mpGen, 
+											@RequestParam(value = "mpType",required = false, defaultValue = "") String mpType, 
+											@RequestParam(value = "mpKeyword",required = false, defaultValue = "") String mpKeyword, 
+											@RequestParam(value = "mpInfoDate1",required = false, defaultValue = "") String mpInfoDate1, 
+											@RequestParam(value = "mpInfoDate2",required = false, defaultValue = "") String mpInfoDate2, 
+											@RequestParam(value = "mpLocalCode",required = false, defaultValue = "") String mpLocalCode)
+																																	{
 		
 		// 페이징처리
 		int pagesize = 10;

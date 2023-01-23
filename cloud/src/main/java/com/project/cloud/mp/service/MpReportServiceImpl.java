@@ -19,13 +19,13 @@ public class MpReportServiceImpl implements MpReportService {
 	}
 	
 	@Override
-	public List<MpReport> mprSelectList(int startRow, int pageSize, String type, String keyWord) {
-		return mpReportDao.mprSelectList(startRow, pageSize, type, keyWord);
+	public List<MpReport> mprSelectList(int startRow, int pageSize,String mpGen, String mpType, String mpKeyword, String mpInfoDate1,String mpInfoDate2, String mpLocalCode) {
+		return mpReportDao.mprSelectList(startRow, pageSize, mpGen, mpType, mpKeyword, mpInfoDate1, mpInfoDate2, mpLocalCode);
 	}
 	
 	@Override
-	public int mprSelectListCount(String type, String keyword) {
-		return mpReportDao.mprSelectListCount(type, keyword);
+	public int mprSelectListCount(String mpGen, String mpType, String mpKeyword, String mpDate1,String mpDate2, String mpLocalCode) {
+		return mpReportDao.mprSelectListCount(mpGen, mpType, mpKeyword, mpDate1, mpDate2, mpLocalCode);
 	}
 
 	@Override

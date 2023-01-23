@@ -21,21 +21,29 @@ public class MpReportDaoImpl implements MpReportDao {
 	}
 	
 	@Override
-	public List<MpReport> mprSelectList(int startRow, int pageSize, String type, String keyWord) {
+	public List<MpReport> mprSelectList(int startRow, int pageSize, String mpGen, String mpType, String mpKeyword, String mpInfoDate1,String mpInfoDate2, String mpLocalCode) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("startRow", startRow);
 		paramMap.put("pageSize", pageSize);
-		paramMap.put("type", type);
-		paramMap.put("keyWord", keyWord);
+		paramMap.put("mpGen", mpGen);
+		paramMap.put("mpType", mpType);
+		paramMap.put("mpKeyword", mpKeyword);
+		paramMap.put("mpDate1", mpInfoDate1);
+		paramMap.put("mpDate2", mpInfoDate2);
+		paramMap.put("mpLocalCode", mpLocalCode);
 		
 		return sql.selectList("MpReport.mprSelectList",paramMap);
 	}
 	
 	@Override
-	public int mprSelectListCount(String type, String keyWord) {
-		Map<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("type", type);
-		paramMap.put("keyWord", keyWord);
+	public int mprSelectListCount(String mpGen, String mpType, String mpKeyword, String mpDate1,String mpDate2, String mpLocalCode) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("mpGen", mpGen);
+		paramMap.put("mpType", mpType);
+		paramMap.put("mpKeyword", mpKeyword);
+		paramMap.put("mpDate1", mpDate1);
+		paramMap.put("mpDate2", mpDate2);
+		paramMap.put("mpLocalCode", mpLocalCode);
 		
 		return sql.selectOne("MpReport.mprSelectListCount",paramMap);
 	}

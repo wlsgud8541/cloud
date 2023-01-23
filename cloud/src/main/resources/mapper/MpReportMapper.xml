@@ -14,7 +14,7 @@
 		<result property="mprLocalCode" column="mprLocalCode"/>
 		<result property="mprPetType" column="mprPetType"/>
 		<result property="mprAddFile" column="mprAddFile"/>
-		<result property="mprWriter" column="mprWriter"/>
+		<result property="mprWriter" column="mprWriter"/> 
 		<result property="mprDelYn" column="mprDelYn"/>
 		<result property="mprGen" column="mprGen"/>
 		<result property="mprLocalDetail" column="mprLocalDetail"/>
@@ -38,7 +38,6 @@
 	<if test="(mpDate1 == null or mpDate1 == '') and (mpDate2 != null and mpDate2 != '')">
 		AND mprInfoDate <![CDATA[ < ]]> #{mpDate2}
 	</if>
-	
     <if test="(mpDate1 != null and mpDate1 != '') and (mpDate2 == null or mpDate2 == '')">
 		AND mprInfoDate <![CDATA[ > ]]> #{mpDate1}
 	</if>
@@ -88,15 +87,6 @@
 						  ,mprPetType
 		               FROM mpReport
 		              WHERE mprDelYn = 'N'
-		              <if test="type=='title'">
-						 AND mprTitle LIKE '%' || #{keyWord} || '%'
-					  </if>
-					  <if test="type=='writer'">
-						 AND mprWriter LIKE '%' || #{keyWord} || '%'
-					  </if>
-					  <if test="type=='content'">
-						 AND mprContent LIKE '%' || #{keyWord} || '%'
-					  </if>
 						<include refid="mpSubSrch"/>
 		        ORDER BY mprNo DESC)
 		        )
@@ -134,16 +124,7 @@
 		SELECT COUNT(*) AS cnt
 		FROM MpReport
 		WHERE mprDelYn = 'N' 
-		<if test="type=='title'">
-						 AND mprTitle LIKE '%' || #{keyWord} || '%'
-					  </if>
-					  <if test="type=='writer'">
-						 AND mprWriter LIKE '%' || #{keyWord} || '%'
-					  </if>
-					  <if test="type=='content'">
-						 AND mprContent LIKE '%' || #{keyWord} || '%'
-					  </if>
-					  <include refid="mpSubSrch"/>
+	    <include refid="mpSubSrch"/>
 	</select>
 	
 	<!-- 글쓰기 -->

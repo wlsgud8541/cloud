@@ -6,10 +6,10 @@ import com.project.cloud.mp.domain.MpReport;
 
 public interface MpReportService {
 	// 실종 반려동물 신고 게시판 목록화면 조회
-	public List<MpReport> mprSelectList(int startRow, int pageSize, String type, String keyWord);
+	public List<MpReport> mprSelectList(int startRow, int pageSize, String mpGen, String mpType, String mpKeyword, String mpInfoDate1,String mpInfoDate2, String mpLocalCode);
 	
 	// 실종 반려동물 리스트 게시글 갯수 조회
-	public int mprSelectListCount(String type, String keyword);
+	public int mprSelectListCount(String mpGen, String mpType, String mpKeyword, String mpDate1,String mpDate2, String mpLocalCode);
 	
 	// 실종 반려동물 신고 게시판 상세화면 조회
 	public MpReport mprSelectDetail(int mprNo);

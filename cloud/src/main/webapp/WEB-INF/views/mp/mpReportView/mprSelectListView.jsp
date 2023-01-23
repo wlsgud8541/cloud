@@ -12,98 +12,70 @@
          <div class="border row">
             <div class="p-4 inblock">
                <div class="mb-4 inblock row">
-                  <div class="checks">
-                     <div class="categ">
-                        <b>동물종류</b>
-                     </div>
-                     <div class="checks col2">
-                        <input type="radio">
-                        <label> 전체 </label>
-                     </div>
-                     <div class="checks col2">
-                        <input type="radio">
-                        <label> 강아지 </label>
-                     </div>
-                     <div class="checks col2">
-                        <input type="radio">
-                        <label> 고양이 </label>
-                     </div>
-                     <div class="checks col2">
-                        <input type="radio">
-                        <label> 기타 </label>
-                     </div>
-                  </div>
-               </div>
-               <div class="mb-4">
-                  <label class="categ">
-                     <b>성별</b>
-                  </label>
-                  <div class="checks col-lg-5 col-sm-4">
-                     <div class="checks col4">
-                        <input type="radio">
-                        <label class="checks "> 수컷 </label>
-                     </div>
-                     <div class="checks col4">
-                        <input type="radio">
-                        <label class="checks "> 암컷 </label>
-                     </div>
-                  </div>
-                  <div class="checks col-lg-5 col-sm-4">
-                     <label class=categ>
-                        <b>제목</b>
-                     </label>
-                     <div class="checks">
-                        <input type="text" class="form-control">
-                     </div>
-                  </div>
-               </div>
-               <div class="mb-4">
-                  <label class="categ">
-                     <b>발생일</b>
-                  </label>
-                  <div class="inblock col-lg-5 col-sm-4">
-                     <div class="inblock">
-                        <input type="date"  class="form-control">
-                     </div>   
-                        ~
-                     <div class="inblock">
-                        <input type="date" class="form-control">
-                     </div>
-                  </div>
-                  <label class="categ">
-                     <b>작성자</b>
-                  </label>
-                  <div class="inblock col-lg-5 col-sm-4">
-                     <div class="inblock">
-                        <input type="text" name="keyWord" value="${keyWord}" class="form-control">
-                     </div>
-                  </div>
-               </div>
-               <div class="mb-4">
-                  <label class="categ">
-                     <b>실종위치</b>
-                  </label>
-                  <div class="checks col-lg-5 col-sm-4">
-                     <div class="checks">
-                        <input type="text" class="form-control" placeholder="예)관악구">
-                     </div>
-                  </div>
-                  <label class=categ>
-                     <b>내용</b>
-                  </label>
-                  <div class="checks col-lg-5 col-sm-4">
-                     <div class="checks">
-                        <input type="text" class="form-control">
-                     </div>
-                  </div>
-               </div>
+                  <form class="mprSelectList" action="mprSelectList" id="searchForm" method="post">
+					<div class="">
+						<div class="main_search">
+							<label class="text-start">성 별</label>
+							<select name="mpGen">
+								<option value="">--선택하세요--</option>
+								<option value="M">수 컷</option>
+								<option value="F">암 컷</option>
+							</select>
+						</div>
+						<div class="main_search">
+							<label class="text-start">동물종류</label>
+							<select name="mpType">
+								<option value="">--선택하세요--</option>
+								<option value="01">강아지</option>
+								<option value="02">고양이</option>
+								<option value="03">기타</option>
+							</select>
+						</div>
+						<div class="main_search">
+							<label class="text-start">키워드</label>
+							<input type="text" name="mpKeyword">
+						</div>
+						<div class="main_search search_date">
+							<label class="text-start">발생일</label>
+							<input type="date" name="mpDate1" class="p-4">~<input type="date" name="mpDate2">
+						</div>
+						<div class="main_search">
+							<label class="text-start">발생지</label>
+							<select name="mpLocalCode">
+								<option value="">--선택하세요--</option>
+						    	<option value="01">서울</option>
+						    	<option value="02">경기</option>
+						    	<option value="03">인천</option>
+						    	<option value="04">대전</option>
+						    	<option value="05">광주</option>
+						    	<option value="06">대구</option>
+						    	<option value="07">울산</option>
+						    	<option value="08">부산</option>
+						    	<option value="09">세종</option>
+						    	<option value="10">강원</option>
+						    	<option value="11">충북</option>
+						    	<option value="12">충남</option>
+						    	<option value="13">전북</option>
+						    	<option value="14">전남</option>
+						    	<option value="15">경북</option>
+						    	<option value="16">경남</option>
+						    	<option value="17">제주</option>
+							</select>
+						</div>
+					</div>
+					<div class="text-end mt-1 color text-danger">
+						<small>※ 입력란이 채워지지 않을 시 전체를 검색합니다. ※&nbsp;&nbsp;&nbsp;</small>
+						<button type="submit" class="btn btn-secondary">검 색</button>
+					</div>
+				</form>
                <div class="row inblock">
                             <div class="col">
-                              <a href="#"><button type="button" class="btn btn-lg btn-outline-secondary">검색</button></a>
+                              <a href="#"><button type="button" class="btn btn-lg btn-outline-secondary float ">검색</button></a>
                             </div>
-                  </div>
-            </div>
-         </div>
+		                </div>
+		              </div>
+		            </div>
+		         </div>
       </div>
       <hr style="color:#285430; height:30px;">
    </div>
@@ -189,7 +161,7 @@
 									<li class="page-item active text-success" aria-current="page"><b>${i}</b></li>
 								</c:if>
 								<c:if test="${i != mprModel.currentPage }">
-									<li class="page-item"><a class="page-link" href="mprSelectList?pageNum=${ i }">${i}</a></li>
+									<li class="page-item"><a class="page-link" href="mprSelectList?pageNum=${i}&mpGen=${mprModel.mpGen}&mpType=${mprModel.mpType}&mpKeyword=${mprModel.mpKeyword}&mpDate1=${mprModel.mpDate1}&mpDate2=${mprModel.mpDate2}&mpLocalCode=${mprModel.mpLocalCode}">${i}</a></li>
 								</c:if>
 							</c:forEach>
 							<!-- 다음페이지 그룹 -->

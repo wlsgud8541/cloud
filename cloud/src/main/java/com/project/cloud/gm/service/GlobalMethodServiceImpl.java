@@ -91,13 +91,13 @@ public class GlobalMethodServiceImpl implements GlobalMethodService{
 		int currentPage = pageNum;
 		// 현재페이지 시작 index
 		int startRow = (currentPage - 1) * pageSize + 1;
-		// 시작페이지
+		// 시작페이지		
 		int startPage = (currentPage / pageGroup) * pageGroup + 1 - (currentPage % pageGroup == 0 ? pageGroup : 0);
-		// 종료페이지
+		// 종료페이지		
 		int endPage = startPage + pageGroup - 1;
 		// 전체페이지
-		int pageCount = listCount / pageGroup + (listCount % pageSize == 0 ? 0 : 1);
-		
+		int pageCount = listCount / pageSize + (listCount % pageSize == 0 ? 0 : 1);
+							
 		if (endPage > pageCount) {
 			endPage = pageCount;
 		}

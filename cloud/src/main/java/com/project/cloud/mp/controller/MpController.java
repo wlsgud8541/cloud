@@ -63,25 +63,36 @@ public class MpController {
 	// 실종 반려동물 신고 리스트 조회
 	@RequestMapping("/mprSelectList")
 	public String mprSelectList(Model model,
-			   @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
-			   @RequestParam(value = "type", required = false, defaultValue = "null") String type,
-			   @RequestParam(value = "keyWord", required = false, defaultValue = "null") String keyWord) {
-		
-		logger.debug("keyWord : "+keyWord);
+				    @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
+					@RequestParam(value = "mpGen",required = false, defaultValue = "") String mpGen, 
+					@RequestParam(value = "mpType",required = false, defaultValue = "") String mpType, 
+					@RequestParam(value = "mpKeyword",required = false, defaultValue = "") String mpKeyword,
+					@RequestParam(value = "mpDate1",required = false, defaultValue = "") String mpDate1, 
+					@RequestParam(value = "mpDate2",required = false, defaultValue = "") String mpDate2, 
+					@RequestParam(value = "mpLocalCode",required = false, defaultValue = "") String mpLocalCode){
 		
 		int pageSize = 12; 
 		int pageGroup = 10; 
-		int listCount = mpReportService.mprSelectListCount(type, keyWord);
+		String type = "";
+		String keyWord = "";
+		int listCount = mpReportService.mprSelectListCount(mpGen, mpType, mpKeyword, mpDate1, mpDate2, mpLocalCode);
 		
-		Map<String , Object> mprModel = gms.pageList(listCount, pageSize, pageGroup, pageNum, type, keyWord);  
-		int startRow = (int)mprModel.get("startRow"); 
-		List<MpReport> mprSelectList = mpReportService.mprSelectList(startRow, pageSize, type, keyWord);
+		logger.debug(listCount+"");
+		
+		Map<String , Object> mprModel = gms.pageList(listCount, pageSize, pageGroup, pageNum, type, keyWord);
+		int startRow = (int)mprModel.get("startRow");
+		List<MpReport> mprSelectList = mpReportService.mprSelectList(startRow, pageSize, mpGen, mpType, mpKeyword, mpDate1, mpDate2, mpLocalCode);
 		
 		mprModel.put("mprList", mprSelectList);
 		mprModel.put("listCount", listCount);
 		mprModel.put("pageGroup", pageGroup); 
-		mprModel.put("keyWord", keyWord);
-		mprModel.put("type", type);
+		mprModel.put("mpGen", mpGen);
+		mprModel.put("mpType", mpType);
+		mprModel.put("mpKeyword", mpKeyword);
+		mprModel.put("mpDate1", mpDate1);
+		mprModel.put("mpDate2", mpDate2);
+		mprModel.put("mpLocalCode", mpLocalCode);
+		
 		
 		model.addAttribute("mprModel",mprModel);
 		model.addAttribute("mprSelectList",mprSelectList);
