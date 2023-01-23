@@ -9,10 +9,10 @@
 			</div> 
 		</div>
 		<form action="mmInsertJoin" name="insertJoin" method="POST" id="insertJoin">
-			<input type="text" id="mmUseUserInfoYn" name="mmUseUserInfoYn" value="${member.mmUseUserInfoYn}">
-			<input type="text" id="kakaoId" name="kakaoId" value="${member.kakaoId}">
-			<input type="text" id="kakaoEmail" name="kakaoEmail" value="${member.kakaoEmail}">
-			<input type="text" id="kakaoGender" name="kakaoGender" value="${member.kakaoGender}">
+			<input type="hidden" id="mmUseUserInfoYn" name="mmUseUserInfoYn" value="${member.mmUseUserInfoYn}">
+			<input type="hidden" id="kakaoId" name="kakaoId" value="${member.kakaoId}">
+			<input type="hidden" id="kakaoEmail" name="kakaoEmail" value="${member.kakaoEmail}">
+			<input type="hidden" id="kakaoGender" name="kakaoGender" value="${member.kakaoGender}">
 		
 			<div class="row mt-5 mb-3">
 				<div class="col-8 offset-2">				
