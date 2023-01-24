@@ -55,29 +55,35 @@
 		     , mppRegDate
 		     , mppStatusCode
 		     , mppTitle
+		     , mppContent
 		     , mppWriter
 		     , mppLocalCode
 		     , mppLocalDetail
 		     , mppAddFile
+		     , mppPetType
 		  FROM (SELECT rownum as rNum
 		             , mppNo
 		             , mppReadCnt
 		             , mppRegDate
 		             , mppStatusCode
 		             , mppTitle
+		             , mppContent
 		             , mppWriter
 		             , mppLocalCode
 		             , mppLocalDetail
 		             , mppAddFile
+		             , mppPetType
 				FROM(SELECT mppNo
 		                  , mppReadCnt
 		                  , mppRegDate
 		                  , mppStatusCode
 		                  , mppTitle
+		                  , mppContent
 		                  , mppWriter 
 		                  , mppLocalCode
 		                  , mppLocalDetail
 		                  , mppAddFile
+		                  , mppPetType
 		               FROM MpProtect
 		              WHERE mppDelYn = 'N'
 		              <if test="type=='title'">

@@ -74,15 +74,15 @@ public class MainDaoImpl implements MainDao {
 //	소검색 반려동물 실종
 	@Override
 	public List<MpReport> mprSrchList(String mpGen, String mpType, String mpKeyword,
-			String mpInfoDate1, String mpInfoDate2, String mpLocalCode) {
+			String mpDate1, String mpDate2, String mpLocalCode) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("startRow", 0);
 		paramMap.put("pageSize", 6);
 		paramMap.put("mpGen", mpGen);
 		paramMap.put("mpType", mpType);
 		paramMap.put("mpKeyword", mpKeyword);
-		paramMap.put("mpInfoDate1", mpInfoDate1);
-		paramMap.put("mpInfoDate2", mpInfoDate2);
+		paramMap.put("mpDate1", mpDate1);
+		paramMap.put("mpDate2", mpDate2);
 		paramMap.put("mpLocalCode", mpLocalCode);
 		return sql.selectList("MpReport.mprSelectList",paramMap);
 	}
@@ -90,15 +90,15 @@ public class MainDaoImpl implements MainDao {
 //	소검색 반려동물 임보
 	@Override
 	public List<MpProtect> mppSrchList(String mpGen, String mpType, String mpKeyword,
-			String mpInfoDate1, String mpInfoDate2, String mpLocalCode) {
+			String mpDate1, String mpDate2, String mpLocalCode) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("startRow", 0);
 		paramMap.put("pageSize", 6);
 		paramMap.put("mpGen", mpGen);
 		paramMap.put("mpType", mpType);
 		paramMap.put("mpKeyword", mpKeyword);
-		paramMap.put("mpInfoDate1", mpInfoDate1);
-		paramMap.put("mpInfoDate2", mpInfoDate2);
+		paramMap.put("mpDate1", mpDate1);
+		paramMap.put("mpDate2", mpDate2);
 		paramMap.put("mpLocalCode", mpLocalCode);
 		return sql.selectList("MpProtect.mppSelectList",paramMap);
 	}

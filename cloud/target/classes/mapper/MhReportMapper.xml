@@ -51,11 +51,11 @@
 		<if test="(mhInfoDate1 != null and mhInfoDate1 != '') and (mhInfoDate2 != null and mhInfoDate2 != '')">
 			AND mhrInfoDate BETWEEN #{mhInfoDate1} AND #{mhInfoDate2} 
 		</if>
-            	<if test="(mhInfoDate1 == null or mhInfoDate1 == '') and (mhInfoDate2 != null and mhInfoDate2 != '')">
+       	<if test="(mhInfoDate1 == null or mhInfoDate1 == '') and (mhInfoDate2 != null and mhInfoDate2 != '')">
 			AND mhrInfoDate <![CDATA[ < ]]> #{mhInfoDate2}
 		</if>
 
-            	<if test="(mhInfoDate1 != null and mhInfoDate1 != '') and (mhInfoDate2 == null or mhInfoDate2 == '')">
+      	<if test="(mhInfoDate1 != null and mhInfoDate1 != '') and (mhInfoDate2 == null or mhInfoDate2 == '')">
 			AND mhrInfoDate <![CDATA[ > ]]> #{mhInfoDate1}
 		</if>
 		<if test="(mhrLocalCode != null and mhrLocalCode != '')">
@@ -70,6 +70,8 @@
         ,mhrNo
         ,mhrReadCnt
         ,mhrRegDate
+        ,mhrIllCode
+        ,mhrAddFile
         ,mhrTitle
         ,mhrContent
         ,mhrWriter
@@ -77,12 +79,16 @@
             ,mhrNo
             ,mhrReadCnt
             ,mhrRegDate
+       	 	,mhrAddFile
+       	 	,mhrIllCode
             ,mhrTitle
       		,mhrContent
             ,mhrWriter
         FROM(SELECT mhrNo
                    ,mhrReadCnt
                    ,mhrRegDate
+					,mhrAddFile
+					,mhrIllCode
                    ,mhrTitle
         			,mhrContent
                    ,mhrWriter

@@ -21,7 +21,7 @@ public interface MainDao {
 //	소검색 실종자 신고
 	public List<MhReport> mhrSrchList(String mhName, String mhCode, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
 //	소검색 반려동물 신고
-	public List<MpReport> mprSrchList(String mpGen,String mpType ,String mpKeyword, String mpInfoDate1, String mpInfoDate2, String mpLocalCode);
+	public List<MpReport> mprSrchList(String mpGen,String mpType ,String mpKeyword, String mpDate1, String mpDate2, String mpLocalCode);
 //	소검색 반려동물 임보
-	public List<MpProtect> mppSrchList(String mpGen,String mpType ,String mpKeyword, String mpInfoDate1, String mpInfoDate2, String mpLocalCode);
+	public List<MpProtect> mppSrchList(String mpGen,String mpType ,String mpKeyword, String mpDate1, String mpDate2, String mpLocalCode);
 }

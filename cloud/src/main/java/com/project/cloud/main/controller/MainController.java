@@ -68,14 +68,14 @@ public class MainController {
 			@RequestParam(value = "mpGen",required = false, defaultValue = "") String mpGen, 
 			@RequestParam(value = "mpType",required = false, defaultValue = "") String mpType, 
 			@RequestParam(value = "mpKeyword",required = false, defaultValue = "") String mpKeyword, 
-			@RequestParam(value = "mpInfoDate1",required = false, defaultValue = "") String mpInfoDate1, 
-			@RequestParam(value = "mpInfoDate2",required = false, defaultValue = "") String mpInfoDate2, 
+			@RequestParam(value = "mpDate1",required = false, defaultValue = "") String mpDate1, 
+			@RequestParam(value = "mpDate2",required = false, defaultValue = "") String mpDate2, 
 			@RequestParam(value = "mpLocalCode",required = false, defaultValue = "") String mpLocalCode) {
 		
-		List<MpReport> mprSrchList = mainService.mprSrchList(mpGen, mpType, mpKeyword, mpInfoDate1, mpInfoDate2, mpLocalCode);
+		List<MpReport> mprSrchList = mainService.mprSrchList(mpGen, mpType, mpKeyword, mpDate1, mpDate2, mpLocalCode);
 		model.addAttribute("mprSrchList",mprSrchList);
 		
-		List<MpProtect> mppSrchList = mainService.mppSrchList(mpGen, mpType, mpKeyword, mpInfoDate1, mpInfoDate2, mpLocalCode);
+		List<MpProtect> mppSrchList = mainService.mppSrchList(mpGen, mpType, mpKeyword, mpDate1, mpDate2, mpLocalCode);
 		model.addAttribute("mppSrchList",mppSrchList);
 		
 		return "main/mpSearchView";

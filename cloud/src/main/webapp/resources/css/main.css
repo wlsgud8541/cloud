@@ -231,6 +231,19 @@ li.user{
 	display : inline-block;
 	padding-right : 20px;	
 }
+.schInput input{
+	font-weight: bold;
+    width: 250px;
+/*     margin: 0 35px 20px; */
+    height: 35px;
+    padding: 6px 15px;
+/*     border-radius: 5px; */
+    outline: none;
+    border: none;
+    background: #cdcdcd;
+/*     color: #ffffff; */
+    font-size: 14px;
+}
 /*tab css*/
 .tab{float:left; width:395px;}
 .tabnav{font-size:0;}

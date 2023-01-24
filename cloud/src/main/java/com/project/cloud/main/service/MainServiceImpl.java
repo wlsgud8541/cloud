@@ -42,20 +42,20 @@ public class MainServiceImpl implements MainService {
 	
 //	소검색
 	@Override
-	public List<MhReport> mhrSrchList(String mhName, String mhCode, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode) {
-		return mainDao.mhrSrchList(mhName,mhCode, mhGen, mhInfoDate1, mhInfoDate2, mhrLocalCode);
+	public List<MhReport> mhrSrchList(String mhName, String mhCode, String mhGen,String mpDate1, String mpDate2, String mhrLocalCode) {
+		return mainDao.mhrSrchList(mhName,mhCode, mhGen, mpDate1, mpDate2, mhrLocalCode);
 	}
 //	소검색 반려동물 신고
 	@Override
 	public List<MpReport> mprSrchList(String mpGen, String mpType, String mpKeyword,
-			String mpInfoDate1, String mpInfoDate2, String mpLocalCode) {
-		return mainDao.mprSrchList(mpGen, mpType, mpKeyword, mpInfoDate1, mpInfoDate2, mpLocalCode);
+			String mpDate1, String mpDate2, String mpLocalCode) {
+		return mainDao.mprSrchList(mpGen, mpType, mpKeyword, mpDate1, mpDate2, mpLocalCode);
 	}
 //	소검색 반려동물 임보
 	@Override
 	public List<MpProtect> mppSrchList(String mpGen, String mpType, String mpKeyword,
-			String mpInfoDate1, String mpInfoDate2, String mpLocalCode) {
-		return mainDao.mppSrchList(mpGen, mpType, mpKeyword, mpInfoDate1, mpInfoDate2, mpLocalCode);
+			String mpDate1, String mpDate2, String mpLocalCode) {
+		return mainDao.mppSrchList(mpGen, mpType, mpKeyword, mpDate1, mpDate2, mpLocalCode);
 	}
 	
 
