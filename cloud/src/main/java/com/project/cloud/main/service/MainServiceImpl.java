@@ -33,7 +33,10 @@ public class MainServiceImpl implements MainService {
 	public List<MpFind> mainMpfList() {
 		return mainDao.mainMpfList();
 	}
-
+	@Override
+	public List<MpReport> mainMprList() {
+		return mainDao.mainMprList();
+	}
 	@Override
 	public List<Object> uSearch(String type, String keyword) {
 		
@@ -57,6 +60,5 @@ public class MainServiceImpl implements MainService {
 			String mpDate1, String mpDate2, String mpLocalCode) {
 		return mainDao.mppSrchList(mpGen, mpType, mpKeyword, mpDate1, mpDate2, mpLocalCode);
 	}
-	
 
 }

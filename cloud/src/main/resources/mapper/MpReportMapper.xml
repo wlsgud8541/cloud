@@ -50,6 +50,7 @@
 		SELECT rNum
 		     ,mprNo
 		     ,mprReadCnt
+		     ,mprInfoDate
 		     ,mprRegDate
 		     ,mprTitle
 		     ,mprContent
@@ -63,6 +64,7 @@
 		  FROM (SELECT rownum as rNum
 		             ,mprNo
 		             ,mprReadCnt
+		             ,mprInfoDate
 		             ,mprRegDate
 		             ,mprTitle
 		    		 ,mprContent
@@ -75,6 +77,7 @@
 					 ,mprPetType
 				FROM(SELECT mprNo
 		                  ,mprReadCnt
+		                  ,mprInfoDate
 		                  ,mprRegDate
 		                  ,mprTitle
 		   				  ,mprContent	

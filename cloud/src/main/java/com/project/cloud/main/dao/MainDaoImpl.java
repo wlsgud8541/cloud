@@ -28,6 +28,14 @@ public class MainDaoImpl implements MainDao {
 		paramMap.put("pageSize", 6);
 		return sql.selectList("Mnotice.mnSelectList", paramMap);
 	}
+//	메인 반려동물 신고
+	@Override
+	public List<MpReport> mainMprList() {
+		HashMap<String, Integer> paramMap = new HashMap<String, Integer>();
+		paramMap.put("startRow", 0);
+		paramMap.put("pageSize", 15);
+		return sql.selectList("MpReport.mprSelectList",paramMap);
+	}
 
 //	메인 실종자 목격
 	@Override

@@ -1,6 +1,7 @@
 package com.project.cloud.main.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.cloud.cs.domain.Mnotice;
+import com.project.cloud.gm.service.GlobalMethodService;
 import com.project.cloud.main.service.MainService;
 import com.project.cloud.mh.domain.MhFind;
 import com.project.cloud.mh.domain.MhReport;
@@ -20,6 +22,9 @@ import com.project.cloud.mp.domain.MpReport;
 public class MainController {
 	@Autowired
 	private MainService mainService;
+	
+	@Autowired
+	private GlobalMethodService gms;
 	
 	@RequestMapping("main")
 	public String mainBoardList(Model model) {
@@ -33,6 +38,10 @@ public class MainController {
 		List<MpFind> mainMpfList = mainService.mainMpfList();
 		model.addAttribute("mainMpfList", mainMpfList);
 		
+//		Map<, V>
+		
+		List<MpReport> mainMprList = mainService.mainMprList();
+		model.addAttribute("mainMprList",mainMprList);
 		
 		return "main/mainView";
 	}
