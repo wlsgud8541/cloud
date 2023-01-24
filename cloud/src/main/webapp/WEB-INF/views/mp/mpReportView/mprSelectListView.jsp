@@ -127,14 +127,6 @@
 									
 									<div class=""><b>실종위치</b></div>
 									<div class="text-truncate">${mprSelectList.mprLocalDetail}</div>
-									
-									<div class=" "><b>실종현황</b></div>
-									<c:if test="${mprSelectList.mprStatusCode == 01}">
-										<div class="text-danger">실종</div>
-									</c:if>
-									<c:if test="${mprSelectList.mprStatusCode == 02}">
-										<div class="text-primary">찾았어요!</div>
-									</c:if>
 							</div>
 					</div	>
 					</c:forEach>
