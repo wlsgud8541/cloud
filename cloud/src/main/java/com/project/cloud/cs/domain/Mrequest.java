@@ -15,12 +15,12 @@ public class Mrequest {
 	private String mreSecretYn	;
 	private String mreReplyCode;
 	private String mreDelYn;
-	
+	private String tableType;
 	public Mrequest() {}
 	
 	public Mrequest(int mreNo, int mreReadCnt, int mreRecoCnt, int mmNo, Timestamp mreRegDate, String mreTitle,
 			String mreContent, String mreAddFile, String mreWriter, String mreSecretYn, String mreReplyCode,
-			String mreDelYn) {
+			String mreDelYn, String tableType) {
 			
 			this.mreNo = mreNo;
 			this.mreReadCnt = mreReadCnt;
@@ -34,6 +34,15 @@ public class Mrequest {
 			this.mreSecretYn = mreSecretYn;
 			this.mreReplyCode = mreReplyCode;
 			this.mreDelYn = mreDelYn;
+			this.tableType = tableType;
+	}
+
+	public String getTableType() {
+		return tableType;
+	}
+
+	public void setTableType(String tableType) {
+		this.tableType = tableType;
 	}
 
 	public int getMreNo() {

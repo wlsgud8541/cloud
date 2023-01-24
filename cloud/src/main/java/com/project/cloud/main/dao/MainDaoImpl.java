@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.cloud.cs.domain.Mnotice;
+import com.project.cloud.main.domain.Main;
 import com.project.cloud.mh.domain.MhFind;
 import com.project.cloud.mh.domain.MhReport;
 import com.project.cloud.mp.domain.MpFind;
@@ -56,9 +57,8 @@ public class MainDaoImpl implements MainDao {
 	}
 
 	@Override
-	public List<Object> mainUsearch(String type, String keyword) {
+	public List<Main> mainUsearch(String keyword) {
 		HashMap<String, Object> search = new HashMap<String, Object>();
-		search.put("type", type);
 		search.put("keyword", keyword);
 		return sql.selectList("MhReport.uSearch", search);
 	}

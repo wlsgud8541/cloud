@@ -3,6 +3,7 @@ package com.project.cloud.main.dao;
 import java.util.List;
 
 import com.project.cloud.cs.domain.Mnotice;
+import com.project.cloud.main.domain.Main;
 import com.project.cloud.mh.domain.MhFind;
 import com.project.cloud.mh.domain.MhReport;
 import com.project.cloud.mp.domain.MpFind;
@@ -19,7 +20,7 @@ public interface MainDao {
 //	메인 반려동물 신고
 	public List<MpReport> mainMprList();
 // 메인 통합검색
-	public List<Object> mainUsearch(String type, String keyword);
+	public List<Main> mainUsearch(String keyword);
 //	소검색 실종자 신고
 	public List<MhReport> mhrSrchList(String mhName, String mhCode, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
 //	소검색 반려동물 신고

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Main">
+	<resultMap type="Main" id="Main">
+		<id property="searchNo" column="searchNo"/>
+		<result property="searchTitle" column="searchTitle"/>		
+		<result property="searchContent" column="searchContent"/>		
+		<result property="searchRegdate" column="searchRegdate"/>		
+		<result property="searchWriter" column="searchWriter"/>		
+		<result property="searchDelYn" column="searchDelYn"/>		
+		<result property="tableType" column="tableType"/>		
+	</resultMap>
+
+	<!-- 통합검색 -->
+	<select id="uSearch" resultType="Main" parameterType="hashMap">
+	SELECT
+     searchNo, searchTitle, searchContent, searchRegdate, searchWriter, searchDelYn, tableType
+	FROM
+	    (SELECT
+	        search.no as searchNo, search.title as searchTitle, search.content as searchContent, search.regdate as searchRegdate, search.writer as searchWriter
+            , search.DelYn as searchDelYn, search.tableType as tableType
+	    FROM
+	        (SELECT
+	             mhf.mhfNo as no, mhf.mhfTitle as title, mhf.mhfContent as content, mhf.mhfRegDate as regdate, mhf.mhfWriter as writer, mhf.mhfDelYn as DelYn, mhf.tableType as tableType
+	        FROM
+	            mhfind mhf
+	        UNION ALL
+	        SELECT
+	            mhr.mhrNo as no, mhr.mhrTitle as title, mhr.mhrContent as content, mhr.mhrRegDate as regdate, mhr.mhrWriter as writer, mhr.mhrDelYn as DelYn, mhr.tableType as tableType
+	        FROM
+	            mhreport mhr
+	        UNION ALL
+	        SELECT
+	            mq.mqNo as no, mq.mqTitle as title, mq.mqContent as content, mq.mqRegDate as regdate, mq.mqWriter as writer, mq.mqDelYn as DelYn, mq.tableType as tableType
+	        FROM
+	            mqna mq
+	        UNION ALL
+	        SELECT
+	            mpf.mpfNo as no, mpf.mpfTitle as title, mpf. mpfContent as content, mpf.mpfRegDate as regdate, mpf.mpfWriter as writer, mpf.mpfDelYn as DelYn, mpf.tableType as tableType
+	        FROM
+	            mpfind mpf
+	        UNION ALL
+	        SELECT
+	            mpp.mppNo as no, mpp.mppTitle as title, mpp.mppContent as content, mpp.mppRegDate as regdate, mpp.mppwriter as writer, mpp.mppDelYn as DelYn, mpp.tableType as tableType
+	        FROM
+	            mpprotect mpp
+	        UNION ALL
+	        SELECT
+	            mpr.mprNo as no, mpr.mprTitle as title, mpr.mprContent as content, mpr.mprRegDate as regdate, mpr.mprWriter as writer, mpr.mprDelYn as DelYn, mpr.tableType as tableType
+	        FROM
+	            mpreport mpr
+	        UNION ALL
+	        SELECT
+	            mre.mreNo as no, mre.mreTitle as title, mre.mreContent as content, mre.mreRegDate as regdate, mre.mreWriter as writer, mre.mreDelYn as DelYn, mre.tableType as tableType
+	        FROM
+	            mrequest mre
+	        ORDER BY
+	           tableType DESC, regdate DESC) search)
+	    WHERE
+	    	searchDelYn = 'N'
+	    	<if test="search != ' ' and search != null">
+	    		searchTitle LIKE '%'||#{keyword}||'%' or searchContent LIKE '%'||#{keyword}||'%'
+	    	</if>
+	</select>
+</mapper>

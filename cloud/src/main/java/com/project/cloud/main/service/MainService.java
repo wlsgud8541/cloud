@@ -1,6 +1,7 @@
 package com.project.cloud.main.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.cloud.cs.domain.Mnotice;
 import com.project.cloud.mh.domain.MhFind;
@@ -19,7 +20,7 @@ public interface MainService {
 	//메인 반려동물 신고
 	public List<MpReport> mainMprList();
 	// 메인 통합검색
-	public List<Object> uSearch(String type, String keyword);
+	public Map<String, Object> mainUsearch(String keyword);
 	//소검색
 	public List<MhReport> mhrSrchList(String mhName, String mhCode, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
 //	소검색 반려동물 신고

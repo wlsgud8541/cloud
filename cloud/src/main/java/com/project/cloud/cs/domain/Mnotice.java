@@ -14,11 +14,12 @@ public class Mnotice {
 	private String mnWriter;
 	private String mnFixTopYn;
 	private String mnDelYn;
+	private String tableType;
 	
 	public Mnotice() {}
 	
 	public Mnotice(int mnNo, int mnReadCnt, int mmNo, int rNum, Timestamp mnRegDate, String mnTitle, String mnContent,
-			String mnAddFile, String mnWriter, String mnFixTopYn, String mnDelYn) {
+			String mnAddFile, String mnWriter, String mnFixTopYn, String mnDelYn, String tableType) {
 	
 			this.mnNo = mnNo;
 			this.mnReadCnt = mnReadCnt;
@@ -30,6 +31,15 @@ public class Mnotice {
 			this.mnWriter = mnWriter;
 			this.mnFixTopYn = mnFixTopYn;
 			this.mnDelYn = mnDelYn;
+			this.tableType = tableType;
+	}
+
+	public String getTableType() {
+		return tableType;
+	}
+
+	public void setTableType(String tableType) {
+		this.tableType = tableType;
 	}
 
 	public int getrNum() {

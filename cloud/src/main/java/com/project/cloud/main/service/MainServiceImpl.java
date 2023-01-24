@@ -1,12 +1,16 @@
 package com.project.cloud.main.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.cloud.cs.domain.Mnotice;
 import com.project.cloud.main.dao.MainDao;
+import com.project.cloud.main.domain.Main;
 import com.project.cloud.mh.domain.MhFind;
 import com.project.cloud.mh.domain.MhReport;
 import com.project.cloud.mp.domain.MpFind;
@@ -38,9 +42,14 @@ public class MainServiceImpl implements MainService {
 		return mainDao.mainMprList();
 	}
 	@Override
-	public List<Object> uSearch(String type, String keyword) {
-		
-		return mainDao.mainUsearch(type, keyword);
+	public Map<String,Object> mainUsearch(String keyword) {
+		Map<String, Object> searchMap = new HashMap<String,Object>();
+		List<Main> searchList = new ArrayList<Main>();
+		for (Main mainSearch : mainDao.mainUsearch(keyword)) {
+			searchList.add(mainSearch);
+		}
+		searchMap.put("searchList", searchList);
+		return searchMap;
 	}
 	
 //	소검색

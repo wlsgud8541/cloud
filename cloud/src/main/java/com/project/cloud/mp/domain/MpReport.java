@@ -22,12 +22,13 @@ public class MpReport {
 	
 	private String memberTell;
 	private String code;
+	private String tableType;
 	
 	public MpReport() {}
 	
 	public MpReport(int mprNo, int mprReadCnt, int mmNo, int rNum, Timestamp mprInfoDate, Timestamp mprRegDate, String mprTitle,
 			String mprContent, String mprStatusCode, String mprLocalCode, String mprPetType, String mprAddFile,
-			String mprWriter, String mprDelYn, String mprGen, String mprLocalDetail, String memberTell, String code) {
+			String mprWriter, String mprDelYn, String mprGen, String mprLocalDetail, String memberTell, String code, String tableType) {
 		
 			this.mprNo = mprNo;
 			this.mprReadCnt = mprReadCnt;
@@ -47,6 +48,15 @@ public class MpReport {
 			this.mprLocalDetail = mprLocalDetail;
 			this.memberTell = memberTell;
 			this.code = code;
+			this.tableType = tableType;
+	}
+
+	public String getTableType() {
+		return tableType;
+	}
+
+	public void setTableType(String tableType) {
+		this.tableType = tableType;
 	}
 
 	public String getCode() {

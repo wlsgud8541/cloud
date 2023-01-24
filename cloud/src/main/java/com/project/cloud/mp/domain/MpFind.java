@@ -19,12 +19,13 @@ public class MpFind {
 	private String mpfWriter;
 	private String mpfDelYn;
 	private String mpfLocalDetail;
+	private String tableType;
 	
 	public MpFind() {}
 	
 	public MpFind(int mpfNo, int mpfReadCnt, int mmNo,int rNum, Timestamp mpfInfoDate, Timestamp mpfRegDate, String mpfTitle,
 			String mpfContent, String mpfStatusCode, String mpfLocalCode, String mpfPetType, String mpfAddFile,
-			String mpfWriter, String mpfDelYn, String mpfLocalDetail) {
+			String mpfWriter, String mpfDelYn, String mpfLocalDetail, String tableType) {
 
 			this.mpfNo = mpfNo;
 			this.mpfReadCnt = mpfReadCnt;
@@ -41,6 +42,15 @@ public class MpFind {
 			this.mpfWriter = mpfWriter;
 			this.mpfDelYn = mpfDelYn;
 			this.mpfLocalDetail = mpfLocalDetail;
+			this.tableType = tableType;
+	}
+
+	public String getTableType() {
+		return tableType;
+	}
+
+	public void setTableType(String tableType) {
+		this.tableType = tableType;
 	}
 
 	public String getMpfLocalDetail() {

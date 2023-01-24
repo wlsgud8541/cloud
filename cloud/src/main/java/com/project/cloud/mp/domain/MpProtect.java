@@ -19,11 +19,12 @@ public class MpProtect {
 	private String mppDelYn	;
 	private String mppGen;
 	private String mppLocalDetail;
+	private String tableType;
 	
 	public MpProtect() {}
 	
 	public MpProtect(int mppNo, int mppReadCnt, int mmNo,int rNum, Timestamp mppRegDate, Timestamp mppInfoDate, String mppTitle,
-			String mppContent,String mppLocalCode , String mppStatusCode,  String mppPetType, String mppAddFile, String mppWriter, String mppDelYn, String mppGen, String mppLocalDetail) {
+			String mppContent,String mppLocalCode , String mppStatusCode,  String mppPetType, String mppAddFile, String mppWriter, String mppDelYn, String mppGen, String mppLocalDetail, String tableType) {
 
 			this.mppNo = mppNo;
 			this.mppReadCnt = mppReadCnt;
@@ -41,6 +42,15 @@ public class MpProtect {
 			this.mppDelYn = mppDelYn;
 			this.mppGen = mppGen;
 			this.mppLocalDetail = mppLocalDetail;
+			this.tableType = tableType;
+	}
+
+	public String getTableType() {
+		return tableType;
+	}
+
+	public void setTableType(String tableType) {
+		this.tableType = tableType;
 	}
 
 	public String getMppLocalDetail() {

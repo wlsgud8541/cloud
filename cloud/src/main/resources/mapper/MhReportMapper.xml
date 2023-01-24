@@ -221,56 +221,54 @@ WHERE
 		mhrNo = #{mhrNo}
 	</update>
 	<!-- 통합검색 -->
-	<select id="uSearch" resultType="Object">
+	<select id="uSearch" resultType="Object" parameterType="hashMap">
 	SELECT
-    rno, searchNo, searchTitle, searchContent, searchTableType, searchRegdate, searchWriter
+     searchNo, searchTitle, searchContent, searchRegdate, searchWriter, searchDelYn, tableType
 	FROM
 	    (SELECT
-	        rownum as rno, search.no as searchNo, search.title as searchTitle, search.content as searchContent, search.tableType as searchTableType, search.regdate as searchRegdate, search.writer as searchWriter
+	        rownum as rno, search.no as searchNo, search.title as searchTitle, search.content as searchContent, search.regdate as searchRegdate, search.writer as searchWriter
+            , search.DelYn as searchDelYn, search.tableType as tableType
 	    FROM
 	        (SELECT
-	             mhf.mhfNo as no, mhf.mhfTitle as title, mhf.mhfContent as content, mhf.tableType as tableType, mhf.mhfRegDate as regdate, mhf.mhfWriter as writer
+	             mhf.mhfNo as no, mhf.mhfTitle as title, mhf.mhfContent as content, mhf.mhfRegDate as regdate, mhf.mhfWriter as writer, mhf.mhfDelYn as DelYn, mhf.tableType as tableType
 	        FROM
 	            mhfind mhf
 	        UNION ALL
 	        SELECT
-	            mhr.mhrNo as no, mhr.mhrTitle as title, mhr.mhrContent as content, mhr.tableType as tableType, mhr.mhrRegDate as regdate, mhr.mhrWriter as writer
+	            mhr.mhrNo as no, mhr.mhrTitle as title, mhr.mhrContent as content, mhr.mhrRegDate as regdate, mhr.mhrWriter as writer, mhr.mhrDelYn as DelYn, mhr.tableType as tableType
 	        FROM
 	            mhreport mhr
 	        UNION ALL
 	        SELECT
-	            mn.mnNo as no, mn.mnTitle as title, mn.mnContent as content, mn.tableType as tabletype, mn.mnRegDate as regdate, mn.mnWriter as writer
-	        FROM
-	            mnotice mn
-	        UNION ALL
-	        SELECT
-	            mq.mqNo as no, mq.mqTitle as title, mq.mqContent as content, mq.tableType as tableType, mq.mqRegDate as regdate, mq.mqWriter as writer
+	            mq.mqNo as no, mq.mqTitle as title, mq.mqContent as content, mq.mqRegDate as regdate, mq.mqWriter as writer, mq.mqDelYn as DelYn, mq.tableType as tableType
 	        FROM
 	            mqna mq
 	        UNION ALL
 	        SELECT
-	            mpf.mpfNo as no, mpf.mpfTitle as title, mpf. mpfContent as content, mpf.tableType as tableType, mpf.mpfRegDate as regdate, mpf.mpfWriter as writer
+	            mpf.mpfNo as no, mpf.mpfTitle as title, mpf. mpfContent as content, mpf.mpfRegDate as regdate, mpf.mpfWriter as writer, mpf.mpfDelYn as DelYn, mpf.tableType as tableType
 	        FROM
 	            mpfind mpf
 	        UNION ALL
 	        SELECT
-	            mpp.mppNo as no, mpp.mppTitle as title, mpp.mppContent as content, mpp.tableType as tableType, mpp.mppRegDate as regdate, mpp.mppwriter as writer
+	            mpp.mppNo as no, mpp.mppTitle as title, mpp.mppContent as content, mpp.mppRegDate as regdate, mpp.mppwriter as writer, mpp.mppDelYn as DelYn, mpp.tableType as tableType
 	        FROM
 	            mpprotect mpp
 	        UNION ALL
 	        SELECT
-	            mpr.mprNo as no, mpr.mprTitle as title, mpr.mprContent as content, mpr.tableType as tableType, mpr.mprRegDate as regdate, mpr.mprWriter as writer
+	            mpr.mprNo as no, mpr.mprTitle as title, mpr.mprContent as content, mpr.mprRegDate as regdate, mpr.mprWriter as writer, mpr.mprDelYn as DelYn, mpr.tableType as tableType
 	        FROM
 	            mpreport mpr
 	        UNION ALL
 	        SELECT
-	            mre.mreNo as no, mre.mreTitle as title, mre.mreContent as content, mre.tableType as tableType, mre.mreRegDate as regdate, mre.mreWriter as writer
+	            mre.mreNo as no, mre.mreTitle as title, mre.mreContent as content, mre.mreRegDate as regdate, mre.mreWriter as writer, mre.mreDelYn as DelYn, mre.tableType as tableType
 	        FROM
 	            mrequest mre
 	        ORDER BY
-	            tableType asc, regdate desc, no desc) search
+	           tableType DESC, regdate DESC) search)
 	    WHERE
-	    	 search.title LIKE '%'||'#{keyword}'||'%' or search.content LIKE '%'||'#{keyword}'||'%' or search.regdate LIKE '%'||'#{keyword}'||'%'
-        or search.writer LIKE '%'||'#{keyword}'||'%')
+	    	searchDelYn = 'N'
+	    	<if test="search != ' ' and search != null">
+	    		searchTitle LIKE '%'||#{keyword}||'%' or searchContent LIKE '%'||#{keyword}||'%'
+	    	</if>
 	</select>
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.cloud.cs.domain.Mnotice;
 import com.project.cloud.gm.service.GlobalMethodService;
+import com.project.cloud.main.domain.Main;
 import com.project.cloud.main.service.MainService;
 import com.project.cloud.mh.domain.MhFind;
 import com.project.cloud.mh.domain.MhReport;
@@ -48,11 +49,11 @@ public class MainController {
 	
 	@RequestMapping("search")
 	public String mainUsearch(Model model, 
-											@RequestParam(value="type",required=false,defaultValue="null")String type,
-											@RequestParam(value="keyword",required=false,defaultValue="null")String keyword) {
-		List<Object> searchList = mainService.uSearch(type, keyword);
-		model.addAttribute("searchList",searchList);
-		return "main/searchView";
+			@RequestParam(value="keyword",required=false,defaultValue="null")String keyword) {
+	Map<String, Object> searchMap = mainService.mainUsearch(keyword);
+	List<Main> searchList = (List<Main>)searchMap.get("searchList"); 
+	model.addAttribute("searchList",searchList);
+	return "main/searchView";
 	}
 	
 	@RequestMapping("mhSearch")
