@@ -24,7 +24,7 @@
   	</div>
   	<div class="col-2 offset-md-1">
 	    <label for="mpfInfoDate" class="form-label">발견 일시</label>
-	    <input type="date"class="form-control" name="mpfInfoDate" id="infoDate" value='<fmt:formatDate value="${mpModify.mpfInfoDate}" pattern="yyyy-MM-dd" />'">
+	    <input type="date"class="form-control" name="mpfInfoDate" id="infoDate" value='<fmt:formatDate value="${mpModify.mpfInfoDate}" pattern="yyyy-MM-dd" />'>
   	</div>
   	<div class="col-8 offset-md-2">
 	    <label for="mpfLocalCode" class="form-label">지역</label>

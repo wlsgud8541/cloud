@@ -80,8 +80,7 @@
   	</div>
   	<div class="col-8 offset-md-2">
 		    <label for="mprAddFile" class="form-label">파 일</label>
-		    <input type="file" class="form-control" name="mprAddFile"  id="addFile" value="${mpModify.mprAddFile}">
-		    <input type="text" class="form-control" name="mprAddFile"  id="addFile" value="${mpModify.mprAddFile}">
+		    <input type="file" class="form-control" name="mprAddFile"  id="addFile">
 		    <div class="text-secondary px-2">파일을 선택하지 않으면 기존에 선택된 파일이 유지됩니다.</div>
   		</div>
   	<div class="col-8 text-center offset-md-2 text-center mt-3">

@@ -123,7 +123,7 @@
 									</c:if>
 									
 									<div class=" "><b>실종일시</b></div>
-										<div class=""><fmt:formatDate value="${mprSelectList.mprRegDate}" pattern="yy-MM-dd" /></div>
+										<div class=""><fmt:formatDate value="${mprSelectList.mprInfoDate}" pattern="yy-MM-dd" /></div>
 									
 									<div class=""><b>실종위치</b></div>
 									<div class="text-truncate">${mprSelectList.mprLocalDetail}</div>
