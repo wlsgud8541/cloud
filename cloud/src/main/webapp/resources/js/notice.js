@@ -400,30 +400,59 @@ $(document).ready(function(){
 	});
 	
 	// 실종 반려동물 목격 게시판 댓글 수정버튼 클릭
-	   $(document).on("click","#mpfcUpdate", function(){
-	      console.log($("#mpfCommForm").css("display"));
-	      
-	      console.log($(this).next());
-	      var $mpfComList = $(this).next();
-	      var mpfComNo = $(this).attr("data-mpfComNo");
-	      if($("#mpfCommForm").is(":visible")){
-	         var $next = $mpfComList.next();
-	         if(! $next.is("#mpfCommForm")){
-	            $("#mpfCommForm").slideUp(500);
-	         }
-	         setTimeout(function(){
-	            $("#mpfCommForm").insertAfter($mpfComList).slideDown(500);
-	         },500);
-	      }else{
-	         $("#mpfCommForm").removeClass("d-none").css("display","none").insertAfter($mpfComList).slideDown(500);
-	      }
-	      
-	      $("#mpfCommForm").find("form").attr({"id":"modifyForm","data-mpfComNo":mpfComNo}).removeAttr("data-mpfNo");
-	      
-	      var mpfcModify = $(this).parent().parent().find("pre").text();
-	      console.log("mpfcModify:"+mpfcModify);
-	      $("#mpfComContent").val($.trim(mpfcModify));
-	   });
+  /* 
+   $(document).on("click",".mpfcUpdate", function(){
+      
+      var $mpfComList = $(this).next();
+      var mpfComNo = $(this).attr("data-mpfComNo");
+     
+      if($("#mpfCommForm").is(":visible")){
+        
+         var $next = $mpfComList.next();
+	    
+	     if(! $next.is("#mpfCommForm")){
+	        $("#mpfCommForm").slideUp(500);
+	     }
+	     setTimeout(function(){
+	        $("#mpfCommForm").insertAfter($mpfComList).slideDown(500);
+	     },500);
+         
+      }else{
+         $("#mpfCommForm").removeClass("d-none").css("display","block").insertAfter($mpfComList).slideDown(500);
+      }
+      
+      $("#mpfCommForm").find("form").attr({"id":"modifyForm","data-mpfComNo":mpfComNo}).removeAttr("data-mpfNo");
+      
+      var mpfcModify = $(this).parent().parent().find("pre").text();
+  
+      $("#mpfComContent").val($.trim(mpfcModify));
+   });
+   */
+   
+   
+   $(document).on("click",".mpfcUpdate", function(){
+      
+      var $mpfComList = $(this).next(); 
+      var mpfComNo = $(this).attr("data-mpfComNo");
+     
+      if($("#mpfCommForm").is(":visible")){
+	    
+         $("#mpfCommForm").slideUp(500);
+	     
+	     setTimeout(function(){
+	        $("#mpfCommForm").insertAfter($mpfComList).slideDown(500);
+	     },500);
+         
+      }else{
+         $("#mpfCommForm").removeClass("d-none").css("display","none").insertAfter($mpfComList).slideDown(500);
+      }
+      
+      $("#mpfCommForm").find("form").attr({"id":"modifyForm","data-mpfComNo":mpfComNo}).removeAttr("data-mpfNo");
+      
+      var mpfcModify = $(this).parent().parent().find("pre").text();
+  
+      $("#mpfComContent").val($.trim(mpfcModify));
+   });
 
 	
 	// 실종 반려동물 목격 게시판 댓글 수정 서브밋
@@ -469,9 +498,9 @@ $(document).ready(function(){
 							+'<div>'
 							+'<span>'+tmpDate+'</span>'
 							+'</div>'
-							+'<button class="btn btn-outline-success btn-sm" data-no="'+v.mpfComNo+'">' 
+							+'<button class="btn btn-outline-success btn-sm mpfcUpdate" data-no="'+v.mpfComNo+'" id="mpfcUpdate">' 
 								+'<i class="bi bi-journal-text">수정</i></button>'
-							+'<button class="btn btn-outline-warning btn-sm" data-no="'+v.mpfComNo+'">' 
+							+'<button class="btn btn-outline-warning btn-sm" data-no="'+v.mpfComNo+'" id="mpfcDelete">' 
 								+'<i class="bi bi-trash">삭제</i></button>'
 		 					 				
 		 				$("#mpfComList").append(result);					

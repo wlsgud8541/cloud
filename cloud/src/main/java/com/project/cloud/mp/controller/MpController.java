@@ -487,11 +487,18 @@ public class MpController {
 	
 	// 실종 반려동물 목격 게시판 댓글 작성기능
 	@RequestMapping("/mpfCommInsert")
-	@ResponseBody
-	public List<MpFindComm> mpfComInsert(MpFindComm mpfCom){
+	public String mpfComInsert(Model model, MpFindComm mpfCom, int pageNum){
 		int result = mpfCommService.mpfcInsert(mpfCom);
-		System.out.println("댓글쓰기 결과 : " + result);
-		return mpfCommService.mpfcSelectList(mpfCom.getMpfNo());
+		List<MpFindComm> mpfCommList = mpfCommService.mpfcSelectList(mpfCom.getMpfNo());
+		MpFind mpfDetail = mpFindService.mpfSelectDetail(mpfCom.getMpfNo());
+		
+		model.addAttribute("mpfCommList",mpfCommList);
+		model.addAttribute("mpfDetail",mpfDetail);
+		model.addAttribute("pageNum",pageNum);
+		
+		
+		return "mp/mpFindView/mpfSelectDetailView";
+		
 	}
 	
 	// 실종자 목격 게시판 댓글 수정
