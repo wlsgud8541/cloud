@@ -24,29 +24,29 @@
 					<div class="swiper-wrapper ">
 						<div class="swiper-slide">
 							<div class="inblock">
-								<c:forEach var="mainMhiList" items="${mainMhiList}"
+								<c:forEach var="jMap" items="${jMap}"
 									varStatus="status">
 									<c:if test="${status.index < 4}">
 										<div class="inblock me-2 text-center"
 											style="width: 150px; height: 100%;">
-											<c:if test="${mainMhiList.mhiMsspsnIdntfccd != null}">
-												<a href="mprSelectDetail?mprNo=${mainMhiList.mhiNo}&pageNum=1" class="inblock"> 
-													<img src="fileDownload?fileName=${mainMhiList.mhiMsspsnIdntfccd}" style="width: 90px; height: 120px;">
+											<c:if test="${jMap.mhiMsspsnIdntfccd != null}">
+												<a href="mhInfo?pageNum=1" class="inblock"> 
+													<img style='width:96px;height:128px;' width='96' height='128' border='0' src='https://www.safe182.go.kr/api/lcm/imgView.do?msspsnIdntfccd=${jMap.mhiMsspsnIdntfccd}'/>
 												</a>
 											</c:if>
-											<c:if test="${mainMhiList.mhiMsspsnIdntfccd == null}">
-												<a href="mprSelectDetail?mprNo=${mainMhiList.mhiNo}&pageNum=1" class="inblock"> 
+											<c:if test="${jMap.mhiMsspsnIdntfccd == null}">
+												<a href="mhInfo?pageNum=1" class="inblock"> 
 												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
 											<div>
-												${mainMhiList.mhiNm}(${mainMhiList.mhiAgeNow})
+												${jMap.mhiNm}(${jMap.mhiAge})
 											</div>
 											<div>
-												${mainMhiList.mhiOccrde}
+												${fn:substring(jMap.mhiOccrde,2,4)}-${fn:substring(jMap.mhiOccrde,4,6)}-${fn:substring(jMap.mhiOccrde,6,8)}
 											</div>
 											<div>
-												${mainMhiList.mhiOccrAdres}
+												${jMap.mhiOccrAdres}
 											</div>
 										</div>
 									</c:if>

@@ -17,6 +17,7 @@ import com.project.cloud.main.service.MainService;
 import com.project.cloud.mh.domain.MhFind;
 import com.project.cloud.mh.domain.MhInfo;
 import com.project.cloud.mh.domain.MhReport;
+import com.project.cloud.mh.service.MhInfoService;
 import com.project.cloud.mp.domain.MpFind;
 import com.project.cloud.mp.domain.MpProtect;
 import com.project.cloud.mp.domain.MpReport;
@@ -25,6 +26,9 @@ import com.project.cloud.mp.domain.MpReport;
 public class MainController {
 	@Autowired
 	private MainService mainService;
+	
+	@Autowired
+	private MhInfoService mhiService;
 	
 	@RequestMapping("main")
 	public String mainBoardList(Model model) {
@@ -40,6 +44,13 @@ public class MainController {
 		
 		List<MhInfo> mainMhiList = mainService.mainMhiList();
 		model.addAttribute("mainMhiList",mainMhiList);
+		
+		try {
+			List<MhInfo> mhiList = mhiService.mhiSelectList(0, 16, "", "", 0);
+			model.addAttribute("jMap", mhiList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		List<MpReport> mainMprList = mainService.mainMprList();
 		model.addAttribute("mainMprList",mainMprList);

@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -314,7 +315,7 @@ public class MhInfoServiceImpl implements MhInfoService {
 			   mhInfo.setMhiAge(insertMap.get("age")+"");
 			   mhInfo.setMhiAgeNow(insertMap.get("ageNow")+"");
 			   mhInfo.setMhiAlldressingDscd(insertMap.get("alldressingDscd")+"");
-			   mhInfo.setMhiBdwgh(insertMap.get("bdwgh")+"");
+			   mhInfo.setMhiBdwgh(insertMap.get("bdwgh")+""); 
 			   mhInfo.setMhiNm(insertMap.get("nm")+"");
 			   mhInfo.setMhiNo((int)insertMap.get("rnum"));
 			   mhInfo.setMhiOccrAdres(insertMap.get("occrAdres")+"");
