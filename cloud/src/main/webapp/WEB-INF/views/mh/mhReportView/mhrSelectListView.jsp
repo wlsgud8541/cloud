@@ -62,8 +62,8 @@
 				<form class="row col" action="mhrSelectList" name="mhrSearchForm" id="mhiSearchForm" method="post">
 					<div class="col text-end p-0">
 						<select name="type" class="border border-end-0" style="left:0px;width:102px; height:54px;">
-							<option value="title" ${type=='title' ? 'selected': '' }>제목</option>
-							<option value="writer" ${type=='writer'?'selected':'' }>작성자</option>
+							<option value="title" ${type == 'title'? 'selected' : '' }>제목</option>
+							<option value="writer" ${type == 'writer'? 'selected' : '' }>작성자</option>
 						</select>
 					</div>
 					<div class="col text-start p-0">
