@@ -489,6 +489,7 @@ public class MpController {
 	@RequestMapping("/mpfCommInsert")
 	public String mpfComInsert(Model model, MpFindComm mpfCom, int pageNum){
 		int result = mpfCommService.mpfcInsert(mpfCom);
+		System.out.println("result : " + result);
 		List<MpFindComm> mpfCommList = mpfCommService.mpfcSelectList(mpfCom.getMpfNo());
 		MpFind mpfDetail = mpFindService.mpfSelectDetail(mpfCom.getMpfNo());
 		

@@ -174,13 +174,21 @@
 	</div>
 	<div class="mpboxLine"></div>
 	
+	<div class="row">
+		<div class="col text-center mt-4">
+			<input type="button" class="btn btn-outline-primary" id="mpfUpdate" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="수정하기"> 
+			<input type="button" class="btn btn-outline-primary  mx-3"  id="mpfDelete" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+			<input type="button" onclick="location.href='mpfSelectList?pageNum=${pageNum}'" class="btn btn-outline-primary" value="목록으로" />
+		</div>
+	</div>
+	
 	<form id="mpfCommInsert" name="mpfCommInsert" action="mpfCommInsert">
 		<input type="hidden" name="mpfNo" value="${mpfDetail.mpfNo}"/>
 		<input type="hidden" name="pageNum" value="${pageNum}"/>
 		<input type="hidden" class="form-control" id="mpfComWriter" name="mpfComWriter" value="회원" />
 		<input type="hidden" id="mmNo" name="mmNo" value="1"/>
 			
-		<div>
+		<div class="p-4">
 			<input type="text" class="form-control" id="commContent" name="mpfComContent" />
 		</div>
 		<div>
@@ -228,11 +236,4 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col text-center mt-4">
-			<input type="button" class="btn btn-outline-primary" id="mpfUpdate" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="수정하기"> 
-			<input type="button" class="btn btn-outline-primary  mx-3"  id="mpfDelete" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
-			<input type="button" onclick="location.href='mpfSelectList?pageNum=${pageNum}'" class="btn btn-outline-primary" value="목록으로" />
-		</div>
-	</div>
 </div>

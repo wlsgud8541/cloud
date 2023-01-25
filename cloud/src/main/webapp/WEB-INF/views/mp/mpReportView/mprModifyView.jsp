@@ -29,8 +29,8 @@
   	<div class="col-8 offset-md-2">
 	    <label for="mprStatusCode" class="form-label">실종현황</label>
 	    <select class="form-control col-2" name="mprStatusCode" id="mprStatusCode">
-	    	<option value="01">실종</option>
-	    	<option value="02">찾았어요!</option>
+	    	<option value="01" ${mpModify.mprStatusCode == '01' ? 'selected' : ''}>실종</option>
+	    	<option value="02" ${mpModify.mprStatusCode == '02' ? 'selected' : ''}>찾았어요!</option>
 	    </select>
   	</div>
   	<div class="col-8 offset-md-2">
@@ -73,16 +73,19 @@
   	<div class="col-8 offset-md-2">
 	    <label for="mprGen" class="form-label">동물 성별</label>
 	     <select class="form-control col-2" name="mprGen" id="gen">
-	    	<option value="M">암컷</option>
-	    	<option value="F">수컷</option>
+	     	<option value="">--선택하세요--</option>
+	    	<option value="M " ${mpModify.mprGen == 'M ' ? 'selected' : ''}>수컷</option>
+	    	<option value="F " ${mpModify.mprGen == 'F ' ? 'selected' : ''}>암컷</option>
     	</select>
   	</div>
   	<div class="col-8 offset-md-2">
 		    <label for="mprAddFile" class="form-label">파 일</label>
-		    <input type="file" class="form-control" name="mprAddFile"  id="addFile" >
+		    <input type="file" class="form-control" name="mprAddFile"  id="addFile" value="${mpModify.mprAddFile}">
+		    <input type="text" class="form-control" name="mprAddFile"  id="addFile" value="${mpModify.mprAddFile}">
+		    <div class="text-secondary px-2">파일을 선택하지 않으면 기존에 선택된 파일이 유지됩니다.</div>
   		</div>
   	<div class="col-8 text-center offset-md-2 text-center mt-3">
-		<input type="submit" value="등록하기" class="btn btn-primary" id="insert" />
+		<input type="submit" value="수정하기" class="btn btn-primary" id="insert" />
 		<input type="button" value="목록보기" onclick="location.href='mprSelectList'" class="btn btn-primary"/>
   	</div>
 	</form>
