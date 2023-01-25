@@ -45,7 +45,7 @@
 				<div class="py-4 px-3 row">
 					<div class="col-3">
 						<c:if test="${report.mhrAddFile != null}">
-								<img src="fileDownload?fileName=${report.mprAddFile}" style="width: 150px; height: 200px;" >
+								<img src="fileDownload?fileName=${report.mhrAddFile}" style="width: 150px; height: 200px;" >
 						</c:if>
 						<c:if test="${report.mhrAddFile == null}">
 							<img src="resources/image/main/cloudLogo.png" style="width: 150px; height: 200px;" >
