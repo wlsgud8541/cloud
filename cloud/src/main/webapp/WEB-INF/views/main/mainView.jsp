@@ -43,26 +43,10 @@
 												${mainMhiList.mhiNm}(${mainMhiList.mhiAgeNow})
 											</div>
 											<div>
-												<fmt:formatDate value="${mainMhiList.mhiOccrde }" pattern="yy-MM-dd" />
+												${mainMhiList.mhiOccrde}
 											</div>
 											<div>
-												<c:if test="${mainMhiList.mprLocalCode == 01 }">서울</c:if>
-												<c:if test="${mainMhiList.mprLocalCode == 02 }">경기</c:if>
-												<c:if test="${mainMhiList.mprLocalCode == 03 }">인천</c:if>
-												<c:if test="${mainMhiList.mprLocalCode == 04 }">대전</c:if>
-												<c:if test="${mainMhiList.mprLocalCode == 05 }">광주</c:if>
-												<c:if test="${mainMhiList.mprLocalCode == 06 }">대구</c:if>
-												<c:if test="${mainMhiList.mprLocalCode == 07 }">울산</c:if>
-												<c:if test="${mainMhiList.mprLocalCode == 08 }">부산</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+												${mainMhiList.mhiOccrAdres}
 											</div>
 										</div>
 									</c:if>
