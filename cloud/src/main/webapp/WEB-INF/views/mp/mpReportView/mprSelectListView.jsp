@@ -178,7 +178,7 @@
 							<!-- 페이지 그룹 -->
 							<c:forEach var="i" begin="${mprModel.startPage}" end="${mprModel.endPage}">
 								<c:if test="${i == mprModel.currentPage }">
-									<li class="page-item active text-success" aria-current="page"><b>${i}</b></li>
+									<li class="page-item active text-primary" aria-current="page"><b>${i}</b></li>
 								</c:if>
 								<c:if test="${i != mprModel.currentPage }">
 									<li class="page-item"><a class="page-link" href="mprSelectList?pageNum=${i}&mpGen=${mprModel.mpGen}&mpType=${mprModel.mpType}&mpKeyword=${mprModel.mpKeyword}&mpDate1=${mprModel.mpDate1}&mpDate2=${mprModel.mpDate2}&mpLocalCode=${mprModel.mpLocalCode}">${i}</a></li>

@@ -2,18 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<body>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="w3-content">
 <form enctype="multipart">
 		<div class="">
 			<div class="my-4">
-				<h3><c:if test="${mhfind.mhfGen == 'M '}">남성</c:if> 
-				<c:if test="${mhfind.mhfGen == 'F '}">여성</c:if> ${mhfind.mhfTitle} </h3>
+				<h3>${mhfind.mhfTitle} </h3>
 			</div>
 			<div>
 				<table class="topbox">
@@ -44,7 +37,7 @@
 				<div class="col text-center mt-4">
 					<input type="button" class="btn btn-outline-danger me-3" id="mhfUpdate" data-mhfNo="${report.mhrNo}" data-pageNum="${pageNum}"value="수정하기"> 
 					<input type="button" class="btn btn-outline-danger me-3" id="mhfDelete" data-mhfNo="${report.mhrNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
-					<input type="button" class="btn btn-outline-danger" value="목록으로" onclick="location.href='mhrSelectList?pageNum=${pageNum}'"/>
+					<input type="button" class="btn btn-outline-danger" value="목록으로" onclick="location.href='mhfSelectList?pageNum=${pageNum}'"/>
 				</div>
 			</div>
 		</div>
@@ -70,7 +63,7 @@
 						<c:forEach var="mhfCommList" items="${mhfCommList}">
 							<div class="row">
 								<div class="col">
-								<pre>${mhfCommList.mhfComContent}</pre>
+								<pre id="beforeCon${mhfCommList.mhfComNo}">${mhfCommList.mhfComContent}</pre>
 								<span id="mhfComWriter">${mhfCommList.mhfComWriter}</span><br>
 								<fmt:formatDate value="${mhfCommList.mhfComRegDate}" pattern="yyyy-MM-dd HH:mm" />
 								<button class="btn btn-outline-success btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcUpdate"> 
@@ -84,6 +77,26 @@
 			</div>
 			</c:if>
 		
+		<div class="row my-3 d-none" id="mhfcForm">
+			<div class="col">
+				<form name="WriteForm" id="WriteForm">
+					<input type="hidden" name="mhfNo" value="${mhfind.mhfNo}"/>
+					<input type="hidden" name="mhfComWriter" value="회원" />
+					<input type="hidden" name="mmNo" value="1"/>
+					<div class="row bg-light my-3 p-3 border">
+						<div class="row">
+							<div class="col">
+								<textarea name="mhfComContent" id="mhfComContent" class="form-control" rows="4"></textarea>
+							</div>
+							<div class="col-md">
+								<input type="submit" value="댓글 수정" class="btn" id="updateCom"/>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+			
 	</div>
 </div>
 </div>
@@ -125,8 +138,7 @@
 
 
 
-
-
+<%-- 
 
 <div id="global" class="row container">
 	<div class="col">
@@ -194,4 +206,4 @@
 		</div>
 	</div>
 </div>
-</body>
+</body>  --%>

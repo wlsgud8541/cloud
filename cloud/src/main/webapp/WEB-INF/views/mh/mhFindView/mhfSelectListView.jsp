@@ -19,6 +19,7 @@
 		<!-- 상단 리스트 -->
 		<tr class="table-danger">
 			<th>번 호</th>
+			<th>성 별</th>
 			<th>제 목</th>
 			<th>작성자</th>
 			<th>조회수</th>
@@ -29,6 +30,8 @@
 				<c:forEach var="mhfList" items="${mhfList}" varStatus="status">
 					<tr>
 						<td style="padding: 1.5rem 0.5rem;">${mhfList.mhfNo }</td>
+						<td style="padding: 1.5rem 0.5rem;"><c:if test="${mhfList.mhfGen == 'M '}">남성</c:if> 
+				<c:if test="${mhfList.mhfGen == 'F '}">여성</c:if></td>
 						<td style="padding: 1.5rem 0.5rem;"><a
 							href="mhfDetailView?mhfNo=${mhfList.mhfNo}&pageNum=${currentPage}">${mhfList.mhfTitle}
 								<c:if test="${mhfList.mhfAddFile!=null }">

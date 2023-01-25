@@ -30,6 +30,7 @@ SELECT rNum
         ,mhfReadCnt
         ,mhfRegDate
         ,mhfTitle
+        ,mhfGen
         ,mhfContent
         ,mhfWriter
 FROM (SELECT rownum as rNum
@@ -37,12 +38,14 @@ FROM (SELECT rownum as rNum
             ,mhfReadCnt
             ,mhfRegDate
             ,mhfTitle
+       		,mhfGen
       		,mhfContent
             ,mhfWriter 
         FROM(SELECT mhfNo
                    ,mhfReadCnt
                    ,mhfRegDate
                    ,mhfTitle
+     			   ,mhfGen
                    ,mhfContent
                    ,mhfWriter
               FROM

@@ -117,7 +117,7 @@
 							<!-- 페이지 그룹 -->
 							<c:forEach var="i" begin="${mpfModel.startPage}" end="${mpfModel.endPage}">
 								<c:if test="${i == mpfModel.currentPage }">
-									<li class="page-item active text-success" aria-current="page"><b>${i}</b></li>
+									<li class="page-item active text-primary" aria-current="page"><b>${i}</b></li>
 								</c:if>
 								<c:if test="${i != mpfModel.currentPage }">
 									<li class="page-item"><a class="page-link" href="mpfSelectList?pageNum=${ i }">${i}</a></li>
