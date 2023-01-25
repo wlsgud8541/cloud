@@ -34,7 +34,7 @@
 						<c:forEach var="mhfCommList" items="${mhfCommList}">
 							<div class="row">
 								<div class="col">
-								<pre>${mhfCommList.mhfComContent}</pre>
+								<pre id="beforeCon${mhfCommList.mhfComNo}">${mhfCommList.mhfComContent}</pre>
 								<span id="mhfComWriter">${mhfCommList.mhfComWriter}</span><br>
 								<fmt:formatDate value="${mhfCommList.mhfComRegDate}" pattern="yyyy-MM-dd HH:mm" />
 								<button class="btn btn-outline-success btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcUpdate"> 
