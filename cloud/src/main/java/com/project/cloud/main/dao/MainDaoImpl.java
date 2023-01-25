@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.project.cloud.cs.domain.Mnotice;
 import com.project.cloud.main.domain.Main;
 import com.project.cloud.mh.domain.MhFind;
+import com.project.cloud.mh.domain.MhInfo;
 import com.project.cloud.mh.domain.MhReport;
 import com.project.cloud.mp.domain.MpFind;
 import com.project.cloud.mp.domain.MpProtect;
@@ -28,6 +29,14 @@ public class MainDaoImpl implements MainDao {
 		paramMap.put("startRow", 0);
 		paramMap.put("pageSize", 6);
 		return sql.selectList("Mnotice.mnSelectList", paramMap);
+	}
+//	메인 실종자 정보
+	@Override
+	public List<MhInfo> mainMhiList() {
+		HashMap<String, Integer> paramMap = new HashMap<String, Integer>();
+		paramMap.put("startRow", 0);
+		paramMap.put("pageSize", 15);
+		return sql.selectList("MhInfo.mhInfoSelect",paramMap);
 	}
 //	메인 반려동물 신고
 	@Override
@@ -110,4 +119,16 @@ public class MainDaoImpl implements MainDao {
 		paramMap.put("mpLocalCode", mpLocalCode);
 		return sql.selectList("MpProtect.mppSelectList",paramMap);
 	}
+	
+//	실종자 그래프
+	@Override
+	public List<Main> mhGraph() {
+		return sql.selectList("Main.mhGraph");
+	}
+//	실종 반려동물 그래프
+	@Override
+	public List<Main> mpGraph() {
+		return sql.selectList("Main.mpGraph");
+	}
+
 }

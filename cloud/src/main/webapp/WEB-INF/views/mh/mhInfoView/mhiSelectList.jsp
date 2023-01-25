@@ -27,7 +27,7 @@
 	                 <td>${jMap.mhiAge}</td> 
 	                 <td>${jMap.mhiWritngTrgetDscd}</td>
 	                 <td>${jMap.mhiSexdstnDscd}</td> 
-	                 <td>${jMap.mhiOccrAres}</td> 
+	                 <td>${jMap.mhiOccrAdres}</td> 
 	                 <td>${jMap.mhiNm}</td> 
 	                 <td><a href='https://www.safe182.go.kr/home/lcm/lcmMssGet.do?gnbMenuCd=014000000000&lnbMenuCd=014001000000&rptDscd=2&msspsnIdntfccd=${jMap.mhiMsspsnIdntfccd}'><img style='width:96px;height:128px;' width='96' height='128' border='0' src='https://www.safe182.go.kr/api/lcm/imgView.do?msspsnIdntfccd=${jMap.mhiMsspsnIdntfccd}'/></a></td>
 	        </c:forEach>

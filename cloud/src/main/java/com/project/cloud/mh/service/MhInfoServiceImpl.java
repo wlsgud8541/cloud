@@ -317,7 +317,7 @@ public class MhInfoServiceImpl implements MhInfoService {
 			   mhInfo.setMhiBdwgh(insertMap.get("bdwgh")+"");
 			   mhInfo.setMhiNm(insertMap.get("nm")+"");
 			   mhInfo.setMhiNo((int)insertMap.get("rnum"));
-			   mhInfo.setMhiOccrAres(insertMap.get("occrAres")+"");
+			   mhInfo.setMhiOccrAdres(insertMap.get("occrAdres")+"");
 			   mhInfo.setMhiOccrde(insertMap.get("occrde")+"");
 			   mhInfo.setMhiTknphotolength(insertMap.get("tknphotolength")+"");
 			   mhInfo.setMhiWritngTrgetDscd(insertMap.get("writngTrgetDscd")+"");

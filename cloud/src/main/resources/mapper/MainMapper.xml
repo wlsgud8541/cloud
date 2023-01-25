@@ -10,6 +10,24 @@
 		<result property="searchWriter" column="searchWriter"/>		
 		<result property="searchDelYn" column="searchDelYn"/>		
 		<result property="tableType" column="tableType"/>		
+
+		<result property="Code01" column="Code01"/>		
+		<result property="Code02" column="Code02"/>		
+		<result property="Code03" column="Code03"/>		
+		<result property="Code04" column="Code04"/>		
+		<result property="Code05" column="Code05"/>		
+		<result property="Code06" column="Code06"/>		
+		<result property="Code07" column="Code07"/>		
+		<result property="Code08" column="Code08"/>		
+		<result property="Code09" column="Code09"/>		
+		<result property="Code10" column="Code10"/>		
+		<result property="Code11" column="Code11"/>		
+		<result property="Code12" column="Code12"/>		
+		<result property="Code13" column="Code13"/>		
+		<result property="Code14" column="Code14"/>		
+		<result property="Code15" column="Code15"/>		
+		<result property="Code16" column="Code16"/>		
+		<result property="Code17" column="Code17"/>		
 	</resultMap>
 
 	<!-- 통합검색 -->
@@ -62,5 +80,47 @@
 	    	<if test="search != ' ' and search != null">
 	    		searchTitle LIKE '%'||#{keyword}||'%' or searchContent LIKE '%'||#{keyword}||'%'
 	    	</if>
+	</select>
+	<select id="mhGraph" resultType="Main">
+		SELECT 
+		     (SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '01') AS Code01
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '02') AS Code02
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '03') AS Code03
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '04') AS Code04
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '05') AS Code05
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '06') AS Code06
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '07') AS Code07
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '08') AS Code08
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '09') AS Code09
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '10') AS Code10
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '11') AS Code11
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '12') AS Code12
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '13') AS Code13
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '14') AS Code14
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '15') AS Code15
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '16') AS Code16
+		    ,(SELECT count(*) FROM MHREPORT WHERE mhrDelYn = 'N' AND mhrlocalcode = '17') AS Code17
+		FROM DUAL
+	</select>
+	<select id="mpGraph" resultType="Main">
+		SELECT 
+		     (SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '01') AS Code01
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '02') AS Code02
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '03') AS Code03
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '04') AS Code04
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '05') AS Code05
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '06') AS Code06
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '07') AS Code07
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '08') AS Code08
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '09') AS Code09
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '10') AS Code10
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '11') AS Code11
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '12') AS Code12
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '13') AS Code13
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '14') AS Code14
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '15') AS Code15
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '16') AS Code16
+		    ,(SELECT count(*) FROM mpreport WHERE mprDelYn = 'N' AND mprLocalCode = '17') AS Code17
+		FROM DUAL
 	</select>
 </mapper>

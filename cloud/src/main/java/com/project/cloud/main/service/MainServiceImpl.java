@@ -12,6 +12,7 @@ import com.project.cloud.cs.domain.Mnotice;
 import com.project.cloud.main.dao.MainDao;
 import com.project.cloud.main.domain.Main;
 import com.project.cloud.mh.domain.MhFind;
+import com.project.cloud.mh.domain.MhInfo;
 import com.project.cloud.mh.domain.MhReport;
 import com.project.cloud.mp.domain.MpFind;
 import com.project.cloud.mp.domain.MpProtect;
@@ -36,6 +37,11 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public List<MpFind> mainMpfList() {
 		return mainDao.mainMpfList();
+	}
+//	메인 실종자 정보
+	@Override
+	public List<MhInfo> mainMhiList() {
+		return mainDao.mainMhiList();
 	}
 	@Override
 	public List<MpReport> mainMprList() {
@@ -69,5 +75,16 @@ public class MainServiceImpl implements MainService {
 			String mpDate1, String mpDate2, String mpLocalCode) {
 		return mainDao.mppSrchList(mpGen, mpType, mpKeyword, mpDate1, mpDate2, mpLocalCode);
 	}
+//	실종자 그래프
+	@Override
+	public List<Main> mhGraph() {
+		return mainDao.mhGraph();
+	}
+//	실종 반려동물 그래프
+	@Override
+	public List<Main> mpGraph() {
+		return mainDao.mpGraph();
+	}
+
 
 }

@@ -1,5 +1,6 @@
 package com.project.cloud.main.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,12 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.cloud.cs.domain.Mnotice;
-import com.project.cloud.gm.service.GlobalMethodService;
 import com.project.cloud.main.domain.Main;
 import com.project.cloud.main.service.MainService;
 import com.project.cloud.mh.domain.MhFind;
+import com.project.cloud.mh.domain.MhInfo;
 import com.project.cloud.mh.domain.MhReport;
 import com.project.cloud.mp.domain.MpFind;
 import com.project.cloud.mp.domain.MpProtect;
@@ -23,9 +25,6 @@ import com.project.cloud.mp.domain.MpReport;
 public class MainController {
 	@Autowired
 	private MainService mainService;
-	
-	@Autowired
-	private GlobalMethodService gms;
 	
 	@RequestMapping("main")
 	public String mainBoardList(Model model) {
@@ -39,12 +38,29 @@ public class MainController {
 		List<MpFind> mainMpfList = mainService.mainMpfList();
 		model.addAttribute("mainMpfList", mainMpfList);
 		
-//		Map<, V>
+		List<MhInfo> mainMhiList = mainService.mainMhiList();
+		model.addAttribute("mainMhiList",mainMhiList);
 		
 		List<MpReport> mainMprList = mainService.mainMprList();
 		model.addAttribute("mainMprList",mainMprList);
 		
 		return "main/mainView";
+	}
+	
+	@RequestMapping("myChartAjax")
+	@ResponseBody
+	public HashMap<String, List<Main>> myChartAjax(){
+		
+		HashMap<String, List<Main>> resultMap = new HashMap<String, List<Main>>();
+		
+		List<Main> mhGrph = mainService.mhGraph();
+		List<Main> mpGrph = mainService.mpGraph();
+		resultMap.put("mhGrph", mhGrph);
+		resultMap.put("mpGrph", mpGrph);
+		
+		//System.out.println("mhG : " + mhGrph); System.out.println("mpG : " + mpGrph);
+		
+		return resultMap;
 	}
 	
 	@RequestMapping("search")

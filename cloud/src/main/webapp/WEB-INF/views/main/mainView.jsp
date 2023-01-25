@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,97 +17,207 @@
 	<div class="row mt-5">
 		<div class="col-7 me-4 bg-white p-4 shadow-sm  ">
 			<h3>
-				<b>실종자</b>
+				<b>실종 반려동물</b>
 			</h3>
-			<div class=" border border-4 border-danger border-opacity-25 p-5 ">
+			<div class=" border border-4 border-primary border-opacity-25 p-3">
 				<div class="swiper mySwiper ">
 					<div class="swiper-wrapper ">
 						<div class="swiper-slide">
-							<div class="row">
-								<div class="col me-2 text-center"
-									style="width: 150px; height: 100%;">
-									<img src="resources/image/main/dndud.jpg">
-									<div>정우영(32)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/wlsgud.jpg">
-									<div>전진형(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/ruddnr.jpg">
-									<div>김경욱(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/alsgur.jpg">
-									<div>정민혁(27)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
+							<div class="inblock">
+								<c:forEach var="mainMhiList" items="${mainMhiList}"
+									varStatus="status">
+									<c:if test="${status.index < 4}">
+										<div class="inblock me-2 text-center"
+											style="width: 150px; height: 100%;">
+											<c:if test="${mainMhiList.mhiMsspsnIdntfccd != null}">
+												<a href="mprSelectDetail?mprNo=${mainMhiList.mhiNo}&pageNum=1" class="inblock"> 
+													<img src="fileDownload?fileName=${mainMhiList.mhiMsspsnIdntfccd}" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<c:if test="${mainMhiList.mhiMsspsnIdntfccd == null}">
+												<a href="mprSelectDetail?mprNo=${mainMhiList.mhiNo}&pageNum=1" class="inblock"> 
+												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<div>
+												${mainMhiList.mhiNm}(${mainMhiList.mhiAgeNow})
+											</div>
+											<div>
+												<fmt:formatDate value="${mainMhiList.mhiOccrde }" pattern="yy-MM-dd" />
+											</div>
+											<div>
+												<c:if test="${mainMhiList.mprLocalCode == 01 }">서울</c:if>
+												<c:if test="${mainMhiList.mprLocalCode == 02 }">경기</c:if>
+												<c:if test="${mainMhiList.mprLocalCode == 03 }">인천</c:if>
+												<c:if test="${mainMhiList.mprLocalCode == 04 }">대전</c:if>
+												<c:if test="${mainMhiList.mprLocalCode == 05 }">광주</c:if>
+												<c:if test="${mainMhiList.mprLocalCode == 06 }">대구</c:if>
+												<c:if test="${mainMhiList.mprLocalCode == 07 }">울산</c:if>
+												<c:if test="${mainMhiList.mprLocalCode == 08 }">부산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="row">
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/dndud.jpg">
-									<div>정우영(32)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/wlsgud.jpg">
-									<div>전진형(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/ruddnr.jpg">
-									<div>김경욱(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/alsgur.jpg">
-									<div>정민혁(27)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
+							<div class="inblock">
+								<c:forEach var="mainMprList" items="${mainMprList}"
+									varStatus="status">
+									<c:if test="${4 <= status.index and status.index < 8}">
+										<div class="inblock me-2 text-center"
+											style="width: 150px; height: 100%;">
+											<c:if test="${mainMprList.mprAddFile != null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="fileDownload?fileName=${mainMprList.mprAddFile}" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<c:if test="${mainMprList.mprAddFile == null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<div>
+												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
+												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
+												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+											</div>
+											<div>
+												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
+											</div>
+											<div>
+												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 04 }">대전</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 05 }">광주</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 06 }">대구</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 07 }">울산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 08 }">부산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="row">
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/dndud.jpg">
-									<div>정우영(32)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/wlsgud.jpg">
-									<div>전진형(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/ruddnr.jpg">
-									<div>김경욱(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/alsgur.jpg">
-									<div>정민혁(27)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
+							<div class="inblock">
+								<c:forEach var="mainMprList" items="${mainMprList}"
+									varStatus="status">
+									<c:if test="${8 <= status.index and status.index < 12}">
+										<div class="inblock me-2 text-center"
+											style="width: 150px; height: 100%;">
+											<c:if test="${mainMprList.mprAddFile != null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="fileDownload?fileName=${mainMprList.mprAddFile}" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<c:if test="${mainMprList.mprAddFile == null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<div>
+												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
+												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
+												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+											</div>
+											<div>
+												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
+											</div>
+											<div>
+												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 04 }">대전</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 05 }">광주</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 06 }">대구</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 07 }">울산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 08 }">부산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="inblock">
+								<c:forEach var="mainMprList" items="${mainMprList}"
+									varStatus="status">
+									<c:if test="${12 <= status.index and status.index < 16}">
+										<div class="inblock me-2 text-center"
+											style="width: 150px; height: 100%;">
+											<c:if test="${mainMprList.mprAddFile != null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="fileDownload?fileName=${mainMprList.mprAddFile}" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<c:if test="${mainMprList.mprAddFile == null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<div>
+												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
+												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
+												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+											</div>
+											<div>
+												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
+											</div>
+											<div>
+												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 04 }">대전</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 05 }">광주</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 06 }">대구</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 07 }">울산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 08 }">부산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
+
 					<div class="swiper-button-next"></div>
 					<!-- 			       -->
 					<div class="swiper-button-prev"></div>
@@ -255,95 +366,207 @@
 			<h3>
 				<b>실종 반려동물</b>
 			</h3>
-			<div class=" border border-4 border-primary border-opacity-25 p-5 ">
+			<div class=" border border-4 border-primary border-opacity-25 p-3">
 				<div class="swiper mySwiper ">
 					<div class="swiper-wrapper ">
 						<div class="swiper-slide">
-							<div class="row">
-								<div class="col me-2 text-center"
-									style="width: 150px; height: 100%;">
-									<img src="resources/image/main/dndud.jpg">
-									<div>정우영(32)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/wlsgud.jpg">
-									<div>전진형(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/ruddnr.jpg">
-									<div>김경욱(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/alsgur.jpg">
-									<div>정민혁(27)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
+							<div class="inblock">
+								<c:forEach var="mainMprList" items="${mainMprList}"
+									varStatus="status">
+									<c:if test="${status.index < 4}">
+										<div class="inblock me-2 text-center"
+											style="width: 150px; height: 100%;">
+											<c:if test="${mainMprList.mprAddFile != null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="fileDownload?fileName=${mainMprList.mprAddFile}" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<c:if test="${mainMprList.mprAddFile == null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<div>
+												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
+												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
+												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+											</div>
+											<div>
+												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
+											</div>
+											<div>
+												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 04 }">대전</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 05 }">광주</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 06 }">대구</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 07 }">울산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 08 }">부산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="row">
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/dndud.jpg">
-									<div>정우영(32)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/wlsgud.jpg">
-									<div>전진형(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/ruddnr.jpg">
-									<div>김경욱(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/alsgur.jpg">
-									<div>정민혁(27)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
+							<div class="inblock">
+								<c:forEach var="mainMprList" items="${mainMprList}"
+									varStatus="status">
+									<c:if test="${4 <= status.index and status.index < 8}">
+										<div class="inblock me-2 text-center"
+											style="width: 150px; height: 100%;">
+											<c:if test="${mainMprList.mprAddFile != null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="fileDownload?fileName=${mainMprList.mprAddFile}" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<c:if test="${mainMprList.mprAddFile == null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<div>
+												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
+												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
+												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+											</div>
+											<div>
+												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
+											</div>
+											<div>
+												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 04 }">대전</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 05 }">광주</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 06 }">대구</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 07 }">울산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 08 }">부산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="row">
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/dndud.jpg">
-									<div>정우영(32)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/wlsgud.jpg">
-									<div>전진형(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/ruddnr.jpg">
-									<div>김경욱(30)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
-								<div class="col  me-2" style="width: 150px; height: 100%;">
-									<img src="resources/image/main/alsgur.jpg">
-									<div>정민혁(27)</div>
-									<div>오늘</div>
-									<div>학원</div>
-								</div>
+							<div class="inblock">
+								<c:forEach var="mainMprList" items="${mainMprList}"
+									varStatus="status">
+									<c:if test="${8 <= status.index and status.index < 12}">
+										<div class="inblock me-2 text-center"
+											style="width: 150px; height: 100%;">
+											<c:if test="${mainMprList.mprAddFile != null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="fileDownload?fileName=${mainMprList.mprAddFile}" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<c:if test="${mainMprList.mprAddFile == null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<div>
+												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
+												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
+												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+											</div>
+											<div>
+												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
+											</div>
+											<div>
+												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 04 }">대전</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 05 }">광주</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 06 }">대구</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 07 }">울산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 08 }">부산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="inblock">
+								<c:forEach var="mainMprList" items="${mainMprList}"
+									varStatus="status">
+									<c:if test="${12 <= status.index and status.index < 16}">
+										<div class="inblock me-2 text-center"
+											style="width: 150px; height: 100%;">
+											<c:if test="${mainMprList.mprAddFile != null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="fileDownload?fileName=${mainMprList.mprAddFile}" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<c:if test="${mainMprList.mprAddFile == null}">
+												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
+													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+												</a>
+											</c:if>
+											<div>
+												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
+												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
+												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+											</div>
+											<div>
+												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
+											</div>
+											<div>
+												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 04 }">대전</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 05 }">광주</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 06 }">대구</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 07 }">울산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 08 }">부산</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
+												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
+
 					<div class="swiper-button-next"></div>
 					<!-- 			       -->
 					<div class="swiper-button-prev"></div>
@@ -395,9 +618,9 @@
 	<div class="row mt-4">
 		<div class="col-7 bg-white me-4 p-4 shadow-sm">
 			<h3>
-				<b>통계그래프(임시)</b>
+				<b>통계그래프</b>
 			</h3>
-			<div>
+			<div style="with: auto;">
 				<canvas id="myChart"></canvas>
 			</div>
 		</div>

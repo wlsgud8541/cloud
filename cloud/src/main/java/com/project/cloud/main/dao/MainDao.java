@@ -5,6 +5,7 @@ import java.util.List;
 import com.project.cloud.cs.domain.Mnotice;
 import com.project.cloud.main.domain.Main;
 import com.project.cloud.mh.domain.MhFind;
+import com.project.cloud.mh.domain.MhInfo;
 import com.project.cloud.mh.domain.MhReport;
 import com.project.cloud.mp.domain.MpFind;
 import com.project.cloud.mp.domain.MpProtect;
@@ -17,6 +18,8 @@ public interface MainDao {
 	public List<MhFind> mainMhfList();
 //	메인 반려동물 목격
 	public List<MpFind> mainMpfList();
+//	메인 실종자 정보
+	public List<MhInfo> mainMhiList();
 //	메인 반려동물 신고
 	public List<MpReport> mainMprList();
 // 메인 통합검색
@@ -27,4 +30,8 @@ public interface MainDao {
 	public List<MpReport> mprSrchList(String mpGen,String mpType ,String mpKeyword, String mpDate1, String mpDate2, String mpLocalCode);
 //	소검색 반려동물 임보
 	public List<MpProtect> mppSrchList(String mpGen,String mpType ,String mpKeyword, String mpDate1, String mpDate2, String mpLocalCode);
+	// 실종자 그래프
+	public List<Main> mhGraph();
+//	실종 반려동물 그래프
+	public List<Main> mpGraph();
 }

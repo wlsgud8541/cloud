@@ -10,7 +10,7 @@
 		<result property="mhiAge" column="mhiAge"/>
 		<result property="mhiWritngTrgetDscd" column="mhiWritngTrgetDscd"/>
 		<result property="mhiSexdstnDscd" column="mhiSexdstnDscd"/>
-		<result property="mhiOccrAres" column="mhiOccrAres"/>
+		<result property="mhiOccrAdres" column="mhiOccrAdres"/>
 		<result property="mhiNm" column="mhiNm"/>
 		<result property="mhiTknphotolength" column="mhiTknphotolength"/>
 		<result property="mhiBdwgh" column="mhiBdwgh"/>
@@ -24,7 +24,7 @@
                    ,mhiAge
                    ,mhiWritngTrgetDscd
                    ,mhiSexdstnDscd
-                   ,mhiOccrAres
+                   ,mhiOccrAdres
                    ,mhiNm
                    ,mhiTknphotolength
                    ,mhiBdwgh
@@ -37,7 +37,7 @@ FROM (SELECT rownum as rNum
                    ,mhiAge
                    ,mhiWritngTrgetDscd
                    ,mhiSexdstnDscd
-                   ,mhiOccrAres
+                   ,mhiOccrAdres
                    ,mhiNm
                    ,mhiTknphotolength
                    ,mhiBdwgh
@@ -49,7 +49,7 @@ FROM (SELECT rownum as rNum
                    ,mhiAge
                    ,mhiWritngTrgetDscd
                    ,mhiSexdstnDscd
-                   ,mhiOccrAres
+                   ,mhiOccrAdres
                    ,mhiNm
                    ,mhiTknphotolength
                    ,mhiBdwgh
@@ -71,7 +71,7 @@ WHERE
 					mhiAge, 
 					mhiWritngTrgetDscd
 					,mhiSexdstnDscd
-					, mhiOccrAres
+					, mhiOccrAdres
 					, mhiNm
 					, mhiTknphotolength
 					, mhiBdwgh,
@@ -84,7 +84,7 @@ WHERE
 				 #{mhiAge, jdbcType=VARCHAR}, 
 				 #{mhiWritngTrgetDscd, jdbcType=VARCHAR},
 				#{mhiSexdstnDscd, jdbcType=VARCHAR}, 
-				#{mhiOccrAres, jdbcType=VARCHAR}, 
+				#{mhiOccrAdres, jdbcType=VARCHAR}, 
 				#{mhiNm, jdbcType=VARCHAR}, 
 				#{mhiTknphotolength, jdbcType=VARCHAR}, 
 				#{mhiBdwgh, jdbcType=VARCHAR}
@@ -100,7 +100,7 @@ SELECT
        ,mhiAge
        ,mhiWritngTrgetDscd
        ,mhiSexdstnDscd
-       ,mhiOccrAres
+       ,mhiOccrAdres
        ,mhiNm
        ,mhiTknphotolength
        ,mhiBdwgh
@@ -115,7 +115,7 @@ FROM
                    ,mhiAge
                    ,mhiWritngTrgetDscd
                    ,mhiSexdstnDscd
-                   ,mhiOccrAres
+                   ,mhiOccrAdres
                    ,mhiNm
                    ,mhiTknphotolength
                    ,mhiBdwgh
@@ -138,7 +138,7 @@ WHERE
 			, mhiAge
 			, mhiWritngTrgetDscd
 			, mhiSexdstnDscd
-			, mhiOccrAres
+			, mhiOccrAdres
 			, mhiNm
 			, mhiTknphotolength
 			, mhiBdwgh

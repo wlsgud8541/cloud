@@ -7,7 +7,7 @@ public class MhInfo {
 	private String mhiAgeNow;
 	private String mhiAge;
 	private String mhiSexdstnDscd;
-	private String mhiOccrAres	;
+	private String mhiOccrAdres	;
 	private String mhiNm	;
 	private String mhiTknphotolength;
 	private String mhiBdwgh;
@@ -16,7 +16,7 @@ public class MhInfo {
 	public MhInfo() {}
 	
 	public MhInfo(int mhiNo, String mhiOccrde, String mhiAlldressingDscd, String mhiAgeNow, String mhiAge,
-			String mhiSexdstnDscd, String mhiOccrAres, String mhiNm,
+			String mhiSexdstnDscd, String mhiOccrAdres, String mhiNm,
 			String mhiTknphotolength, String mhiBdwgh, String mhiMsspsnIdntfccd, String mhiWritngTrgetDscd) {
 		
 			this.mhiNo = mhiNo;
@@ -25,7 +25,7 @@ public class MhInfo {
 			this.mhiAgeNow = mhiAgeNow;
 			this.mhiAge = mhiAge;
 			this.mhiSexdstnDscd = mhiSexdstnDscd;
-			this.mhiOccrAres = mhiOccrAres;
+			this.mhiOccrAdres = mhiOccrAdres;
 			this.mhiNm = mhiNm;
 			this.mhiTknphotolength = mhiTknphotolength;
 			this.mhiBdwgh = mhiBdwgh;
@@ -97,12 +97,12 @@ public class MhInfo {
 		this.mhiSexdstnDscd = mhiSexdstnDscd;
 	}
 
-	public String getMhiOccrAres() {
-		return mhiOccrAres;
+	public String getMhiOccrAdres() {
+		return mhiOccrAdres;
 	}
 
-	public void setMhiOccrAres(String mhiOccrAres) {
-		this.mhiOccrAres = mhiOccrAres;
+	public void setMhiOccrAdres(String mhiOccrAdres) {
+		this.mhiOccrAdres = mhiOccrAdres;
 	}
 
 	public String getMhiNm() {
