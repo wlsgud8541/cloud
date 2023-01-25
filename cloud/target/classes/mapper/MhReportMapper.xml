@@ -10,7 +10,7 @@
 		<result property="mhrRegDate" column="mhrRegDate"/>
 		<result property="mhrInfoDate" column="mhrInfoDate"/>
 		<result property="mhrName" column="mhrName"/>
-		<result property="mhrMage" column="mhrMage"/>
+		<result property="mhrMage" column="mhrMage"/> 
 		<result property="mhrage" column="mhrage"/>
 		<result property="mhrNation" column="mhrNation"/>
 		<result property="mhrIllCode" column="mhrIllCode"/>
