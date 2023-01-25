@@ -1,138 +1,166 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class=" pt-5">
+<div class="w3-content">
 	<!-- 상단 게시판 제목 -->
-	<div class="textTop row">
-   		<h3 style="color: #5F8D4E;">실종 반려동물 신고 게시판</h3>
+	<div class="textTop row" style="width: 1000px;">
+   		<div class="col-4 fs-2 fw-bold border-bottom border-primary border-4 border-opacity-50 pb-3">
+			실종 반려동물 신고
+		</div>
 		<div class="pt-4">
-      <div class="mt-4">
-         <div class="border row">
-            <div class="p-4 inblock">
-               <div class="mb-4 inblock row">
-                  <form class="mprSelectList" action="mprSelectList" id="searchForm" method="post">
-					<div class="">
-						<div class="main_search">
-							<label class="text-start">성 별</label>
-							<select name="mpGen">
-								<option value="">--선택하세요--</option>
-								<option value="M">수 컷</option>
-								<option value="F">암 컷</option>
-							</select>
+    		<div class="mt-4">
+		        <form action="mprSelectList" id="searchForm"  method="post" class=" border row mt-4 ">
+					<div class="p-4 inblock">
+						<div class="mb-4 row">
+							<label class="categ">
+								<b class="border-bottom border-success border-2 opacity-75">동물종류</b>
+							</label>
+							<div class="checks col-lg-5 col-sm-4">
+								<select name="mpType" class="bg-white border">
+									<option value="">--선택하세요--</option>
+									<option value="01">강아지</option>
+									<option value="02">고양이</option>
+									<option value="03">기타</option>
+								</select>
+							</div>
 						</div>
-						<div class="main_search">
-							<label class="text-start">동물종류</label>
-							<select name="mpType">
-								<option value="">--선택하세요--</option>
-								<option value="01">강아지</option>
-								<option value="02">고양이</option>
-								<option value="03">기타</option>
-							</select>
+						<div class="mb-4 row" >
+							<label class="categ">
+								<b class="border-bottom border-success border-2 opacity-75">성별</b>
+							</label>
+							<div class="checks col-lg-5 col-sm-4">
+								<select name="mpGen" class="bg-white border">
+									<option value="">--선택하세요--</option>
+									<option value="M">수 컷</option>
+									<option value="F">암 컷</option>
+								</select>
+							</div>
+								<label class=categ>
+									<b class="border-bottom border-success border-2 opacity-75">키워드</b>
+								</label>
+							<div class="checks col">
+								<div class="checks schInput ">
+									<input type="text" name="mpKeyword" class="bg-white border">
+								</div>
+							</div>
 						</div>
-						<div class="main_search">
-							<label class="text-start">키워드</label>
-							<input type="text" name="mpKeyword">
+						<div class="mb-4 row">
+							<label class="categ">
+								<b class="border-bottom border-success border-2 opacity-75">발생일</b>
+							</label>
+							<div class="inblock col-5 schInput search_date ">
+								<input type="date" name="mpDate1"class="text-center bg-white border" style="padding: 0;">~<input type="date" name="mpDate2"class="text-center bg-white border" style="padding: 0;">
+							</div>
+							<label class=categ>
+								<b class="border-bottom border-success border-2 opacity-75">발생장소</b>
+							</label>
+							<div class="checks col">
+								<div class="checks">
+									<select name="mpLocalCode" class="bg-white border">
+										<option value="">--선택하세요--</option>
+								    	<option value="01">서울</option>
+								    	<option value="02">경기</option>
+								    	<option value="03">인천</option>
+								    	<option value="04">대전</option>
+								    	<option value="05">광주</option>
+								    	<option value="06">대구</option>
+								    	<option value="07">울산</option>
+								    	<option value="08">부산</option>
+								    	<option value="09">세종</option>
+								    	<option value="10">강원</option>
+								    	<option value="11">충북</option>
+								    	<option value="12">충남</option>
+								    	<option value="13">전북</option>
+								    	<option value="14">전남</option>
+								    	<option value="15">경북</option>
+								    	<option value="16">경남</option>
+								    	<option value="17">제주</option>
+									</select>
+								</div>
+							</div>
 						</div>
-						<div class="main_search search_date">
-							<label class="text-start">발생일</label>
-							<input type="date" name="mpDate1" class="p-4">~<input type="date" name="mpDate2">
-						</div>
-						<div class="main_search">
-							<label class="text-start">발생지</label>
-							<select name="mpLocalCode">
-								<option value="">--선택하세요--</option>
-						    	<option value="01">서울</option>
-						    	<option value="02">경기</option>
-						    	<option value="03">인천</option>
-						    	<option value="04">대전</option>
-						    	<option value="05">광주</option>
-						    	<option value="06">대구</option>
-						    	<option value="07">울산</option>
-						    	<option value="08">부산</option>
-						    	<option value="09">세종</option>
-						    	<option value="10">강원</option>
-						    	<option value="11">충북</option>
-						    	<option value="12">충남</option>
-						    	<option value="13">전북</option>
-						    	<option value="14">전남</option>
-						    	<option value="15">경북</option>
-						    	<option value="16">경남</option>
-						    	<option value="17">제주</option>
-							</select>
-						</div>
-					</div>
-					<div class="text-end mt-1 color text-danger">
-						<small>※ 입력란이 채워지지 않을 시 전체를 검색합니다. ※&nbsp;&nbsp;&nbsp;</small>
-						<button type="submit" class="btn btn-secondary">검 색</button>
+						
+						<div class="inblock text-end float-end">
+							<button type="submit" class="btn btn-lg btn-outline-secondary rounded-0">검색</button>
+			           </div>
 					</div>
 				</form>
-               <div class="row inblock">
-                            <div class="col">
-                              <a href="#"><button type="button" class="btn btn-lg btn-outline-secondary float ">검색</button></a>
-                            </div>
-		                </div>
-		              </div>
-		            </div>
-		         </div>
-      </div>
-      <hr style="color:#285430; height:30px;">
-   </div>
-		
-		<div class="col board-bottom text-end">
-			<a href="mprInsert" class="btn btn-secondary posiRight my-2">글쓰기</a>
-			<br>
-		</div>
+      		</div>
+	   	</div>
 	</div>
-		<!-- 게시판 리스트 -->
-		<div>
-			<div class="row">
-					<c:forEach var="mprSelectList" items="${mprSelectList}" varStatus="status">
-					<div class="col-3 row p-3">
-							<div class="row picBoard p-0">
-							<c:if test="${mprSelectList.mprAddFile != null}">
-								<a href="mprSelectDetail?mprNo=${mprSelectList.mprNo}&pageNum=${mprModel.currentPage}">
-									<img src="fileDownload?fileName=${mprSelectList.mprAddFile}" style="width: 150px; height: 200px;" >
-								</a>
-							</c:if>
-							<c:if test="${mprSelectList.mprAddFile == null}">
-								<a href="mprSelectDetail?mprNo=${mprSelectList.mprNo}&pageNum=${mprModel.currentPage}">
-									<img src="resources/image/main/cloudLogo.png" style="width: 150px; height: 200px;" >
-								</a>
-							</c:if>
-							</div>
-							<div class="col-6">
-									<div class=" "><b>성 별</b></div>
-									<c:if test="${mprSelectList.mprGen == 'M '}">
-										<div class="">수컷</div>
-									</c:if>
-									<c:if test="${mprSelectList.mprGen == 'F '}">
-										<div class="">암컷</div>
-									</c:if>
-									
-									<div class=" "><b>동물종류</b></div>
-									<c:if test="${mprSelectList.mprPetType == 01}">
-										<div class="">강아지</div>
-									</c:if>
-									<c:if test="${mprSelectList.mprPetType == 02}">
-										<div class="">고양이</div>
-									</c:if>
-									<c:if test="${mprSelectList.mprPetType == 03}">
-										<div class="">기타</div>
-									</c:if>
-									
-									<div class=" "><b>실종일시</b></div>
-										<div class=""><fmt:formatDate value="${mprSelectList.mprInfoDate}" pattern="yy-MM-dd" /></div>
-									
-									<div class=""><b>실종위치</b></div>
-									<div class="text-truncate">${mprSelectList.mprLocalDetail}</div>
-							</div>
-					</div	>
-					</c:forEach>
+</div>
+		<div class="col-10">
+			<div class="row board-bottom text-end" style="position: relative; left: 100px;">
+				<div class="col-11"></div>
+				<div class="col-1" style="position: relative; right:25px;">
+					<a href="mprInsert" class="btn btn-secondary posiRight my-2">글쓰기</a>
 				</div>
-				<!-- 하단 리스트 -->
-			<div class="cl-pagination-wrap mt-5">
+			</div>
+		</div>
+		
+		<!-- 게시판 리스트 -->
+		<div style="position: relative; left: 100px;">
+			<div class="row">
+				<c:if test="${empty mprSelectList}">
+					<div class="text-center fw-bold fw-3 mt-4" style="position: relative; right: 100px;"> 검색 결과가 없습니다.</div>
+				</c:if>
+				<c:if test="${not empty mprSelectList}">
+					<c:forEach var="mprSelectList" items="${mprSelectList}" varStatus="status">
+						<div class="col-3 row p-3">
+								<div class="row picBoard p-0">
+								<c:if test="${mprSelectList.mprAddFile != null}">
+									<a href="mprSelectDetail?mprNo=${mprSelectList.mprNo}&pageNum=${mprModel.currentPage}">
+										<img src="fileDownload?fileName=${mprSelectList.mprAddFile}" style="width: 150px; height: 200px;" >
+									</a>
+								</c:if>
+								<c:if test="${mprSelectList.mprAddFile == null}">
+									<a href="mprSelectDetail?mprNo=${mprSelectList.mprNo}&pageNum=${mprModel.currentPage}">
+										<img src="resources/image/main/cloudLogo.png" style="width: 150px; height: 200px;" >
+									</a>
+								</c:if>
+								</div>
+								<div class="col-6">
+										<div class=" "><b>성 별</b></div>
+										<c:if test="${mprSelectList.mprGen == 'M '}">
+											<div class="">수컷</div>
+										</c:if>
+										<c:if test="${mprSelectList.mprGen == 'F '}">
+											<div class="">암컷</div>
+										</c:if>
+										
+										<div class=" "><b>동물종류</b></div>
+										<c:if test="${mprSelectList.mprPetType == 01}">
+											<div class="">강아지</div>
+										</c:if>
+										<c:if test="${mprSelectList.mprPetType == 02}">
+											<div class="">고양이</div>
+										</c:if>
+										<c:if test="${mprSelectList.mprPetType == 03}">
+											<div class="">기타</div>
+										</c:if>
+										
+										<div class=" "><b>실종일시</b></div>
+											<div class=""><fmt:formatDate value="${mprSelectList.mprInfoDate}" pattern="yy-MM-dd" /></div>
+										
+										<div class=""><b>실종위치</b></div>
+										<div class="text-truncate">${mprSelectList.mprLocalDetail}</div>
+								</div>
+						</div>
+					</c:forEach>
+				</c:if>
+			</div>
+			<div class="col-10">
+				<div class="row board-bottom text-end" style="position: relative; left: 100px;">
+					<div class="col-10"></div>
+					<div class="col-1" style="position: relative; right:25px;">
+						<a href="mprInsert" class="btn btn-outline-primary posiRight my-2">글쓰기</a>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 하단 리스트 -->
+			<div class="cl-pagination-wrap mt-5" style="position: relative; right: 100px;">
 				<div class="col">
 					<nav aria-label="Page navigation">
 						<ul class="cl-pagination justify-content-center">
@@ -169,9 +197,4 @@
 					</nav>
 				</div>
 			</div>
-			<div class="board-bottom">
-				<a href="mprInsert" class="btn btn-outline-primary posiRight my-2">글쓰기</a>
-				<br>
-			</div>
 		</div>
-</div>
