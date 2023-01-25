@@ -22,7 +22,7 @@
 		</repository>
 	</repositories>
 	
-	<dependencies>
+	<dependencies> 
 		<!-- Oracle -->
 		<dependency>
 			<groupId>com.oracle</groupId>
