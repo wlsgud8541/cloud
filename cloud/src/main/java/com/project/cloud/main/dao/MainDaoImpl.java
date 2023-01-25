@@ -2,6 +2,7 @@ package com.project.cloud.main.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,10 +67,12 @@ public class MainDaoImpl implements MainDao {
 	}
 
 	@Override
-	public List<Main> mainUsearch(String keyword) {
-		HashMap<String, Object> search = new HashMap<String, Object>();
-		search.put("keyword", keyword);
-		return sql.selectList("MhReport.uSearch", search);
+	public List<Main> mainUsearch(Map<String, String> searchMap) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("searchMap", searchMap);
+		param.put("startRow", 0);
+		param.put("pagesize", 5);
+		return sql.selectList("Main.uSearch", searchMap);
 	}
 
 //	소검색

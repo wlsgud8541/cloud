@@ -1,6 +1,7 @@
 package com.project.cloud.main.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.cloud.cs.domain.Mnotice;
 import com.project.cloud.main.domain.Main;
@@ -23,7 +24,7 @@ public interface MainDao {
 //	메인 반려동물 신고
 	public List<MpReport> mainMprList();
 // 메인 통합검색
-	public List<Main> mainUsearch(String keyword);
+	public List<Main> mainUsearch(Map<String, String> searchMap);
 //	소검색 실종자 신고
 	public List<MhReport> mhrSrchList(String mhName, String mhCode, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
 //	소검색 반려동물 신고

@@ -27,6 +27,34 @@
 	    <label for="mhfInfoDate" class="form-label">목격일</label>
 	    <input type="date"class="form-control" name="mhfInfoDate" id="infoDate">
   	</div>
+  	<div class="col-8 offset-md-2">
+	    <label for="mprContent" class="form-label">지역</label>
+	    <select class="form-control col-2" name="mhrLocalCode" id="localCode">
+	    	<option value="">--선택하세요--</option>
+	    	<option value="01">서울</option>
+	    	<option value="02">경기</option>
+	    	<option value="03">인천</option>
+	    	<option value="04">대전</option>
+	    	<option value="05">광주</option>
+	    	<option value="06">대구</option>
+	    	<option value="07">울산</option>
+	    	<option value="08">부산</option>
+	    	<option value="09">세종</option>
+	    	<option value="10">강원</option>
+	    	<option value="11">충북</option>
+	    	<option value="12">충남</option>
+	    	<option value="13">전북</option>
+	    	<option value="14">전남</option>
+	    	<option value="15">경북</option>
+	    	<option value="16">경남</option>
+	    	<option value="17">제주</option>
+	    </select>
+  	</div>
+     <div class="col-5 offset-md-2">
+       	<label for="zipcode" class="form-label">상세위치</label><br>
+		<input type="text" class="form-control" name="mhrLocalDetail" id="addr1" readonly>
+		<input type="button" class="btn btn-secondary" id="btnZipcode" value="상세위치 찾기"><br>
+	</div>
 	<div class="col-4 offset-md-2">
 	    <label for="mhfSecretYn" class="form-label">비밀글</label>
 	    <input type="text"class="form-control" name="mhfSecretYn" id="secret">

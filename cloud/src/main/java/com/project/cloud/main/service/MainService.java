@@ -24,7 +24,7 @@ public interface MainService {
 	//메인 반려동물 신고
 	public List<MpReport> mainMprList();
 	// 메인 통합검색
-	public Map<String, Object> mainUsearch(String keyword);
+	public List<Main> mainUsearch(String uSearch);
 	//소검색
 	public List<MhReport> mhrSrchList(String mhName, String mhCode, String mhGen,String mhInfoDate1, String mhInfoDate2, String mhrLocalCode);
 //	소검색 반려동물 신고

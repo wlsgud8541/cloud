@@ -48,14 +48,10 @@ public class MainServiceImpl implements MainService {
 		return mainDao.mainMprList();
 	}
 	@Override
-	public Map<String,Object> mainUsearch(String keyword) {
-		Map<String, Object> searchMap = new HashMap<String,Object>();
-		List<Main> searchList = new ArrayList<Main>();
-		for (Main mainSearch : mainDao.mainUsearch(keyword)) {
-			searchList.add(mainSearch);
-		}
-		searchMap.put("searchList", searchList);
-		return searchMap;
+	public List<Main> mainUsearch(String uSearch) {
+		Map<String, String> searchMap = new HashMap<String,String>();
+		searchMap.put("uSearchs", uSearch);
+		return mainDao.mainUsearch(searchMap);
 	}
 	
 //	소검색

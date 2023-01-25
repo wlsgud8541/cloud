@@ -31,7 +31,7 @@
 	</resultMap>
 
 	<!-- 통합검색 -->
-	<select id="uSearch" resultType="Main" parameterType="hashMap">
+	<select id="uSearch" resultType="Main" parameterType="hashmap">
 	SELECT
      searchNo, searchTitle, searchContent, searchRegdate, searchWriter, searchDelYn, tableType
 	FROM
@@ -39,47 +39,86 @@
 	        search.no as searchNo, search.title as searchTitle, search.content as searchContent, search.regdate as searchRegdate, search.writer as searchWriter
             , search.DelYn as searchDelYn, search.tableType as tableType
 	    FROM
-	        (SELECT
-	             mhf.mhfNo as no, mhf.mhfTitle as title, mhf.mhfContent as content, mhf.mhfRegDate as regdate, mhf.mhfWriter as writer, mhf.mhfDelYn as DelYn, mhf.tableType as tableType
-	        FROM
-	            mhfind mhf
+	        (SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+             FROM  (SELECT 
+                          mhf.mhfNo as no, mhf.mhfTitle as title, mhf.mhfContent as content, mhf.mhfRegDate as regdate, mhf.mhfWriter as writer, mhf.mhfDelYn as DelYn, mhf.tableType as tableType
+                    FROM
+                        mhfind mhf
+                    WHERE mhfDelYn = 'N'
+                    ORDER BY mhfRegDate DESC)
+             WHERE ROWNUM BETWEEN 0 and 5
+             
 	        UNION ALL
-	        SELECT
-	            mhr.mhrNo as no, mhr.mhrTitle as title, mhr.mhrContent as content, mhr.mhrRegDate as regdate, mhr.mhrWriter as writer, mhr.mhrDelYn as DelYn, mhr.tableType as tableType
-	        FROM
-	            mhreport mhr
+	        
+           SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+             FROM  (SELECT
+                        mhr.mhrNo as no, mhr.mhrTitle as title, mhr.mhrContent as content, mhr.mhrRegDate as regdate, mhr.mhrWriter as writer, mhr.mhrDelYn as DelYn, mhr.tableType as tableType
+                    FROM
+                        mhreport mhr
+                    WHERE mhrDelYn = 'N'
+                    ORDER BY mhrRegDate DESC)
+             WHERE ROWNUM BETWEEN 0 and 5
+           
 	        UNION ALL
-	        SELECT
-	            mq.mqNo as no, mq.mqTitle as title, mq.mqContent as content, mq.mqRegDate as regdate, mq.mqWriter as writer, mq.mqDelYn as DelYn, mq.tableType as tableType
-	        FROM
-	            mqna mq
+            
+	        SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+             FROM  (SELECT
+                        mq.mqNo as no, mq.mqTitle as title, mq.mqContent as content, mq.mqRegDate as regdate, mq.mqWriter as writer, mq.mqDelYn as DelYn, mq.tableType as tableType
+                    FROM
+                        mqna mq
+                    WHERE mqDelYn = 'N'
+                    ORDER BY mqRegDate DESC)
+             WHERE ROWNUM BETWEEN 0 and 5
+                
 	        UNION ALL
-	        SELECT
-	            mpf.mpfNo as no, mpf.mpfTitle as title, mpf. mpfContent as content, mpf.mpfRegDate as regdate, mpf.mpfWriter as writer, mpf.mpfDelYn as DelYn, mpf.tableType as tableType
-	        FROM
-	            mpfind mpf
+	      
+             SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+             FROM  (SELECT
+                        mpf.mpfNo as no, mpf.mpfTitle as title, mpf. mpfContent as content, mpf.mpfRegDate as regdate, mpf.mpfWriter as writer, mpf.mpfDelYn as DelYn, mpf.tableType as tableType
+                    FROM
+                        mpfind mpf
+                    WHERE mpfDelYn = 'N'
+                    ORDER BY mpfRegDate DESC)
+             WHERE ROWNUM BETWEEN 0 and 5
+	     
+            UNION ALL
+	     
+            SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+             FROM  (SELECT
+                        mpp.mppNo as no, mpp.mppTitle as title, mpp.mppContent as content, mpp.mppRegDate as regdate, mpp.mppwriter as writer, mpp.mppDelYn as DelYn, mpp.tableType as tableType
+                    FROM
+                        mpprotect mpp
+                    WHERE mppDelYn = 'N'
+                    ORDER BY mppRegDate DESC)
+             WHERE ROWNUM BETWEEN 0 and 5
+             
 	        UNION ALL
-	        SELECT
-	            mpp.mppNo as no, mpp.mppTitle as title, mpp.mppContent as content, mpp.mppRegDate as regdate, mpp.mppwriter as writer, mpp.mppDelYn as DelYn, mpp.tableType as tableType
-	        FROM
-	            mpprotect mpp
+            
+	        SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+             FROM  (SELECT
+                        mpr.mprNo as no, mpr.mprTitle as title, mpr.mprContent as content, mpr.mprRegDate as regdate, mpr.mprWriter as writer, mpr.mprDelYn as DelYn, mpr.tableType as tableType
+                    FROM
+                        mpreport mpr
+                    WHERE mprDelYn = 'N'
+                    ORDER BY mprRegDate DESC)
+             WHERE ROWNUM BETWEEN 0 and 5
+                
 	        UNION ALL
-	        SELECT
-	            mpr.mprNo as no, mpr.mprTitle as title, mpr.mprContent as content, mpr.mprRegDate as regdate, mpr.mprWriter as writer, mpr.mprDelYn as DelYn, mpr.tableType as tableType
-	        FROM
-	            mpreport mpr
-	        UNION ALL
-	        SELECT
-	            mre.mreNo as no, mre.mreTitle as title, mre.mreContent as content, mre.mreRegDate as regdate, mre.mreWriter as writer, mre.mreDelYn as DelYn, mre.tableType as tableType
-	        FROM
-	            mrequest mre
+            
+	       SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+             FROM  ( SELECT
+                        mn.mnNo as no, mn.mnTitle as title, mn.mnContent as content, mn.mnRegDate as regdate, mn.mnWriter as writer, mn.mnDelYn as DelYn, mn.tableType as tableType
+                    FROM
+                        mnotice mn
+                    WHERE mnDelYn = 'N'
+                    ORDER BY mnRegDate DESC)
+             WHERE ROWNUM BETWEEN 0 and 5
 	        ORDER BY
 	           tableType DESC, regdate DESC) search)
 	    WHERE
 	    	searchDelYn = 'N'
-	    	<if test="search != ' ' and search != null">
-	    		searchTitle LIKE '%'||#{keyword}||'%' or searchContent LIKE '%'||#{keyword}||'%'
-	    	</if>
+	    	AND	searchTitle LIKE '%'||#{uSearchs}||'%' 
+	    	OR searchContent LIKE '%'||#{uSearchs}||'%'
 	</select>
 	<select id="mhGraph" resultType="Main">
 		SELECT 

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.cloud.cs.domain.Mnotice;
 import com.project.cloud.main.domain.Main;
 import com.project.cloud.main.service.MainService;
+import com.project.cloud.mh.controller.MhController;
 import com.project.cloud.mh.domain.MhFind;
 import com.project.cloud.mh.domain.MhInfo;
 import com.project.cloud.mh.domain.MhReport;
@@ -30,6 +33,7 @@ public class MainController {
 	@Autowired
 	private MhInfoService mhiService;
 	
+	private Logger logger = LoggerFactory.getLogger(MainController.class);
 	@RequestMapping("main")
 	public String mainBoardList(Model model) {
 		
@@ -75,13 +79,17 @@ public class MainController {
 	}
 	
 	@RequestMapping("search")
-	public String mainUsearch(Model model, 
-			@RequestParam(value="keyword",required=false,defaultValue="null")String keyword) {
-	Map<String, Object> searchMap = mainService.mainUsearch(keyword);
-	List<Main> searchList = (List<Main>)searchMap.get("searchList"); 
+	public String mainUsearch(Model model, @RequestParam(value="uSearch", required=false, defaultValue="") String uSearch,
+											@RequestParam(value="type", required=false, defaultValue="") String type,
+											@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum) {
+	logger.debug("search : ");
+	logger.debug(uSearch);
+	List<Main> searchList  = mainService.mainUsearch(uSearch);
 	model.addAttribute("searchList",searchList);
+	model.addAttribute("uSearch",uSearch);
 	return "main/searchView";
 	}
+	
 	
 	@RequestMapping("mhSearch")
 	public String mhSearch(Model model,
