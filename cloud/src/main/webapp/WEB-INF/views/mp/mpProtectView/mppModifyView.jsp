@@ -6,6 +6,7 @@
 	<div class="row my-5 text-center">
 		<div class="col">
 			<h2 class="fs-3 fw-bold">임시보호 게시판 수정</h2>
+			<p class="border border-bottom border-primary border-2" style="width: 265px; display: inline-block; margin-bottom: 0px;"></p>
 		</div>
 	</div>
 	<form name="mppUpdateProcess" action="mppUpdateProcess" id="mppUpdateForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
