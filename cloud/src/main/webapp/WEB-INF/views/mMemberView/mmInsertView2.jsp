@@ -27,7 +27,6 @@
 						<div class="nameCheck"></div>
 			            
 			            <label for="date" class="joinTitle"><b>생년월일</b></label>
-		            	<label for="name" class="form-label">* 생년월일 : </label>
 		           		<input type="date" placeholder="" class="join-field" name="mmBirth" id="birth" />
 			            
 			            <label  class="joinTitle"><b>성별</b></label>

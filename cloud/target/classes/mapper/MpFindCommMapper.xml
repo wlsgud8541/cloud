@@ -13,45 +13,46 @@
 	</resultMap>
 	
 	<select id="mpfcSelectList" resultType="MpFindComm">
-	SELECT
-		 mpfComWriter
-		,mpfComContent
-		,mpfComRegDate
-		,mpfComNo
-		,mpfNo
-		,mmNo
-	FROM
-		mpfindcomm
-	WHERE
-		mpfComDelYn = 'N' AND
-		mpfNo = #{mpfNo}
-	ORDER BY
-		mpfComNo DESC
+		SELECT
+			 mpfComWriter
+			,mpfComContent
+			,mpfComRegDate
+			,mpfComNo
+			,mpfNo
+			,mmNo
+		FROM
+			mpfindcomm
+		WHERE
+			mpfComDelYn = 'N' AND
+			mpfNo = #{mpfNo}
+		ORDER BY
+			mpfComNo DESC
 	</select>
+	
 	<insert id="mpfcInsert" parameterType="MpFindComm">
-	INSERT INTO
-		mpfindComm(mpfComNo
-				  ,mpfComContent
-				  ,mpfComWriter
-				  ,mmNo
-				  ,mpfNo )
-	VALUES(mpFind_seq.NEXTVAL
-		   ,#{mpfComContent}
-		   ,#{mpfComWriter}
-		   ,#{mmNo}
-		   ,#{mpfNo})
+		INSERT INTO
+			mpfindComm(mpfComNo
+					  ,mpfComContent
+					  ,mpfComWriter
+					  ,mmNo
+					  ,mpfNo )
+		VALUES(mpFind_seq.NEXTVAL
+			   ,#{mpfComContent}
+			   ,#{mpfComWriter}
+			   ,#{mmNo}
+			   ,#{mpfNo})
 	</insert>
+	
 	<update id="mpfcUpdate" parameterType="MpFindComm">
 		UPDATE MpFindComm
 		SET  mpfComContent = #{mpfComContent}
 			,mpfComRegDate = SYSDATE
-			
-		 WHERE mpfComNo = #{mpfComNo}
+		WHERE mpfComNo = #{mpfComNo}
 		
 	</update>
 	
 	<update id="mpfcDelete" parameterType="int">
-	UPDATE MpFindComm
+		UPDATE MpFindComm
 	    set mpfcomDelYn = 'Y'
 	    WHERE mpfComNo = #{mpfComNo}
 	</update>

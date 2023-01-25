@@ -485,33 +485,43 @@ public class MpController {
 		return "redirect:mppSelectList?pageNum="+pageNum;
 	}
 	
+	
+	
+	
 	// 실종 반려동물 목격 게시판 댓글 작성기능
 	@RequestMapping("/mpfCommInsert")
-	public String mpfComInsert(Model model, MpFindComm mpfCom, int pageNum){
+	@ResponseBody
+	public List<MpFindComm> mpfComInsert(Model model, int mpfNo, int mmNo, String mpfComWriter, String mpfComContent){
+		MpFindComm mpfCom =  new MpFindComm();
+		
+		mpfCom.setMpfNo(mpfNo);
+		mpfCom.setMmNo(mmNo);
+		mpfCom.setMpfComWriter(mpfComWriter);
+		mpfCom.setMpfComContent(mpfComContent);
+		
 		int result = mpfCommService.mpfcInsert(mpfCom);
-		System.out.println("result : " + result);
 		List<MpFindComm> mpfCommList = mpfCommService.mpfcSelectList(mpfCom.getMpfNo());
-		MpFind mpfDetail = mpFindService.mpfSelectDetail(mpfCom.getMpfNo());
 		
-		model.addAttribute("mpfCommList",mpfCommList);
-		model.addAttribute("mpfDetail",mpfDetail);
-		model.addAttribute("pageNum",pageNum);
-		
-		
-		return "mp/mpFindView/mpfSelectDetailView";
-		
+		return mpfCommList;
 	}
 	
 	// 실종자 목격 게시판 댓글 수정
-	@RequestMapping("mpfcUpdate")
+	@RequestMapping("/mpfcUpdate")
 	@ResponseBody
-	public List<MpFindComm> mpfComUpdate(MpFindComm mpfindCom){
-		System.out.println("getMpfComNo : "+mpfindCom.getMpfComNo());
-		System.out.println("getMhfComContent : "+mpfindCom.getMpfComContent());
+	public List<MpFindComm> mpfComUpdate(int mpfNo, int mpfComNo, String mpfContent){
+		System.out.println("getMpfNo : "+ mpfNo);
+		System.out.println("getMpfComNo : "+ mpfComNo);
+		System.out.println("getMhfComContent : "+mpfContent);
 		
-		int result = mpfCommService.mpfcUpdate(mpfindCom);
-		System.out.println("댓글 수정:"+result);
-		return mpfCommService.mpfcSelectList(mpfindCom.getMpfNo());
+		MpFindComm mpfCom =  new MpFindComm();
+		mpfCom.setMpfNo(mpfNo);
+		mpfCom.setMpfComNo(mpfComNo);
+		mpfCom.setMpfComContent(mpfContent);
+		
+		int result = mpfCommService.mpfcUpdate(mpfCom);
+		List<MpFindComm> mpfCommList = mpfCommService.mpfcSelectList(mpfNo); 
+		
+		return mpfCommList;
 	}
 	
 	// 실종 반려동물 목격 게시판 댓글 삭제기능
@@ -519,7 +529,6 @@ public class MpController {
 	@ResponseBody
 	public List<MpFindComm> mpfComDelete(MpFindComm mpfindCom){
 		int result = mpfCommService.mpfcDelete(mpfindCom);
-		System.out.println("댓글삭제 결과 : " + result);
 		return mpfCommService.mpfcSelectList(mpfindCom.getMpfNo());
 	}
 }

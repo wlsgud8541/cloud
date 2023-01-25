@@ -182,57 +182,42 @@
 		</div>
 	</div>
 	
-	<form id="mpfCommInsert" name="mpfCommInsert" action="mpfCommInsert">
-		<input type="hidden" name="mpfNo" value="${mpfDetail.mpfNo}"/>
-		<input type="hidden" name="pageNum" value="${pageNum}"/>
-		<input type="hidden" class="form-control" id="mpfComWriter" name="mpfComWriter" value="회원" />
-		<input type="hidden" id="mmNo" name="mmNo" value="1"/>
-			
-		<div class="p-4">
-			<input type="text" class="form-control" id="commContent" name="mpfComContent" />
-		</div>
-		<div>
-			<input type="submit" class="btn" value="댓글쓰기" id="commInsert" />
-		</div>
-	</form>
+	<input type="hidden" name="pageNum" value="${pageNum}"/>
+	<input type="hidden" name="mpfNo" value="${mpfDetail.mpfNo}"/>
+	<input type="hidden" id="mmNo" name="mmNo" value="${sessionScope.mmNo}"/>
+	<input type="hidden" class="form-control" id="mpfComWriter" name="mpfComWriter" value="${sessionScope.userId}" />
+		
+	<div class="p-4">
+		<input type="text" class="form-control" id="commContent" name="mpfComContent" />
+	</div>
+	<div>
+		<input type="submit" class="btn" value="댓글쓰기" id="commInsert" />
+	</div>
 	<div>
 		<div id="mpfComList">
 			<c:if test="${not empty mpfCommList}">
 				<c:forEach var="mpfCommList" items="${mpfCommList}">
 					<div class="row">
-						<div class="col-8">
-							${mpfCommList.mpfComWriter} | ${mpfCommList.mpfComContent} | <fmt:formatDate value="${mpfCommList.mpfComRegDate}" pattern="yyyy-MM-dd" />
+						<div class="col-6" id="mpfComContent${mpfCommList.mpfComNo}">
+							 <p>${mpfCommList.mpfComContent}</p>
 						</div>
-						<div class="col">
-							<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="${mpfCommList.mpfComNo }" id="mpfcUpdate"> 
+						<div class="col-2">
+							 <p>${mpfCommList.mpfComWriter}</p>
+						</div>
+						<div class="col-2">
+							<p><fmt:formatDate value="${mpfCommList.mpfComRegDate}" pattern="yyyy-MM-dd" /></p>
+						</div>
+						<div class="col-2">
+							<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="${mpfCommList.mpfComNo}" id="mpfcUpdate${mpfCommList.mpfComNo }"> 
 								<i class="bi bi-journal-text">수정</i>
 							</button>
-							<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="${mpfCommList.mpfComNo }" id="mpfcDelete"> 
+							<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="${mpfCommList.mpfComNo}" id="mpfcDelete"> 
 								<i class="bi bi-trash">삭제</i>
 							</button>
 						</div>
 					</div>
 				</c:forEach>
 			</c:if>
-		</div>
-		<div class="row my-3 d-none" id="mpfCommForm">
-			<div class="col">
-				<form name="WriteForm" id="WriteForm">
-					<input type="hidden" name="mpfNo" value="${mpfDetail.mpfNo}"/>
-					<input type="hidden" name="mpfComWriter" value="회원" />
-					<input type="hidden" name="mmNo" value="1"/>
-					<div class="row bg-light my-3 p-3 border">
-						<div class="row">
-							<div class="col">
-								<textarea name="mpfComContent" id="updateContent" class="form-control" rows="4"></textarea>
-							</div>
-							<div class="col-md">
-								<input type="submit" value="댓글 수정" class="btn" id="updateCom"/>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
 		</div>
 	</div>
 

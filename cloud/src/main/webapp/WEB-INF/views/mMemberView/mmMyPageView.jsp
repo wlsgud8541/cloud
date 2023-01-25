@@ -17,19 +17,36 @@
 					<span><small>${mInfo.mmEmail}</small></span>
 				</div>
 				<div class="row border-bottom py-2">
-					<span>${mInfo.mmId}</span>
+					<div class="col-1">
+						♦
+					</div>
+					<div class="col">
+						<span>${mInfo.mmId}</span>
+					</div>
 				</div>
 				<div class="row border-bottom py-2">
-					<span>${mInfo.mmBirth}&nbsp;&nbsp;/&nbsp;&nbsp;${mInfo.mmGen}</span>
+					<div class="col-1">
+						🙍‍♂️
+					</div>
+					<div class="col">
+						<span>${mInfo.mmBirth}&nbsp;&nbsp;/&nbsp;&nbsp;${mInfo.mmGen}</span>
+					</div>
 				</div>
 				<div class="row border-bottom py-2">
-					<span>📞&nbsp;&nbsp;${mInfo.mmTel}</span>
+					<div class="col-1">
+						📞
+					</div>
+					<div class="col">
+						<span>${mInfo.mmTel}</span>
+					</div>
 				</div>
 				<div class="row py-2">
-					<span>🏚&nbsp;&nbsp;${mInfo.mmAddr1}</span>
-				</div>
-				<div class="row border-bottom pb-2 ms-3">
-					<span>${mInfo.mmAddr2}</span>
+					<div class="col-1">
+						🏚
+					</div>
+					<div class="col">
+						<span>${mInfo.mmAddr1}&nbsp;${mInfo.mmAddr2}</span>
+					</div>
 				</div>
 				<%-- 
 				<div class="row border-bottom pb-2 ms-3">
