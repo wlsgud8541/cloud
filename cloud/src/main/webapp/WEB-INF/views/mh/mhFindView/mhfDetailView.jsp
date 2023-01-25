@@ -10,7 +10,7 @@
 				<fmt:formatDate value="${mhfind.mhfInfoDate}" pattern="yyyy-MM-dd"/>
 				<fmt:formatDate value="${mhfind.mhfRegDate}" pattern="yyyy-MM-dd"/>
 				${mhfind.mhfWriter}, ${mhfind.mhfGen},${mhfind.mhfReadCnt},
-				<a href="fileDownload?fileName="${mhfind.mhfAddFile}>파일</a>
+				<a href="fileDownload?fileName=${mhfind.mhfAddFile}">파일</a>
 				<input type="button" class="btn" value="수정하기" id = "mhfUpdate" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}">
 				<input type="button" class="btn" value="삭제하기" id="mhfDelete" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"/>
 				<input type="button" class="btn" value="돌아가기" onclick="location.href='mhfSelectList?pageNum=${pageNum}'"/>

@@ -16,12 +16,12 @@ public class MhFind {
 	private String mhfDelYn;
 	private String mhfGen;
 	private String tableType;
-	
+	private String mhfLocalCode;
 	public MhFind() {}
 	
 	public MhFind(int mhfNo, int mhfReadCnt, int mmNo, Timestamp mhfInfoDate, Timestamp mhfRegDate, String mhfTitle,
 			String mhfContent, String mhfAddFile, String mhfWriter, String mhfSecretYn, String mhfDelYn,
-			String mhfGen, String tableType) {
+			String mhfGen, String tableType, String mhfLocalCode) {
 
 			this.mhfNo = mhfNo;
 			this.mhfReadCnt = mhfReadCnt;
@@ -36,14 +36,15 @@ public class MhFind {
 			this.mhfDelYn = mhfDelYn;
 			this.mhfGen = mhfGen;
 			this.tableType = tableType;
+			this.mhfLocalCode = mhfLocalCode;
 	}
 
-	public String getMhfGen() {
-		return mhfGen;
+	public String getMhfLocalCode() {
+		return mhfLocalCode;
 	}
 
-	public void setMhfGen(String mhfGen) {
-		this.mhfGen = mhfGen;
+	public void setMhfLocalCode(String mhfLocalCode) {
+		this.mhfLocalCode = mhfLocalCode;
 	}
 
 	public String getTableType() {

@@ -646,9 +646,7 @@ $(document).ready(function(){
 		
 		$("#mhfcForm").find("form").attr("id","mhfModifyForm").attr("data-mhfComNo",mhfComNo).removeAttr("data-mhfNo");
 		
-		//var mhfcModify = $(this).parent().parent().find("pre").text();
-		console.log("mhfComNo:"+mhfComNo);
-		var mhfcModify = $("#beforeCon"+mhfComNo).html();
+		var mhfcModify = $(this).parent().children().find("pre").text();
 		console.log("mhfcModify:"+mhfcModify);
 		$("#mhfComContent").val($.trim(mhfcModify));
 	});
@@ -689,7 +687,7 @@ $(document).ready(function(){
 										
 					var result =
 							'<div>'
-							+'<pre id="beforeCon'+v.mhfComNo+'">'+v.mhfComContent+'</pre>'+'</div>'
+							+'<pre>'+v.mhfComContent+'</pre>'+'</div>'
 							+'<div>'
 							+'<span>'+v.mhfComWriter+'</span>'+'<br>'
 							+'</div>'
