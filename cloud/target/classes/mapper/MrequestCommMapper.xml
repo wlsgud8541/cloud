@@ -23,7 +23,7 @@
 				mreComWriter,
 				mreComDelYn,
 				mreComAddFile
-		FROM MREQUESTCOMM
+		FROM MREQUESTCOMM 
 		WHERE mreNo = #{mreNo}
 		AND mreComDelYn = 'N'
 	</select>
