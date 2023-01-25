@@ -42,7 +42,7 @@ public class MhInfoServiceImpl implements MhInfoService {
 		String esntlId = "10000507";
 		String authKey = "94a1953804314fa1";
 		*/
-		int rowSize= 10;
+		int rowSize= 12;
 		int pageNum = pageCnt;
 	    String[] writngTrgetDscds = {"010", "060", "070"};  
 	    // 실종자 상태 코드 값 010 : 정상아동 | 020: 가출인 | 040: 시설보호무연고자 

@@ -3,15 +3,12 @@
 <%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<body>
-	<div class="w3-content">
-		<!-- 상단 게시판 제목 -->
-		<div class="textTop">
-			<h2 class="textTitle">실종신고 게시판</h2>
-			
-			<div class="explainbox">실종신고 게시판의 설명</div>
-		</div>
-		<div class="divtablebox">
+	<!-- 상단 게시판 제목 -->
+<div class="pt-5">	
+	<div class="textTop row">
+		<h3 class="textTitle col-3 fs-2 fw-bold border-bottom border-danger border-4 border-opacity-50 ">실종신고</h3>
+	</div>
+	<div class="divtablebox">
 			<!-- 게시판 리스트 -->
 			<div>
 				<table class="w3-table">
@@ -36,5 +33,4 @@
 			</div>
 		</div>
 	</div>
-	</div>
-</body>
+</div>

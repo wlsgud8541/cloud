@@ -3,6 +3,131 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <body>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<div class="w3-content">
+<form enctype="multipart">
+		<div class="">
+			<div class="my-4">
+				<h3><c:if test="${mhfind.mhfGen == 'M '}">남성</c:if> 
+				<c:if test="${mhfind.mhfGen == 'F '}">여성</c:if> ${mhfind.mhfTitle} </h3>
+			</div>
+			<div>
+				<table class="topbox">
+					<tr>
+						<td class="mhThWriter py-2"><b>&nbsp;&nbsp;${mhfind.mhfWriter}</b></td>
+						<td class="mhThDate py-2"><fmt:formatDate
+								value="${mhfind.mhfRegDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+						<td class="mhThReadCount ms-3 py-2">조회수 : ${mhfind.mhfReadCnt }</td>
+					</tr>
+					<c:if test="${mhfind.mhfAddFile != null}">
+					<tr>
+						<td class="py-2">&nbsp;&nbsp;💾 | <a href="fileDownload?fileName=${mhfind.mhfAddFile}">다운로드</a></td>
+					</tr>	
+					</c:if>
+					<c:if test="${mhfind.mhfAddFile == null}">
+					<tr>
+						<td class="py-2">&nbsp;&nbsp;💾 | 파일없음</td>
+					</tr>	
+					</c:if>
+					 
+				</table>
+				<div class="py-4 px-3 row">
+					<pre>${mhfind.mhfContent}</pre>
+				</div>
+			</div>
+			<div class="mhboxLine"></div>
+			<div class="row">
+				<div class="col text-center mt-4">
+					<input type="button" class="btn btn-outline-danger me-3" id="mhfUpdate" data-mhfNo="${report.mhrNo}" data-pageNum="${pageNum}"value="수정하기"> 
+					<input type="button" class="btn btn-outline-danger me-3" id="mhfDelete" data-mhfNo="${report.mhrNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+					<input type="button" class="btn btn-outline-danger" value="목록으로" onclick="location.href='mhrSelectList?pageNum=${pageNum}'"/>
+				</div>
+			</div>
+		</div>
+	</form>
+
+<div id="global" class="row mt-3">
+	<div class="col">
+		<form id="mhfCommInsert" name="mhfCommInsert" action="mhfCommInsert">
+			<input type="hidden" name="mhfNo" value="${mhfind.mhfNo}"/>
+			<div>
+				<input type="text" class="form-control" id="commContent" name="mhfComContent" />
+				<input type="hidden" class="form-control" id="mhfComWriter" name="mhfComWriter" value="회원" />
+				<input type="hidden" id="mmNo" name="mmNo" value="1"/>
+			</div>
+			<div>
+				<input type="submit" class="btn btn-outline-danger" value="댓글쓰기" id="commInsert" />
+			</div>
+		</form>
+		
+			<c:if test="${not empty mhfCommList}">
+			<div class="row">
+				<div id="comList" class="col">
+						<c:forEach var="mhfCommList" items="${mhfCommList}">
+							<div class="row">
+								<div class="col">
+								<pre>${mhfCommList.mhfComContent}</pre>
+								<span id="mhfComWriter">${mhfCommList.mhfComWriter}</span><br>
+								<fmt:formatDate value="${mhfCommList.mhfComRegDate}" pattern="yyyy-MM-dd HH:mm" />
+								<button class="btn btn-outline-success btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcUpdate"> 
+									<i class="bi bi-journal-text">수정</i></button>
+								<button class="btn btn-outline-warning btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcDelete"> 
+									<i class="bi bi-trash">삭제</i></button>
+								</div>
+							</div>
+						</c:forEach>
+				</div> 
+			</div>
+			</c:if>
+		
+	</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div id="global" class="row container">
 	<div class="col">
 		<form enctype="multipart">

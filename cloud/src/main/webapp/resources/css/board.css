@@ -94,6 +94,39 @@ table {
 	text-align:center;
 }
 
+/* 실종자 부분 css */
+.mhThNo { 
+	width: 90px; 
+	height: 30px;
+	border-top: 5px solid #ed9aa2;
+	border-bottom: 1px solid #ed9aa2;
+}
+.mhThTitle { 
+	width: 400px;
+	border-top: 5px solid #ed9aa2;
+	border-bottom: 1px solid #ed9aa2;
+}
+.mhThWriter { 
+	width: 110px;
+	border-top: 5px solid #ed9aa2;
+	border-bottom: 1px solid #ed9aa2;
+}
+.mhThDate { 
+	width: 0px;
+	border-top: 5px solid #ed9aa2;
+	border-bottom: 1px solid #ed9aa2;
+	text-align:right;
+}
+.mhThReadCount {
+	width: 25px;
+	border-top: 5px solid #ed9aa2;
+	border-bottom: 1px solid #ed9aa2;
+	text-align:center;
+}
+.mhType{
+	
+}
+/**/
 .gunContent {	
 	height: 300px;
 	padding: 20px;
@@ -183,6 +216,13 @@ table {
 /* 실종 반려동물 디테일 폼 색깔 수정용 css*/
 .mpboxLine{
 	border-bottom: 1px solid #bfd1ec;
+	width:977px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+/* 실종자 */
+.mhboxLine{
+	border-bottom: 1px solid #ed9aa2;
 	width:977px;
 	margin-top:20px;
 	margin-bottom:20px;

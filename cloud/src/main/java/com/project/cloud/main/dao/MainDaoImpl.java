@@ -28,7 +28,7 @@ public class MainDaoImpl implements MainDao {
 	public List<Mnotice> mainMnList() {
 		HashMap<String, Integer> paramMap = new HashMap<String, Integer>();
 		paramMap.put("startRow", 0);
-		paramMap.put("pageSize", 6);
+		paramMap.put("pageSize", 9);
 		return sql.selectList("Mnotice.mnSelectList", paramMap);
 	}
 //	메인 실종자 정보

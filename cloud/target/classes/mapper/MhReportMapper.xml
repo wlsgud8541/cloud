@@ -108,6 +108,7 @@ WHERE
 		SELECT mhr.mhrNo as mhrNo
 			 , mhr.mhrName as mhrName
 			 , mhr.mhrMage as mhrMage
+			 , mhr.mhrWriter as mhrWriter
 			 , mhr.mhrage as mhrage
 			 , mhr.mhrIllCode as mhrIllCode
 			 , mhr.mhrGen as mhrGen
@@ -117,6 +118,7 @@ WHERE
 			 , mhr.mhrHairColor as mhrHairColor
 			 , mhr.mhrHair as mhrHair
 			 , mhr.mhrWear as mhrWear
+			 , mhr.mhrPhysical as mhrPhysical
 			 , mhr.mhrStatusCode as mhrStatusCode
 			 , mhr.mhrLocalCode as mhrLocalCode
 			 , mhr.mhrTitle as mhrTitle

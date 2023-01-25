@@ -17,9 +17,9 @@
 	<div class="row mt-5">
 		<div class="col-7 me-4 bg-white p-4 shadow-sm  ">
 			<h3>
-				<b>실종 반려동물</b>
+				<b>실종자</b>
 			</h3>
-			<div class=" border border-4 border-primary border-opacity-25 p-3">
+			<div class=" border border-4 border-danger border-opacity-25 p-3 mt-3">
 				<div class="swiper mySwiper ">
 					<div class="swiper-wrapper ">
 						<div class="swiper-slide">
@@ -31,7 +31,7 @@
 											style="width: 150px; height: 100%;">
 											<c:if test="${jMap.mhiMsspsnIdntfccd != null}">
 												<a href="mhInfo?pageNum=1" class="inblock"> 
-													<img style='width:96px;height:128px;' width='96' height='128' border='0' src='https://www.safe182.go.kr/api/lcm/imgView.do?msspsnIdntfccd=${jMap.mhiMsspsnIdntfccd}'/>
+													<img style='width:135px;height:180px;' src='https://www.safe182.go.kr/api/lcm/imgView.do?msspsnIdntfccd=${jMap.mhiMsspsnIdntfccd}'/>
 												</a>
 											</c:if>
 											<c:if test="${jMap.mhiMsspsnIdntfccd == null}">
@@ -45,7 +45,7 @@
 											<div>
 												${fn:substring(jMap.mhiOccrde,2,4)}-${fn:substring(jMap.mhiOccrde,4,6)}-${fn:substring(jMap.mhiOccrde,6,8)}
 											</div>
-											<div>
+											<div class="text-truncate">
 												${jMap.mhiOccrAdres}
 											</div>
 										</div>
@@ -55,47 +55,29 @@
 						</div>
 						<div class="swiper-slide">
 							<div class="inblock">
-								<c:forEach var="mainMprList" items="${mainMprList}"
+								<c:forEach var="jMap" items="${jMap}"
 									varStatus="status">
 									<c:if test="${4 <= status.index and status.index < 8}">
 										<div class="inblock me-2 text-center"
 											style="width: 150px; height: 100%;">
-											<c:if test="${mainMprList.mprAddFile != null}">
-												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
-													<img src="fileDownload?fileName=${mainMprList.mprAddFile}" style="width: 90px; height: 120px;">
+											<c:if test="${jMap.mhiMsspsnIdntfccd != null}">
+												<a href="mhInfo?pageNum=1" class="inblock"> 
+													<img style='width:135px;height:180px' width='96' height='128' border='0' src='https://www.safe182.go.kr/api/lcm/imgView.do?msspsnIdntfccd=${jMap.mhiMsspsnIdntfccd}'/>
 												</a>
 											</c:if>
-											<c:if test="${mainMprList.mprAddFile == null}">
-												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
-													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+											<c:if test="${jMap.mhiMsspsnIdntfccd == null}">
+												<a href="mhInfo?pageNum=1" class="inblock"> 
+												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
 											<div>
-												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
-												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
-												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+												${jMap.mhiNm}(${jMap.mhiAge})
 											</div>
 											<div>
-												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
+												${fn:substring(jMap.mhiOccrde,2,4)}-${fn:substring(jMap.mhiOccrde,4,6)}-${fn:substring(jMap.mhiOccrde,6,8)}
 											</div>
-											<div>
-												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 04 }">대전</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 05 }">광주</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 06 }">대구</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 07 }">울산</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 08 }">부산</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											<div class="text-truncate">
+												${jMap.mhiOccrAdres}
 											</div>
 										</div>
 									</c:if>
@@ -104,47 +86,29 @@
 						</div>
 						<div class="swiper-slide">
 							<div class="inblock">
-								<c:forEach var="mainMprList" items="${mainMprList}"
+								<c:forEach var="jMap" items="${jMap}"
 									varStatus="status">
 									<c:if test="${8 <= status.index and status.index < 12}">
 										<div class="inblock me-2 text-center"
 											style="width: 150px; height: 100%;">
-											<c:if test="${mainMprList.mprAddFile != null}">
-												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
-													<img src="fileDownload?fileName=${mainMprList.mprAddFile}" style="width: 90px; height: 120px;">
+											<c:if test="${jMap.mhiMsspsnIdntfccd != null}">
+												<a href="mhInfo?pageNum=1" class="inblock"> 
+													<img style='width:135px;height:180px' width='96' height='128' border='0' src='https://www.safe182.go.kr/api/lcm/imgView.do?msspsnIdntfccd=${jMap.mhiMsspsnIdntfccd}'/>
 												</a>
 											</c:if>
-											<c:if test="${mainMprList.mprAddFile == null}">
-												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
-													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+											<c:if test="${jMap.mhiMsspsnIdntfccd == null}">
+												<a href="mhInfo?pageNum=1" class="inblock"> 
+												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
 											<div>
-												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
-												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
-												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+												${jMap.mhiNm}(${jMap.mhiAge})
 											</div>
 											<div>
-												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
+												${fn:substring(jMap.mhiOccrde,2,4)}-${fn:substring(jMap.mhiOccrde,4,6)}-${fn:substring(jMap.mhiOccrde,6,8)}
 											</div>
-											<div>
-												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 04 }">대전</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 05 }">광주</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 06 }">대구</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 07 }">울산</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 08 }">부산</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											<div class="text-truncate">
+												${jMap.mhiOccrAdres}
 											</div>
 										</div>
 									</c:if>
@@ -153,53 +117,36 @@
 						</div>
 						<div class="swiper-slide">
 							<div class="inblock">
-								<c:forEach var="mainMprList" items="${mainMprList}"
+								<c:forEach var="jMap" items="${jMap}"
 									varStatus="status">
 									<c:if test="${12 <= status.index and status.index < 16}">
 										<div class="inblock me-2 text-center"
 											style="width: 150px; height: 100%;">
-											<c:if test="${mainMprList.mprAddFile != null}">
-												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
-													<img src="fileDownload?fileName=${mainMprList.mprAddFile}" style="width: 90px; height: 120px;">
+											<c:if test="${jMap.mhiMsspsnIdntfccd != null}">
+												<a href="mhInfo?pageNum=1" class="inblock"> 
+													<img style='width:135px;height:180px' width='96' height='128' border='0' src='https://www.safe182.go.kr/api/lcm/imgView.do?msspsnIdntfccd=${jMap.mhiMsspsnIdntfccd}'/>
 												</a>
 											</c:if>
-											<c:if test="${mainMprList.mprAddFile == null}">
-												<a href="mprSelectDetail?mprNo=${mainMprList.mprNo}&pageNum=1" class="inblock"> 
-													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
+											<c:if test="${jMap.mhiMsspsnIdntfccd == null}">
+												<a href="mhInfo?pageNum=1" class="inblock"> 
+												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
 											<div>
-												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
-												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
-												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+												${jMap.mhiNm}(${jMap.mhiAge})
 											</div>
 											<div>
-												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
+												${fn:substring(jMap.mhiOccrde,2,4)}-${fn:substring(jMap.mhiOccrde,4,6)}-${fn:substring(jMap.mhiOccrde,6,8)}
 											</div>
-											<div>
-												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 04 }">대전</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 05 }">광주</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 06 }">대구</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 07 }">울산</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 08 }">부산</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 09 }">세종</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 10 }">강원</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 11 }">충북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 12 }">충남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 13 }">전북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 14 }">전남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 15 }">경북</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 16 }">경남</c:if>
-												<c:if test="${mainMprList.mprLocalCode == 17 }">제주</c:if>
+											<div class="text-truncate">
+												${jMap.mhiOccrAdres}
 											</div>
 										</div>
 									</c:if>
 								</c:forEach>
 							</div>
 						</div>
+					
 					</div>
 
 					<div class="swiper-button-next"></div>
@@ -273,7 +220,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="text-end mt-4 color text-danger">
+					<div class="text-end mt-1 color text-danger">
 						<small>※ 입력란이 채워지지 않을 시 전체를 검색합니다. ※&nbsp;&nbsp;&nbsp;</small>
 						<button type="submit" class="btn btn-secondary">검 색</button>
 					</div>

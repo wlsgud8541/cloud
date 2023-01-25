@@ -336,7 +336,7 @@ public class MhController {
 										@RequestParam(value="keyword", required=false, defaultValue="null") String keyword,
 										@RequestParam(value="type",required=false, defaultValue="null") String type)throws IOException, ParseException, java.text.ParseException {
 		int pageGroup = 10;
-		int pageSize = 10;
+		int pageSize = 12;
 		int currentPage = pageNum;
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int pageCnt = 1;
