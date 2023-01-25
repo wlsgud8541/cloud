@@ -57,7 +57,7 @@ public class MhFindDaoImpl implements MhFindDao{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("type", type);
 		map.put("keyword", keyword);
-		return sql.selectOne("MhFind.mhfSelectListCount",keyword);
+		return sql.selectOne("MhFind.mhfSelectListCount",map);
 	}
 	@Override
 	public int mhfDelete(int mhfNo) {

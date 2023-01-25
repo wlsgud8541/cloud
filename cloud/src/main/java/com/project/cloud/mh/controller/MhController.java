@@ -57,8 +57,8 @@ public class MhController {
 	// 실종자 정보 게시판뷰
 	@RequestMapping("/mhrSelectList")
 	public String mhrSelectList(Model model,
-											@RequestParam(value="type",required=false, defaultValue="null")String type,
-											@RequestParam(value="keyword",required=false, defaultValue="null")String keyword,
+											@RequestParam(value="type",required=false, defaultValue="")String type,
+											@RequestParam(value="keyword",required=false, defaultValue="")String keyword,
 											@RequestParam(value="pageNum",required=false,defaultValue="1")int pageNum,
 											@RequestParam(value = "mpGen",required = false, defaultValue = "") String mpGen, 
 											@RequestParam(value = "mpType",required = false, defaultValue = "") String mpType, 
@@ -67,7 +67,8 @@ public class MhController {
 											@RequestParam(value = "mpInfoDate2",required = false, defaultValue = "") String mpInfoDate2, 
 											@RequestParam(value = "mpLocalCode",required = false, defaultValue = "") String mpLocalCode)
 																																	{
-		
+		System.out.println(keyword+":keyword");
+		System.out.println(type+":type");
 		// 페이징처리
 		int pagesize = 10;
 		int pagegroup = 10;
@@ -199,8 +200,8 @@ public class MhController {
 	@RequestMapping("/mhfSelectList")
 	public String mhfSelectList(Model model,
 											@RequestParam(value="pageNum",required=false,defaultValue="1")int pageNum,
-											@RequestParam(value="keyword",required=false,defaultValue="null")String keyword,
-											@RequestParam(value="type",required=false,defaultValue="null")String type) {
+											@RequestParam(value="keyword",required=false,defaultValue="")String keyword,
+											@RequestParam(value="type",required=false,defaultValue="")String type) {
 		// 페이지네이션
 		int pageSize = 10;
 		int pageGroup = 10;
@@ -216,6 +217,7 @@ public class MhController {
 		mhfMap.put("type", type);
 		mhfMap.put("keyword", keyword);
 		model.addAllAttributes(mhfMap);
+		System.out.println(listCount+"목격 게시판 리스트");
 		return "mh/mhFindView/mhfSelectListView";
 	}
 	// 실종자 목격 게시판 상세화면 뷰

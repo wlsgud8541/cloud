@@ -64,6 +64,7 @@ FROM
 	mhfind
 WHERE
 	mhfDelYn = 'N'
+	<include refid="mhfSearch"></include>
 </select>
 <select id="mhfSelectDetail" resultType="MhFind" resultMap ="MhFind">
 SELECT
