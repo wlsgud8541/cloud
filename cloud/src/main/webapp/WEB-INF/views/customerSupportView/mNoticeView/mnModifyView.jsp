@@ -15,21 +15,17 @@
 	  	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${sessionScope.mmNo}">
 		<input type="hidden" class="form-control" name="mnNo" value="${mnotice.mnNo}">
 		<input type="hidden" class="form-control" name="pageNum" value="${pageNum}">
-	  	
-	  	<div class="col-4 offset-md-2">
-		    <label for="writer" class="form-label">글쓴이</label>
-		    <input type="text" class="form-control" name="mnWriter"  id="mnWriter" placeholder="작성자를 입력해 주세요" value="${sessionScope.userId}">
-  		</div>
+	    <input type="hidden" class="form-control" name="mnWriter"  id="mnWriter" placeholder="작성자를 입력해 주세요" value="${sessionScope.userId}">
+  		
   		<div class="col-8 offset-md-2">
 		    <label for="title" class="form-label">제 목</label>
 		    <input type="text" class="form-control" name="mnTitle"  id="mnTitle" value="${mnotice.mnTitle}">
   		</div>
 		<div class="col-8 offset-md-2">
 		    <label for="content" class="form-label">내 용</label>
-		    <textarea class="form-control" name="mnContent" id="mnContent" rows="10">${mnotice.mnContent}</textarea>
+		    <textarea class="form-control textEditor" name="mnContent" id="mnContent" rows="10">${mnotice.mnContent}</textarea>
   		</div>	
   		<div class="col-8 offset-md-2">
-		    <label for="title" class="form-label">파 일</label>
 		    <input type="file" class="form-control" name="mnAddFile"  id="mnAddFile" >
   		</div>
   		<div class="col-8 offset-md-2">

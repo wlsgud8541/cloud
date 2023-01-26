@@ -12,11 +12,8 @@
 	<!-- <form name="mnInsertForm" action="mnInsertProcess" id="mnInsertForm" class="row g-3 border-success" method="post"> -->
 	  	<!-- 테스트를 위한 임시 회원 번호 -->
 	  	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${sessionScope.mmNo}">
+	    <input type="hidden" class="form-control" name="mnWriter" id="writer" placeholder="작성자를 입력해 주세요" value="${sessionScope.userId}">
 	  	
-	  	<div class="col-4 offset-md-2">
-		    <label for="writer" class="form-label">글쓴이</label>
-		    <input type="text" class="form-control" name="mnWriter" id="writer" placeholder="작성자를 입력해 주세요" value="${sessionScope.userId}">
-  		</div>
   		<div class="col-8 offset-md-2">
 		    <label for="title" class="form-label">제 목</label>
 		    <input type="text" class="form-control" name="mnTitle" id="title" >
@@ -26,7 +23,6 @@
 		    <textarea class="form-control textEditor" name="mnContent" id="content" rows="10"></textarea>
   		</div>	
   		<div class="col-8 offset-md-2">
-		    <label for="title" class="form-label">파 일</label>
 		    <input type="file" class="form-control" name="mnAddFile" id="addFile" >
   		</div>
   		<div class="col-8 offset-md-2">

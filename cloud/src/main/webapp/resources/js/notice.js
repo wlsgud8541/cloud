@@ -1,5 +1,12 @@
 $(document).ready(function(){
-	
+	// 텍스트에디터	
+  	$('.textEditor').summernote({
+		height:300,
+		minHeight:null,
+		maxHeight:null,
+		focus:true
+  	});
+  	
 	//등록하기 버튼 클릭 시 벨류 체크
 	$("#insert").on("submit", function(e){
 		e.preventDefault();
@@ -169,13 +176,16 @@ $(document).ready(function(){
 	
 			$("#mqTilte"+mqNo).empty();
 			$("#mqDiv"+mqNo).empty();
+
+			beforeCont = beforeCont.replace(/<[^>]*>?/g, '');
 			
 			var tag1 = '<span class="member">'
 					 + '	<input type="text" id="beforeTitle' + mqNo + '" class="form-control" value="' + beforeTitle + '">'
 					 + '</span>'
 			
 			var tag2 =  '<div class="col p-3">'
-					  + '	<input type="text" id="beforeCont' + mqNo + '" class="form-control" value="' + beforeCont + '">'
+					  //+ '	<input type="text" id="beforeCont' + mqNo + '" class="form-control" value="' + beforeCont + '">'
+					  + '	<textarea class="form-control textEditor" id="beforeCont' + mqNo + '" rows="10">'+beforeCont+'</textarea>'
 					  + '</div>'
 					  ;
 					  
@@ -845,7 +855,7 @@ $(document).ready(function(){
 		
 		e.preventDefault();
 		
-		if($("#mreComContent").val().length<5){
+		if($("#mreComContent").val() == ''){
 			alert("답글이 입력되지 않았습니다.");
 			return false;
 		}
@@ -1090,14 +1100,6 @@ $(document).ready(function(){
 		}
 		
 	});
-	
-	
-	// 텍스트에디터	
-  	$('.textEditor').summernote({
-		height:300,
-		minHeight:null,
-		maxHeight:null,
-		focus:true
-  	});
+
 });
 
