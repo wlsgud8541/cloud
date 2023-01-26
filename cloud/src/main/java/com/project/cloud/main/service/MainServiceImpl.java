@@ -1,6 +1,5 @@
 package com.project.cloud.main.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +49,7 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public List<Main> mainUsearch(String uSearch) {
 		Map<String, String> searchMap = new HashMap<String,String>();
-		searchMap.put("uSearchs", uSearch);
+		searchMap.put("uSearch", uSearch);
 		return mainDao.mainUsearch(searchMap);
 	}
 	

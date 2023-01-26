@@ -18,7 +18,7 @@
 		</div>
 		<p>${search.searchContent}</p>
 		<small class="text-secondary">
-			 ${search.searchWriter }&nbsp;&nbsp;|&nbsp;&nbsp;<fmt:formatDate value="${search.searchRegdate }" pattern="yy-MM-dd"/>
+			 ${search.searchWriter}&nbsp;&nbsp;|&nbsp;&nbsp;<fmt:formatDate value="${search.searchRegdate}" pattern="yy-MM-dd"/>
 		</small>
 		<br><br>
 		</c:if>

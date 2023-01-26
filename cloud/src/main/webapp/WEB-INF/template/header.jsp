@@ -11,7 +11,7 @@
         	 <a href="main"><img src="resources/image/main/cloudLogo_2.png" style="width: 270px;"></a>
      	</div>
      	<form action="search" method="post" class="col-5 search_wrap text-center">
-	        <input type="text" class="search_bar rounded-pill ps-4 pe-5" id = "uSearch" name="uSearch">
+	        <input type="text" class="search_bar rounded-pill ps-4 pe-5" id="uSearch" name="uSearch">
 	        <button type="submit" class="btn btn-outline-secondary" id="uSearchbtn">검색</button> 
      	</form>
 		<c:if test="${empty sessionScope.userId }">

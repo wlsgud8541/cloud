@@ -39,7 +39,7 @@
 	        search.no as searchNo, search.title as searchTitle, search.content as searchContent, search.regdate as searchRegdate, search.writer as searchWriter
             , search.DelYn as searchDelYn, search.tableType as tableType
 	    FROM
-	        (SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+	        (SELECT ROWNUM, no,title,content,regdate,writer,DelYn,tableType
              FROM  (SELECT 
                           mhf.mhfNo as no, mhf.mhfTitle as title, mhf.mhfContent as content, mhf.mhfRegDate as regdate, mhf.mhfWriter as writer, mhf.mhfDelYn as DelYn, mhf.tableType as tableType
                     FROM
@@ -50,7 +50,7 @@
              
 	        UNION ALL
 	        
-           SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+           SELECT ROWNUM, no,title,content,regdate,writer,DelYn,tableType
              FROM  (SELECT
                         mhr.mhrNo as no, mhr.mhrTitle as title, mhr.mhrContent as content, mhr.mhrRegDate as regdate, mhr.mhrWriter as writer, mhr.mhrDelYn as DelYn, mhr.tableType as tableType
                     FROM
@@ -61,7 +61,7 @@
            
 	        UNION ALL
             
-	        SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+	        SELECT ROWNUM, no,title,content,regdate,writer,DelYn,tableType
              FROM  (SELECT
                         mq.mqNo as no, mq.mqTitle as title, mq.mqContent as content, mq.mqRegDate as regdate, mq.mqWriter as writer, mq.mqDelYn as DelYn, mq.tableType as tableType
                     FROM
@@ -72,7 +72,7 @@
                 
 	        UNION ALL
 	      
-             SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+             SELECT ROWNUM, no,title,content,regdate,writer,DelYn,tableType
              FROM  (SELECT
                         mpf.mpfNo as no, mpf.mpfTitle as title, mpf. mpfContent as content, mpf.mpfRegDate as regdate, mpf.mpfWriter as writer, mpf.mpfDelYn as DelYn, mpf.tableType as tableType
                     FROM
@@ -83,7 +83,7 @@
 	     
             UNION ALL
 	     
-            SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+            SELECT ROWNUM, no,title,content,regdate,writer,DelYn,tableType
              FROM  (SELECT
                         mpp.mppNo as no, mpp.mppTitle as title, mpp.mppContent as content, mpp.mppRegDate as regdate, mpp.mppwriter as writer, mpp.mppDelYn as DelYn, mpp.tableType as tableType
                     FROM
@@ -94,7 +94,7 @@
              
 	        UNION ALL
             
-	        SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+	        SELECT ROWNUM, no,title,content,regdate,writer,DelYn,tableType
              FROM  (SELECT
                         mpr.mprNo as no, mpr.mprTitle as title, mpr.mprContent as content, mpr.mprRegDate as regdate, mpr.mprWriter as writer, mpr.mprDelYn as DelYn, mpr.tableType as tableType
                     FROM
@@ -105,7 +105,7 @@
                 
 	        UNION ALL
             
-	       SELECT ROWNUM, no,title,content,regdate,writer,delyn,tabletype
+	       SELECT ROWNUM, no,title,content,regdate,writer,DelYn,tableType
              FROM  ( SELECT
                         mn.mnNo as no, mn.mnTitle as title, mn.mnContent as content, mn.mnRegDate as regdate, mn.mnWriter as writer, mn.mnDelYn as DelYn, mn.tableType as tableType
                     FROM
@@ -116,9 +116,8 @@
 	        ORDER BY
 	           tableType DESC, regdate DESC) search)
 	    WHERE
-	    	searchDelYn = 'N'
-	    	AND	searchTitle LIKE '%'||#{uSearchs}||'%' 
-	    	OR searchContent LIKE '%'||#{uSearchs}||'%'
+	    	searchTitle LIKE '%'||#{uSearch}||'%' 
+	    	OR searchContent LIKE '%'||#{uSearch}||'%'
 	</select>
 	<select id="mhGraph" resultType="Main">
 		SELECT 
