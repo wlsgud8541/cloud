@@ -856,7 +856,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		
 		if($("#mreComContent").val() == ''){
-			alert("답글이 입력되지 않았습니다.");
+			alert("답글이 입력되지 않았습니다."); 
 			return false;
 		}
 		
