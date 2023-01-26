@@ -156,6 +156,9 @@
 					<div class="swiper-pagination"></div>
 				</div>
 			</div>
+			<div class="text-end mt-2 opacity-50">
+				<span class="fw-bold text-secondary">[자료출처 : 경찰청]</span>
+			</div>
 		</div>
 		<div class="col-4  p-4 bg-white shadow-sm">
 			<h3>
