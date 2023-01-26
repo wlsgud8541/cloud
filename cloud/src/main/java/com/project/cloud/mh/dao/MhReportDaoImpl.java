@@ -40,21 +40,21 @@ public class MhReportDaoImpl implements MhReportDao {
 	}
 	
 	@Override
-	public int mhrSelectListCount(String type, String query) {
+	public int mhrSelectListCount(String type, String mhrKeyword) {
 		Map<String,Object> mhrMap = new HashMap<String,Object>();
 		mhrMap.put("type", type);
-		mhrMap.put("query", query);
+		mhrMap.put("mhrKeyword", mhrKeyword);
 		return sql.selectOne("MhReport.mhrSelectListCount",mhrMap);
 	}
 
 
 	@Override
-	public List<MhReport> mhrSelectList(int startRow, int pagesize, String type,String keyword) {
+	public List<MhReport> mhrSelectList(int startRow, int pagesize, String mhrType,String mhrKeyword) {
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("startRow", startRow);
 		map.put("pagesize", pagesize);
-		map.put("type", type);
-		map.put("keyword", keyword);
+		map.put("mhrType", mhrType);
+		map.put("mhrKeyword", mhrKeyword);
 		return sql.selectList("MhReport.mhrSelectList",map);
 	}
 
@@ -67,10 +67,10 @@ public class MhReportDaoImpl implements MhReportDao {
 
 
 	@Override
-	public int mhrListCount(String type, String keyword) {
+	public int mhrListCount(String mhrType, String mhrKeyword) {
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("type", type);
-		map.put("keyword", keyword);
+		map.put("mhrType", mhrType);
+		map.put("mhrKeyword", mhrKeyword);
 		return sql.selectOne("MhReport.mhrListCount",map);
 	}
 

@@ -20,12 +20,12 @@ public class MhFindDaoImpl implements MhFindDao{
 		this.sql = sql;
 	}
 	@Override
-	public List<MhFind> mhfSelectList(int startRow, int pageSize, String type, String keyword) {
+	public List<MhFind> mhfSelectList(int startRow, int pageSize, String mhfType, String mhfKeyword) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("startRow", startRow);
 		map.put("pageSize", pageSize);
-		map.put("type", type);
-		map.put("keyword", keyword);
+		map.put("mhfType", mhfType);
+		map.put("mhfKeyword", mhfKeyword);
 		return sql.selectList("MhFind.mhfSelectList",map);
 	}
 
@@ -53,10 +53,10 @@ public class MhFindDaoImpl implements MhFindDao{
 		return sql.update("MhFind.mhfUpdate",mhfind);
 	}
 	@Override
-	public int mhfSelectListCount(String type, String keyword) {
+	public int mhfSelectListCount(String mhfType, String mhfKeyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("type", type);
-		map.put("keyword", keyword);
+		map.put("mhfType", mhfType);
+		map.put("mhfKeyword", mhfKeyword);
 		return sql.selectOne("MhFind.mhfSelectListCount",map);
 	}
 	@Override

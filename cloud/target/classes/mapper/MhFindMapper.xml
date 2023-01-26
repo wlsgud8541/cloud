@@ -18,11 +18,14 @@
 		<result property="mhfLocalDetail" column="mhfLocalDetail"/>
 	</resultMap>
 <sql id ="mhfSearch">
-		<if test="type == 'title'">
-			AND mhfTitle LIKE '%' ||#{keyword}|| '%'
+		<if test="mhfType == 'title'">
+			AND mhfTitle LIKE '%' ||#{mhfKeyword}|| '%'
 		</if>
-		<if test="type == 'writer'">
-			AND mhfWriter LIKE '%' ||#{keyword}|| '%'
+		<if test="mhfType == 'writer'">
+			AND mhfWriter LIKE '%' ||#{mhfKeyword}|| '%'
+		</if>
+		<if test="mhfType == 'content'">
+			AND mhfContent LIKE '%' ||#{mhfKeyword}|| '%'
 		</if>
 </sql>
 <select id="mhfSelectList" resultType="MhFind" parameterType="hashMap">
