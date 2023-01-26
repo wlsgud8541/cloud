@@ -341,11 +341,15 @@ public class CsController {
 	// 건의게시판 답글 작성 프로세스
 	@RequestMapping("/mrcInsertProcess.ajax")
 	@ResponseBody
-	public MrequestComm mrcInsert(HttpServletRequest request, @RequestParam(value = "mreAddFile", required = false) MultipartFile multipartFile,
+	public MrequestComm mrcInsert(
+			HttpServletRequest request, /*
+										 * @RequestParam(value = "mreAddFile", required = false) MultipartFile
+										 * multipartFile,
+										 */
 									MrequestComm mrequestComm) throws IOException{
 		//파일 업로드 공동 메서드
-		String fileName = gms.addFile(request, multipartFile);
-		mrequestComm.setMreComAddFile(fileName);
+//		String fileName = gms.addFile(request, multipartFile);
+//		mrequestComm.setMreComAddFile(fileName);
 		
 		mrequestCommService.mrcInsert(mrequestComm);
 		mrequestService.mrUpdateReplyCode(mrequestComm.getMreNo());

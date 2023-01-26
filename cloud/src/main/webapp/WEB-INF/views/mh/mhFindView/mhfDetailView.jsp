@@ -12,8 +12,7 @@
 				<table class="topbox">
 					<tr>
 						<td class="mhThWriter py-2"><b>&nbsp;&nbsp;${mhfind.mhfWriter}</b></td>
-						<td class="mhThDate py-2"><fmt:formatDate
-								value="${mhfind.mhfRegDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+						<td class="mhThDate py-2"><fmt:formatDate value="${mhfind.mhfRegDate}" pattern="yyyy-MM-dd HH:mm" /></td>
 						<td class="mhThReadCount ms-3 py-2">조회수 : ${mhfind.mhfReadCnt }</td>
 					</tr>
 					<c:if test="${mhfind.mhfAddFile != null}">

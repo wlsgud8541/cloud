@@ -102,6 +102,7 @@ public class MhController {
 	public String mhrInsert( String mhrWriter,String mhrMage,  String mhrage, String mhrInfoDate, 
 										String mhrTitle, String mhrContent, String mhrNation, String mhrIllCode,
 										String mhrStatusCode, String mhrLocalCode, String mhrName, String mhrGen,
+										String mhrLocalDetail,
 										@RequestParam(value="mhrHeight",required=false)String mhrHeight,
 										@RequestParam(value="mhrWeight",required=false)String mhrWeight, 
 										@RequestParam(value="mhrWeight",required=false)String mhrPhysical, 
@@ -141,6 +142,7 @@ public class MhController {
 		mhReport.setMhrWear(mhrWear);
 		mhReport.setMhrInfoDate(tsDate);
 		mhReport.setMhrAddFile(FileName);
+		mhReport.setMhrLocalDetail(mhrLocalDetail);
 		int result = service.mhrInsert(mhReport);
 		logger.debug("글추가"+result);
 		return "redirect:mhrSelectList";
@@ -158,7 +160,7 @@ public class MhController {
 										String mhrContent, String mhrName, String mhrMage, String mhrage,
 										String mhrRegDate, String mhrNation, String mhrIllCode, String mhrStatusCode,
 										String mhrLocalCode, String mhrGen, String mhrHeight, String mhrWeight,
-										String mhrPhysical, String mhrHairColor, String mhrHair, String mhrWear,int mmNo, int mhrNo,
+										String mhrPhysical, String mhrHairColor, String mhrHair, String mhrWear,int mmNo, int mhrNo, String mhrLocalDetail,
 										@RequestParam(value="mhrAddFile",required=false)MultipartFile file, String mhrInfoDate, String mhrFace) throws IOException {
 		MhReport mhReport = new MhReport();
 		String tempDate = mhrInfoDate + " 00:00:00";
@@ -182,6 +184,7 @@ public class MhController {
 		mhReport.setMhrHairColor(mhrHairColor);
 		mhReport.setMhrHair(mhrHair);
 		mhReport.setMhrWear(mhrWear);
+		mhReport.setMhrLocalDetail(mhrLocalDetail);
 		mhReport.setMhrInfoDate(temp);
 		String FileName = gm.addFile(request, file);
 		mhReport.setMhrAddFile(FileName);

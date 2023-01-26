@@ -90,23 +90,30 @@
 									<tr>
 										<th>발생장소</th>
 										<td>
-											<c:if test="${report.mhrLocalCode == 01 }">서울</c:if>
-											<c:if test="${report.mhrLocalCode == 02 }">경기</c:if>
-											<c:if test="${report.mhrLocalCode == 03 }">인천</c:if>
-											<c:if test="${report.mhrLocalCode == 04 }">대전</c:if>
-											<c:if test="${report.mhrLocalCode == 05 }">광주</c:if>
-											<c:if test="${report.mhrLocalCode == 06 }">대구</c:if>
-											<c:if test="${report.mhrLocalCode == 07 }">울산</c:if>
-											<c:if test="${report.mhrLocalCode == 08 }">부산</c:if>
-											<c:if test="${report.mhrLocalCode == 09 }">세종</c:if>
-											<c:if test="${report.mhrLocalCode == 10 }">강원</c:if>
-											<c:if test="${report.mhrLocalCode == 11 }">충북</c:if>
-											<c:if test="${report.mhrLocalCode == 12 }">충남</c:if>
-											<c:if test="${report.mhrLocalCode == 13 }">전북</c:if>
-											<c:if test="${report.mhrLocalCode == 14 }">전남</c:if>
-											<c:if test="${report.mhrLocalCode == 15 }">경북</c:if>
-											<c:if test="${report.mhrLocalCode == 16 }">경남</c:if>
-											<c:if test="${report.mhrLocalCode == 17 }">제주</c:if>
+											<c:if test="${report.mhrLocalCode == 01 }">서울/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 02 }">경기/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 03 }">인천/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 04 }">대전/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 05 }">광주/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 06 }">대구/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 07 }">울산/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 08 }">부산/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 09 }">세종/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 10 }">강원/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 11 }">충북/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 12 }">충남/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 13 }">전북/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 14 }">전남/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 15 }">경북/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 16 }">경남/${report.mhrLocalDetail}</c:if>
+											<c:if test="${report.mhrLocalCode == 17 }">제주/${report.mhrLocalDetail}</c:if>
+										</td>
+									</tr>
+									<tr>
+										<th>국적</th>
+										<td>
+											<c:if test="${report.mhrNation == 'local'}">내국인</c:if>
+											<c:if test="${report.mhrNation == 'foreign'}">외국인</c:if>
 										</td>
 									</tr>
 									<tr>

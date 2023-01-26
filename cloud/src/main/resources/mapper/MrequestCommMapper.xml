@@ -22,7 +22,7 @@
 				mreComContent,
 				mreComWriter,
 				mreComDelYn,
-				mreComAddFile
+				<!-- mreComAddFile -->
 		FROM MREQUESTCOMM 
 		WHERE mreNo = #{mreNo}
 		AND mreComDelYn = 'N'
@@ -32,7 +32,7 @@
 		INSERT INTO MREQUESTCOMM(mreComNo,
 								mreComTitle,
 								mreComContent,
-								mreComAddFile,
+								<!-- mreComAddFile, -->
 								mreComWriter,
 								mreComRegDate,
 								mmNo,
@@ -41,7 +41,7 @@
 		VALUES(mRequestComm_seq.NEXTVAL,
 				#{mreComTitle},
 				#{mreComContent},
-				#{mreComAddFile},
+				<!-- #{mreComAddFile}, -->
 				#{mreComWriter},
 				SYSTIMESTAMP,
 				#{mmNo},
@@ -52,7 +52,7 @@
 		UPDATE MREQUESTCOMM
 		SET mreComTitle = #{mreComTitle},
 			mreComContent = #{mreComContent},
-			mreComAddFile = #{mreComAddFile},
+			<!-- mreComAddFile = #{mreComAddFile}, -->
 			mreComRegDate = SYSTIMESTAMP
 		WHERE mreComNo = #{mreComNo}
 	</update>

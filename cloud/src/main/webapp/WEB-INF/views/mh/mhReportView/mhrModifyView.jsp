@@ -93,7 +93,11 @@
   	</div>
 	<div class="col-4">
 	    <label for="mhrNation" class="form-label border-bottom border-2 border-danger border-opacity-25">국적</label>
-	    <input class="form-control rounded-0" name="mhrNation " id="mhrNation" value="${mhReport.mhrNation}" readonly ></input>
+	    <select class="form-control rounded-0" name="mhrNation " id="mhrNation" onChange="this.selectedIndex = this.initialSelect;" onFocus="this.initialSelect = this.selectedIndex;">
+	    	<option value="">--선택하세요--</option>
+	    	<option value="local" ${mhReport.mhrNation =='local' ? 'selected' : '' }>내국인</option>
+	    	<option value="foreign" ${mhReport.mhrNation == 'foreign' ? 'selected' : ''}>외국인</option>
+	    </select>
   	</div>
   	<div class="col-4">
 	    <label for="mhrHeight" class="form-label border-bottom border-2 border-danger border-opacity-25">실종자 키</label>

@@ -108,9 +108,9 @@
 						<div class="row my-3">
 							<div class="col-md-10">
 								<input type="text" class="form-control" id="mreComTitle" name="mreComTitle" value="${mrequestcomm.mreComTitle}">
-								<textarea name="mreComContent textEditor" id="mreComContent" class="form-control mt-2" rows="4"></textarea>
-								<label for="title" class="form-label">파 일</label>
-		    					<input type="file" class="form-control" name="mreAddFile"  id="mreAddFile" >
+								<textarea name="mreComContent textEditor" id="mreComContent" class="form-control mt-2 textEditor" rows="4"></textarea>
+								<!-- <label for="title" class="form-label">파 일</label>
+		    					<input type="file" class="form-control" name="mreAddFile"  id="mreAddFile" > -->
 							</div>
 							<div class="col-md">
 								<input type="submit" value="답글쓰기" class="btn btn-success h-100 w-100" id="mrcInsertButton">
