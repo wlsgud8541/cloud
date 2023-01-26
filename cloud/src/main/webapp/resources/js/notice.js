@@ -859,7 +859,7 @@ $(document).ready(function(){
 			alert("답글이 입력되지 않았습니다."); 
 			return false;
 		}
-		
+		 
 		$commForm = $("#commForm").slideUp(300);
 		
 		var params = $(this).serialize();
