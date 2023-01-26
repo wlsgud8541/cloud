@@ -17,7 +17,7 @@
 	<select id="mrcSelectDetail" resultType="MrequestComm">
 		SELECT  mreNo,
 				mreComNo,
-				mreComTitle,
+				mreComTitle, 
 				mreComRegDate,
 				mreComContent,
 				mreComWriter,
