@@ -6,8 +6,9 @@
 <!-- header  -->
 <div class="header fixed-top">
 	<div class="row headerMain border-bottom bg-white">  
-		<div class="col-4 ps-5 pe-0 text-center">
-        	 <a href="main"><img src="resources/image/main/cloudLogo.png" style="width: 130px;"></a>
+		<div class="col-3 ps-5 pe-0 text-center offset-md-1">
+        	 <!-- <a href="main"><img src="resources/image/main/cloudLogo.png" style="width: 130px;"></a> -->
+        	 <a href="main"><img src="resources/image/main/cloudLogo_2.png" style="width: 270px;"></a>
      	</div>
      	<form action="search" method="post" class="col-5 search_wrap text-center">
 	        <input type="text" class="search_bar rounded-pill ps-4 pe-5" id = "uSearch">
@@ -17,7 +18,7 @@
 		<div class="col-3 text-center pt-4 ps-5">
 			<ul class="nowLogin">
 				<li><a href="loginView" class="login">로그인</a></li>
-				<li><a href="mmInsertJoin1" class="join">회원가입</a></li>
+				<li><a href="mmInsertJoin1" class="join">회원가입</a></li> 
 			</ul>
 		</div>
 		</c:if> 
