@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <body>
-<form name = "mhrUpdateProcess" action = "mhrUpdateProcess" id = "modifyForm" enctype="multipart/form-data"
+<form name = "mhrUpdateProcess" action = "mhrUpdateProcess" id = "mhrModifyForm" enctype="multipart/form-data"
 method="post">
     <input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${mhReport.mmNo}" readonly>
  	<div class="col-8 offset-md-2">
