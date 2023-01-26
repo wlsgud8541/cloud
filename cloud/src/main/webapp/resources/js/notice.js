@@ -7,8 +7,20 @@ $(document).ready(function(){
 		focus:true
   	});
   	
+	
+	
+	
+	
+	
 	//등록하기 버튼 클릭 시 벨류 체크
 	$("#insert").on("click", function(e){
+	
+		var vCkLocation = location.href;
+		vCkLocation = vCkLocation.replace('http://localhost:8080/cloud/','');
+		var arrVCkLocation = vCkLocation.split("?");
+		console.log("arrVCkLocation : "+arrVCkLocation[0]);
+		
+		
 		e.preventDefault();
 		
 		var writer = $("#writer").val(); // 작성자
@@ -50,45 +62,83 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		/*
-		
-		// 실종자 실종당시 나이 체크
-		if(mhrMage == 0){
-			alert("실종당시 나이가 입력되지 않았습니다.");
-			return false;
+		//실종자 신고 폼체크
+		if(arrVCkLocation[0] == 'mhrInsert' || arrVCkLocation[0] == 'mhrModifyView' ){
+			// 실종자 실종당시 나이 체크
+			if(mhrMage == 0){
+				alert("실종당시 나이가 입력되지 않았습니다.");
+				return false;
+			}
+			
+			// 실종자 현재 나이 체크
+			if(mhrage == 0){
+				alert("나이가 입력되지 않았습니다.");
+				return false;
+			}
+			
+			// 실종자 실종 당시 날자 체크
+			if(infoDate == 0){
+				alert("실종당시 날자가 입력되지 않았습니다.");
+				return false;
+			}
+			
+			// 실종자 국적 체크
+			if(mhrNation.length == 0){
+				alert("국적이 입력되지 않았습니다.");
+				return false;
+			}
+			
+			// 실종자 실종 지역 체크
+			if(localCode == null){
+				alert("실종 지역이 입력되지 않았습니다.");
+				return false;
+			}
+			
+			// 실종자 성별
+			if(gen== null){
+				alert("성별이 입력되지 않았습니다.");
+				return false;
+			}
 		}
 		
-		// 실종자 현재 나이 체크
-		if(mhrage == 0){
-			alert("나이가 입력되지 않았습니다.");
-			return false;
+		//실종자 목격 폼체크
+		if(arrVCkLocation[0] == 'mhfInsert' || arrVCkLocation[0] == 'mhfModifyView' ){
+			// 실종자 실종 당시 날자 체크
+			if(infoDate == 0){
+				alert("실종당시 날자가 입력되지 않았습니다.");
+				return false;
+			}
+	
+			
+			// 실종자 실종 지역 체크
+			if(localCode == null){
+				alert("실종 지역이 입력되지 않았습니다.");
+				return false;
+			}
+			
+			// 실종자 성별
+			if(gen== null){
+				alert("성별이 입력되지 않았습니다.");
+				return false;
+			}		
+			
 		}
 		
-		// 실종자 실종 당시 날자 체크
-		if(infoDate == 0){
-			alert("실종당시 날자가 입력되지 않았습니다.");
-			return false;
+		//실종 반려동물 신고 폼체크
+		if(arrVCkLocation[0] == 'mprUpdate' || arrVCkLocation[0] == 'mprInsert' ){
+			
+		}
+	
+		//실종 반려동물 임시보호 폼체크		
+		if(arrVCkLocation[0] == 'mppInsert' || arrVCkLocation[0] == 'mppUpdate' ){
+			
+		}
+
+		//실종 반려동물 목격 게시판 폼체크
+		if(arrVCkLocation[0] == 'mpfInsert' || arrVCkLocation[0] == 'mpfUpdate' ){
+			
 		}
 		
-		// 실종자 국적 체크
-		if(mhrNation.length == 0){
-			alert("국적이 입력되지 않았습니다.");
-			return false;
-		}
-		
-		// 실종자 실종 지역 체크
-		if(localCode == null){
-			alert("실종 지역이 입력되지 않았습니다.");
-			return false;
-		}
-		
-		// 실종자 성별
-		if(gen== null){
-			alert("성별이 입력되지 않았습니다.");
-			return false;
-		}
-		
-		*/
 		
 		//첨부파일 체크
 		if(addFile == null || addFile.length == 0){

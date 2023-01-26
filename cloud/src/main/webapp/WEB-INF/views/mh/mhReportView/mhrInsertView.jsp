@@ -10,10 +10,10 @@
 			<p class="border border-bottom border-danger border-2" style="width: 150px; display: inline-block; margin-bottom: 0px;"></p>
 		</div>
 	</div>
-	<form name="insertForm" action="mhrInsertProcess" id="insertForm" 
-	class="row g-3 border-primary" method="post" enctype="multipart/form-data">
+	<form name="insertForm" action="mhrInsertProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="mmNo" value="${sessionScope.mmNo}">
-	<input type="hidden" name="mhrWriter" value="${sessionScope.userId}">
+	<input type="hidden" name="mhrNo" value="${mhReport.mhrNo}">
+	<input type="hidden" name="mhrWriter" id="writer" value="${sessionScope.userId}">
   	<div class="col-12">
 	    <label for="mhrTitle" class="form-label border-bottom border-2 border-danger border-opacity-25">제목</label>
 	    <input type="text"class="form-control rounded-0" name="mhrTitle" id="title">
@@ -134,7 +134,7 @@
 	    <input type="file" class="form-control rounded-0" name="mhrAddFile" id="mnAddFile">
   	</div>
   	<div class="col-8 text-center offset-md-2 text-center mt-3">
-		<input type="submit" value="등록하기" class="btn btn-danger" id = "insert"/>
+		<input type="submit" value="등록하기" class="btn btn-danger" id="insert"/>
 				&nbsp;&nbsp;
 		<input type="button" value="목록보기" 
 					onclick="location.href='mhrSelectList'" class="btn btn-danger"/>

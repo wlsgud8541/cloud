@@ -12,7 +12,6 @@
 		<result property="mhfContent" column="mhfContent"/>
 		<result property="mhfAddFile" column="mhfAddFile"/>
 		<result property="mhfWriter" column="mhfWriter"/>
-		<result property="mhfSecretYn" column="mhfSecretYn"/>
 		<result property="mhfDelYn" column="mhfDelYn"/>
 		<result property="mhfGen" column="mhfGen"/>
 		<result property="mhfLocalCode" column="mhfLocalCode"/>
@@ -100,21 +99,21 @@ INSERT INTO
 	<if test="mhfAddFile != null">
 	,mhfAddFile
 	</if>
-	,mhfWriter ,mhfRegDate, mmNo, mhfSecretYn,mhfGen, mhfLocalCode, mhfLocalDetail
+	,mhfWriter ,mhfRegDate, mmNo, mhfGen, mhfLocalCode, mhfLocalDetail
 	)
 VALUES(mhFind_seq.NEXTVAL, #{mhfTitle}, #{mhfContent}, #{mhfInfoDate}
 	<if test="mhfAddFile != null">
 	,#{mhfAddFile}
 	</if>
-	,#{mhfWriter},SYSTIMESTAMP,#{mmNo}, #{mhfSecretYn},#{mhfGen}, #{mhfLocalCode}, #{mhfLocalDetail})
+	,#{mhfWriter},SYSTIMESTAMP,#{mmNo}, #{mhfGen}, #{mhfLocalCode}, #{mhfLocalDetail})
 </insert> 
 
 <update id="mhfUpdate" parameterType="MhFind">
 UPDATE
 	mhfind
 SET
-	mhfTitle = #{mhfTitle}, mhfContent = #{mhfContent}, mhfSecretYn = #{mhfSecretYn},
-	mhfInfoDate = #{mhfInfoDate}, mhfGen = #{mhfGen}, #{mhfLocalCode}, #{mhfLocalDetail}
+	mhfTitle = #{mhfTitle}, mhfContent = #{mhfContent}, 
+	mhfInfoDate = #{mhfInfoDate}, mhfGen = #{mhfGen}, mhfLocalCode = #{mhfLocalCode}, mhfLocalDetail = #{mhfLocalDetail}
 	<if test="mhfAddFile != null">
 	,mhfAddFile = #{mhfAddFile}
 	</if>  

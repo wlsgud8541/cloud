@@ -245,9 +245,9 @@ public class MhController {
 	@RequestMapping("/mhfInsertProcess")
 	public String mhfInsertProcess(HttpServletRequest request, 
 												String mhfTitle, String mhfContent, String mhfWriter, String mhfGen,
-												String mhfInfoDate, String mhfSecretYn,
+												String mhfInfoDate, String mhfLocalCode,
 												@RequestParam(value="mhfAddFile",required=false)MultipartFile file,
-												Timestamp mhfRegDate, int mmNo)throws IOException {
+												Timestamp mhfRegDate, int mmNo, String mhfLocalDetail)throws IOException {
 		String date1 = mhfInfoDate + " 00:00:00";
 		Timestamp tmp = Timestamp.valueOf(date1);
 		MhFind mhfind = new MhFind();
@@ -256,11 +256,12 @@ public class MhController {
 		mhfind.setMhfContent(mhfContent);
 		mhfind.setMhfWriter(mhfWriter);
 		mhfind.setmhfGen(mhfGen);
-		mhfind.setMhfSecretYn(mhfSecretYn);
+		mhfind.setmhfLocalCode(mhfLocalCode);
 		mhfind.setMhfInfoDate(tmp);
 		mhfind.setMhfAddFile(FileName);
 		mhfind.setMhfRegDate(mhfRegDate);
 		mhfind.setMmNo(mmNo);
+		mhfind.setMhfLocalDetail(mhfLocalDetail);
 		int result = mhfService.mhfInsert(mhfind);
 		logger.debug("실종자 목격 게시판 등록"+result);
 		
@@ -278,15 +279,16 @@ public class MhController {
 	public String mhfUpdateProcess(HttpServletRequest request, String mhfTitle, String mhfContent,
 													@RequestParam(value="mhfAddFile",required=false)MultipartFile file,
 													int mhfNo, String mhfGen, String mhfInfoDate,
-													String mhfSecretYn)throws IOException {
+													String mhfLocalCode , String mhfLocalDetail)throws IOException {
 		MhFind mhfind = new MhFind();
 		String date1 = mhfInfoDate + " 00:00:00";
 		Timestamp tmp = Timestamp.valueOf(date1);
 		mhfind.setMhfTitle(mhfTitle);
 		mhfind.setMhfContent(mhfContent);
 		mhfind.setmhfGen(mhfGen);
-		mhfind.setMhfSecretYn(mhfSecretYn);
+		mhfind.setmhfLocalCode(mhfLocalCode);
 		mhfind.setMhfNo(mhfNo);
+		mhfind.setMhfLocalDetail(mhfLocalDetail);
 		logger.debug(mhfInfoDate);
 		mhfind.setMhfInfoDate(tmp);
 		String FileName = gm.addFile(request, file);

@@ -4,19 +4,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- content -->
 <div class="w3-content row" id="global-content">
-    <input type="hidden" class="form-control rounded-0" name="mmNo" value="${sessionScope.mmNo}" >
-    <input type="hidden" class="form-control rounded-0" name="mhfWriter" value="${sessionScope.userId}" >
 	<div class="row my-3 text-center">
 		<div class="col">
 			<h2 class="fs-3 fw-bold ">목격정보 작성</h2>
 			<p class="border border-bottom border-danger border-2" style="width: 170px; display: inline-block; margin-bottom: 0px;"></p>
 		</div>
 	</div>
-	<form name="insertForm" action="mhfInsertProcess" id="insertForm" 
-	class="row g-3 border-primary" method="post" enctype="multipart/form-data">
+	<form name="insertForm" action="mhfInsertProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
+	    <input type="hidden" name="mmNo" value="${sessionScope.mmNo}">
+		<input type="hidden" name="mhfNo" value="${mhfind.mhfNo}">
+		<input type="hidden" name="mhfWriter" id="writer" value="${sessionScope.userId}">
 		<div class="col-12">
 		    <label for="mhfTitle" class="form-label">제목</label>
-		    <input type="text"class="form-control rounded-0" name="mhfTitle" id="Title" >
+		    <input type="text"class="form-control rounded-0" name="mhfTitle" id="title" >
 	  	</div>
 		<div class="col-5">
 		    <label for="mhfGen" class="form-label">대상 성별</label>
@@ -32,7 +32,7 @@
 	  	</div>
 	  	<div class="col-5">
 		    <label for="mprContent" class="form-label">지역</label>
-		    <select class="form-control rounded-0" name="mhrLocalCode" id="localCode">
+		    <select class="form-control rounded-0" name="mhfLocalCode" id="localCode">
 		    	<option value="">--선택하세요--</option>
 		    	<option value="01">서울</option>
 		    	<option value="02">경기</option>
@@ -53,13 +53,13 @@
 		    	<option value="17">제주</option>
 		    </select>
 	  	</div>
-	     <div class="col-6 offset-md-1 row">
+	     <div class="col-6 offset-md-1">
 	       	<label for="zipcode" class="form-label m-0">상세위치</label><br>
-			<input type="text" class="col form-control rounded-0 inblock" name="mhrLocalDetail" id="addr1" readonly>
+			<input type="text" class="col form-control rounded-0 inblock" name="mhfLocalDetail" id="addr1" readonly>
 			<input type="button" class="col-3 btn btn-secondary rounded-0 float-start" id="btnZipcode" value="상세위치 찾기">
 		</div>
 		<div class="col-12">
-		    <textarea class="form-control textEditor" name="mhfContent" id="Content"></textarea>
+		    <textarea class="form-control textEditor" name="mhfContent" id="content"></textarea>
 	  	</div>
 	  	<div class="col-12">
 		    <input type="file" class="form-control rounded-0" name="mhfAddFile" id="mnAddFile">
