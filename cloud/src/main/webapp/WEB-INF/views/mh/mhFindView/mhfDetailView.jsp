@@ -35,8 +35,8 @@
 			<div class="mhboxLine"></div>
 			<div class="row">
 				<div class="col text-center mt-4">
-					<input type="button" class="btn btn-outline-danger me-3" id="mhfUpdate" data-mhfNo="${report.mhrNo}" data-pageNum="${pageNum}"value="수정하기"> 
-					<input type="button" class="btn btn-outline-danger me-3" id="mhfDelete" data-mhfNo="${report.mhrNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+					<input type="button" class="btn btn-outline-danger me-3" id="mhfUpdate" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"value="수정하기"> 
+					<input type="button" class="btn btn-outline-danger me-3" id="mhfDelete" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
 					<input type="button" class="btn btn-outline-danger" value="목록으로" onclick="location.href='mhfSelectList?pageNum=${pageNum}'"/>
 				</div>
 			</div>
@@ -100,36 +100,6 @@
 	</div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

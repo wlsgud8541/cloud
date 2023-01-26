@@ -19,7 +19,7 @@
 		<!-- 상단 리스트 -->
 		<tr class="table-danger">
 			<th>번 호</th>
-			<th>성 별</th>
+			<th>대상성별</th>
 			<th>제 목</th>
 			<th>작성자</th>
 			<th>조회수</th>
