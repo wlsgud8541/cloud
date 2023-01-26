@@ -17,7 +17,7 @@
 	<div class="row mt-5">
 		<div class="col-7 me-4 bg-white p-4 shadow-sm  ">
 			<h3>
-				<b>실종자</b>
+				<b class="border-bottom border-3 border-danger border-opacity-50">실종자</b>
 			</h3>
 			<div class=" border border-4 border-danger border-opacity-25 p-3 mt-3">
 				<div class="swiper mySwiper ">
@@ -39,13 +39,13 @@
 												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
-											<div>
+											<div class="fs-6">
 												${jMap.mhiNm}(${jMap.mhiAge})
 											</div>
-											<div>
+											<div class="fs-6">
 												${fn:substring(jMap.mhiOccrde,2,4)}-${fn:substring(jMap.mhiOccrde,4,6)}-${fn:substring(jMap.mhiOccrde,6,8)}
 											</div>
-											<div class="text-truncate">
+											<div class="text-truncate fs-6">
 												${jMap.mhiOccrAdres}
 											</div>
 										</div>
@@ -70,13 +70,13 @@
 												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
-											<div>
+											<div class="fs-6">
 												${jMap.mhiNm}(${jMap.mhiAge})
 											</div>
-											<div>
+											<div class="fs-6">
 												${fn:substring(jMap.mhiOccrde,2,4)}-${fn:substring(jMap.mhiOccrde,4,6)}-${fn:substring(jMap.mhiOccrde,6,8)}
 											</div>
-											<div class="text-truncate">
+											<div class="text-truncate fs-6">
 												${jMap.mhiOccrAdres}
 											</div>
 										</div>
@@ -101,13 +101,13 @@
 												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
-											<div>
+											<div class="fs-6">
 												${jMap.mhiNm}(${jMap.mhiAge})
 											</div>
-											<div>
+											<div class="fs-6">
 												${fn:substring(jMap.mhiOccrde,2,4)}-${fn:substring(jMap.mhiOccrde,4,6)}-${fn:substring(jMap.mhiOccrde,6,8)}
 											</div>
-											<div class="text-truncate">
+											<div class="text-truncate fs-6">
 												${jMap.mhiOccrAdres}
 											</div>
 										</div>
@@ -132,13 +132,13 @@
 												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
-											<div>
+											<div class="fs-6">
 												${jMap.mhiNm}(${jMap.mhiAge})
 											</div>
-											<div>
+											<div class="fs-6">
 												${fn:substring(jMap.mhiOccrde,2,4)}-${fn:substring(jMap.mhiOccrde,4,6)}-${fn:substring(jMap.mhiOccrde,6,8)}
 											</div>
-											<div class="text-truncate">
+											<div class="text-truncate fs-6">
 												${jMap.mhiOccrAdres}
 											</div>
 										</div>
@@ -149,11 +149,11 @@
 					
 					</div>
 
-					<div class="swiper-button-next"></div>
-					<!-- 			       -->
+					<!-- <div class="swiper-button-next"></div>
+								      
 					<div class="swiper-button-prev"></div>
-					<!-- 			      -->
-					<div class="swiper-pagination"></div>
+								     
+					<div class="swiper-pagination"></div> -->
 				</div>
 			</div>
 			<div class="text-end mt-2 opacity-50">
@@ -162,7 +162,7 @@
 		</div>
 		<div class="col-4  p-4 bg-white shadow-sm">
 			<h3>
-				<b>실종자/반려동물 검색</b>
+				<b class="border-bottom border-3 border-success border-opacity-50">실종자/반려동물 검색</b>
 			</h3>
 			<div class="w3-light-gray p-4 main_Blist mhpSearch text-center">
 				<div class="main_search ">
@@ -298,7 +298,7 @@
 	<div class="row mt-4 ">
 		<div class="col-7 me-4 bg-white p-4 shadow-sm  ">
 			<h3>
-				<b>실종 반려동물</b>
+				<b class="border-bottom border-3 border-primary border-opacity-50">실종 반려동물</b>
 			</h3>
 			<div class=" border border-4 border-primary border-opacity-25 p-3">
 				<div class="swiper mySwiper ">
@@ -320,15 +320,16 @@
 												<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
-											<div>
+											<div class="fs-6">
 												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
 												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
 												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+												(<c:if test="${mainMprList.mprGen == 'M '}"><i class="bi bi-gender-male"></i></c:if><c:if test="${mainMprList.mprGen == 'F '}"><i class="bi bi-gender-female"></i></c:if>)
 											</div>
-											<div>
+											<div class="fs-6">
 												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
 											</div>
-											<div>
+											<div class="fs-6">
 												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
 												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
 												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
@@ -369,15 +370,16 @@
 													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
-											<div>
+											<div class="fs-6">
 												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
 												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
 												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+												(<c:if test="${mainMprList.mprGen == 'M '}"><i class="bi bi-gender-male"></i></c:if><c:if test="${mainMprList.mprGen == 'F '}"><i class="bi bi-gender-female"></i></c:if>)
 											</div>
-											<div>
+											<div class="fs-6">
 												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
 											</div>
-											<div>
+											<div class="fs-6">
 												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
 												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
 												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
@@ -418,15 +420,16 @@
 													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
-											<div>
+											<div class="fs-6">
 												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
 												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
 												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+												(<c:if test="${mainMprList.mprGen == 'M '}"><i class="bi bi-gender-male"></i></c:if><c:if test="${mainMprList.mprGen == 'F '}"><i class="bi bi-gender-female"></i></c:if>)
 											</div>
-											<div>
+											<div class="fs-6">
 												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
 											</div>
-											<div>
+											<div class="fs-6">
 												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
 												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
 												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
@@ -467,15 +470,16 @@
 													<img src="resources/image/main/cloudLogo.png" style="width: 90px; height: 120px;">
 												</a>
 											</c:if>
-											<div>
+											<div class="fs-6">
 												<c:if test="${mainMprList.mprPetType == 01 }">강아지</c:if>
 												<c:if test="${mainMprList.mprPetType == 02 }">고양이</c:if>
 												<c:if test="${mainMprList.mprPetType == 03 }">기타</c:if>
+												(<c:if test="${mainMprList.mprGen == 'M '}"><i class="bi bi-gender-male"></i></c:if><c:if test="${mainMprList.mprGen == 'F '}"><i class="bi bi-gender-female"></i></c:if>)
 											</div>
-											<div>
+											<div class="fs-6">
 												<fmt:formatDate value="${mainMprList.mprInfoDate }" pattern="yy-MM-dd" />
 											</div>
-											<div>
+											<div class="fs-6">
 												<c:if test="${mainMprList.mprLocalCode == 01 }">서울</c:if>
 												<c:if test="${mainMprList.mprLocalCode == 02 }">경기</c:if>
 												<c:if test="${mainMprList.mprLocalCode == 03 }">인천</c:if>
@@ -501,17 +505,17 @@
 						</div>
 					</div>
 
-					<div class="swiper-button-next"></div>
-					<!-- 			       -->
+					<!-- <div class="swiper-button-next"></div>
+								      
 					<div class="swiper-button-prev"></div>
-					<!-- 			      -->
-					<div class="swiper-pagination"></div>
+								     
+					<div class="swiper-pagination"></div> -->
 				</div>
 			</div>
 		</div>
 		<div class="col-4 p-4  bg-white shadow-sm">
 			<h3>
-				<b>목격게시판</b>
+				<b class="border-bottom border-3 border-success border-opacity-50">목격게시판</b>
 			</h3>
 			<div class="tab">
 				<ul class="tabnav">
@@ -552,7 +556,7 @@
 	<div class="row mt-4">
 		<div class="col-7 bg-white me-4 p-4 shadow-sm">
 			<h3>
-				<b>통계그래프</b>
+				<b class="border-bottom border-3 border-success border-opacity-50">통계그래프</b>
 			</h3>
 			<div style="with: auto;">
 				<canvas id="myChart"></canvas>
@@ -560,7 +564,7 @@
 		</div>
 		<div class="col-4 bg-white p-4 shadow-sm">
 			<h3>
-				<b>공지사항</b>
+				<b class="border-bottom border-3 border-success border-opacity-50">공지사항</b>
 			</h3>
 			<div class=" notice_main p-3">
 				<table class="table table-hover">

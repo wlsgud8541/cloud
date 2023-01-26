@@ -342,14 +342,11 @@ public class CsController {
 	@RequestMapping("/mrcInsertProcess.ajax")
 	@ResponseBody
 	public MrequestComm mrcInsert(
-			HttpServletRequest request, /*
-										 * @RequestParam(value = "mreAddFile", required = false) MultipartFile
-										 * multipartFile,
-										 */
-									MrequestComm mrequestComm) throws IOException{
+			HttpServletRequest request, MrequestComm mrequestComm){
 		//파일 업로드 공동 메서드
-//		String fileName = gms.addFile(request, multipartFile);
-//		mrequestComm.setMreComAddFile(fileName);
+		
+		logger.debug("mmno");
+		logger.debug(mrequestComm.getMmNo()+"");
 		
 		mrequestCommService.mrcInsert(mrequestComm);
 		mrequestService.mrUpdateReplyCode(mrequestComm.getMreNo());
@@ -374,15 +371,9 @@ public class CsController {
 	*/
 	@RequestMapping("/mrcUpdateProcess.ajax")
 	@ResponseBody
-	public MrequestComm mrcUpdate(HttpServletRequest request, @RequestParam(value = "mreAddFile", required = false) MultipartFile multipartFile,
-									MrequestComm mrequestComm) throws IOException {
-		
-		//파일 업로드 공동구현 메서드
-		String fileName = gms.addFile(request, multipartFile);
-		mrequestComm.setMreComAddFile(fileName);
+	public MrequestComm mrcUpdate(HttpServletRequest request, MrequestComm mrequestComm) {
 		
 		mrequestCommService.mrcUpdate(mrequestComm);
-		
 		return mrequestCommService.mrcSelectDetail(mrequestComm.getMreNo());
 	}
 	

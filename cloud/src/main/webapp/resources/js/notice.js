@@ -1091,8 +1091,9 @@ $(document).ready(function(){
 		$("#commForm").find("form").attr({"id": "mrcUpdateForm", "data-mreComNo": $(this).attr("data-mreComNo")});
 		$("#mrcInsertButton").val("답글수정");
 		
-		var comm = $(this).parent().find("span").text();
-		$("#mreComContent").val($.trim(comm));
+		//var comm = $(this).parent().find("span").text();
+		var bCon = $("#beforeContent").html();
+		$("#mreComContent").val($.trim(bCon));
 	});
 	
 	// 건의게시판 수정 폼 submit
@@ -1183,7 +1184,7 @@ $(document).ready(function(){
 		 								+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
 		 								+ (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
 						var result = 
-									'	<div class="row commReady" id="mreComTitle">'
+									' <div class="row commReady" id="mreComTitle">'
 									+'	<div class="col p-2 text-center border rounded-4">'
 									+'		<h3 class="fs-4"> 답변을 기다리는 중 입니다.</h3>'
 									+'	</div>'
