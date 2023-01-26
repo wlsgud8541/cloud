@@ -44,7 +44,7 @@
 		    	<option value="08">부산</option>
 		    	<option value="09">세종</option>
 		    	<option value="10">강원</option>
-		    	<option value="11">충북</option>
+		    	<option value="11">충북</option> 
 		    	<option value="12">충남</option>
 		    	<option value="13">전북</option>
 		    	<option value="14">전남</option>
