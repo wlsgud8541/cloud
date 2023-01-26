@@ -11,7 +11,7 @@
 	</div>
 	<form name="mprUpdateProcess" action="mprUpdateProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
-	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${mpModify.mmNo}">
+	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${sessionScope.mmNo}">
 	<input type="hidden" class="form-control" name="mprNo" id="mprNo" value="${mpModify.mprNo}">
 	<input type="hidden" class="form-control" name="pageNum" id="pageNum" value="${pageNum}">
 	<input type="hidden" class="form-control" name="mppWriter" id="writer" value="${sessionScope.userId} ">
@@ -26,8 +26,8 @@
 		<div class="row mb-2">
 			<div class="col-5">
 			    <label for="mprPetType" class="form-label">동물 종류</label>
-			    <select class="form-control col-2 rounded-0" name="mprPetType" id="mprPetType">
-			    	<option value="">--선택하세요--</option>
+			    <select class="form-control col-2 rounded-0" name="mprPetType" id="pettype">
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="01" ${mpModify.mprPetType == '01' ? 'selected' : ''}>강아지</option>
 			    	<option value="02" ${mpModify.mprPetType == '02' ? 'selected' : ''}>고양이</option>
 			    	<option value="03" ${mpModify.mprPetType == '03' ? 'selected' : ''}>기타(내용에 동물종류를 기재해주세요)</option>
@@ -36,7 +36,7 @@
 		  	<div class="col-4">
 			    <label for="mprGen" class="form-label">동물 성별</label>
 			     <select class="form-control rounded-0" name="mprGen" id="gen">
-			    	<option value="">--선택하세요--</option>
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="M " ${mpModify.mprGen == 'M ' ? 'selected' : ''}>수컷</option>
 			    	<option value="F " ${mpModify.mprGen == 'F ' ? 'selected' : ''}>암컷</option>
 		    	</select>
@@ -50,16 +50,17 @@
 	  	<div class="row mb-2">
 		  	<div class="col-2">
 			    <label for="mprStatusCode" class="form-label">실종현황</label>
-			    <select class="form-control col-2 rounded-0" name="mprStatusCode" id="mprStatusCode">
+			    <select class="form-control col-2 rounded-0" name="mprStatusCode" id="statuscode">
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="01" ${mpModify.mprStatusCode == '01' ? 'selected' : ''}>실종</option>
 			    	<option value="02" ${mpModify.mprStatusCode == '02' ? 'selected' : ''}>찾았어요!</option>
 			    </select>
 		  	</div>
 		  	
 		  	<div class="col-3">
-			    <label for="mprContent" class="form-label">지역</label>
+			    <label for="mprContent" class="form-label">실종지역</label>
 			    <select class="form-control col-2 rounded-0" name="mprLocalCode" id="localCode">
-			    	<option value="">--선택하세요--</option>
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="01" ${mpModify.mprLocalCode == '01' ? 'selected' : ''}>서울</option>
 			    	<option value="02" ${mpModify.mprLocalCode == '02' ? 'selected' : ''}>경기</option>
 			    	<option value="03" ${mpModify.mprLocalCode == '03' ? 'selected' : ''}>인천</option>

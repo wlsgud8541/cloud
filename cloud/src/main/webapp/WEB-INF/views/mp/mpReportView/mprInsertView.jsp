@@ -11,7 +11,7 @@
 	</div>
 	<form name="mprInsert" action="mprInsertProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
-	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value=1>
+	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${sessionScope.mmNo}">
 	<input type="hidden" class="form-control" name="mprRegDate" id="mprRegDate">
 	<input type="hidden" class="form-control" name="mprWriter" id="writer" value="${sessionScope.userId} ">
 	
@@ -25,8 +25,8 @@
 		<div class="row mb-2">
 			<div class="col-5">
 			    <label for="mprPetType" class="form-label">동물 종류</label>
-			    <select class="form-control col-2 rounded-0" name="mprPetType" id="mprPetType">
-			    	<option value="">--선택하세요--</option>
+			    <select class="form-control col-2 rounded-0" name="mprPetType" id="pettype">
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="01">강아지</option>
 			    	<option value="02">고양이</option>
 			    	<option value="03">기타(내용에 동물종류를 기재해주세요)</option>
@@ -36,7 +36,7 @@
 		  	<div class="col-4">
 			    <label for="mprGen" class="form-label">동물 성별</label>
 			     <select class="form-control col-2 rounded-0" name="mprGen" id="gen">
-			     	<option value="">--선택하세요--</option>
+			     	<option value="0">--선택하세요--</option>
 			    	<option value="M">수컷</option>
 			    	<option value="F">암컷</option>
 		    	</select>
@@ -50,16 +50,16 @@
 		<div class="row mb-2">
 		  	<div class="col-2">
 			    <label for="mprStatusCode" class="form-label">실종현황</label>
-			    <select class="form-control col-2 rounded-0" name="mprStatusCode" id="mprStatusCode">
-			    	<option value="">--선택하세요--</option>
+			    <select class="form-control col-2 rounded-0" name="mprStatusCode" id="statuscode">
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="01">실종</option>
 			    	<option value="02">찾았어요!</option>
 			    </select>
 		  	</div>
 		  	<div class="col-3">
-			    <label for="mprContent" class="form-label">지역</label>
+			    <label for="mprContent" class="form-label">실종지역</label>
 			    <select class="form-control col-2 rounded-0" name="mprLocalCode" id="localCode">
-			    	<option value="">--선택하세요--</option>
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="01">서울</option>
 			    	<option value="02">경기</option>
 			    	<option value="03">인천</option>

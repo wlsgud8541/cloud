@@ -27,8 +27,8 @@
 		<div class="row mb-2">
 			<div class="col-5">
 			    <label for="mppPetType" class="form-label">동물 종류</label>
-			    <select class="form-control col-2 rounded-0" name="mppPetType" id="mppPetType">
-			    	<option value="">--선택하세요--</option>
+			    <select class="form-control col-2 rounded-0" name="mppPetType" id="pettype">
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="01" ${mpModify.mppPetType == '01' ? 'selected' : ''}>강아지</option>
 			    	<option value="02" ${mpModify.mppPetType == '02' ? 'selected' : ''}>고양이</option>
 			    	<option value="03" ${mpModify.mppPetType == '03' ? 'selected' : ''}>기타(내용에 동물종류를 기재해주세요)</option>
@@ -38,7 +38,7 @@
 		  	<div class="col-4">
 			     <label for="mppGen" class="form-label">동물 성별</label>
 			     <select class="form-control col-2 rounded-0" name="mppGen" id="gen">
-			     	<option value="">--선택하세요--</option>
+			     	<option value="0">--선택하세요--</option>
 			    	<option value="M " ${mpModify.mppGen == 'M ' ? 'selected' : ''}>수컷</option>
 			    	<option value="F " ${mpModify.mppGen == 'F ' ? 'selected' : ''}>암컷</option>
 		    	</select>
@@ -53,7 +53,7 @@
 		<div class="row mb-2">
 		  	<div class="col-2">
 			    <label for="mppStatusCode" class="form-label">실종현황</label>
-			    <select class="form-control col-2 rounded-0" name="mppStatusCode" id="mppStatusCode">
+			    <select class="form-control col-2 rounded-0" name="mppStatusCode" id="statuscode">
 			    	<option value="01" ${mpModify.mppStatusCode == '01' ? 'selected' : ''}>실종</option>
 			    	<option value="02" ${mpModify.mppStatusCode == '02' ? 'selected' : ''}>찾았어요!</option>
 			    </select>
@@ -61,7 +61,7 @@
 		  	<div class="col-3">
 			    <label for="mppContent" class="form-label">실종지역</label>
 			    <select class="form-control col-2 rounded-0" name="mppLocalCode" id="localCode">
-			    	<option value="">--선택하세요--</option>
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="01" ${mpModify.mppLocalCode == '01' ? 'selected' : ''}>서울</option>
 			    	<option value="02" ${mpModify.mppLocalCode == '02' ? 'selected' : ''}>경기</option>
 			    	<option value="03" ${mpModify.mppLocalCode == '03' ? 'selected' : ''}>인천</option>

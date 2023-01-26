@@ -126,16 +126,119 @@ $(document).ready(function(){
 		
 		//실종 반려동물 신고 폼체크
 		if(arrVCkLocation[0] == 'mprUpdate' || arrVCkLocation[0] == 'mprInsert' ){
+			var pettype = $("#pettype").val();
+			var statuscode = $("#statuscode").val();
+			var addr1 = $("#addr1").val();
 			
+			// 실종반려동물 성별 체크
+			if(pettype == 0){
+				 alert("동물종류를 입력해 주세요.");
+				 return false;
+			}
+			
+			// 실종반려동물 성별 체크
+			if(gen == 0){
+				 alert("성별을 입력해 주세요.");
+				 return false;
+			}
+			
+			// 실종반려동물 실종날짜 체크
+			if(infoDate == 0){
+				alert("날짜를 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종반려동물 실종현황 체크*
+			if(statuscode == 0){
+				alert("실종현황을 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종반려동물 지역 체크
+			if(localCode == 0){
+				alert("실종지역을 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종반려동물 상세위치 체크*
+			if(addr1 == ''){
+			 alert("상세위치를 입력해 주세요.");
+			 	return false;
+			}
 		}
 	
 		//실종 반려동물 임시보호 폼체크		
 		if(arrVCkLocation[0] == 'mppInsert' || arrVCkLocation[0] == 'mppUpdate' ){
+			var pettype = $("#pettype").val();
+			var statuscode = $("#statuscode").val();
+			var addr1 = $("#addr1").val();
 			
+			// 실종반려동물 종류 체크
+			if(pettype == 0){
+				alert("종류를 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종반려동물 성별 체크
+			if(gen == 0){
+				 alert("성별을 입력해 주세요.");
+				 return false;
+			}
+			
+			// 실종반려동물 실종날짜 체크
+			if(infoDate == 0){
+				alert("날짜를 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종반려동물 실종현황 체크*
+			if(statuscode == 0){
+				alert("실종현황을 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종반려동물 지역 체크
+			if(localCode == 0){
+				alert("실종지역을 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종반려동물 상세위치 체크*
+			if(addr1 == ''){
+			 alert("상세위치를 입력해 주세요.");
+			 	return false;
+			}
 		}
 
 		//실종 반려동물 목격 게시판 폼체크
 		if(arrVCkLocation[0] == 'mpfInsert' || arrVCkLocation[0] == 'mpfUpdate' ){
+			var pettype = $("#pettype").val();
+			var statuscode = $("#statuscode").val();
+			var addr1 = $("#addr1").val();
+			
+			// 실종반려동물 종류 체크
+			if(pettype == 0){
+				alert("종류를 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종반려동물 실종날짜 체크
+			if(infoDate == 0){
+				alert("날짜를 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종반려동물 지역 체크
+			if(localCode == 0){
+				alert("실종지역을 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종반려동물 상세위치 체크*
+			if(addr1 == ''){
+			 alert("상세위치를 입력해 주세요.");
+			 	return false;
+			}
 			
 		}
 		
@@ -149,6 +252,9 @@ $(document).ready(function(){
 				return false;
 			}
 		}
+		$("#insertForm").submit();
+		
+		
 	});
 	
 	

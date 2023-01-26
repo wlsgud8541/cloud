@@ -11,7 +11,7 @@
 	</div>
 	<form name="mpfInsert" action="mpfInsertProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
-	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value=1>
+	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${mpModify.mmNo}">
 	<input type="hidden" class="form-control" name="mpfRegDate" id="mpfRegDate">
 	<input type="hidden" class="form-control" name="mpfWriter" id="writer" value="${sessionScope.userId} ">
 	
@@ -26,7 +26,8 @@
 		<div class="row mb-2">
 			<div class="col-6">
 			    <label for="mpfPetType" class="form-label">동물 종류</label>
-			    <select class="form-control col-2 rounded-0" name="mpfPetType" id="mpfPetType">
+			    <select class="form-control col-2 rounded-0" name="mpfPetType" id="pettype">
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="01">강아지</option>
 			    	<option value="02">고양이</option>
 			    	<option value="03">기타(내용에 동물종류를 기재해주세요)</option>
@@ -40,8 +41,9 @@
 		
 		<div class="row mb-2">
 		  	<div class="col-4">
-			    <label for="mpfLocalCode" class="form-label">지역 코드</label>
+			    <label for="mpfLocalCode" class="form-label">실종지역</label>
 		  	 	<select class="form-control col-2 rounded-0" name="mpfLocalCode" id="localCode">
+				   	<option value="0">--선택하세요--</option>
 				   	<option value="01">서울</option>
 			    	<option value="02">경기</option>
 			    	<option value="03">인천</option>

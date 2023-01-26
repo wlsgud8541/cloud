@@ -27,8 +27,8 @@
 		<div class="row mb-2">
 			<div class="col-6">
 			    <label for="mpfPetType" class="form-label">동물 종류</label>
-		  	    <select class="form-control col-2 rounded-0" name="mpfPetType" id="mpfPetType">
-			    	<option value="">--선택하세요--</option>
+		  	    <select class="form-control col-2 rounded-0" name="mpfPetType" id="pettype">
+			    	<option value="0">--선택하세요--</option>
 			    	<option value="01" ${mpModify.mpfPetType == '01' ? 'selected' : ''}>강아지</option>
 			    	<option value="02" ${mpModify.mpfPetType == '02' ? 'selected' : ''}>고양이</option>
 			    	<option value="03" ${mpModify.mpfPetType == '03' ? 'selected' : ''}>기타(내용에 동물종류를 기재해주세요)</option>
@@ -42,7 +42,7 @@
 		
 		<div class="row mb-2">
 		  	<div class="col-4">
-			    <label for="mpfLocalCode" class="form-label">지역</label>
+			    <label for="mpfLocalCode" class="form-label">실종지역</label>
 			    <select class="form-control col-2 rounded-0" name="mpfLocalCode" id="localCode">
 			    	<option value="01" ${mpModify.mpfLocalCode == '01' ? 'selected' : ''}>서울</option>
 			    	<option value="02" ${mpModify.mpfLocalCode == '02' ? 'selected' : ''}>경기</option>
