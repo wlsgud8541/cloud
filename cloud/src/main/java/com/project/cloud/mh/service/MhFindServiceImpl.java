@@ -44,7 +44,7 @@ public class MhFindServiceImpl implements MhFindService{
 	}
 	@Override
 	public MhFind mhfSelectReadCount(int mhfNo, boolean count) {
-		return null;
+		return mhfDao.mhfSelectReadCount(mhfNo, count);
 	}
 	@Override
 	public int mhfDelete(int mhfNo) {

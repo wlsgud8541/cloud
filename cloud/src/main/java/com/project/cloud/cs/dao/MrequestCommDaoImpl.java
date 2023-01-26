@@ -26,7 +26,7 @@ public class MrequestCommDaoImpl implements MrequestCommDao {
 	public int mrcInsert(MrequestComm mrequestComm) {
 		return sql.insert("MrequestComm.mrcInsert", mrequestComm);
 	}
-
+   
 	@Override
 	public int mrcUpdate(MrequestComm mrequestComm) {
 		return sql.update("MrequestComm.mrcUpdate",mrequestComm);

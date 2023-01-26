@@ -6,23 +6,35 @@
 <h3 class="text-success fw-bold mt-4">검색결과</h3>
 	<hr class="border border-success border-2 opacity-75">
 
+<% int i = 0; %>
+<c:forEach var="index" items="${searchList}" varStatus="status">
+		<c:if test="${fn:trim(index.tableType) == '02'}">
+			<%i++;%>
+			<c:set var="count02" value="<%= i %>" />
+		</c:if>
+</c:forEach>
+
+
 <c:if test="${not empty searchList}">
 	<div class="col-3 fs-2 fw-bold border-bottom border-success border-4 border-opacity-50 ">
 		실종자 신고
 	</div>
 	<br>
-	<c:forEach var="search" items="${searchList}">
-		<c:if test="${fn:trim(search.tableType) == '02'}">
-		<div>
-			<b><a href="mhrDetailView?mhrNo=${search.searchNo}&pageNum=${pageNum}">${search.searchTitle}</a></b>
-		</div>
-		<p>${search.searchContent}</p>
-		<small class="text-secondary">
-			 ${search.searchWriter}&nbsp;&nbsp;|&nbsp;&nbsp;<fmt:formatDate value="${search.searchRegdate}" pattern="yy-MM-dd"/>
-		</small>
+	 <c:forEach var="search" items="${searchList}" varStatus="st">
+	 	<c:if test="${fn:trim(search.tableType) == '02'}">
+			<div>
+				<b><a href="mhrDetailView?mhrNo=${search.searchNo}&pageNum=1">${search.searchTitle}</a></b>
+			</div>
+			<p>${search.searchContent}</p>
+			<small class="text-secondary">
+				 ${search.searchWriter}&nbsp;&nbsp;|&nbsp;&nbsp;<fmt:formatDate value="${search.searchRegdate}" pattern="yy-MM-dd"/>
+			</small>
 		<br><br>
 		</c:if>
-	</c:forEach>
+	 </c:forEach>
+	<c:if test="${count02 == null}">
+		<h1>testestes</h1>
+	</c:if>
 	<div class="text-end">
 	<a href="mhrSelectList">실종자 신고 더보기</a>
 	</div>
@@ -33,7 +45,7 @@
 	<c:forEach var="search" items="${searchList}">
 		<c:if test="${fn:trim(search.tableType) == '01'}">
 		<div>
-			<b><a href="mhfSelectList?mhfNo=${search.searchNo}&pageNum=${pageNum}">${search.searchTitle}</a></b>
+			<b><a href="mhfDetailView?mhfNo=${search.searchNo}&pageNum=1">${search.searchTitle}</a></b>
 		</div>
 		<p>${search.searchContent}</p>
 		<small class="text-secondary">
@@ -52,7 +64,7 @@
 		<c:forEach var="search" items="${searchList}">
 		<c:if test="${fn:trim(search.tableType) == '13'}">
 		<div>
-			<b><a href="mprSelectList?mprNo=${search.searchNo}&pageNum=${pageNum}">${search.searchTitle}</a></b>
+			<b><a href="mprSelectDetail?mprNo=${search.searchNo}&pageNum=1">${search.searchTitle}</a></b>
 		</div>
 		<p>${search.searchContent}</p>
 		<small class="text-secondary">
@@ -71,7 +83,7 @@
 	<c:forEach var="search" items="${searchList}">
 		<c:if test="${fn:trim(search.tableType) == '11'}">
 		<div>
-			<b><a href="mpfSelectList?mpfNo=${search.searchNo}&pageNum=${pageNum}">${search.searchTitle}</a></b>
+			<b><a href="mpfSelectDetail?mpfNo=${search.searchNo}&pageNum=1">${search.searchTitle}</a></b>
 		</div>
 		<small class="text-secondary">
 			 ${search.searchWriter}&nbsp;&nbsp;|&nbsp;&nbsp;<fmt:formatDate value="${search.searchRegdate }" pattern="yy-MM-dd"/>
@@ -89,7 +101,7 @@
 	<c:forEach var="search" items="${searchList}">
 		<c:if test="${fn:trim(search.tableType) == '12'}">
 		<div>
-			<b><a href="mppSelectList?mppNo=${search.searchNo}&pagenum=${pageNum}">${search.searchTitle}</a></b>
+			<b><a href="mppSelectDetail?mppNo=${search.searchNo}&pageNum=1">${search.searchTitle}</a></b>
 		</div>
 		<small class="text-secondary">
 			 ${search.searchWriter}&nbsp;&nbsp;|&nbsp;&nbsp;<fmt:formatDate value="${search.searchRegdate }" pattern="yy-MM-dd"/>
@@ -107,7 +119,7 @@
 	<c:forEach var="search" items="${searchList}">
 		<c:if test="${fn:trim(search.tableType) == '21'}">
 		<div>
-			<b><a href="mnSelectList=${search.searchNo}&pageNum=${pageNum}">${search.searchTitle}</a></b>
+			<b><a href="mnSelectDetail=${search.searchNo}&pageNum=1">${search.searchTitle}</a></b>
 		</div>
 		<small class="text-secondary">
 			 ${search.searchWriter}&nbsp;&nbsp;|&nbsp;&nbsp;<fmt:formatDate value="${search.searchRegdate }" pattern="yy-MM-dd"/>
@@ -124,7 +136,7 @@
 	<c:forEach var="search" items="${searchList}">
 		<c:if test="${fn:trim(search.tableType) == '22'}">
 			<div>
-				<a href="mqSelectList?mqNo=${search.searchNo}&pageNum=${pageNum}">${search.searchTitle}</a>
+				<a href="mqSelectList">${search.searchTitle}</a>
 			</div>
 			<small class="text-secondary">
 				 ${search.searchWriter}&nbsp;&nbsp;|&nbsp;&nbsp;<fmt:formatDate value="${search.searchRegdate }" pattern="yy-MM-dd"/>
@@ -137,7 +149,7 @@
 </c:if>
 
 <c:if test="${empty searchList}">
-	<h2> 자료가 없습니다.</h2>
+	<div class="text-center fw-bold fw-3 mt-4"> 검색 결과가 없습니다.</div>
 </c:if>
 
 </body>
