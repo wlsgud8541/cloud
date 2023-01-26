@@ -109,9 +109,25 @@ $(document).ready(function(){
 
 	// 아이디 중복확인
 	$("#idCheckBtn").on("click",function(){
+		var idCheck = /^[a-z]+[a-zA-Z0-9]{8,15}/;
 		var id = $("#id").val();
+		
+		if(id.trim() == ''){
+			alert("아이디를 입력 후 중복검사를 실행해주세요.");
+			return false;
+		}
+		
 		var tag1 = '<p class="text-primary">\'' + id + '\'는 사용 할 수 있는 아이디입니다.</p>';
 		var tag2 = '<p class="text-danger">\'' + id + '\'는 중복된 아이디이거나 사용 할 수 없는 아이디입니다.</p>';
+		var tag3 = '<p class="text-danger">올바르지 않은 아이디 형식입니다.영문자와 숫자 조합인 8~15글자의 형식으로 입력바랍니다.</p>';
+
+		if(idCheck.test(id)==false){
+			alert("올바르지 않은 아이디 형식입니다. 확인 후 다시 시도해주세요.");
+			$(".idForm").empty();
+			$(".idForm").append(tag3);
+			$("#idCheckFlag").val('N');
+			return false;
+		}	
 	
 		$.ajax({
 			url : "idCheck",
@@ -693,11 +709,13 @@ $(document).ready(function(){
 	});
 	
 	$("#changePass").on("click",function(){
-		window.open('mmPassChange', '네이버팝업', 'width=500px,height=300px,scrollbars=no');
+		window.open('mmPassChange', 'cloudPasschange', 'width=500px,height=400px,scrollbars=no');
 	});
 	
 	$("#passCkBtn").on("click",function(e){
 		e.preventDefault();
+		
+		$("#passForm").css("margin-top","-180px");
 		
 		var mmId = $("#mmId").val();
 		var mmPass = $("#mmPass").val();
@@ -755,8 +773,14 @@ $(document).ready(function(){
 		// 비밀번호 체크 정규식(8~16자 영문, 숫자 조합)
 		var passCheck = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
 		var pass1 = $("#mmPass").val();
-		var tag1 = '<p class="text-primary">사용 할 수 있는 패스워드 입니다.</p>'
-		var tag2 = '<p class="text-danger">패스워드는 8~16자 영문, 숫자 조합으로 입력해주세요.</p>';
+		var tag1 = '<div class="row"><div class="col-10 offset-1">'
+			tag1 += '<p class="text-primary"><small>사용 할 수 있는 패스워드 입니다.</small></p>'
+			tag1 += '</div></div>'
+			tag1 += '<div class="col-1"></div>'
+		var tag2 = '<div class="row"><div class="col-10 offset-1">'
+			tag2 += '<p class="text-danger"><small>패스워드는 8~16자 영문, 숫자 조합으로 입력해주세요.</small></p>';
+			tag2 += '</div></div>'
+			tag2 += '<div class="col-1"></div>'
 		
 		if(passCheck.test(pass1) == true){
 			$(".passCheck1").empty();
@@ -772,13 +796,27 @@ $(document).ready(function(){
 	});
 		
 	$(document).on("keyup","#checkPass",function(){
+		var passCheck = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
 		var pass1 = $("#mmPass").val();
 		var pass2 = $("#checkPass").val();
-		var tag1 = '<p class="text-danger">패스워드가 일치하지 않습니다.</p>';
-		var tag2 = '<p class="text-primary">패스워드가 일치합니다.</p>';
+		
+		var tag1 = '<div class="row"><div class="col-10 offset-1">'
+			tag1 += '<p class="text-danger"><small>패스워드가 일치하지 않습니다.</small></p>';
+			tag1 += '</div></div>'
+			tag1 += '<div class="col-1"></div>'
+
+		var tag2 = '<div class="row"><div class="col-10 offset-1">'
+			tag2 += '<p class="text-primary"><small>패스워드가 일치합니다.</small></p>';
+			tag2 += '</div></div>'
+			tag2 += '<div class="col-1"></div>'
+
+		var tag3 = '<div class="row"><div class="col-10 offset-1">'
+			tag3 += '<p class="text-danger"><small>패스워드는 8~16자 영문, 숫자 조합으로 입력해주세요.</small></p>';
+			tag3 += '</div></div>'
+			tag3 += '<div class="col-1"></div>'
 		
 		// 비밀번호가 일치하지 않는 경우
-		if(!(pass2 == pass1)){ 
+		if(!(pass2 == pass1)){
 			$(".passCheck2").empty();
 			$(".passCheck2").append(tag1);
 			changePassBool2 = false;
@@ -786,9 +824,15 @@ $(document).ready(function(){
 		
 		// 비밀번호가 일치하는 경우
 		if(pass2 == pass1){
-			$(".passCheck2").empty();
-			$(".passCheck2").append(tag2);
-			changePassBool2 = true;
+			if(passCheck.test(pass1) == false){
+				$(".passCheck2").empty();
+				$(".passCheck2").append(tag3);
+				changePassBool2 = false;
+			}else{
+				$(".passCheck2").empty();
+				$(".passCheck2").append(tag2);
+				changePassBool2 = true;
+			}
 		}
 	});
 	
