@@ -39,7 +39,7 @@
 								<c:if test="${mrList.mreReplyCode == '02' }">
 									<td class="text-success" style = "padding : 1.5rem 0.5rem;"><b>답변완료</b></td>
 								</c:if>
-								<td style = "padding : 1.5rem 0.5rem;">${mrList.mreNo }</td>
+								<td style = "padding : 1.5rem 0.5rem;">${mrList.mreNo}</td>
 								<td style = "padding : 1.5rem 0.5rem;">
 								<a href="mrSelectDetail?mreNo=${mrList.mreNo}&pageNum=${currentPage}">${mrList.mreTitle}
 									<c:if test="${mrList.mreAddFile!=null }">

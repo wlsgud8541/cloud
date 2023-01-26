@@ -21,7 +21,7 @@
 				mreComRegDate,
 				mreComContent,
 				mreComWriter,
-				mreComDelYn,
+				mreComDelYn
 				<!-- mreComAddFile -->
 		FROM MREQUESTCOMM 
 		WHERE mreNo = #{mreNo}

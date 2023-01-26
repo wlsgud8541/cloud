@@ -46,17 +46,19 @@
 	</div>
 
 	<c:if test="${mrequest.mreReplyCode == '01' }">
-		<div class="row mt-5 commReady">
-			<div class="col p-3 text-end">
-				<span id="mrcInsert" class="text-secondary" style="cursor: pointer;">
-					<i class="bi bi-file-earmark-text-fill"	style="color: cornflowerblue;"></i> 답글쓰기
-				</span>
+		<div id="test">
+			<div class="row mt-5 commReady">
+				<div class="col p-3 text-end">
+					<span id="mrcInsert" class="text-secondary" style="cursor: pointer;">
+						<i class="bi bi-file-earmark-text-fill"	style="color: cornflowerblue;"></i> 답글쓰기
+					</span>
+				</div>
 			</div>
-		</div>
-		<!-- 댓글 헤더 영역 -->
-		<div class="row commReady" id="mreComTitle">
-			<div class="col p-2 text-center border rounded-4">
-				<h3 class="fs-4">답변을 기다리는 중 입니다.</h3>
+			<!-- 댓글 헤더 영역 -->
+			<div class="row commReady" id="mreComTitle">
+				<div class="col p-2 text-center border rounded-4">
+					<h3 class="fs-4">답변을 기다리는 중 입니다.</h3>
+				</div>
 			</div>
 		</div>
 	</c:if>
@@ -70,18 +72,8 @@
 				</h4>
 			</div>
 			<div class="commRow gunUnderContent col border-top border-bottom py-4 px-3">
-				<pre><b>${mrequestcomm.mreComTitle}</b><br><br> <span>${mrequestcomm.mreComContent}</span></pre>
+				<pre><b>${mrequestcomm.mreComTitle}</b><br><br> <span id="beforeContent" >${mrequestcomm.mreComContent}</span></pre>
 				<br> <br> 
-				<c:if test="${mrequestcomm.mreComAddFile != null}">
-				<tr>
-					<td class="py-2">&nbsp;&nbsp;💾 | <a href="fileDownload?fileName=${mrequestcomm.mreComAddFile}">다운로드</a></td>
-				</tr>	
-				</c:if>
-				<c:if test="${mrequestcomm.mreComAddFile == null}">
-				<tr>
-					<td class="py-2">&nbsp;&nbsp;💾 | 파일없음</td>
-				</tr>	
-				</c:if><br>
 				<small class="text-secondary"><b>${mrequestcomm.mreComWriter}</b>&nbsp;|&nbsp;
 				<fmt:formatDate
 						value="${mrequestcomm.mreComRegDate}" pattern="yyyy-MM-dd HH:mm" /></small>
@@ -99,8 +91,8 @@
 	<!-- 댓글 쓰기 폼 -->
 	<div class="row my-3 d-none" id="commForm">
 		<div class="col">
-			<form name="mrcInsertForm" id="mrcInsertForm" method="post" enctype="multipart/form-data">
-				<input type="hidden" id="mMno" name="mmNo" value="${sessionScope.mmNo }" />
+			<form name="mrcInsertForm" id="mrcInsertForm" method="post">
+				<input type="hidden" id="mmNo" name="mmNo" value="${sessionScope.mmNo }" />
 				<input type="hidden" id="mreNo" name="mreNo" value="${ mrequest.mreNo }" />
 				<input type="hidden" id="mreComWriter" name="mreComWriter" value="${sessionScope.userId }" />
 				<div class="row bg-light my-3 p-3 border">
@@ -108,9 +100,7 @@
 						<div class="row my-3">
 							<div class="col-md-10">
 								<input type="text" class="form-control" id="mreComTitle" name="mreComTitle" value="${mrequestcomm.mreComTitle}">
-								<textarea name="mreComContent textEditor" id="mreComContent" class="form-control mt-2 textEditor" rows="4"></textarea>
-								<!-- <label for="title" class="form-label">파 일</label>
-		    					<input type="file" class="form-control" name="mreAddFile"  id="mreAddFile" > -->
+								<textarea name="mreComContent" id="mreComContent" class="form-control mt-2 textEditor" rows="4">${mrequestcomm.mreComContent}</textarea>
 							</div>
 							<div class="col-md">
 								<input type="submit" value="답글쓰기" class="btn btn-success h-100 w-100" id="mrcInsertButton">

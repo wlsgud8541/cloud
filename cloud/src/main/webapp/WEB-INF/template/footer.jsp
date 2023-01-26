@@ -4,7 +4,7 @@
 <footer class="row bd-footer py-3 py-md-3 mt-5 bg-light border-top"
 	id="global-footer">
 	<div class="col-5 text-end pt-3 pe-5">
-		<img alt="" src="resources/image/main/footerLogo.png" style="width:130px;">
+		<a href="#"><img alt="" src="resources/image/main/footerLogo.png" style="width:130px;"></a>
 	</div>
 	<div class="col-7 text-start text-secondary pt-3">
 		<p>
