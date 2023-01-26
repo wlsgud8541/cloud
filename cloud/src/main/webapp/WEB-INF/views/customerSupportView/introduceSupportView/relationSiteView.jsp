@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <body>
 	<div class="w3-content">
 	<h1 class="text-center pb-5">관련 사이트</h1>

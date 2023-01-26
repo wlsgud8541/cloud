@@ -363,6 +363,7 @@ $(document).ready(function(){
 	$("#mprDelete").on("click",function(){
 		var mprNo = $(this).attr("data-mprNo");
 		var pageNum = $(this).attr("data-pageNum");
+		alert("게시글이 삭제되었습니다.");
 		location.href='mprDeleteProcess?mprNo='+mprNo+'&pageNum='+pageNum;
 	});
 	
@@ -379,6 +380,7 @@ $(document).ready(function(){
 	$("#mpfDelete").on("click",function(){
 		var mpfNo = $(this).attr("data-mpfNo");
 		var pageNum = $(this).attr("data-pageNum");
+		alert("게시글이 삭제되었습니다.");
 		location.href='mpfDeleteProcess?mpfNo='+mpfNo+'&pageNum='+pageNum;
 	});
 	
@@ -396,6 +398,7 @@ $(document).ready(function(){
 	$("#mppDelete").on("click",function(){
 		var mppNo = $(this).attr("data-mppNo");
 		var pageNum = $(this).attr("data-pageNum");
+		alert("게시글이 삭제되었습니다.");
 		location.href='mppDeleteProcess?mppNo='+mppNo+'&pageNum='+pageNum;
 	});
 	

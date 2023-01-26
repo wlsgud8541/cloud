@@ -500,6 +500,7 @@ public class MpController {
 		mpfCom.setMpfComContent(mpfComContent);
 		
 		int result = mpfCommService.mpfcInsert(mpfCom);
+		System.out.println("result : " + result);
 		List<MpFindComm> mpfCommList = mpfCommService.mpfcSelectList(mpfCom.getMpfNo());
 		
 		return mpfCommList;
@@ -519,6 +520,7 @@ public class MpController {
 		mpfCom.setMpfComContent(mpfContent);
 		
 		int result = mpfCommService.mpfcUpdate(mpfCom);
+		System.out.println("result : " + result);
 		List<MpFindComm> mpfCommList = mpfCommService.mpfcSelectList(mpfNo); 
 		
 		return mpfCommList;
@@ -529,6 +531,7 @@ public class MpController {
 	@ResponseBody
 	public List<MpFindComm> mpfComDelete(MpFindComm mpfindCom){
 		int result = mpfCommService.mpfcDelete(mpfindCom);
+		System.out.println("result : " + result);
 		return mpfCommService.mpfcSelectList(mpfindCom.getMpfNo());
 	}
 }

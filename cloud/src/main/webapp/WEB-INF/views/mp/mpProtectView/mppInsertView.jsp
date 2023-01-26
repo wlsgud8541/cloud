@@ -22,7 +22,6 @@
 			    <input type="text"class="form-control rounded-0" name="mppTitle" id="title">
 		  	</div>
 		</div>
-		
 		<div class="row mb-2">
 			<div class="col-5">
 			    <label for="mppContent" class="form-label">동물 종류</label>
