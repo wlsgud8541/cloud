@@ -63,6 +63,9 @@
 							</div>
 					</div	>
 					</c:forEach>
+					<div class="text-end mt-2 opacity-50">
+						<span class="fw-bold text-secondary">[자료출처 : 경찰청]</span>
+					</div>
 				</div>
 				<!-- 하단 리스트 -->
 			<div class="cl-pagination-wrap mt-5">
