@@ -8,7 +8,7 @@ $(document).ready(function(){
   	});
   	
 	//등록하기 버튼 클릭 시 벨류 체크
-	$("#insert").on("submit", function(e){
+	$("#insert").on("click", function(e){
 		e.preventDefault();
 		
 		var writer = $("#writer").val(); // 작성자
@@ -50,6 +50,8 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		/*
+		
 		// 실종자 실종당시 나이 체크
 		if(mhrMage == 0){
 			alert("실종당시 나이가 입력되지 않았습니다.");
@@ -86,11 +88,12 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		*/
 		
 		//첨부파일 체크
 		if(addFile == null || addFile.length == 0){
 			var result = confirm('첨부파일이 등록되지 않았습니다. 등록하시겠습니까?');
-			if(result){
+			if(result == true){
 				$("#insertForm").submit();
 			}else{
 				return false;

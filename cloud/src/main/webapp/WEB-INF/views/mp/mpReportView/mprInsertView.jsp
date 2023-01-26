@@ -13,7 +13,7 @@
 	
 	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value=1>
 	<input type="hidden" class="form-control" name="mprRegDate" id="mprRegDate">
-	<input type="hidden" class="form-control" name="mprWriter" id="mprWriter" value="${sessionScope.userId} ">
+	<input type="hidden" class="form-control" name="mprWriter" id="writer" value="${sessionScope.userId} ">
 	
 	<div class="col-8 offset-md-2">
 		<div class="row mb-2">

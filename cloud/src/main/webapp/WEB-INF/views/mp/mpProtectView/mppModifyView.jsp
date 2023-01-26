@@ -9,17 +9,18 @@
 			<p class="border border-bottom border-primary border-2" style="width: 265px; display: inline-block; margin-bottom: 0px;"></p>
 		</div>
 	</div>
-	<form name="mppUpdateProcess" action="mppUpdateProcess" id="mppUpdateForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
+	<form name="mppUpdateProcess" action="mppUpdateProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${mpModify.mmNo}">
 	<input type="hidden" class="form-control" name="mppNo" id="mppNo" value="${mpModify.mppNo}">
 	<input type="hidden" class="form-control" name="pageNum" id="pageNum" value="${pageNum}">
+	<input type="hidden" class="form-control" name="mppWriter" id="writer" value="${sessionScope.userId} ">
 	
 	<div class="col-8 offset-md-2">
 		<div class="row mb-2">
 			<div class="col-12">
 			   <label for="mppTitle" class="form-label">제목</label>
-		 	   <input type="text"class="form-control" name="mppTitle rounded-0" id="title" value="${mpModify.mppTitle}">
+		 	   <input type="text"class="form-control rounded-0" name="mppTitle" id="title" value="${mpModify.mppTitle}">
 		  	</div>
 		</div>
 		

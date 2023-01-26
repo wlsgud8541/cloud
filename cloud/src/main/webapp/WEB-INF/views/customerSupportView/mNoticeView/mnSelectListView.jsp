@@ -121,11 +121,12 @@
 					</div>
 				</form>
 			</div>
-			
-			<div class="board-bottom">
-				<a href="mnInsert" class="btn btn-outline-success posiRight my-2">글쓰기</a>
-				<br>
-			</div>
+			<c:if test="${not empty sessionScope.userId && sessionScope.userId == 'admin0001'}">
+				<div class="board-bottom"> 
+					<a href="mnInsert" class="btn btn-outline-success posiRight my-2">글쓰기</a>
+					<br>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </div>
