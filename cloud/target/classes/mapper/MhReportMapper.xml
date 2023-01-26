@@ -33,11 +33,14 @@
 		<result property="memberTell" column="memberTell"/>
 	</resultMap>
 	<sql id="mhSearch">
-		<if test="type == 'title'">
-			AND mhrTitle LIKE '%' ||#{keyword}|| '%'
+		<if test="mhrType == 'title'">
+			AND mhrTitle LIKE '%' || #{mhrKeyword} || '%'
 		</if>
-		<if test="type == 'writer'">
-			AND mhrWriter LIKE '%' ||#{keyword}|| '%'
+		<if test="mhrType == 'writer'">
+			AND mhrWriter LIKE '%' || #{mhrKeyword} || '%'
+		</if>
+		<if test="mhrType == 'content'">
+			AND mhrContent LIKE '%' || #{mhrKeyword} || '%'
 		</if>
 	</sql>
 	<sql id="subMhSrch">
@@ -71,8 +74,8 @@
         ,mhrNo
         ,mhrReadCnt
         ,mhrRegDate
-        ,mhrIllCode
         ,mhrAddFile
+        ,mhrIllCode
         ,mhrTitle
         ,mhrContent
         ,mhrWriter

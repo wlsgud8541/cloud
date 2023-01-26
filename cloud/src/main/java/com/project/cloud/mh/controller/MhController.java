@@ -57,8 +57,8 @@ public class MhController {
 	// 실종자 정보 게시판뷰
 	@RequestMapping("/mhrSelectList")
 	public String mhrSelectList(Model model,
-											@RequestParam(value="type",required=false, defaultValue="")String type,
-											@RequestParam(value="keyword",required=false, defaultValue="")String keyword,
+											@RequestParam(value="mhrType",required=false, defaultValue="")String mhrType,
+											@RequestParam(value="mhrKeyword",required=false, defaultValue="")String mhrKeyword,
 											@RequestParam(value="pageNum",required=false,defaultValue="1")int pageNum,
 											@RequestParam(value = "mpGen",required = false, defaultValue = "") String mpGen, 
 											@RequestParam(value = "mpType",required = false, defaultValue = "") String mpType, 
@@ -67,22 +67,22 @@ public class MhController {
 											@RequestParam(value = "mpInfoDate2",required = false, defaultValue = "") String mpInfoDate2, 
 											@RequestParam(value = "mpLocalCode",required = false, defaultValue = "") String mpLocalCode)
 																																	{
-		System.out.println(keyword+":keyword");
-		System.out.println(type+":type");
+		System.out.println(mhrKeyword+":mhrKeyword");
+		System.out.println(mhrType+":mhrType");
 		// 페이징처리
 		int pagesize = 10;
 		int pagegroup = 10;
 		// 총 게시글 수 조회
-		int listCount = service.mhrListCount(type,keyword);
+		int listCount = service.mhrListCount(mhrType,mhrKeyword);
 		logger.debug("실종자 정보 게시판 리스트카운트"+listCount);
-		Map<String,Object> mhrList = gm.pageList(listCount, pagesize, pagegroup, pageNum, type, keyword);
+		Map<String,Object> mhrList = gm.pageList(listCount, pagesize, pagegroup, pageNum, mhrType, mhrKeyword);
 		int startRow = (int)mhrList.get("startRow");
-		List<MhReport> list = service.mhrSelectList(startRow,pagesize,type,keyword);
+		List<MhReport> list = service.mhrSelectList(startRow,pagesize,mhrType,mhrKeyword);
 		mhrList.put("list", list);
 		mhrList.put("listCount", listCount);
 		mhrList.put("pagegroup", pagegroup);
-		mhrList.put("type", type);
-		mhrList.put("keyword", keyword);
+		mhrList.put("mhrType", mhrType);
+		mhrList.put("mhrKeyword", mhrKeyword);
 		model.addAllAttributes(mhrList);
 		return "mh/mhReportView/mhrSelectListView";
 	}
@@ -207,22 +207,24 @@ public class MhController {
 	@RequestMapping("/mhfSelectList")
 	public String mhfSelectList(Model model,
 											@RequestParam(value="pageNum",required=false,defaultValue="1")int pageNum,
-											@RequestParam(value="keyword",required=false,defaultValue="")String keyword,
-											@RequestParam(value="type",required=false,defaultValue="")String type) {
+											@RequestParam(value="mhfKeyword",required=false,defaultValue="")String mhfKeyword,
+											@RequestParam(value="mhfType",required=false,defaultValue="")String mhfType) {
 		// 페이지네이션
 		int pageSize = 10;
 		int pageGroup = 10;
 		//페이지 총 게시글의 수
-		int listCount = mhfService.mhfSelectListCount(type, keyword);
+		int listCount = mhfService.mhfSelectListCount(mhfType, mhfKeyword);
 		logger.debug("listCount:"+listCount);
-		Map<String, Object> mhfMap = gm.pageList(listCount, pageSize, pageGroup, pageNum, type, keyword);
+		Map<String, Object> mhfMap = gm.pageList(listCount, pageSize, pageGroup, pageNum, mhfType, mhfKeyword);
 		int startRow = (int) mhfMap.get("startRow");
-		List<MhFind> mhfList = mhfService.mhfSelectList(startRow, pageSize, type, keyword);
+		List<MhFind> mhfList = mhfService.mhfSelectList(startRow, pageSize, mhfType, mhfKeyword);
 		mhfMap.put("mhfList", mhfList);
 		mhfMap.put("listCount", listCount);
 		mhfMap.put("pageGroup", pageGroup);
-		mhfMap.put("type", type);
-		mhfMap.put("keyword", keyword);
+		mhfMap.put("mhfType", mhfType);
+		mhfMap.put("mhfKeyword", mhfKeyword);
+		System.out.println(mhfType+":mhfType");
+		System.out.println(mhfKeyword+":mhfKeyword");
 		model.addAllAttributes(mhfMap);
 		System.out.println(listCount+"목격 게시판 리스트");
 		return "mh/mhFindView/mhfSelectListView";

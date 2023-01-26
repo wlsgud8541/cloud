@@ -117,7 +117,7 @@
 	           tableType DESC, regdate DESC) search)
 	    WHERE
 	    	searchTitle LIKE '%'||#{uSearch}||'%' 
-	    	OR searchContent LIKE '%'||#{uSearch}||'%'
+	    	or searchContent LIKE '%'||#{uSearch}||'%'
 	</select>
 	<select id="mhGraph" resultType="Main">
 		SELECT 

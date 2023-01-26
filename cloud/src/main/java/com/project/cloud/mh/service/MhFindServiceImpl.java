@@ -17,8 +17,8 @@ public class MhFindServiceImpl implements MhFindService{
 		this.mhfDao = mhfDao;
 	} 
 	@Override
-	public List<MhFind> mhfSelectList(int startRow, int pageSize, String type, String keyword) {
-		return  mhfDao.mhfSelectList(startRow, pageSize, type, keyword);
+	public List<MhFind> mhfSelectList(int startRow, int pageSize, String mhfType, String mhfKeyword) {
+		return  mhfDao.mhfSelectList(startRow, pageSize, mhfType, mhfKeyword);
 	}
 
 	@Override
@@ -38,9 +38,9 @@ public class MhFindServiceImpl implements MhFindService{
 		return mhfDao.mhfUpdate(mhfind);
 	}
 	@Override
-	public int mhfSelectListCount(String type, String keyword) {
+	public int mhfSelectListCount(String mhfType, String mhfKeyword) {
 		
-		return mhfDao.mhfSelectListCount(type, keyword);
+		return mhfDao.mhfSelectListCount(mhfType, mhfKeyword);
 	}
 	@Override
 	public MhFind mhfSelectReadCount(int mhfNo, boolean count) {
