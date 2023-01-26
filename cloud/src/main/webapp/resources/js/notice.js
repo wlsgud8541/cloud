@@ -251,7 +251,7 @@ $(document).ready(function(){
 			}else{
 				return false;
 			}
-		}
+		} 
 		$("#insertForm").submit();
 		
 		
