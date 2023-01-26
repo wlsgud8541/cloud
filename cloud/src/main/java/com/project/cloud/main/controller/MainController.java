@@ -80,13 +80,13 @@ public class MainController {
 	
 	@RequestMapping("search")
 	public String mainUsearch(Model model, @RequestParam(value="uSearch", required=false, defaultValue="") String uSearch,
-											@RequestParam(value="type", required=false, defaultValue="") String type,
 											@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum) {
 	logger.debug("search : ");
 	logger.debug(uSearch);
-	List<Main> searchList  = mainService.mainUsearch(uSearch);
+	List<Main> searchList = mainService.mainUsearch(uSearch);
 	model.addAttribute("searchList",searchList);
 	model.addAttribute("uSearch",uSearch);
+	model.addAttribute("pageNum",pageNum);
 	return "main/searchView";
 	}
 	
