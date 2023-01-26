@@ -298,7 +298,7 @@ public class MhController {
 	}
 	// 실종자 목격 게시판 삭제
 	@RequestMapping("/mhfDeleteProcess")
-	public String mhfDeleteProcess(int mhfNo) {
+	public String mhfDeleteProcess(int mhfNo) { 
 		int result = mhfService.mhfDelete(mhfNo);
 		logger.debug("삭제프로세스:"+result);
 		return "redirect:mhfSelectList";
