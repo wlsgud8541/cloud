@@ -154,7 +154,7 @@ $(document).ready(function(){
 		var beforeCont = $("#beforeCont"+mqNo).html();
 		var sessionId = $("#mqWriter").val();
 		
-		if(sessionId != ''){
+		if(sessionId == '' && sessionId != 'admin0001'){
 			alert("해당 서비스는 로그인 후 사용 할 수 있습니다.");
 			return false;
 		}
@@ -271,7 +271,7 @@ $(document).ready(function(){
 	$(document).on("click",".mqDelete",function(){
 	
 		var sessionId = $("#mqWriter").val();
-		if(sessionId != ''){
+		if(sessionId == '' && sessionId != 'admin0001'){
 			alert("해당 서비스는 로그인 후 사용 할 수 있습니다.");
 			return false;
 		}

@@ -40,6 +40,16 @@
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <c:if test="${param.body == 'views/main/mainView.jsp'}">
+<div style="float: right">
+<!-- <div style="position: fixed; left: 85%"> -->
+	<a href="https://www.mohw.go.kr/react/al/sal0301vw.jsp?PAR_MENU_ID=04&MENU_ID=0403&CONT_SEQ=237275">
+		<img alt="배너 이미지" src="resources/image/banner/banner_2.jpg" width="270px;" height="270px;" style="margin-right: 20px;">
+	</a>
+	<br>
+	<a href="https://www.safe182.go.kr/home/dic/dicaryBrowesWrap.do">
+		<img alt="배너 이미지" src="resources/image/banner/banner_1.jpg" width="270px;" height="450px;" style="margin-right: 20px; margin-top: 20px;">
+	</a>
+</div>
 <body class="bodyBg">
 </c:if>
 <c:if test="${param.body != 'main/mainView'}">
