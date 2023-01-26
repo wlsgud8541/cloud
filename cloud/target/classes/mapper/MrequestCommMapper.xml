@@ -15,7 +15,7 @@
 	</resultMap>
 	
 	<select id="mrcSelectDetail" resultType="MrequestComm">
-		SELECT  mreNo,
+		SELECT  mreNo, 
 				mreComNo,
 				mreComTitle, 
 				mreComRegDate,
