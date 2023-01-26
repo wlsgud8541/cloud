@@ -16,16 +16,9 @@
 		</c:if>
 	</div>
 	
-	<c:if test="${not empty sessionScope.userId && sessionScope.userId == 'admin0001'}">
-		<div class="row rounded-4 mt-3 shadow-sm" style="background: #d1e7dd;">
-			<div class="p-3 m-0 fw-bold fs-4" >자주 묻는 질문📣</div>
-		</div>
-	</c:if>
-	<c:if test="${empty sessionScope.userId}">
-		<div class="row rounded-4 mt-3 shadow-sm" style="background: #d1e7dd;">
-			<div class="p-3 m-0 fw-bold fs-4">자주 묻는 질문📣</div>
-		</div>
-	</c:if>
+	<div class="row rounded-4 mt-3 shadow-sm" style="background: #d1e7dd;">
+		<div class="p-3 m-0 fw-bold fs-4" >자주 묻는 질문📣</div>
+	</div>
 	 
 	<input type="hidden" class="form-control" name="mqWriter" id="mqWriter" value="${sessionScope.userId}">
 	<div class="row mb-3">

@@ -9,11 +9,12 @@
 			<p class="border border-bottom border-primary border-2" style="width: 265px; display: inline-block; margin-bottom: 0px;"></p>
 		</div>
 	</div>
-	<form name="mprUpdateProcess" action="mprUpdateProcess" id="mprUpdateForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
+	<form name="mprUpdateProcess" action="mprUpdateProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${mpModify.mmNo}">
 	<input type="hidden" class="form-control" name="mprNo" id="mprNo" value="${mpModify.mprNo}">
 	<input type="hidden" class="form-control" name="pageNum" id="pageNum" value="${pageNum}">
+	<input type="hidden" class="form-control" name="mppWriter" id="writer" value="${sessionScope.userId} ">
 	
 	<div class="col-8 offset-md-2">
 		<div class="row mb-2">
