@@ -4,22 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- content -->
 <div class="w3-content row" id="global-content">
-	<div class="row my-3 text-center">
-		<div class="col">
-			<h2 class="fs-3 fw-bold ">게시글 수정</h2>
-			<p class="border border-bottom border-danger border-2" style="width: 150px; display: inline-block; margin-bottom: 0px;"></p>
-		</div>
-	</div>
 	<form name="mhfUpdateProcess" action="mhfUpdateProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="mmNo" value="${sessionScope.mmNo}">
 		<input type="hidden" name="mhfNo" value="${mhfind.mhfNo}">
 		<input type="hidden" name="mhrWriter" id="writer" value="${sessionScope.userId}">
 		<div class="col-12">
-		    <label for="mhfTitle" class="form-label">제목</label>
+		    <label for="mhfTitle" class="form-label border-bottom border-2 border-danger border-opacity-25">제목</label>
 		    <input type="text"class="form-control rounded-0" name="mhfTitle" id="title" value="${mhfind.mhfTitle}">
 	  	</div>
 		<div class="col-5">
-		    <label for="mhfGen" class="form-label">대상 성별</label>
+		    <label for="mhfGen" class="form-label border-bottom border-2 border-danger border-opacity-25">대상 성별</label>
 		    <select class="form-control rounded-0" name="mhfGen" id="gen">
 		    	<option value="">--선택하세요--</option>
 		    	<option value="M" ${mhfind.mhfGen == 'M ' ? 'selected' : ''}>남자</option>
@@ -27,11 +21,11 @@
 		    </select>
 	  	</div>
 		<div class="col-6 offset-md-1">
-		    <label for="mhfInfoDate" class="form-label">목격일</label>
+		    <label for="mhfInfoDate" class="form-label border-bottom border-2 border-danger border-opacity-25">목격일</label>
 		    <input type="date"class="form-control rounded-0" name="mhfInfoDate" id="infoDate" value='<fmt:formatDate value="${mhfind.mhfInfoDate}" pattern="yyyy-MM-dd"/>'>
 	  	</div>
 	  	<div class="col-5">
-		    <label for="mprContent" class="form-label">지역</label>
+		    <label for="mprContent" class="form-label border-bottom border-2 border-danger border-opacity-25">지역</label>
 		    <select class="form-control rounded-0" name="mhfLocalCode" id="localCode">
 		    	<option value="01" ${mhfind.mhfLocalCode == '01' ? 'selected' : ''}>서울</option>
 		    	<option value="02" ${mhfind.mhfLocalCode == '02' ? 'selected' : ''}>경기</option>
@@ -52,10 +46,16 @@
 		    	<option value="17" ${mhfind.mhfLocalCode == '17' ? 'selected' : ''}>제주</option>
 		    </select>
 	  	</div>
-	     <div class="col-6 offset-md-1 row">
-	       	<label for="zipcode" class="form-label m-0">상세위치</label><br>
-			<input type="text" class="col form-control rounded-0 inblock" name="mhfLocalDetail" id="addr1" value="${mhfind.mhfLocalDetail}" readonly>
-			<input type="button" class="col-3 btn btn-secondary rounded-0 float-start" id="btnZipcode" value="상세위치 찾기">
+	     <div class="col-6 offset-md-1">
+	       	<label for="zipcode" class="form-label border-bottom border-2 border-danger border-opacity-25 ">상세위치</label><br>
+	       	<div class="row">
+		       	<div class="col-9 p-0">
+					<input type="text" class=" form-control rounded-0 inblock" name="mhfLocalDetail" id="addr1" value="${mhfind.mhfLocalDetail}" readonly>
+		       	</div>
+		       	<div class="col-2 p-0">
+					<input type="button" class=" btn btn-secondary rounded-0 float-start" id="btnZipcode" value="상세위치 찾기">
+		       	</div>
+	       	</div>
 		</div>
 		
 <!-- 		내용 -->

@@ -14,7 +14,7 @@
 					<div class="p-4 inblock">
 						<div class="mb-4 row">
 							<label class="categ">
-								<b class="border-bottom border-success border-2 opacity-75">동물종류</b>
+								<b class="border-bottom border-primary border-2 opacity-75">동물종류</b>
 							</label>
 							<div class="checks col-lg-5 col-sm-4">
 								<select name="mpType" class="bg-white border">
@@ -27,7 +27,7 @@
 						</div>
 						<div class="mb-4 row" >
 							<label class="categ">
-								<b class="border-bottom border-success border-2 opacity-75">성별</b>
+								<b class="border-bottom border-primary border-2 opacity-75">성별</b>
 							</label>
 							<div class="checks col-lg-5 col-sm-4">
 								<select name="mpGen" class="bg-white border">
@@ -37,7 +37,7 @@
 								</select>
 							</div>
 								<label class=categ>
-									<b class="border-bottom border-success border-2 opacity-75">키워드</b>
+									<b class="border-bottom border-primary border-2 opacity-75">키워드</b>
 								</label>
 							<div class="checks col">
 								<div class="checks schInput ">
@@ -47,13 +47,13 @@
 						</div>
 						<div class="mb-4 row">
 							<label class="categ">
-								<b class="border-bottom border-success border-2 opacity-75">발생일</b>
+								<b class="border-bottom border-primary border-2 opacity-75">발생일</b>
 							</label>
 							<div class="inblock col-5 schInput search_date ">
 								<input type="date" name="mpDate1"class="text-center bg-white border" style="padding: 0;">~<input type="date" name="mpDate2"class="text-center bg-white border" style="padding: 0;">
 							</div>
 							<label class=categ>
-								<b class="border-bottom border-success border-2 opacity-75">발생장소</b>
+								<b class="border-bottom border-primary border-2 opacity-75">발생장소</b>
 							</label>
 							<div class="checks col">
 								<div class="checks">
@@ -90,10 +90,11 @@
 	   	</div>
 	</div>
 </div>
+<hr class="border border-dark my-5">
 		<div class="col-10">
 			<div class="row board-bottom text-end" style="position: relative; left: 100px;">
 				<div class="col-11"></div>
-				<div class="col-1" style="position: relative; right:25px;">
+				<div class="col-1 mb-3" style="position: relative; right:25px;">
 					<a href="mprInsert" class="btn btn-secondary posiRight my-2">글쓰기</a>
 				</div>
 			</div>

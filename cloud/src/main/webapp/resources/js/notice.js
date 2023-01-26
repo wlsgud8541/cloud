@@ -772,19 +772,40 @@ $(document).ready(function(){
 										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
- 					var result =
-						'<div>'
-						+'<span>'+v.mhfComContent+'</span>'+'</div>'
-						+'<div>'
-						+'<span>'+v.mhfComWriter+'</span>'+'<br>'
-						+'</div>'
-						+'<div>'
-						+'<span>'+tmpDate+'</span>'
-						+'</div>'
-						+'<button class="btn btn-outline-success btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">' 
-							+'<i class="bi bi-journal-text">수정</i></button>'
-						+'<button class="btn btn-outline-warning btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">' 
-							+'<i class="bi bi-trash">삭제</i></button>'
+ 					var result ='<div class="row">'
+						+'		<div class="col">'
+						+'			<span id="mhfComWriter"><b>'+v.mhfComWriter+'</b></span><br>'
+						+'			<pre id="beforeCon"'+v.mhfComWriter+ 'class="m-0">'+v.mhfComContent+'</pre>'
+						+'			<small class="text-secondary">'+tmpDate+'</small>'
+						+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">'
+						+'				<i class="bi bi-journal-text"></i>수정</button>'
+						+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">'
+						+'				<i class="bi bi-trash"></i>삭제</button>'
+						+'		</div>'
+						+'	</div>'
+						+'<hr class="border border-dark">'
+ 					
+ 					
+ 					
+				//		'<div>'
+				//		+'<span>'+v.mhfComContent+'</span>'+'</div>'
+				//		+'<div>'
+				//		+'<span>'+v.mhfComWriter+'</span>'+'<br>'
+				//		+'</div>'
+				//		+'<div>'
+				//		+'<span>'+tmpDate+'</span>'
+				//		+'</div>'
+				//		+'<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">' 
+				//			+'<i class="bi bi-journal-text"></i>수정</button>'
+				//		+'<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">' 
+				//			+'<i class="bi bi-trash"></i>삭제</button>'
+	 					
+	 					
+	 					
+	 					
+	 					
+	 					
+	 					
 	 					 				
 	 				$("#comList").append(result);
 	 			
@@ -818,7 +839,7 @@ $(document).ready(function(){
 		
 		$("#mhfcForm").find("form").attr("id","mhfModifyForm").attr("data-mhfComNo",mhfComNo).removeAttr("data-mhfNo");
 		
-		var mhfcModify = $(this).parent().children().find("pre").text();
+		var mhfcModify = $(this).parent().find("pre").text();
 		console.log("mhfcModify:"+mhfcModify);
 		$("#mhfComContent").val($.trim(mhfcModify));
 	});
@@ -857,19 +878,33 @@ $(document).ready(function(){
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;
 										
-					var result =
-							'<div>'
-							+'<pre>'+v.mhfComContent+'</pre>'+'</div>'
-							+'<div>'
-							+'<span>'+v.mhfComWriter+'</span>'+'<br>'
-							+'</div>'
-							+'<div>'
-							+'<span>'+tmpDate+'</span>'
-							+'</div>'
-							+'<button class="btn btn-outline-success btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">' 
-								+'<i class="bi bi-journal-text">수정</i></button>'
-							+'<button class="btn btn-outline-warning btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">' 
-								+'<i class="bi bi-trash">삭제</i></button>'
+					var result ='<div class="row">'
+						+'		<div class="col">'
+						+'			<span id="mhfComWriter"><b>'+v.mhfComWriter+'</b></span><br>'
+						+'			<pre id="beforeCon"'+v.mhfComWriter+ 'class="m-0">'+v.mhfComContent+'</pre>'
+						+'			<small class="text-secondary">'+tmpDate+'</small>'
+						+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">'
+						+'				<i class="bi bi-journal-text"></i>수정</button>'
+						+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">'
+						+'				<i class="bi bi-trash"></i>삭제</button>'
+						+'		</div>'
+						+'	</div>'
+						+'<hr class="border border-dark">'
+					
+					
+					
+				//			'<div>'
+				//			+'<pre>'+v.mhfComContent+'</pre>'+'</div>'
+				//			+'<div>'
+				//			+'<span>'+v.mhfComWriter+'</span>'+'<br>'
+				//			+'</div>'
+				//			+'<div>'
+				//			+'<span>'+tmpDate+'</span>'
+				//			+'</div>'
+				//			+'<button class="btn btn-outline-success btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">' 
+				//				+'<i class="bi bi-journal-text">수정</i></button>'
+				//			+'<button class="btn btn-outline-warning btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">' 
+				//				+'<i class="bi bi-trash">삭제</i></button>'
 		 					 				
 		 				$("#comList").append(result);					
 				});
@@ -911,19 +946,32 @@ $(document).ready(function(){
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;
 										
-					var result =
-							'<div>'
-							+'<pre>'+v.mhfComContent+'</pre>'+'</div>'
-							+'<div>'
-							+'<span>'+v.mhfComWriter+'</span>'+'<br>'
-							+'</div>'
-							+'<div>'
-							+'<span>'+tmpDate+'</span>'
-							+'</div>'
-							+'<button class="btn btn-outline-success btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">' 
-								+'<i class="bi bi-journal-text">수정</i></button>'
-							+'<button class="btn btn-outline-warning btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">' 
-								+'<i class="bi bi-trash">삭제</i></button>'
+					var result ='<div class="row">'
+						+'		<div class="col">'
+						+'			<span id="mhfComWriter"><b>'+v.mhfComWriter+'</b></span><br>'
+						+'			<pre id="beforeCon"'+v.mhfComWriter+ 'class="m-0">'+v.mhfComContent+'</pre>'
+						+'			<small class="text-secondary">'+tmpDate+'</small>'
+						+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">'
+						+'				<i class="bi bi-journal-text"></i>수정</button>'
+						+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">'
+						+'				<i class="bi bi-trash"></i>삭제</button>'
+						+'		</div>'
+						+'	</div>'
+						+'<hr class="border border-dark">'
+					
+					
+			//				'<div>'
+			//				+'<pre>'+v.mhfComContent+'</pre>'+'</div>'
+			//				+'<div>'
+			//				+'<span>'+v.mhfComWriter+'</span>'+'<br>'
+			//				+'</div>'
+			//				+'<div>'
+			//				+'<span>'+tmpDate+'</span>'
+			//				+'</div>'
+			//				+'<button class="btn btn-outline-success btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">' 
+			//					+'<i class="bi bi-journal-text">수정</i></button>'
+			//				+'<button class="btn btn-outline-warning btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">' 
+			//					+'<i class="bi bi-trash">삭제</i></button>'
 		 					 				
 		 				$("#comList").append(result);					
 				});

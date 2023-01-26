@@ -33,10 +33,10 @@
 			<tr>
 				<td class="py-2">&nbsp;&nbsp;💾 | <a href="fileDownload?fileName=${mprDetail.mprAddFile}">다운로드</a></td>
 				<c:if test="${ mprDetail.mprStatusCode == '01' }">
-					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-danger">실종</a></td>
+					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-danger"><b>실종</b></a></td>
 				</c:if>
 				<c:if test="${ mprDetail.mprStatusCode == '02' }">
-					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-primary">찾았어요!</a></td>
+					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-primary"><b>찾았어요!</b></a></td>
 				</c:if>
 			</tr>	
 			</c:if>
@@ -51,10 +51,58 @@
 				</c:if>
 			</tr>	
 			</c:if>
-			 
 		</table>
 	<div class="row mt-4">
-		<c:if test="${mprDetail.mprLocalCode == 01}">
+		<div class="col">
+			<c:if test="${mprDetail.mprAddFile != null}">
+				<div class="text-center">
+					<img src="fileDownload?fileName=${mprDetail.mprAddFile}" style="width: 500px;">
+				</div>
+			</c:if>
+			<c:if test="${empty mprDetail.mprAddFile}">
+				<div class="text-center text-success p-4">
+					등록된 사진이 없습니다.
+				</div>
+			</c:if>
+		</div>
+		<div class="col">
+			<c:if test="${mprDetail.mprPetType == 01}"><b>강아지</b></c:if>
+			<c:if test="${mprDetail.mprPetType == 02}"><b>고양이</b></c:if>
+			<c:if test="${mprDetail.mprPetType == 03}"><b>기타</b></c:if>
+			(<c:if test="${mprDetail.mprGen == 'M '}"><b><i class="bi bi-gender-male"></i></b></c:if>
+			<c:if test="${mprDetail.mprGen == 'F '}"><b><i class="bi bi-gender-female"></i></b></c:if>)
+			<table class="table border-top border-2 mt-3">
+				<tr>
+					<th>실종지역 / 상세위치</th>
+					<td><c:if test="${mprDetail.mprLocalCode == 01}">서울</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 02}">경기</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 03}">인천</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 04}">대전</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 05}">광주</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 06}">대구</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 07}">울산</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 08}">부산</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 09}">세종</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 10}">강원</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 11}">충북</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 12}">충남</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 13}">전북</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 14}">전남</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 15}">경북</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 16}">경남</c:if>
+						<c:if test="${mprDetail.mprLocalCode == 17}">제주</c:if> / 	${mprDetail.mprLocalDetail}
+					</td>
+				</tr>
+				<tr>
+					<th>실종일시</th>
+					<td><fmt:formatDate value="${mprDetail.mprInfoDate}" pattern="yyyy-MM-dd" /></td>
+				</tr>
+			</table>
+			<b>${mprDetail.mprContent }</b>
+		</div>
+	</div>
+</div>
+		<%-- <c:if test="${mprDetail.mprLocalCode == 01}">
 			<div class="col text-center">
 				<span class="btn btn-primary">서울</span>
 			</div>
@@ -176,35 +224,26 @@
 				<b>성별 : 암컷</b>
 			</div>
 		</c:if>
-	</div>
+	</div> 
 	
 		<div class="py-4 px-3">
 <pre>
 상세 내용 :
 	${mprDetail.mprContent }
 </pre>
-	<c:if test="${mprDetail.mprAddFile != null}">
-		<div class="text-center">
-			<img src="fileDownload?fileName=${mprDetail.mprAddFile}" style="width: 500px;">
+	
 		</div>
-	</c:if>
-	<c:if test="${empty mprDetail.mprAddFile}">
-		<div class="text-center text-success p-4">
-			등록된 사진이 없습니다.
-		</div>
-	</c:if>
-		</div>
-	</div>
+	</div>--%>
 	<div class="mpboxLine"></div>
 
 
 
 	<div class="row">
 		<div class="col text-center mt-4">
-			<input type="button" class="btn" value="전단지 출력" id ="jsReport" data-code="mp" />
+			<input type="button" class="btn btn-outline-primary" value="전단지 출력📃"id ="jsReport" data-code="mp" />
 			<input type="button" class="btn btn-outline-primary" id="mprUpdate" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="수정하기"> 
-			<input type="button" class="btn btn-outline-primary  mx-3"  id="mprDelete" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
-			<input type="button" onclick="location.href='mprSelectList?pageNum=${pageNum}'" class="btn btn-outline-primary" value="목록으로" />
+			<input type="button" class="btn btn-outline-primary"  id="mprDelete" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+			<input type="button" class="btn btn-outline-primary" onclick="location.href='mprSelectList?pageNum=${pageNum}'"value="목록으로" />
 		</div>
 	</div>
 </div>

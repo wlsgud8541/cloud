@@ -522,11 +522,11 @@
 					<li><a href="#tab1">실종자</a></li>
 					<li><a href="#tab2">실종 반려동물</a></li>
 				</ul>
-				<div class="tabcontent">
+				<div class="tabcontent text-truncate">
 					<div id="tab1">
-						<table class="table table-hover">
+						<table class="table table-hover ">
 							<c:forEach var="mainMhfList" items="${mainMhfList }">
-								<tr>
+								<tr >
 									<td><a
 										href="mhfDetailView?mhfNo=${mainMhfList.mhfNo}&pageNum=1">${mainMhfList.mhfTitle}</a></td>
 									<td><fmt:formatDate value="${mainMhfList.mhfRegDate }"

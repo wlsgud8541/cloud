@@ -99,13 +99,13 @@
 			</div>
 			<div class="text-center my-4 ">
 				<form class="row" action="mrSelectList" name="searchForm" id="searchForm" method="post">
-					<select name="type" id="type" class="border-end-0" style="width:102px; height:53px;">
+					<select name="type" id="type" class="border border-end-0" style="left:0px;width:102px; height:54px;">
 						<option value="title" ${type == 'title'? 'selected' : '' }>제 목</option>
 						<option value="content" ${type == 'content'? 'selected' : '' }>내 용</option>
 						<option value="writer" ${type == 'writer'? 'selected' : '' }>작성자</option>
 					</select>
 					<div class="col text-start p-0" >
-						<input type="text" name="keyword" id="keyword" value="${keyWord}" style="width:500px; height:53px; background:#fff;  border:1px solid #d0d0d0;"><input type="submit" class="bg-success text-white bg-opacity-75" style="width:53px; height:53px; background:#fff;border:1px solid #d0d0d0; border-left: none;" value="검색">
+						<input type="text" name="keyword" id="keyword" value="${keyWord}" style="left:0px; width:500px; height:54px; background:#fff; border:1px solid #d0d0d0;"><input type="submit" class="bg-success text-white bg-opacity-75" style="width:53px; height:53px; background:#fff;border:1px solid #d0d0d0; border-left: none;" value="검색">
 					</div>
 				</form>
 			</div>

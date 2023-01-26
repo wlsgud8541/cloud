@@ -15,14 +15,14 @@
  	<hr>
  	<div>
  		<div class="text-center mt-5">
-		 	<h2 class="inblock border-bottom border-3 border-success fw-bold text-center ">조직도</h2>
+		 	<h2 class="inblock border-bottom border-3 border-success fw-bold text-center border-opacity-50">조직도</h2>
  		</div>
 	 	<div class="text-center p-2">
 	     	 <a href="main"><img src="resources/image/intro/chart.jpg" class="shadow-sm"style="width: 650px;"></a>
 	 	</div>
  	</div>
  	<div class="text-center mt-5">
-		<h2 class="inblock fw-bold  border-bottom border-3 border-success">개발자 소개 및 인사말</h2>
+		<h2 class="inblock fw-bold  border-bottom border-3 border-success border-opacity-50">개발자 소개 및 인사말</h2>
  	</div>
 	<div class="row mt-4">
 		<div class="col border p-3 me-4">

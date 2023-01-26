@@ -47,12 +47,13 @@
 		<form id="mhfCommInsert" name="mhfCommInsert" action="mhfCommInsert">
 			<input type="hidden" name="mhfNo" value="${mhfind.mhfNo}"/>
 			<div>
-				<input type="text" class="form-control" id="commContent" name="mhfComContent" />
+				<b>의견쓰기</b>
+				<textarea class="form-control rounded-0" id="commContent" name="mhfComContent" style="resize: none;"></textarea>
 				<input type="hidden" class="form-control" id="mhfComWriter" name="mhfComWriter" value="회원" />
 				<input type="hidden" id="mmNo" name="mmNo" value="1"/>
 			</div>
-			<div>
-				<input type="submit" class="btn btn-outline-danger" value="댓글쓰기" id="commInsert" />
+			<div class="text-end">
+				<input type="submit" class="btn btn-danger rounded-0" value="등록" id="commInsert" />
 			</div>
 		</form>
 		
@@ -62,15 +63,16 @@
 						<c:forEach var="mhfCommList" items="${mhfCommList}">
 							<div class="row">
 								<div class="col">
-								<pre id="beforeCon${mhfCommList.mhfComNo}">${mhfCommList.mhfComContent}</pre>
-								<span id="mhfComWriter">${mhfCommList.mhfComWriter}</span><br>
-								<fmt:formatDate value="${mhfCommList.mhfComRegDate}" pattern="yyyy-MM-dd HH:mm" />
-								<button class="btn btn-outline-success btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcUpdate"> 
-									<i class="bi bi-journal-text">수정</i></button>
-								<button class="btn btn-outline-warning btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcDelete"> 
-									<i class="bi bi-trash">삭제</i></button>
+									<span id="mhfComWriter"><b>${mhfCommList.mhfComWriter}</b></span><br>
+									<pre id="beforeCon${mhfCommList.mhfComNo}" class="m-0">${mhfCommList.mhfComContent}</pre>
+									<small class="text-secondary"><fmt:formatDate value="${mhfCommList.mhfComRegDate}" pattern="yyyy-MM-dd HH:mm" /></small>
+									<button class="btn btn-outline-dark btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcUpdate"> 
+										<i class="bi bi-journal-text"></i>수정</button>
+									<button class="btn btn-outline-dark btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcDelete"> 
+										<i class="bi bi-trash"></i>삭제</button>
 								</div>
 							</div>
+						<hr class="border border-dark">
 						</c:forEach>
 				</div> 
 			</div>

@@ -3,12 +3,6 @@
 
 <!-- content -->
 <div class="row" id="global-content">
-	<div class="row my-5 text-center">
-		<div class="col">
-			<h2 class="fs-3 fw-bold">임시보호 게시판 수정</h2>
-			<p class="border border-bottom border-primary border-2" style="width: 265px; display: inline-block; margin-bottom: 0px;"></p>
-		</div>
-	</div>
 	<form name="mppUpdateProcess" action="mppUpdateProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${mpModify.mmNo}">
@@ -19,14 +13,14 @@
 	<div class="col-8 offset-md-2">
 		<div class="row mb-2">
 			<div class="col-12">
-			   <label for="mppTitle" class="form-label">제목</label>
+			   <label for="mppTitle" class="form-label border-bottom border-2 border-primary border-opacity-25">제목</label>
 		 	   <input type="text"class="form-control rounded-0" name="mppTitle" id="title" value="${mpModify.mppTitle}">
 		  	</div>
 		</div>
 		
 		<div class="row mb-2">
 			<div class="col-5">
-			    <label for="mppPetType" class="form-label">동물 종류</label>
+			    <label for="mppPetType" class="form-label border-bottom border-2 border-primary border-opacity-25">동물 종류</label>
 			    <select class="form-control col-2 rounded-0" name="mppPetType" id="pettype">
 			    	<option value="0">--선택하세요--</option>
 			    	<option value="01" ${mpModify.mppPetType == '01' ? 'selected' : ''}>강아지</option>
@@ -36,7 +30,7 @@
 		  	</div>
 		 	
 		  	<div class="col-4">
-			     <label for="mppGen" class="form-label">동물 성별</label>
+			     <label for="mppGen" class="form-label border-bottom border-2 border-primary border-opacity-25">동물 성별</label>
 			     <select class="form-control col-2 rounded-0" name="mppGen" id="gen">
 			     	<option value="0">--선택하세요--</option>
 			    	<option value="M " ${mpModify.mppGen == 'M ' ? 'selected' : ''}>수컷</option>
@@ -45,21 +39,21 @@
 		  	</div>
 		
 		  	<div class="col-3">
-			    <label for="mppInfoDate" class="form-label">실종 날짜</label>
+			    <label for="mppInfoDate" class="form-label border-bottom border-2 border-primary border-opacity-25">실종 날짜</label>
 		    	<input type="date"class="form-control rounded-0" name="mppInfoDate" id="infoDate" value='<fmt:formatDate value="${mpModify.mppInfoDate}" pattern="yyyy-MM-dd" />'>
 		  	</div>
 		</div>
 		
 		<div class="row mb-2">
 		  	<div class="col-2">
-			    <label for="mppStatusCode" class="form-label">실종현황</label>
+			    <label for="mppStatusCode" class="form-label border-bottom border-2 border-primary border-opacity-25">실종현황</label>
 			    <select class="form-control col-2 rounded-0" name="mppStatusCode" id="statuscode">
 			    	<option value="01" ${mpModify.mppStatusCode == '01' ? 'selected' : ''}>실종</option>
 			    	<option value="02" ${mpModify.mppStatusCode == '02' ? 'selected' : ''}>찾았어요!</option>
 			    </select>
 		  	</div>
 		  	<div class="col-3">
-			    <label for="mppContent" class="form-label">실종지역</label>
+			    <label for="mppContent" class="form-label border-bottom border-2 border-primary border-opacity-25">실종지역</label>
 			    <select class="form-control col-2 rounded-0" name="mppLocalCode" id="localCode">
 			    	<option value="0">--선택하세요--</option>
 			    	<option value="01" ${mpModify.mppLocalCode == '01' ? 'selected' : ''}>서울</option>
@@ -82,7 +76,7 @@
 			    </select>
 		  	</div>
 		  	 <div class="col-7">
-		       	<label for="zipcode" class="form-label">상세위치</label><br>
+		       	<label for="zipcode" class="form-label border-bottom border-2 border-primary border-opacity-25">상세위치</label><br>
 				<div class="row">
 					<div class="col-9">
 						<input type="text" class="form-control rounded-0" name="mppLocalDetail" id="addr1" value="${mpModify.mppLocalDetail}" readonly>

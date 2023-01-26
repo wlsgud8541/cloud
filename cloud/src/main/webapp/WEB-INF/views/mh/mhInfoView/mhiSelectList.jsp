@@ -6,7 +6,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 
-<div class=" pt-5">
+<div>
 	<!-- 상단 게시판 제목 -->
 	<div class="textTop row">
    		<h3 class="col-3 fs-2 fw-bold border-bottom border-danger border-4 border-opacity-50 ">실종자 정보</h3>
