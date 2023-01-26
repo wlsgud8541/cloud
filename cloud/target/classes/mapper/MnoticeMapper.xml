@@ -40,19 +40,57 @@
 						,mnWriter
 						,mnFixTopYn
 						,mnDelYn 
-		            FROM(SELECT mnNo
-		                       ,mnReadCnt
-		                       ,mmNo
-		                       ,mnRegDate
-		                       ,mnTitle
-		                       ,mnContent
-		                       ,mnAddFile
-		                       ,mnWriter
-		                       ,mnFixTopYn
-		                       ,mnDelYn
-		            	  FROM MNOTICE
-		             	 WHERE mnDelYn = 'N'
-	                      <if test="type=='title'">
+		            FROM( SELECT mnNo
+		                        ,mnReadCnt
+		                        ,mmNo
+		                        ,mnRegDate
+		                        ,mnTitle
+		                        ,mnContent
+		                        ,mnAddFile
+		                        ,mnWriter
+		                        ,mnFixTopYn
+		                        ,mnDelYn
+                   			FROM (SELECT mnNo
+				                        ,mnReadCnt
+				                        ,mmNo
+				                        ,mnRegDate
+				                        ,mnTitle
+				                        ,mnContent
+				                        ,mnAddFile
+				                        ,mnWriter
+				                        ,mnFixTopYn
+				                        ,mnDelYn
+		            	 		    FROM MNOTICE
+				             	   WHERE mnDelYn = 'N'
+		                             AND mnFixTopYn = 'Y'
+		                           ORDER BY mnRegDate DESC)
+                        UNION ALL
+			                     SELECT mnNo
+			                           ,mnReadCnt
+			                           ,mmNo
+			                           ,mnRegDate
+			                           ,mnTitle
+			                           ,mnContent
+			                           ,mnAddFile
+			                           ,mnWriter
+			                           ,mnFixTopYn
+			                           ,mnDelYn
+			                	  FROM (SELECT mnNo
+					                	      ,mnReadCnt
+					                 	      ,mmNo
+					                 	      ,mnRegDate
+						                      ,mnTitle
+						                      ,mnContent
+						                      ,mnAddFile
+						                      ,mnWriter
+						                      ,mnFixTopYn
+						                      ,mnDelYn
+						            	 FROM MNOTICE
+						             	WHERE mnDelYn = 'N'
+				                          AND mnFixTopYn = 'N'
+				                    	ORDER BY mnRegDate DESC)
+				          WHERE 1 = 1
+	            		  <if test="type=='title'">
 							AND mnTitle LIKE '%' || #{keyWord} || '%'
 						  </if>
 						  <if test="type=='writer'">
@@ -61,7 +99,6 @@
 						  <if test="type=='content'">
 							AND mnContent LIKE '%' || #{keyWord} || '%'
 						  </if>
-				    	ORDER BY mnNo DESC
 	               		 )
 	           		 )
 		    WHERE rnum BETWEEN #{startRow} AND #{startRow} + #{pageSize} - 1

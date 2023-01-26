@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- content -->
 
@@ -34,15 +35,28 @@
 					<c:if test="${not empty mnList}">
 						<c:forEach var="mnList" items="${mnList}" varStatus="status">
 							<tr>
-								<td style = "padding : 1.5rem 0.5rem;">${mnList.mnNo }</td>
-								<td style = "padding : 1.5rem 0.5rem;">
-								<a href="mnSelectDetail?mnNo=${mnList.mnNo}&pageNum=${currentPage}">${mnList.mnTitle}
-									<c:if test="${mnList.mnAddFile!=null }">
-										💾								
-									</c:if> </a></td>
-								<td style = "padding : 1.5rem 0.5rem;">${mnList.mnWriter}</td>
-								<td style = "padding : 1.5rem 0.5rem;">${mnList.mnReadCnt}</td>
-								<td style = "padding : 1.5rem 0.5rem;"><fmt:formatDate value="${mnList.mnRegDate}" pattern="yyyy-MM-dd" /></td>
+								<c:if test="${fn:trim(mnList.mnFixTopYn) == 'Y'}">
+									<td style = "padding : 1.5rem 0.5rem;">${mnList.mnNo }</td>
+									<td style = "padding : 1.5rem 0.5rem;">
+									<a href="mnSelectDetail?mnNo=${mnList.mnNo}&pageNum=${currentPage}"><b>[📣공지]&nbsp;${mnList.mnTitle}</b>
+										<c:if test="${mnList.mnAddFile!=null }">
+											💾								
+										</c:if> </a></td>
+									<td style = "padding : 1.5rem 0.5rem;">${mnList.mnWriter}</td>
+									<td style = "padding : 1.5rem 0.5rem;">${mnList.mnReadCnt}</td>
+									<td style = "padding : 1.5rem 0.5rem;"><fmt:formatDate value="${mnList.mnRegDate}" pattern="yyyy-MM-dd" /></td>
+								</c:if>
+								<c:if test="${fn:trim(mnList.mnFixTopYn) == 'N'}">
+									<td style = "padding : 1.5rem 0.5rem;">${mnList.mnNo }</td>
+									<td style = "padding : 1.5rem 0.5rem;">
+									<a href="mnSelectDetail?mnNo=${mnList.mnNo}&pageNum=${currentPage}">${mnList.mnTitle}
+										<c:if test="${mnList.mnAddFile!=null }">
+											💾								
+										</c:if> </a></td>
+									<td style = "padding : 1.5rem 0.5rem;">${mnList.mnWriter}</td>
+									<td style = "padding : 1.5rem 0.5rem;">${mnList.mnReadCnt}</td>
+									<td style = "padding : 1.5rem 0.5rem;"><fmt:formatDate value="${mnList.mnRegDate}" pattern="yyyy-MM-dd" /></td>
+								</c:if>
 							</tr>
 						</c:forEach>
 					</c:if>
