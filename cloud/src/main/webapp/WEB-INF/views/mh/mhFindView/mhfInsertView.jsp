@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- content -->
 <div class="w3-content row" id="global-content">
+    <input type="hidden" class="form-control rounded-0" name="mmNo" value="${sessionScope.mmNo}" >
+    <input type="hidden" class="form-control rounded-0" name="mhfWriter" value="${sessionScope.userId}" >
 	<div class="row my-3 text-center">
 		<div class="col">
 			<h2 class="fs-3 fw-bold ">목격정보 작성</h2>
