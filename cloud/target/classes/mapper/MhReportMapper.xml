@@ -28,6 +28,7 @@
 		<result property="mhrWear" column="mhrWear"/>
 		<result property="mhrDelYn" column="mhrDelYn"/>
 		<result property="mhrAddFile" column="mhrAddFile"/>
+		<result property="mhrLocalDetail" column="mhrLocalDetail"/>
 		<!-- 번호 가져오기 추가 -->
 		<result property="memberTell" column="memberTell"/>
 	</resultMap>
@@ -121,6 +122,7 @@ WHERE
 			 , mhr.mhrPhysical as mhrPhysical
 			 , mhr.mhrStatusCode as mhrStatusCode
 			 , mhr.mhrLocalCode as mhrLocalCode
+			 , mhr.mhrLocalDetail as mhrLocalDetail
 			 , mhr.mhrTitle as mhrTitle
 			 , mhr.mhrContent as mhrContent
 			 , mhr.mhrDelYn as mhrDelYn
@@ -129,6 +131,7 @@ WHERE
 			 , mhr.mhrAddFile as mhrAddFile
 			 , mhr.mhrInfoDate as mhrInfoDate
 			 , mhr.mmNo as mmNo
+			 , mhr.mhrNation as mhrNation
 			 , (SELECT m.mmTel 
 			 	FROM MMEMBER m
 			 	WHERE m.mmNo = mhr.mmNo) AS memberTell
@@ -154,6 +157,7 @@ WHERE
 	 									<if test="mhrAddFile != null">
 	 									,mhrAddFile
 	 									</if>
+	 									,mhrLocalDetail
 	 									)
 	 	VALUES(MHREPORT_seq.NEXTVAL, #{mhrTitle}
 	 				, #{mhrContent}, SYSTIMESTAMP
@@ -166,6 +170,7 @@ WHERE
 	 				, #{mhrWeight, jdbcType=VARCHAR}, #{mhrPhysical, jdbcType=VARCHAR}
 	 				, #{mhrFace, jdbcType=VARCHAR}, #{mhrHairColor, jdbcType=VARCHAR}
 	 				, #{mhrHair, jdbcType=VARCHAR}, #{mhrWear, jdbcType=VARCHAR}
+	 				,#{mhrLocalDetail, jdbcType=VARCHAR}
 	 				<if test="mhrAddFile != null">
 	 				, #{mhrAddFile}
 	 				</if>
@@ -188,6 +193,8 @@ WHERE
 			mhrHairColor=#{mhrHairColor, jdbcType=VARCHAR},
 			mhrHair=#{mhrHair, jdbcType=VARCHAR},
 			mhrWear=#{mhrWear, jdbcType=VARCHAR}
+			,mhrLocalDetail=#{mhrLocalDetail, jdbcType=VARCHAR}
+			,mhrNation=#{mhrNation}
 			<if test="mhrAddFile != null">
 			,mhrAddFile = #{mhrAddFile} 
 			</if>

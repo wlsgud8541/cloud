@@ -104,6 +104,7 @@ public class MhController {
 										String mhrStatusCode, String mhrLocalCode, String mhrName, String mhrGen,
 										@RequestParam(value="mhrHeight",required=false)String mhrHeight,
 										@RequestParam(value="mhrWeight",required=false)String mhrWeight, 
+										@RequestParam(value="mhrWeight",required=false)String mhrPhysical, 
 										@RequestParam(value="mhrFace",required=false)String mhrFace, 
 										@RequestParam(value="mhrHairColor",required=false)String mhrHairColor,
 										@RequestParam(value="mhrHair",required=false)String mhrHair,
@@ -129,6 +130,7 @@ public class MhController {
 		mhReport.setMhrIllCode(mhrIllCode);
 		mhReport.setMhrStatusCode(mhrStatusCode);
 		mhReport.setMhrLocalCode(mhrLocalCode);
+		mhReport.setMhrPhysical(mhrPhysical);
 		mhReport.setMhrWriter(mhrWriter);
 		mhReport.setMhrGen(mhrGen);
 		mhReport.setMhrHeight(mhrHeight);
@@ -157,7 +159,7 @@ public class MhController {
 										String mhrRegDate, String mhrNation, String mhrIllCode, String mhrStatusCode,
 										String mhrLocalCode, String mhrGen, String mhrHeight, String mhrWeight,
 										String mhrPhysical, String mhrHairColor, String mhrHair, String mhrWear,int mmNo, int mhrNo,
-										@RequestParam(value="mhrAddFile",required=false)MultipartFile file, String mhrInfoDate) throws IOException {
+										@RequestParam(value="mhrAddFile",required=false)MultipartFile file, String mhrInfoDate, String mhrFace) throws IOException {
 		MhReport mhReport = new MhReport();
 		String tempDate = mhrInfoDate + " 00:00:00";
 		logger.debug(tempDate);
@@ -173,6 +175,7 @@ public class MhController {
 		mhReport.setMhrStatusCode(mhrStatusCode);
 		mhReport.setMhrLocalCode(mhrLocalCode);
 		mhReport.setMhrGen(mhrGen);
+		mhReport.setMhrNation(mhrNation);
 		mhReport.setMhrHeight(mhrHeight);
 		mhReport.setMhrWeight(mhrWeight);
 		mhReport.setMhrPhysical(mhrPhysical);
@@ -182,9 +185,10 @@ public class MhController {
 		mhReport.setMhrInfoDate(temp);
 		String FileName = gm.addFile(request, file);
 		mhReport.setMhrAddFile(FileName);
+		mhReport.setMhrFace(mhrFace);
 		int tmp = service.mhrUpdate(mhReport);
 		logger.debug("수정 결과:"+tmp);
-		
+		logger.debug("국적:"+mhrNation);
 		return "redirect:mhrSelectList";
 	}
 	// 실종자 정보 게시글 삭제 프로세스

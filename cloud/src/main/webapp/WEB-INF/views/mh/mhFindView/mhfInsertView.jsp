@@ -6,8 +6,8 @@
 <div class="w3-content row" id="global-content">
 	<div class="row my-3 text-center">
 		<div class="col">
-			<h2 class="fs-3 fw-bold ">게시글 쓰기</h2>
-			<p class="border border-bottom border-danger border-2" style="width: 150px; display: inline-block; margin-bottom: 0px;"></p>
+			<h2 class="fs-3 fw-bold ">목격정보 작성</h2>
+			<p class="border border-bottom border-danger border-2" style="width: 170px; display: inline-block; margin-bottom: 0px;"></p>
 		</div>
 	</div>
 	<form name="insertForm" action="mhfInsertProcess" id="insertForm" 

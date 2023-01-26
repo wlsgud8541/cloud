@@ -119,7 +119,7 @@
 									</tr>
 									<tr>
 										<th>체격</th>
-										<td>${report.mhrPhysical }</td>
+										<td>${report.mhrPhysical}</td>
 									</tr>
 									<tr>
 										<th>얼굴형</th>

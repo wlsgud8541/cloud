@@ -29,7 +29,7 @@ public class MhReport {
 	private String mhrHair;
 	private String mhrWear;
 	private String tableType;
-	
+	private String mhrLocalDetail;
 	private String memberTell;
 	private String code;
 
@@ -39,7 +39,7 @@ public class MhReport {
 			String mhrContent, String mhrName, String mhrMage, String mhrage, String mhrNation, String mhrIllCode,
 			String mhrStatusCode, String mhrLocalCode, String mhrAddFile, String mhrWriter, String mhrDelYn,
 			String mhrGen, String mhrHeight, String mhrWeight, String mhrPhysical, String mhrFace, String mhrHairColor,
-			String mhrHair, String mhrWear, String memberTell, String code, String tableType) {
+			String mhrHair, String mhrWear, String memberTell, String code, String tableType, String mhrLocalDetail) {
 
 			this.mhrNo = mhrNo;
 			this.mhrReadCnt = mhrReadCnt;
@@ -69,9 +69,18 @@ public class MhReport {
 			this.memberTell = memberTell;
 			this.code = code;
 			this.tableType = tableType;
+			this.mhrLocalDetail=mhrLocalDetail;
 	}
 	
 	
+	public String getMhrLocalDetail() {
+		return mhrLocalDetail;
+	}
+
+	public void setMhrLocalDetail(String mhrLocalDetail) {
+		this.mhrLocalDetail = mhrLocalDetail;
+	}
+
 	public String getTableType() {
 		return tableType;
 	}
