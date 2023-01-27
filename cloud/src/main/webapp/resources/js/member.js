@@ -713,7 +713,7 @@ $(document).ready(function(){
 
 				if(startPage > pageGroup){
 					tag2 += '<li class="prev"><a class="page-link myPageWriterList" data-pageNum="1">&lt;&lt;</a></li>';
-					tag2 += '<li class="prev"><a class="page-link myPageWriterList" href="#" data-pageNum="'+ (startPage - pageGroup) + '">&lt;</a></li>'
+					tag2 += '<li class="prev"><a class="page-link myPageWriterList" href="#" data-pageNum="'+ (startPage - pageGroup) +'">&lt;</a></li>'
 				}
 
 				for(var i = startPage; i <= endPage; i++){
@@ -725,7 +725,7 @@ $(document).ready(function(){
 					}
 				}
 
-				if(startPage > pageGroup){
+				if(endPage < pageCount){
 					tag2 += '<li class="next"><a class="page-link myPageWriterList" href="#" data-pageNum="' + (startPage + pageGroup) + '">&gt;</a></li>';
 					tag2 += '<li class="next"><a class="page-link myPageWriterList" href="#" data-pageNum="' + pageCount + '">&gt;&gt;</a></li>';
 				}

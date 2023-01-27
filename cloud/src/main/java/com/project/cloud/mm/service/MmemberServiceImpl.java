@@ -208,6 +208,10 @@ public class MmemberServiceImpl implements MmemberService{
 		endPage = (int)mnModel.get("endPage");
 		currentPage = (int)mnModel.get("currentPage");
 		
+		logger.debug("mmNo : "+mmNo);
+		logger.debug("startRow : "+startRow);
+		logger.debug("pageSize : "+pageSize);
+		
 		List<Mmember> memberWriterInfo = new ArrayList<Mmember>();
 		for (Mmember mmember : mmDao.mmSelectWriterInfo(mmNo, startRow, pageSize)) {
 			memberWriterInfo.add(mmember);
