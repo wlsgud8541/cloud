@@ -21,10 +21,10 @@
 			<tr>
 				<td class="py-2">&nbsp;&nbsp;💾 | <a href="fileDownload?fileName=${mppDetail.mppAddFile}">다운로드</a></td>
 				<c:if test="${ mppDetail.mppStatusCode == '01' }">
-					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-danger">실종</a></td>
+					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-danger"><b>실종</b></a></td>
 				</c:if>
 				<c:if test="${ mppDetail.mppStatusCode == '02' }">
-					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-primary">찾았어요!</a></td>
+					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-primary"><b>찾았어요!</b></a></td>
 				</c:if>
 			</tr>	
 			</c:if>
@@ -32,159 +32,68 @@
 			<tr>
 				<td class="py-2">&nbsp;&nbsp;💾 | 파일없음</td>
 				<c:if test="${ mppDetail.mppStatusCode == '01' }">
-					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-danger">실종</a></td>
+					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-danger"><b>실종</b></a></td>
 				</c:if>
 				<c:if test="${ mppDetail.mppStatusCode == '02' }">
-					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-primary">찾았어요!</a></td>
+					<td class="text-end">&nbsp;&nbsp;실종현황 : <a class="text-primary"><b>찾았어요!</b></a></td>
 				</c:if>
 			</tr>	
 			</c:if>
 			 
 		</table>
-	<a class="row mt-4">
-		<c:if test="${mppDetail.mppLocalCode == 01}">
-			<div class="col text-center">
-				<span class="btn btn-primary">서울</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 02}">
-			<div class="col text-center">
-				<span class="btn btn-primary">경기</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 03}">
-			<div class="col text-center">
-				<span class="btn btn-primary">인천</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 04}">
-			<div class="col text-center">
-				<span class="btn btn-primary">대전</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 05}">
-			<div class="col text-center">
-				<span class="btn btn-primary">광주</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 06}">
-			<div class="col text-center">
-				<span class="btn btn-primary">대구</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 07}">
-			<div class="col text-center">
-				<span class="btn btn-primary">울산</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 08}">
-			<div class="col text-center">
-				<span class="btn btn-primary">부산</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 09}">
-			<div class="col text-center">
-				<span class="btn btn-primary">세종</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 10}">
-			<div class="col text-center">
-				<span class="btn btn-primary">강원</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 11}">
-			<div class="col text-center">
-				<span class="btn btn-primary">충북</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 12}">
-			<div class="col text-center">
-				<span class="btn btn-primary">충남</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 13}">
-			<div class="col text-center">
-				<span class="btn btn-primary">전북</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 14}">
-			<div class="col text-center">
-				<span class="btn btn-primary">전남</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 15}">
-			<div class="col text-center">
-				<span class="btn btn-primary">경북</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 16}">
-			<div class="col text-center">
-				<span class="btn btn-primary">경남</span>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppLocalCode == 17}">
-			<div class="col text-center">
-				<span class="btn btn-primary">제주</span>
-			</div>
-		</c:if>
-	</a>
-		<div class="row mt-4">
-			<b>상세위치 : ${mppDetail.mppLocalDetail}</b>
-		</div>
-	
-	<div class="row mt-4">
-		<b>발견 일시 : <fmt:formatDate value="${mppDetail.mppInfoDate}" pattern="yyyy-MM-dd" /></b>
-	</div>
 		
-	<div class="row mt-4">
-		<c:if test="${mppDetail.mppPetType == 01}">
-			<div>
-				<b>종류 : 강아지</b>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppPetType == 02}">
-			<div>
-				<b>종류 : 고양이</b>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppPetType == 03}">
-			<div>
-				<b>종류 : 기타</b>
-			</div>
-		</c:if>
-	</div>
-	
-	
-	<div class="row mt-4">
-		<c:if test="${mppDetail.mppGen == 'M '}">
-			<div>
-				<b>성별 : 수컷</b>
-			</div>
-		</c:if>
-		<c:if test="${mppDetail.mppGen == 'F '}">
-			<div>
-				<b>성별 : 암컷</b>
-			</div>
-		</c:if>
-	</div>
-	
-		<div class="py-4 px-3">
-<pre>
-상세 내용 :
-	${mppDetail.mppContent }
-</pre>
-	<c:if test="${not empty mppDetail.mppAddFile}">
-		<div class="text-center">
-			<img src="fileDownload?fileName=${mppDetail.mppAddFile}" style="width: 500px;">
+		
+<div class="row mt-4">
+		<div class="col">
+			<c:if test="${mppDetail.mppAddFile != null}">
+				<div class="text-center">
+					<img src="fileDownload?fileName=${mppDetail.mppAddFile}" style="width: 500px;">
+				</div>
+			</c:if>
+			<c:if test="${empty mppDetail.mppAddFile}">
+				<div class="text-center text-success p-4">
+					<img src="resources/image/main/cloudLogo.png" style="width: 350px;">
+				</div>
+			</c:if>
 		</div>
-	</c:if>
-	<c:if test="${empty mppDetail.mppAddFile}">
-		<div class="text-center text-success p-4">
-			등록된 사진이 없습니다.
+		<div class="col">
+			<c:if test="${mppDetail.mppPetType == 01}"><b>강아지</b></c:if>
+			<c:if test="${mppDetail.mppPetType == 02}"><b>고양이</b></c:if>
+			<c:if test="${mppDetail.mppPetType == 03}"><b>기타</b></c:if>
+			(<c:if test="${mppDetail.mppGen == 'M '}"><b><i class="bi bi-gender-male"></i></b></c:if>
+			<c:if test="${mppDetail.mppGen == 'F '}"><b><i class="bi bi-gender-female"></i></b></c:if>)
+			<table class="table border-top border-2 mt-3">
+				<tr>
+					<th>실종지역 / 상세위치</th>
+					<td><c:if test="${mppDetail.mppLocalCode == 01}">서울</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 02}">경기</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 03}">인천</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 04}">대전</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 05}">광주</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 06}">대구</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 07}">울산</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 08}">부산</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 09}">세종</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 10}">강원</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 11}">충북</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 12}">충남</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 13}">전북</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 14}">전남</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 15}">경북</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 16}">경남</c:if>
+						<c:if test="${mppDetail.mppLocalCode == 17}">제주</c:if> / 	${mppDetail.mppLocalDetail}
+					</td>
+				</tr>
+				<tr>
+					<th>실종일시</th>
+					<td><fmt:formatDate value="${mppDetail.mppInfoDate}" pattern="yyyy-MM-dd" /></td>
+				</tr>
+			</table>
+			<b>${mppDetail.mppContent }</b>
 		</div>
-	</c:if>
-		</div>
-	</div>
+	</div>		
+</div>
+		
 	<div class="mpboxLine"></div>
 
 

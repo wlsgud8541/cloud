@@ -605,25 +605,31 @@ $(document).ready(function(){
                var timestamp = result[i].mpfComRegDate;
                var date = new Date(timestamp);
                var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
-                              
-               tag += '<div class="row">';
-               tag += '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'"><p>'+result[i].mpfComContent+'</p></div>';
-               tag += '<div class="col-2"><p>'+result[i].mpfComWriter+'</p></div>';
-               tag += '<div class="col-2"><p>'+formatDate+'</p></div>';
-               tag += '<div class="col-2">';
-             
-               if($.trim(mpfComWriter) === $.trim(result[i].mpfComWriter) || $.trim(mpfComWriter) === 'admin0001'){
-	               tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
-	               tag += '<i class="bi bi-journal-text">수정</i>';
-	               tag += '</button>';
-	               tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
-	               tag += '<i class="bi bi-trash">삭제</i>';
-	               tag += '</button>';
-               };
-             
-               tag += '</div>';
-               tag += '</div>';
-   
+               
+               
+             tag +=  '<div class="row">'
+             tag +=     '<div>'
+             tag +=         '<p id="mpfcWriter"><b>'+result[i].mpfComWriter+'</b></p>'
+             tag +=    '</div>'
+             tag +=    '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'">'
+             tag +=         '<p>'+result[i].mpfComContent+'</p>'
+             tag +=     '</div>'
+             tag +=     '<div id="mpfComBtn'+result[i].mpfComNo+'">'
+             tag +=        '<small class="text-secondary">'+formatDate+'</small> '
+                     
+                if($.trim(mpfComWriter) === $.trim(result[i].mpfComWriter) || $.trim(mpfComWriter) === 'admin0001'){ 
+             tag +=       '<button class="btn btn-outline-dark btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'"> ' 
+             tag +=           '<i class="bi bi-journal-text"></i>수정</button> '
+             tag +=        '<button class="btn btn-outline-dark btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete">'
+             tag +=           '<i class="bi bi-trash"></i>삭제</button>'
+                };
+                
+             tag +=     '</div>'
+             tag +=  '</div>'
+             tag +=  '<hr class="border border-dark">'
+               
+               
+         
             }
             
             $("#mpfComList").append(tag);
@@ -638,15 +644,24 @@ $(document).ready(function(){
    $(document).on("click",".mpfcUpdate",function(){
       var mpfComNo = $(this).attr("data-mpfComNo");
       var beforeContent = $("#mpfComContent"+mpfComNo).children().html();
+      var beforeDate = $("#mpfComBtn"+mpfComNo).children('small').html();
    	  var mpfComWriter = $("#mpfComWriter").val();
+   	  
   
       if($(this).hasClass("mpfcUpdateSuccess") === false){
-         var tag = '<input type="text" style="width: 450px;" id="mpfComContentVal'+mpfComNo+'" value="'+beforeContent+'" >';
+         var tag = '<textarea class="form-control rounded-0" style="resize: none;" id="mpfComContentVal'+mpfComNo+'">'+beforeContent+'</textarea>';
+        
+         var tag1 = '<small class="text-secondary">'+beforeDate+'</small> ';
+         	 tag1 += '<button class="btn btn-outline-dark btn-sm mpfcUpdate mpfcUpdateSuccess" data-mpfComNo="'+mpfComNo+'" id="mpfcUpdate'+mpfComNo+'"> ';
+         	 tag1 += '<i class="bi bi-journal-text"></i>수정완료</button> ';
+         	 tag1 += '<button class="btn btn-outline-dark btn-sm" data-mpfComNo="'+mpfComNo+'" id="mpfcDelete">';
+         	 tag1 += '<i class="bi bi-trash"></i>삭제</button>';
 
          $("#mpfComContent"+mpfComNo).empty();
          $("#mpfComContent"+mpfComNo).append(tag);         
-         $(this).addClass("mpfcUpdateSuccess");
-         $(this).children().html("수정완료");
+       
+         $("#mpfComBtn"+mpfComNo).empty();
+         $("#mpfComBtn"+mpfComNo).append(tag1);
          
       }else{
          var mpfNo = $("#mpfNo").val();
@@ -682,22 +697,26 @@ $(document).ready(function(){
                   var date = new Date(timestamp);
                   var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
                   
-                  tag += '<div class="row">';
-                  tag += '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'"><p>'+result[i].mpfComContent+'</p></div>';
-                  tag += '<div class="col-2"><p>'+result[i].mpfComWriter+'</p></div>';
-                  tag += '<div class="col-2"><p>'+formatDate+'</p></div>';
-                  tag += '<div class="col-2">';
-                  if($.trim(mpfComWriter) === $.trim(result[i].mpfComWriter) || $.trim(mpfComWriter) === 'admin0001'){
-	                  tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
-	                  tag += '<i class="bi bi-journal-text">수정</i>';
-	                  tag += '</button>';
-	                  tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
-	                  tag += '<i class="bi bi-trash">삭제</i>';
-	                  tag += '</button>';
-                  };
-                  
-                  tag += '</div>';
-                  tag += '</div>';
+                  	 tag +=  '<div class="row">'
+		             tag +=     '<div>'
+		             tag +=         '<p id="mpfcWriter"><b>'+result[i].mpfComWriter+'</b></p>'
+		             tag +=    '</div>'
+		             tag +=    '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'">'
+		             tag +=         '<p>'+result[i].mpfComContent+'</p>'
+		             tag +=     '</div>'
+		             tag +=     '<div id="mpfComBtn'+result[i].mpfComNo+'">'
+		             tag +=        '<small class="text-secondary">'+formatDate+'</small> '
+		                     
+		                if($.trim(mpfComWriter) === $.trim(result[i].mpfComWriter) || $.trim(mpfComWriter) === 'admin0001'){ 
+		             tag +=       '<button class="btn btn-outline-dark btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'"> ' 
+		             tag +=           '<i class="bi bi-journal-text"></i>수정</button> '
+		             tag +=        '<button class="btn btn-outline-dark btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete">'
+		             tag +=           '<i class="bi bi-trash"></i>삭제</button>'
+		                };
+		                
+		             tag +=     '</div>'
+		             tag +=  '</div>'
+		             tag +=  '<hr class="border border-dark">'
    
       
                }
@@ -741,23 +760,26 @@ $(document).ready(function(){
                   var date = new Date(timestamp);
                   var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
                   
-                  tag += '<div class="row">';
-                  tag += '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'"><p>'+result[i].mpfComContent+'</p></div>';
-                  tag += '<div class="col-2"><p>'+result[i].mpfComWriter+'</p></div>';
-                  tag += '<div class="col-2"><p>'+formatDate+'</p></div>';
-                  tag += '<div class="col-2">';
-                  
-                  if($.trim(mpfComWriter) === $.trim(result[i].mpfComWriter) || $.trim(mpfComWriter) === 'admin0001'){
-	                  tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
-	                  tag += '<i class="bi bi-journal-text">수정</i>';
-	                  tag += '</button>';
-	                  tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
-	                  tag += '<i class="bi bi-trash">삭제</i>';
-	                  tag += '</button>';
-                  };
-                  
-                  tag += '</div>';
-                  tag += '</div>';
+                  	 tag +=  '<div class="row">'
+		             tag +=     '<div>'
+		             tag +=         '<p id="mpfcWriter"><b>'+result[i].mpfComWriter+'</b></p>'
+		             tag +=    '</div>'
+		             tag +=    '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'">'
+		             tag +=         '<p>'+result[i].mpfComContent+'</p>'
+		             tag +=     '</div>'
+		             tag +=     '<div id="mpfComBtn'+result[i].mpfComNo+'">'
+		             tag +=        '<small class="text-secondary">'+formatDate+'</small> '
+		                     
+		                if($.trim(mpfComWriter) === $.trim(result[i].mpfComWriter) || $.trim(mpfComWriter) === 'admin0001'){ 
+		             tag +=       '<button class="btn btn-outline-dark btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'"> ' 
+		             tag +=           '<i class="bi bi-journal-text"></i>수정</button> '
+		             tag +=        '<button class="btn btn-outline-dark btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete">'
+		             tag +=           '<i class="bi bi-trash"></i>삭제</button>'
+		                };
+		                
+		             tag +=     '</div>'
+		             tag +=  '</div>'
+		             tag +=  '<hr class="border border-dark">'
       
                }
                $("#mpfComList").append(tag);
@@ -774,212 +796,7 @@ $(document).ready(function(){
 	
 	
 	
-	
-/*	
-	// 실종반려동물 목격 게시판 댓글 
-	$(document).on("submit","#mpfCommForm",function(evt){
-		evt.preventDefault();
-		if($("#commContent").val() < 1){
-			alert("댓글 내용을 입력하지 않았습니다");
-			return false;
-		}
-		var param = $(this).serialize();
-	
-		$.ajax({
-			"url":"mpfCommInsert",
-			"data":param,
-			"type":"post",
-			"dataType":"json",
-			"success":function(resultData){
-				console.log(resultData);
-				
-				$("#mpfComList").empty();
-				
-				$.each(resultData, function(k, v) {
-					var date = new Date(v.mhfComRegDate);
-					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
-										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
-										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
-										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
- 					 var result =	'<div class="row">'
-					+	'<div class="col-6" id="mpfComContent"'+v.mpfComNo+'">'
-					+		 '<p>'+v.mpfComContent+'</p>'
-					+	'</div>'
-					+	'<div class="col-2">'
-					+		 '<p>'+v.mpfComWriter+'</p>'
-					+	'</div>'
-					+	'<div class="col-2">'
-					+		'<p><fmt:formatDate value="'+v.mpfComRegDate+'" pattern="yyyy-MM-dd" /></p>'
-					+	'</div>'
-					+	'<div class="col-2">'
-					+	'	<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+v.mpfComNo+'" id="mpfcUpdate"'+v.mpfComNo+'"> '
-					+			'<i class="bi bi-journal-text">수정</i>'
-					+		'</button>'
-					+		'<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+v.mpfComNo+'" id="mpfcDelete"> '
-					+			'<i class="bi bi-trash">삭제</i>'
-					+		'</button>'
-					+	'</div>'
-					+'</div>'
-	 					 				
-	 				$("#mpfComList").append(result);
-	 			
- 				});
-			},
-			"error":function(xhr, status){
-				console.log("error:");
-				console.log(status);
-			}
-		});
-		return false;
-	});
-	
-	
-	// 실종 반려동물 목격 게시판 댓글 수정버튼 클릭
-	   $(document).on("click","#mpfcUpdate", function(){
-	      console.log($("#mpfCommForm").css("display"));
-	      
-	      console.log($(this).next());
-	      var $mpfComList = $(this).next();
-	      var mpfComNo = $(this).attr("data-mpfComNo");
-	      if($("#mpfCommForm").is(":visible")){
-	         var $next = $mpfComList.next();
-	        if(! $next.is("#mpfCommForm")){
-	            $("#mpfCommForm").slideUp(500);
-	         }	
-	         setTimeout(function(){
-	            $("#mpfCommForm").insertAfter($mpfComList).slideDown(500);
-	         },500);
-	      }else{
-	         $("#mpfCommForm").removeClass("d-none").css("display","none").insertAfter($mpfComList).slideDown(500);
-	      }
-	      
-	      $("#mpfCommForm").find("form").attr({"id":"modifyForm","data-mpfComNo":mpfComNo}).removeAttr("data-mpfNo");
-	      
-	      var mpfcModify = $(this).parent().parent().find("pre").text();
-	      console.log("mpfcModify:"+mpfcModify);
-	      $("#mpfComContent").val($.trim(mpfcModify));
-	   });
-	
-	// 실종 반려동물 목격 게시판 댓글 수정 서브밋
-	
-	$(document).on("submit","#modifyForm", function(evt){
-		evt.preventDefault();
-		
-		if($("#updateContent").val().length < 1){
-			alert("댓글이 입력되지 않았습니다.");
-			return false;
-		}
-		
-		var mpfComNo = $('#mpfcUpdate').attr("data-mpfComNo")
-		
-		$mpfCommForm = $("#mpfCommForm").slideUp(500);
-		var param = $(this).serialize()+"&mpfComNo="+mpfComNo;
-		console.log("param:");
-		console.log(param);
-		$.ajax({
-			url : "mpfcUpdate",
-			data : param,
-			dataType : "json",
-			type : "post",
-			success : function(resultData){
-				console.log("resultData : ");
-				console.log(resultData);
-				
-				$("#mpfComList").empty();
-				$.each(resultData, function(k, v) {
-					var date = new Date(v.mpfComRegDate);
-					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
-										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
-										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
-										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
-										+(date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
-										
-					var result =
-							'<div>'
-							+'<span>'+v.mpfComContent+'</span>'+'</div>'
-							+'<div>'
-							+'<span>'+v.mpfComWriter+'</span>'+'<br>'
-							+'</div>'
-							+'<div>'
-							+'<span>'+tmpDate+'</span>'
-							+'</div>'
-							+'<button class="btn btn-outline-success btn-sm" data-no="'+v.mpfComNo+'">' 
-								+'<i class="bi bi-journal-text">수정</i></button>'
-							+'<button class="btn btn-outline-warning btn-sm" data-no="'+v.mpfComNo+'">' 
-								+'<i class="bi bi-trash">삭제</i></button>'
-		 					 				
-		 				$("#mpfComList").append(result);					
-				});
-				
-				$("#updateContent").val("");
-				$mpfCommForm.css("display","none");
-				$("#global > div.col").append($mpfCommForm);
-				
-			},
-			error : function(xhr, status){
-				alert("ajax 실패:" + status);
-				console.log(status);
-				console.log(xhr);
-			}
-		});
-		return false;
-	});
-	
-   // 실종 반려동물 목격 게시판 댓글 삭제
-   $(document).on("click","#mpfcDelete",function(evt){
-      evt.preventDefault();
-      var mpfComNo = $(this).attr("data-mpfComNo");
-      var writer = $("#mpfComWriter").val();
-      var mpfNo = $("#mpfCommForm input[name=mpfNo]").val();
-      console.log(mpfNo);
-      var par = "mpfComNo=" + mpfComNo + "&mpfComWriter=" + writer + "&mpfNo=" + mpfNo
-      console.log(par);
-      var alram = confirm("댓글을 삭제하시겠습니까?");
-      if(alram){
-         $.ajax({
-            "url":"mpfCommDelete",
-            "type":"post",
-            "data":par,
-            "dataType":"json",
-            "success":function(resultData){
-            console.log("resultData:");
-               console.log(resultData);
-               $("#mpfComList").empty();
-            $.each(resultData, function(k, v) {
-               var date = new Date(v.mpfComRegDate);
-               var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
-                              + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
-                              + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
-                              + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;
-                              
-               var result =
-                     '<div>'
-                     +'<span>'+v.mpfComContent+'</span>'+'</div>'
-                     +'<div>'
-                     +'<span>'+v.mpfComWriter+'</span>'+'<br>'
-                     +'</div>'
-                     +'<div>'
-                     +'<span>'+tmpDate+'</span>'
-                     +'</div>'
-                     +'<button class="btn btn-outline-success btn-sm" data-mpfComNo="'+v.mpfComNo+'" id="mpfcUpdate">' 
-                        +'<i class="bi bi-journal-text">수정</i></button>'
-                     +'<button class="btn btn-outline-warning btn-sm" data-mpfComNo="'+v.mpfComNo+'" id="mpfcDelete">' 
-                        +'<i class="bi bi-trash">삭제</i></button>'
-                                   
-                   $("#mpfComList").append(result);               
-            });
-            
-            $("#mpfComContent").val("");
-            },
-            "error":function(status, xhr){
-               alert("댓글 삭제 실패:"+ status + xhr.status);
-            }
-         });
-      
-      }; 
-         return false;
-   });
-*/
+
 	
 	
 	// 실종자 신고 게시판 -경욱

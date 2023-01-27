@@ -3,12 +3,6 @@
 
 <!-- content -->
 <div class="row" id="global-content">
-	<div class="row my-5 text-center">
-		<div class="col">
-			<h2 class="fs-3 fw-bold">목격 게시판 작성하기</h2>
-			<p class="border border-bottom border-primary border-2" style="width: 265px; display: inline-block; margin-bottom: 0px;"></p>
-		</div>
-	</div>
 	<form name="mpfInsert" action="mpfInsertProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${sessionScope.mmNo}">
@@ -18,14 +12,14 @@
 	<div class="col-8 offset-md-2"> 
 		<div class="row mb-2">
 			<div class="col-12">
-			    <label for="mpfTitle" class="form-label">제목</label>
+			    <label for="mpfTitle" class="form-label border-bottom border-2 border-primary border-opacity-25">제목</label>
 		  		<input type="text"class="form-control rounded-0" name="mpfTitle" id="title">
 		  	</div>
 		</div>
 		
 		<div class="row mb-2">
 			<div class="col-6">
-			    <label for="mpfPetType" class="form-label">동물 종류</label>
+			    <label for="mpfPetType" class="form-label border-bottom border-2 border-primary border-opacity-25">동물 종류</label>
 			    <select class="form-control col-2 rounded-0" name="mpfPetType" id="pettype">
 			    	<option value="0">--선택하세요--</option>
 			    	<option value="01">강아지</option>
@@ -34,14 +28,14 @@
 			    </select>
 		  	</div>
 		 	<div class="col-6">
-			    <label for="mpfInfoDate" class="form-label">발견 일시</label>
+			    <label for="mpfInfoDate" class="form-label border-bottom border-2 border-primary border-opacity-25">발견 일시</label>
 		   		<input type="date"class="form-control rounded-0" name="mpfInfoDate" id="infoDate">
 		  	</div>
 		</div>
 		
 		<div class="row mb-2">
 		  	<div class="col-4">
-			    <label for="mpfLocalCode" class="form-label">실종지역</label>
+			    <label for="mpfLocalCode" class="form-label border-bottom border-2 border-primary border-opacity-25">실종지역</label>
 		  	 	<select class="form-control col-2 rounded-0" name="mpfLocalCode" id="localCode">
 				   	<option value="0">--선택하세요--</option>
 				   	<option value="01">서울</option>
@@ -64,7 +58,7 @@
 			    </select>
 		  	</div>
 		  	<div class="col-8" style="margin-right: 0px; padding-right: 0px;">
-		       	<label for="zipcode" class="form-label">상세위치</label><br>
+		       	<label for="zipcode" class="form-label border-bottom border-2 border-primary border-opacity-25">상세위치</label><br>
 				<div class="row">
 					<div class="col-9">
 						<input type="text" class="form-control rounded-0" name="mpfLocalDetail" id="addr1" readonly>

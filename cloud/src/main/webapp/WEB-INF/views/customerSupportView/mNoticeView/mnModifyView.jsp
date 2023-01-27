@@ -5,11 +5,6 @@
 
 <!-- content -->
 <div class="row" id="global-content">
-	<div class="row my-5 text-center">
-		<div class="col">
-			<h2 class="fs-3 fw-bold">공지사항 게시판 수정하기</h2>
-		</div>
-	</div>  
 	<form name="mnUpdateForm" action="mnUpdateProcess" id="mnUpdateForm" class="row g-3 border-success" method="post" enctype="multipart/form-data">
 	  	<!-- 테스트를 위한 임시 회원 번호 -->
 	  	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${sessionScope.mmNo}">

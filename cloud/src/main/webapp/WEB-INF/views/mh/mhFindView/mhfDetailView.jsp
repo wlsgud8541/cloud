@@ -43,8 +43,8 @@
 					</div>
 				</div>
 			</div>
-		</form>
-	
+		</form>	
+
 	<div id="global" class="row mt-3">
 		<div class="col">
 			<form id="mhfCommInsert" name="mhfCommInsert" action="mhfCommInsert">
@@ -59,6 +59,7 @@
 					<input type="submit" class="btn btn-danger rounded-0" value="등록" id="mhfcommInsert" />
 				</div>
 			</form>
+		
 			
 			<div class="row">
 				<div id="comList" class="col">
@@ -95,15 +96,21 @@
 									<textarea name="mhfComContent" id="mhfComContent" class="form-control" rows="4"></textarea>
 								</div>
 								<div class="col-md">
-									<input type="submit" value="댓글 수정" class="btn" id="updateCom"/>
-								</div>
+									<input type="submit" value="댓글 수정" class="btn" id="updateCom"/>							
 							</div>
 						</div>
-					</form>
-				</div>
+					</div>
+				</form>
 			</div>
-				
 		</div>
 	</div>
 </div>
+</div>
+
+
+
+
+
+
+
 

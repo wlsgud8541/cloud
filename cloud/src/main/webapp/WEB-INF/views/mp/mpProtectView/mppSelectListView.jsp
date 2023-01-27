@@ -95,10 +95,10 @@
 							<td style = "padding : 1.5rem 0.5rem;">${mppSelectList.mppReadCnt}</td>
 							<td style = "padding : 1.5rem 0.5rem;"><fmt:formatDate value="${mppSelectList.mppRegDate}" pattern="yy-MM-dd HH:mm" /></td>
 						<c:if test="${mppSelectList.mppStatusCode == '01' }">
-							<td class="text-danger" style = "padding : 1.5rem 0.5rem;">실종</td>
+							<td class="text-danger" style = "padding : 1.5rem 0.5rem;"><b>실종</b></td>
 						</c:if>
 						<c:if test="${mppSelectList.mppStatusCode == '02' }">
-							<td class="text-primary" style = "padding : 1.5rem 0.5rem;">찾았어요!</td>
+							<td class="text-primary" style = "padding : 1.5rem 0.5rem;"><b>찾았어요!</b></td>
 						</c:if>
 						</tr>
 					</c:forEach>

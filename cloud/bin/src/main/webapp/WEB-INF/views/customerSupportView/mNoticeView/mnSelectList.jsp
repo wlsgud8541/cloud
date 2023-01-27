@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- content -->
-<div class="row my-5" id="global-content">
+<div class="row " id="global-content">
 	<div class="col">
 		<div class="row text-center">
 			<div class="col">

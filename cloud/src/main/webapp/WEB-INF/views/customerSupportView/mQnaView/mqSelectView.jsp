@@ -3,10 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- content -->
-<div class="w3-content pt-5">
+<div class="w3-content ">
 	<div class="textTop row">
 		<div class="col fs-2">
-			<b>Q&A 게시판</b>
+			<b class="border-bottom border-4 border-success border-opacity-50">Q&A 게시판</b>
 		</div>
 		<c:if test="${not empty sessionScope.userId && sessionScope.userId eq 'admin0001'}">
 			<div class="col board-bottom text-end">

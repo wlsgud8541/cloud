@@ -25,26 +25,26 @@
 		<h2 class="inblock fw-bold  border-bottom border-3 border-success border-opacity-50">개발자 소개 및 인사말</h2>
  	</div>
 	<div class="row mt-4">
-		<div class="col border p-3 me-4">
+		<div class="col-5 border p-3 shadow">
 			<div class="row">
 				<div class="col-4">
 					<img src="resources/image/main/wlsgud.jpg" style="width: 150px;">
 				</div>
-				<div class="col-8">
-					<p class="display-6 text-top align-top px-3">전진형</p><br>
+				<div class="col-8 ">
+					<p class="border-bottom border-2 border-success display-6 text-top align-top px-3">전진형</p><br>
 					<p class="px-3">직&nbsp;&nbsp;&nbsp;&nbsp;책 : 개발팀 팀장</p>
 					<p class="px-3">이메일 : wlsgud8541@naver.com</p>
 					<p class="px-3">인사말 : 항상 열심히 노력하겠습니다.</p>
 				</div>
 			</div>
 		</div>
-		<div class="col border p-3">
+		<div class="col-5 offset-md-2 border p-3 shadow">
 			<div class="row">
 				<div class="col-4">
 					<img src="resources/image/main/dndud.jpg" style="width: 150px;">
 				</div>
 				<div class="col-8">
-					<p class="display-6 text-top align-top px-3">정우영</p><br>
+					<p class="border-bottom border-2 border-success display-6 text-top align-top px-3">정우영</p><br>
 					<p class="px-3">직&nbsp;&nbsp;&nbsp;&nbsp;책 : 디자인 및 개발</p>
 					<p class="px-3">이메일 : woo001@gmail.com</p>
 					<p class="px-3">인사말 : 항상 열심히 노력하겠습니다.</p>
@@ -53,26 +53,26 @@
 		</div>
 	</div>
 	<div class="row mt-4">
-		<div class="col  border p-3 me-4">
+		<div class="col-5  border p-3 shadow">
 			<div class="row">
 				<div class="col-4">
 					<img src="resources/image/main/ruddnr.jpg" style="width: 150px;">
 				</div>
 				<div class="col-8">
-					<p class="display-6 text-top align-top px-3">김경욱</p><br>
+					<p class="border-bottom border-2 border-success display-6 text-top align-top px-3">김경욱</p><br>
 					<p class="px-3">직&nbsp;&nbsp;&nbsp;&nbsp;책 : 공통기능 개발</p>
 					<p class="px-3">이메일 : uk001@gmail.com</p>
 					<p class="px-3">인사말 : 항상 열심히 노력하겠습니다.</p>
 				</div>
 			</div>
 		</div>
-		<div class="col  border p-3">
+		<div class="col-5 offset-md-2 border p-3 shadow">
 			<div class="row">
 				<div class="col-4">
 					<img src="resources/image/main/alsgur.jpg" style="width: 150px;">
 				</div>
 				<div class="col-8">
-					<p class="display-6 text-top align-top px-3">정민혁</p><br>
+					<p class="border-bottom border-2 border-success display-6 text-top align-top px-3">정민혁</p><br>
 					<p class="px-3">직&nbsp;&nbsp;&nbsp;&nbsp;책 : 디자인 및 개발</p>
 					<p class="px-3">이메일 : min001@gmail.com</p>
 					<p class="px-3">인사말 : 항상 열심히 노력하겠습니다.</p>

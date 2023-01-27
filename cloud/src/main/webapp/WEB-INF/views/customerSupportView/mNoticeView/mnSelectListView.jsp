@@ -4,12 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- content -->
-
-<div class="container pt-5 bg-white">
+<div class="container">
 	<!-- 상단 게시판 제목 -->
 	<div class="textTop row">
 		<div class="col fs-2">
-			<b>공지사항</b>
+			<b class="border-bottom border-4 border-success border-opacity-50">공지사항</b>
 		</div>
 		<c:if test="${not empty sessionScope.userId && sessionScope.userId == 'admin0001'}">
 			<div class="col board-bottom text-end">
@@ -106,18 +105,15 @@
 				</div>
 			</div>
 			
-			<div class="row text-center my-4">
+			<div class="row text-start offset-md-3 my-4">
 				<form class="col row" action="mnSelectList" name="searchForm" id="searchForm" method="post">
-					<div class="col text-end p-0">
 						<select name="type" class="border border-end-0" style="left:0px;width:102px; height:54px;">
 							<option value="title" ${type == 'title'? 'selected' : '' }>제 목</option>
 							<option value="content" ${type == 'content'? 'selected' : '' }>내 용</option>
 							<option value="writer" ${type == 'writer'? 'selected' : '' }>작성자</option>
 						</select>
-					</div>
 					<div class="col text-start p-0">
-						<input type="text" name="keyWord" value="${keyWord}" style="left:0px; width:500px; height:54px; background:#fff; border:1px solid #d0d0d0;">
-						<input type="submit" class="bg-success text-white bg-opacity-75" style="left:0px; top:0px; width:54px; height:56px; background:#fff;  border:1px solid #d0d0d0;" value="검색">
+						<input type="text" name="keyWord" value="${keyWord}" style="left:0px; width:500px; height:54px; background:#fff; border:1px solid #d0d0d0;"><input type="submit" class="bg-success text-white bg-opacity-75"  style="width:54px; height:54px; background:#fff;border:1px solid #d0d0d0; border-left: none;" value="검색">
 					</div>
 				</form>
 			</div>

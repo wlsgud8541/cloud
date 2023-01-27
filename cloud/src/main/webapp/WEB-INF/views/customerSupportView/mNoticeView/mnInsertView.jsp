@@ -3,11 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- content -->
 <div class="row" id="global-content">
-	<div class="row my-5 text-center">
-		<div class="col">
-			<h2 class="fs-3 fw-bold">공지사항 게시판 글쓰기</h2>
-		</div>
-	</div>  
 	 <form name="mnInsertForm" action="mnInsertProcess" id="insertForm" class="row g-3 border-success" method="post" enctype="multipart/form-data">
 	<!-- <form name="mnInsertForm" action="mnInsertProcess" id="mnInsertForm" class="row g-3 border-success" method="post"> -->
 	  	<!-- 테스트를 위한 임시 회원 번호 -->

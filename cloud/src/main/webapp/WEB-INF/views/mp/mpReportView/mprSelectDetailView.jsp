@@ -61,7 +61,7 @@
 			</c:if>
 			<c:if test="${empty mprDetail.mprAddFile}">
 				<div class="text-center text-success p-4">
-					등록된 사진이 없습니다.
+					<img src="resources/image/main/cloudLogo.png" style="width: 350px;">
 				</div>
 			</c:if>
 		</div>

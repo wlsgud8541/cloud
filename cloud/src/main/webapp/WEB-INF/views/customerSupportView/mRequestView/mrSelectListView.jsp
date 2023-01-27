@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class="container pt-5 bg-white">
+<div class="container">
 	<!-- 상단 게시판 제목 -->
 	<div class="textTop row">
 		<div class="col fs-2">
-			<b>건의사항 게시판</b>
+			<b class="border-bottom border-4 border-success border-opacity-50">건의사항 게시판</b>
 		</div>
 		<div class="col board-bottom text-end">
 			<a href="mrInsert" class="btn btn-secondary posiRight my-2">글쓰기</a>
@@ -97,7 +97,7 @@
 					</nav>
 				</div>
 			</div>
-			<div class="text-center my-4 ">
+			<div class="row text-start offset-md-3 my-4">
 				<form class="row" action="mrSelectList" name="searchForm" id="searchForm" method="post">
 					<select name="type" id="type" class="border border-end-0" style="left:0px;width:102px; height:54px;">
 						<option value="title" ${type == 'title'? 'selected' : '' }>제 목</option>
