@@ -190,7 +190,7 @@ public class MmController {
 	// 문자 인증
 	@RequestMapping("sendMessege")	
 	@ResponseBody
-	public int sendMessege(String tel) throws NoSuchAlgorithmException, InvalidKeyException {
+	public Map<String,Object> sendMessege(String tel) throws NoSuchAlgorithmException, InvalidKeyException {
 		
 		return mmService.sendMessege(tel);
 	}
