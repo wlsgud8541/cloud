@@ -173,10 +173,10 @@ WHERE
 	 				, #{mhrWeight, jdbcType=VARCHAR}, #{mhrPhysical, jdbcType=VARCHAR}
 	 				, #{mhrFace, jdbcType=VARCHAR}, #{mhrHairColor, jdbcType=VARCHAR}
 	 				, #{mhrHair, jdbcType=VARCHAR}, #{mhrWear, jdbcType=VARCHAR}
-	 				,#{mhrLocalDetail, jdbcType=VARCHAR}
 	 				<if test="mhrAddFile != null">
 	 				, #{mhrAddFile}
 	 				</if>
+	 				,#{mhrLocalDetail, jdbcType=VARCHAR}
 	 				)
 	</insert>
 	<update id="mhrUpdate" parameterType="MhReport">
