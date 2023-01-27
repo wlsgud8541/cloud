@@ -21,7 +21,7 @@
 					<input type="hidden" id="kakaoGender" name="kakaoGender" value="${kakaoGender}">
 					
 					<!-- 네이버 -->
-					<%-- <input type="text" id="id" name="id" value="${id}"> --%>
+					<%-- <input type="text" id="id" name="id" value="${id}"> --%> 
 					<input type="hidden" id="naverId" name="naverId" value="${naverId}">
 					<input type="hidden" id="naverGender" name="naverGender" value="${naverGender}">
 					<input type="hidden" id="naverEmail" name="naverEmail" value="${naverEmail}">
