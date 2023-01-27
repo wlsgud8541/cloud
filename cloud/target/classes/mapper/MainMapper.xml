@@ -45,6 +45,8 @@
                     FROM
                         mhfind mhf
                     WHERE mhfDelYn = 'N'
+                     AND(mhfTitle LIKE '%'||#{uSearch}||'%' 
+	    					or mhfContent LIKE '%'||#{uSearch}||'%')
                     ORDER BY mhfRegDate DESC)
              WHERE ROWNUM BETWEEN 0 and 5
              
@@ -56,6 +58,8 @@
                     FROM
                         mhreport mhr
                     WHERE mhrDelYn = 'N'
+                     AND(mhrTitle LIKE '%'||#{uSearch}||'%' 
+	    					or mhrContent LIKE '%'||#{uSearch}||'%')
                     ORDER BY mhrRegDate DESC)
              WHERE ROWNUM BETWEEN 0 and 5
            
@@ -67,6 +71,8 @@
                     FROM
                         mqna mq
                     WHERE mqDelYn = 'N'
+                     AND(mqTitle LIKE '%'||#{uSearch}||'%' 
+	    					or mqContent LIKE '%'||#{uSearch}||'%')
                     ORDER BY mqRegDate DESC)
              WHERE ROWNUM BETWEEN 0 and 5
                 
@@ -78,6 +84,8 @@
                     FROM
                         mpfind mpf
                     WHERE mpfDelYn = 'N'
+                     AND(mpfTitle LIKE '%'||#{uSearch}||'%' 
+	    					or mpfContent LIKE '%'||#{uSearch}||'%')
                     ORDER BY mpfRegDate DESC)
              WHERE ROWNUM BETWEEN 0 and 5
 	     
@@ -89,6 +97,8 @@
                     FROM
                         mpprotect mpp
                     WHERE mppDelYn = 'N'
+                     AND(mppTitle LIKE '%'||#{uSearch}||'%' 
+	    					or mppContent LIKE '%'||#{uSearch}||'%')
                     ORDER BY mppRegDate DESC)
              WHERE ROWNUM BETWEEN 0 and 5
              
@@ -100,6 +110,8 @@
                     FROM
                         mpreport mpr
                     WHERE mprDelYn = 'N'
+                     AND(mprTitle LIKE '%'||#{uSearch}||'%' 
+	    					or mprContent LIKE '%'||#{uSearch}||'%')
                     ORDER BY mprRegDate DESC)
              WHERE ROWNUM BETWEEN 0 and 5
                 
@@ -111,13 +123,13 @@
                     FROM
                         mnotice mn
                     WHERE mnDelYn = 'N'
+                    AND(mnTitle LIKE '%'||#{uSearch}||'%' 
+	    					or mnContent LIKE '%'||#{uSearch}||'%')
                     ORDER BY mnRegDate DESC)
              WHERE ROWNUM BETWEEN 0 and 5
 	        ORDER BY
 	           tableType DESC, regdate DESC) search)
-	    WHERE
-	    	searchTitle LIKE '%'||#{uSearch}||'%' 
-	    	or searchContent LIKE '%'||#{uSearch}||'%'
+	   
 	</select>
 	<select id="mhGraph" resultType="Main">
 		SELECT 
