@@ -161,7 +161,7 @@
 	<c:forEach var="search" items="${searchList}">
 		<c:if test="${fn:trim(search.tableType) == '21'}">
 		<div>
-			<b><a href="mnSelectDetail=${search.searchNo}&pageNum=1">${search.searchTitle}</a></b>
+			<b><a href="mnSelectDetail?mnNo=${search.searchNo}&pageNum=1">${search.searchTitle}</a></b>
 		</div>
 		<small class="text-secondary">
 			 ${search.searchWriter}&nbsp;&nbsp;|&nbsp;&nbsp;<fmt:formatDate value="${search.searchRegdate }" pattern="yy-MM-dd"/>
