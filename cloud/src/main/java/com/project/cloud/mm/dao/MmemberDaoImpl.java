@@ -57,7 +57,25 @@ public class MmemberDaoImpl implements MmemberDao{
 	
 	@Override
 	public int memberDisabled(String mmNo) {
-		return sql.update("Mmember.memberDisabled", mmNo);
+		int result = 0;
+		/*
+		sql.delete("Mmember.memberContentDelete_1",mmNo);
+		sql.delete("Mmember.memberContentDelete_2",mmNo);
+		sql.delete("Mmember.memberContentDelete_3",mmNo);
+		sql.delete("Mmember.memberContentDelete_4",mmNo);
+		sql.delete("Mmember.memberContentDelete_5",mmNo);
+		sql.delete("Mmember.memberContentDelete_6",mmNo);
+		sql.delete("Mmember.memberContentDelete_7",mmNo);
+		sql.delete("Mmember.memberContentDelete_8",mmNo);
+		sql.delete("Mmember.memberContentDelete_9",mmNo);
+		sql.delete("Mmember.memberContentDelete_10",mmNo);
+		sql.delete("Mmember.memberContentDelete_11",mmNo);
+		sql.delete("Mmember.memberContentDelete_12",mmNo);
+		sql.delete("Mmember.memberContentDelete_13",mmNo);
+		*/
+		result = sql.update("Mmember.memberDisabled", mmNo);
+		
+		return result;
 	}
 
 	@Override

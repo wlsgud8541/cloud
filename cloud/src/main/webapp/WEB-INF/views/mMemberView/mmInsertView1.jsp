@@ -13,13 +13,6 @@
 				<div class="row">
 					<label class="form-label">개인정보 수집 및 이용 동의</label>
 				</div>
-				<!-- 확인용 -->
-				<%-- <c:if test="${not empty kakaoId}">
-					<h5>카카오</h5>
-					<h5>${kakaoId}</h5>
-					<h5>${kakaoEmail}</h5>
-					<h5>${kakaoGender}</h5>
-				</c:if> --%>
 				
 				<form action="mmInsertJoin2" id="mmInsertJoin2Form" method="post">
 					<!-- 카카오  -->
@@ -28,7 +21,7 @@
 					<input type="hidden" id="kakaoGender" name="kakaoGender" value="${kakaoGender}">
 					
 					<!-- 네이버 -->
-					<input type="hidden" id="id" name="id" value="${id}">
+					<%-- <input type="text" id="id" name="id" value="${id}"> --%>
 					<input type="hidden" id="naverId" name="naverId" value="${naverId}">
 					<input type="hidden" id="naverGender" name="naverGender" value="${naverGender}">
 					<input type="hidden" id="naverEmail" name="naverEmail" value="${naverEmail}">

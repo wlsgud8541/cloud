@@ -113,9 +113,11 @@ public class MmController {
 				logger.debug("카카오 로그인 시도 중 에러 발생");
 			}
 		}else if (loginType != null && loginType.equals("naver")) { // 네이버 로그인 처리
+			logger.debug("code : "+code);
 			if (code != null) {
 				HashMap<String, String> resultMap = mmService.mmNaverLogin(code, state, REST_API_NAVER_KEY, REST_API_NAVER_SECRET_KEY, REDIRECT_NAVER_LOGIN_URI);
 				logger.debug("네이버 유저 아이디 확인 결과 : "+resultMap.get("naverId"));
+				logger.debug("네이버 유저 아이디 확인 결과 : "+resultMap);
 				Mmember member = mmService.naverUserLogin(resultMap.get("naverId"));
 				
 				if (member != null) {
@@ -128,14 +130,14 @@ public class MmController {
 					
 				}else if (member == null) {
 					logger.debug("네이버 회원가입");
-					model.addAttribute("id", resultMap.get("id"));
+					//model.addAttribute("id", resultMap.get("id"));
 					model.addAttribute("naverId", resultMap.get("naverId"));
-					model.addAttribute("naverGender", resultMap.get("gender"));
-					model.addAttribute("naverEmail", resultMap.get("email"));
-					model.addAttribute("naverMobile", resultMap.get("mobile"));
-					model.addAttribute("naverName", resultMap.get("name"));
-					model.addAttribute("naverBirthyear", resultMap.get("birthyear"));
-					model.addAttribute("naverBirthday", resultMap.get("birthday"));
+					model.addAttribute("naverGender", resultMap.get("naverGender"));
+					model.addAttribute("naverEmail", resultMap.get("naverEmail"));
+					model.addAttribute("naverMobile", resultMap.get("naverMobile"));
+					model.addAttribute("naverName", resultMap.get("naverName"));
+					model.addAttribute("naverBirthyear", resultMap.get("naverBirthday"));
+					model.addAttribute("naverBirthday", resultMap.get("naverBirthyear"));
 					return "mMemberView/mmInsertView1";  
 				}
 			}
