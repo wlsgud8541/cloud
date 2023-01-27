@@ -35,8 +35,10 @@
 			<div class="mhboxLine"></div>
 			<div class="row">
 				<div class="col text-center mt-4">
-					<input type="button" class="btn btn-outline-danger me-3" id="mhfUpdate" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"value="수정하기"> 
-					<input type="button" class="btn btn-outline-danger me-3" id="mhfDelete" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+					<c:if test="${(sessionScope.userId == report.mhrWriter) or (sessionScope.userId == 'admin0001')}">
+						<input type="button" class="btn btn-outline-danger me-3" id="mhfUpdate" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"value="수정하기"> 
+						<input type="button" class="btn btn-outline-danger me-3" id="mhfDelete" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+					</c:if>
 					<input type="button" class="btn btn-outline-danger" value="목록으로" onclick="location.href='mhfSelectList?pageNum=${pageNum}'"/>
 				</div>
 			</div>
@@ -67,10 +69,12 @@
 									<span id="mhfComWriter"><b>${mhfCommList.mhfComWriter}</b></span><br>
 									<pre id="beforeCon${mhfCommList.mhfComNo}" class="m-0">${mhfCommList.mhfComContent}</pre>
 									<small class="text-secondary"><fmt:formatDate value="${mhfCommList.mhfComRegDate}" pattern="yyyy-MM-dd HH:mm" /></small>
+									<c:if test="${sessionScope.userId == report.mhrWriter or sessionScope.userId == 'admin0001'}">
 									<button class="btn btn-outline-dark btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcUpdate"> 
 										<i class="bi bi-journal-text"></i>수정</button>
 									<button class="btn btn-outline-dark btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcDelete"> 
 										<i class="bi bi-trash"></i>삭제</button>
+									</c:if>
 								</div>
 							</div>
 						<hr class="border border-dark">
@@ -90,9 +94,11 @@
 							<div class="col">
 								<textarea name="mhfComContent" id="mhfComContent" class="form-control" rows="4"></textarea>
 							</div>
+							<c:if test="${sessionScope.userId == report.mhrWriter or sessionScope.userId == 'admin0001'}">
 							<div class="col-md">
 								<input type="submit" value="댓글 수정" class="btn" id="updateCom"/>
 							</div>
+							</c:if>
 						</div>
 					</div>
 				</form>

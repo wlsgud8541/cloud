@@ -102,147 +102,16 @@
 		</div>
 	</div>
 </div>
-		<%-- <c:if test="${mprDetail.mprLocalCode == 01}">
-			<div class="col text-center">
-				<span class="btn btn-primary">서울</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 02}">
-			<div class="col text-center">
-				<span class="btn btn-primary">경기</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 03}">
-			<div class="col text-center">
-				<span class="btn btn-primary">인천</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 04}">
-			<div class="col text-center">
-				<span class="btn btn-primary">대전</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 05}">
-			<div class="col text-center">
-				<span class="btn btn-primary">광주</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 06}">
-			<div class="col text-center">
-				<span class="btn btn-primary">대구</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 07}">
-			<div class="col text-center">
-				<span class="btn btn-primary">울산</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 08}">
-			<div class="col text-center">
-				<span class="btn btn-primary">부산</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 09}">
-			<div class="col text-center">
-				<span class="btn btn-primary">세종</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 10}">
-			<div class="col text-center">
-				<span class="btn btn-primary">강원</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 11}">
-			<div class="col text-center">
-				<span class="btn btn-primary">충북</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 12}">
-			<div class="col text-center">
-				<span class="btn btn-primary">충남</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 13}">
-			<div class="col text-center">
-				<span class="btn btn-primary">전북</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 14}">
-			<div class="col text-center">
-				<span class="btn btn-primary">전남</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 15}">
-			<div class="col text-center">
-				<span class="btn btn-primary">경북</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 16}">
-			<div class="col text-center">
-				<span class="btn btn-primary">경남</span>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprLocalCode == 17}">
-			<div class="col text-center">
-				<span class="btn btn-primary">제주</span>
-			</div>
-		</c:if>
-	</div>
-	<div class="row mt-4">
-		<b>상세위치 : ${mprDetail.mprLocalDetail}</b>
-	</div>
-	<div class="row mt-4">
-		<c:if test="${mprDetail.mprPetType == 01}">
-			<div>
-				<b>종류 : 강아지</b>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprPetType == 02}">
-			<div>
-				<b>종류 : 고양이</b>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprPetType == 03}">
-			<div>
-				<b>종류 : 기타</b>
-			</div>
-		</c:if>
-	</div>
-	
-	<div class="row mt-4">
-		<b>실종 일시 : <fmt:formatDate value="${mprDetail.mprInfoDate}" pattern="yyyy-MM-dd" /></b>
-	</div>
-	
-	<div class="row mt-4">
-		<c:if test="${mprDetail.mprGen == 'M '}">
-			<div>
-				<b>성별 : 수컷</b>
-			</div>
-		</c:if>
-		<c:if test="${mprDetail.mprGen == 'F '}">
-			<div>
-				<b>성별 : 암컷</b>
-			</div>
-		</c:if>
-	</div> 
-	
-		<div class="py-4 px-3">
-<pre>
-상세 내용 :
-	${mprDetail.mprContent }
-</pre>
-	
-		</div>
-	</div>--%>
+		
 	<div class="mpboxLine"></div>
-
-
 
 	<div class="row">
 		<div class="col text-center mt-4">
 			<input type="button" class="btn btn-outline-primary" value="전단지 출력📃"id ="jsReport" data-code="mp" />
-			<input type="button" class="btn btn-outline-primary" id="mprUpdate" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="수정하기"> 
-			<input type="button" class="btn btn-outline-primary"  id="mprDelete" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+			<c:if test="${(sessionScope.userId == report.mhrWriter) or (sessionScope.userId == 'admin0001')}">
+				<input type="button" class="btn btn-outline-primary" id="mprUpdate" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="수정하기"> 
+				<input type="button" class="btn btn-outline-primary"  id="mprDelete" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+			</c:if>
 			<input type="button" class="btn btn-outline-primary" onclick="location.href='mprSelectList?pageNum=${pageNum}'"value="목록으로" />
 		</div>
 	</div>

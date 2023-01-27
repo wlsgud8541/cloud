@@ -191,8 +191,10 @@
 
 	<div class="row">
 		<div class="col text-center mt-4">
-			<input type="button" class="btn btn-outline-primary" id="mppUpdate" data-mppNo="${mppDetail.mppNo}" data-pageNum="${pageNum}"value="수정하기"> 
-			<input type="button" class="btn btn-outline-primary  mx-3"  id="mppDelete" data-mppNo="${mppDetail.mppNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+			<c:if test="${(sessionScope.userId == report.mhrWriter) or (sessionScope.userId == 'admin0001')}">
+				<input type="button" class="btn btn-outline-primary" id="mppUpdate" data-mppNo="${mppDetail.mppNo}" data-pageNum="${pageNum}"value="수정하기"> 
+				<input type="button" class="btn btn-outline-primary  mx-3"  id="mppDelete" data-mppNo="${mppDetail.mppNo}" data-pageNum="${pageNum}"value="삭제하기" />
+			</c:if> 
 			<input type="button" onclick="location.href='mppSelectList?pageNum=${pageNum}'" class="btn btn-outline-primary" value="목록으로" />
 		</div>
 	</div>

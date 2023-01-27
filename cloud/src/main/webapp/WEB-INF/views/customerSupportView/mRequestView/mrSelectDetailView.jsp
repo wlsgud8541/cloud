@@ -116,8 +116,10 @@
 
 	<div class="row">
 		<div class="col text-center mt-4">
-			<input type="button" class="btn btn-outline-success" id="mrUpdate" data-mreNo="${mrequest.mreNo}" data-pageNum="${pageNum}"value="수정하기"> 
-			<input type="button" class="btn btn-outline-success  mx-3"  id="mrDelete" data-mreNo="${mrequest.mreNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+			<c:if test="${(sessionScope.userId == report.mhrWriter) or (sessionScope.userId == 'admin0001')}">
+				<input type="button" class="btn btn-outline-success" id="mrUpdate" data-mreNo="${mrequest.mreNo}" data-pageNum="${pageNum}"value="수정하기"> 
+				<input type="button" class="btn btn-outline-success  mx-3"  id="mrDelete" data-mreNo="${mrequest.mreNo}" data-pageNum="${pageNum}"value="삭제하기" />
+			</c:if> 
 			<input type="button" onclick="location.href='mrSelectList?pageNum=${pageNum}'" class="btn btn-outline-success" value="목록으로" />
 		</div>
 	</div>
