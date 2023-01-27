@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="resources/js/main.js"></script>
@@ -522,12 +521,12 @@
 					<li><a href="#tab1">실종자</a></li>
 					<li><a href="#tab2">실종 반려동물</a></li>
 				</ul>
-				<div class="tabcontent text-truncate">
+				<div class="tabcontent ">
 					<div id="tab1">
-						<table class="table table-hover ">
+						<table class="table table-hover" style="table-layout: fixed;">
 							<c:forEach var="mainMhfList" items="${mainMhfList }">
 								<tr >
-									<td><a
+									<td style="width: 250px;" class="text-truncate"><a
 										href="mhfDetailView?mhfNo=${mainMhfList.mhfNo}&pageNum=1">${mainMhfList.mhfTitle}</a></td>
 									<td><fmt:formatDate value="${mainMhfList.mhfRegDate }"
 											pattern="yy-MM-dd" /></td>
@@ -537,10 +536,10 @@
 						<a href="mhfSelectList"><i class="xi-plus-thin"></i></a>
 					</div>
 					<div id="tab2">
-						<table class="table table-hover">
+						<table class="table table-hover" style="table-layout: fixed;">
 							<c:forEach var="mainMpfList" items="${mainMpfList }">
 								<tr>
-									<td><a
+									<td style="width: 250px;" class="text-truncate"><a
 										href="mpfSelectDetail?mpfNo=${mainMpfList.mpfNo }&pageNum=1">${mainMpfList.mpfTitle}</a></td>
 									<td><fmt:formatDate value="${mainMpfList.mpfRegDate }"
 											pattern="yy-MM-dd" /></td>
@@ -567,10 +566,10 @@
 				<b class="border-bottom border-3 border-success border-opacity-50">공지사항</b>
 			</h3>
 			<div class=" notice_main p-3">
-				<table class="table table-hover">
+				<table class="table table-hover" style="table-layout: fixed;">
 					<c:forEach var="mainMnList" items="${mainMnList }">
 						<tr class="">
-							<td><a
+							<td style="width: 250px;"class="text-truncate""><a
 								href="mnSelectDetail?mnNo=${mainMnList.mnNo}&pageNum=1">${mainMnList.mnTitle}</a></td>
 							<td><fmt:formatDate value="${mainMnList.mnRegDate }"
 									pattern="yy-MM-dd" /></td>
@@ -582,7 +581,3 @@
 		</div>
 	</div>
 </div>
-
-<!-- <span>
-	<img  src="resources/image/main/mainTmp.jpg">
-</span> -->

@@ -362,8 +362,8 @@ public class MhController {
 		
 		List<MhInfo> mhiList = mhiService.mhiSelectList(startRow, pageSize, type, keyword, pageCnt);
 		mapList.put("jMap", mhiList);
-		mapList.put("pagegroup", pageGroup);
-		mapList.put("listCount", totalCount);
+		mapList.put("totalCount", totalCount);
+		mapList.put("pageGroup", pageGroup);
 		model.addAllAttributes(mapList);
 		 
 		return "mh/mhInfoView/mhiSelectList";
