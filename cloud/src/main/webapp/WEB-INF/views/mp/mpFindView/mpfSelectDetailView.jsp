@@ -209,12 +209,14 @@
                      <p><fmt:formatDate value="${mpfCommList.mpfComRegDate}" pattern="yyyy-MM-dd" /></p>
                   </div>
                   <div class="col-2">
-                     <button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="${mpfCommList.mpfComNo}" id="mpfcUpdate${mpfCommList.mpfComNo }"> 
-                        <i class="bi bi-journal-text">수정</i>
-                     </button>
-                     <button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="${mpfCommList.mpfComNo}" id="mpfcDelete"> 
-                        <i class="bi bi-trash">삭제</i>
-                     </button>
+                  <c:if test="${(sessionScope.userId == mpfDetail.mpfWriter) or (sessionScope.userId == 'admin0001')}">
+	                     <button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="${mpfCommList.mpfComNo}" id="mpfcUpdate${mpfCommList.mpfComNo }"> 
+	                        <i class="bi bi-journal-text">수정</i>
+	                     </button>
+	                     <button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="${mpfCommList.mpfComNo}" id="mpfcDelete"> 
+	                        <i class="bi bi-trash">삭제</i>
+	                     </button>
+                     </c:if>
                   </div>
                </div>
             </c:forEach>

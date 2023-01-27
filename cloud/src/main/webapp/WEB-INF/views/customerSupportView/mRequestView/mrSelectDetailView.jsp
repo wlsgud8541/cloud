@@ -50,9 +50,11 @@
 		<div id="test">
 			<div class="row mt-5 commReady">
 				<div class="col p-3 text-end">
+				<c:if test="${sessionScope.userId == 'admin0001'}">
 					<span id="mrcInsert" class="text-secondary" style="cursor: pointer;">
 						<i class="bi bi-file-earmark-text-fill"	style="color: cornflowerblue;"></i> 답글쓰기
 					</span>
+				</c:if>
 				</div>
 			</div>
 			<!-- 댓글 헤더 영역 -->
@@ -78,14 +80,16 @@
 				<small class="text-secondary"><b>${mrequestcomm.mreComWriter}</b>&nbsp;|&nbsp;
 				<fmt:formatDate
 						value="${mrequestcomm.mreComRegDate}" pattern="yyyy-MM-dd HH:mm" /></small>
-				<button class="mrcUpdate btn btn-outline-warning btn-sm"
-					data-mreComNo="${ mrequestcomm.mreComNo }">
-					<i class="bi bi-journal-text">수정</i>
-				</button>
-				<button class="mrcDelete btn btn-outline-danger btn-sm"
-					data-mreComNo="${ mrequestcomm.mreComNo }">
-					<i class="bi bi-trash">삭제</i>
-				</button>
+				<c:if test="${sessionScope.userId == 'admin0001'}">
+					<button class="mrcUpdate btn btn-outline-warning btn-sm"
+						data-mreComNo="${ mrequestcomm.mreComNo }">
+						<i class="bi bi-journal-text">수정</i>
+					</button>
+					<button class="mrcDelete btn btn-outline-danger btn-sm"
+						data-mreComNo="${ mrequestcomm.mreComNo }">
+						<i class="bi bi-trash">삭제</i>
+					</button>
+				</c:if>
 			</div>
 		</c:if>
 	</div>
@@ -112,6 +116,7 @@
 			</form>
 		</div>
 	</div>
+	
 	<!-- end replyForm -->
 
 	<div class="row">
