@@ -60,7 +60,7 @@ $(document).ready(function(){
 	$("#insertContinue").on("click",function(){
 		var checkValue = $("input[name=mmUseUserInfoYn]:checked").val();
 		var kakaoId = $("#kakaoId").val();
-		var naverId = $("#naverId").val();
+		var naverId = $("#id").val();
 		
 		if(checkValue == 'N'){
 			alert("다음으로 진행하시려면 개인정보 수집 및 이용 동의에 동의하셔야합니다.");

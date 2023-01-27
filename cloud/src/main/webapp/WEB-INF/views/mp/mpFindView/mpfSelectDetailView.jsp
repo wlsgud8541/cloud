@@ -177,7 +177,7 @@
 		<div class="col text-center mt-4">
 			<c:if test="${(fn:trim(sessionScope.userId) eq fn:trim(mpfDetail.mpfWriter)) or (fn:trim(sessionScope.userId) eq 'admin0001')}">
 				<input type="button" class="btn btn-outline-primary" id="mpfUpdate" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="수정하기"> 
-				<input type="button" class="btn btn-outline-primary  mx-3"  id="mpfDelete" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="삭제하기" />
+				<input type="button" class="btn btn-outline-primary mx-3"  id="mpfDelete" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="삭제하기" />
 			</c:if> 
 			<input type="button" onclick="location.href='mpfSelectList?pageNum=${pageNum}'" class="btn btn-outline-primary" value="목록으로" />
 		</div>
@@ -187,13 +187,13 @@
 	<input type="hidden" name="mpfNo" value="${mpfDetail.mpfNo}"/>
 	<input type="hidden" id="mmNo" name="mmNo" value="${sessionScope.mmNo}"/>
 	<input type="hidden" class="form-control" id="mpfComWriter" name="mpfComWriter" value="${sessionScope.userId}" />
-<div class="p-4">
+	<div class="p-4">
       <input type="text" class="form-control" id="commContent" name="mpfComContent" />
-   </div>
-   <div>
+    </div>
+    <div>
       <input type="submit" class="btn" value="댓글쓰기" id="commInsert" />
-   </div>
-   <div>
+    </div>
+    <div>
       <div id="mpfComList">
          <c:if test="${not empty mpfCommList}">
             <c:forEach var="mpfCommList" items="${mpfCommList}">

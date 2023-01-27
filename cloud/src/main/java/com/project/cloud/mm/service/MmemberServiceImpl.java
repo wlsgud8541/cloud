@@ -96,7 +96,10 @@ public class MmemberServiceImpl implements MmemberService{
 		String tel3 = member.getTel3();
 		
 		String pass = member.getMmPass();
-		String encPass = passEncoder.encode(pass);
+		String encPass = "";
+		if (pass != null) {
+			encPass = passEncoder.encode(pass);
+		}
 
 		member.setMmPass(encPass);
 		

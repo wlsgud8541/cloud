@@ -128,7 +128,8 @@ public class MmController {
 					
 				}else if (member == null) {
 					logger.debug("네이버 회원가입");
-					model.addAttribute("naverId", resultMap.get("id"));
+					model.addAttribute("id", resultMap.get("id"));
+					model.addAttribute("naverId", resultMap.get("naverId"));
 					model.addAttribute("naverGender", resultMap.get("gender"));
 					model.addAttribute("naverEmail", resultMap.get("email"));
 					model.addAttribute("naverMobile", resultMap.get("mobile"));

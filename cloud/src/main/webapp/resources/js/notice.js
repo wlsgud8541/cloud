@@ -78,7 +78,7 @@ $(document).ready(function(){
 			
 			// 실종자 실종 당시 날자 체크
 			if(infoDate == 0){
-				alert("실종당시 날자가 입력되지 않았습니다.");
+				alert("실종당일 날자가 입력되지 않았습니다.");
 				return false;
 			}
 			
@@ -568,7 +568,7 @@ $(document).ready(function(){
 		location.href='mppDeleteProcess?mppNo='+mppNo+'&pageNum='+pageNum;
 	});
 	
-	 // 실종 반려동물 목격 게시판
+   // 실종 반려동물 목격 게시판
    $(document).on("click","#commInsert",function(e){
       e.preventDefault();
       
@@ -576,13 +576,7 @@ $(document).ready(function(){
       var mmNo = $("#mmNo").val();
       var mpfComWriter = $("#mpfComWriter").val();
       var mpfComContent = $("#commContent").val();
-      
-   		var mpfcWriter = $("#mpfcWriter").text();
-   		console.log("mpfComWriter");
-   		console.log(mpfComWriter);
-   		console.log("mpfcWriter");
-   		console.log(mpfcWriter);
-      
+       
       if(mpfNo == '' || mmNo == '' || mpfComWriter == '' || mpfComContent == ''){
          alert("댓글에 입력된 정보가 올바르지 않습니다. 학인 후 다시 작성해주세요.");
          return false;
@@ -601,7 +595,6 @@ $(document).ready(function(){
          data : paramData,
          datatype : "json",
          success : function(result){
-            console.log(result);
          
             $("#mpfComList").empty();
          
@@ -612,25 +605,27 @@ $(document).ready(function(){
                var timestamp = result[i].mpfComRegDate;
                var date = new Date(timestamp);
                var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
-               
                               
                tag += '<div class="row">';
                tag += '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'"><p>'+result[i].mpfComContent+'</p></div>';
                tag += '<div class="col-2"><p>'+result[i].mpfComWriter+'</p></div>';
                tag += '<div class="col-2"><p>'+formatDate+'</p></div>';
                tag += '<div class="col-2">';
-             	if($.trim(mpfcWriter === mpfComWriter) || (mpfComWriter === "admin0001")){
-               tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
-               tag += '<i class="bi bi-journal-text">수정</i>';
-               tag += '</button>';
-               tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
-               tag += '<i class="bi bi-trash">삭제</i>';
-               tag += '</button>';
+             
+               if($.trim(mpfComWriter) === $.trim(result[i].mpfComWriter) || $.trim(mpfComWriter) === 'admin0001'){
+	               tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
+	               tag += '<i class="bi bi-journal-text">수정</i>';
+	               tag += '</button>';
+	               tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
+	               tag += '<i class="bi bi-trash">삭제</i>';
+	               tag += '</button>';
                };
+             
                tag += '</div>';
                tag += '</div>';
    
             }
+            
             $("#mpfComList").append(tag);
             
          },
@@ -643,12 +638,8 @@ $(document).ready(function(){
    $(document).on("click",".mpfcUpdate",function(){
       var mpfComNo = $(this).attr("data-mpfComNo");
       var beforeContent = $("#mpfComContent"+mpfComNo).children().html();
-   		var mpfComWriter = $("#mpfComWriter").val();
-   		var mpfcWriter = $("#mpfcWriter").text();
-   		console.log("mpfComWriter");
-   		console.log(mpfComWriter);
-   		console.log("mpfcWriter");
-   		console.log(mpfcWriter);
+   	  var mpfComWriter = $("#mpfComWriter").val();
+  
       if($(this).hasClass("mpfcUpdateSuccess") === false){
          var tag = '<input type="text" style="width: 450px;" id="mpfComContentVal'+mpfComNo+'" value="'+beforeContent+'" >';
 
@@ -691,21 +682,20 @@ $(document).ready(function(){
                   var date = new Date(timestamp);
                   var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
                   
-                  
                   tag += '<div class="row">';
                   tag += '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'"><p>'+result[i].mpfComContent+'</p></div>';
                   tag += '<div class="col-2"><p>'+result[i].mpfComWriter+'</p></div>';
                   tag += '<div class="col-2"><p>'+formatDate+'</p></div>';
                   tag += '<div class="col-2">';
-                  tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
-                  if($.trim(mpfcWriter === mpfComWriter) || (mpfComWriter==="admin0001")){
-                  tag += '<i class="bi bi-journal-text">수정</i>';
-                  tag += '</button>';
-                  tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
-                  tag += '<i class="bi bi-trash">삭제</i>';
-                  tag += '</button>';
-                  
+                  if($.trim(mpfComWriter) === $.trim(result[i].mpfComWriter) || $.trim(mpfComWriter) === 'admin0001'){
+	                  tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
+	                  tag += '<i class="bi bi-journal-text">수정</i>';
+	                  tag += '</button>';
+	                  tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
+	                  tag += '<i class="bi bi-trash">삭제</i>';
+	                  tag += '</button>';
                   };
+                  
                   tag += '</div>';
                   tag += '</div>';
    
@@ -725,11 +715,8 @@ $(document).ready(function(){
       var mpfNo = $("#mpfNo").val();
       var mpfComNo = $(this).attr("data-mpfComNo");
       var mpfComWriter = $("#mpfComWriter").val();
-   		var mpfcWriter = $("#mpfcWriter").text();
-   		console.log("mpfComWriter");
-   		console.log(mpfComWriter);
-   		console.log("mpfcWriter");
-   		console.log(mpfcWriter);
+   	  var mpfcWriter = $("#mpfcWriter").text();
+     
       var paramData = {
                      mpfNo : mpfNo,
                      mpfComNo : mpfComNo,
@@ -754,20 +741,21 @@ $(document).ready(function(){
                   var date = new Date(timestamp);
                   var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
                   
-                  
                   tag += '<div class="row">';
                   tag += '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'"><p>'+result[i].mpfComContent+'</p></div>';
                   tag += '<div class="col-2"><p>'+result[i].mpfComWriter+'</p></div>';
                   tag += '<div class="col-2"><p>'+formatDate+'</p></div>';
                   tag += '<div class="col-2">';
-                    if($.trim(mpfcWriter === mpfComWriter) || (mpfComWriter === "admin0001") ){
-                  tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
-                  tag += '<i class="bi bi-journal-text">수정</i>';
-                  tag += '</button>';
-                  tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
-                  tag += '<i class="bi bi-trash">삭제</i>';
-                  tag += '</button>';
+                  
+                  if($.trim(mpfComWriter) === $.trim(result[i].mpfComWriter) || $.trim(mpfComWriter) === 'admin0001'){
+	                  tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
+	                  tag += '<i class="bi bi-journal-text">수정</i>';
+	                  tag += '</button>';
+	                  tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
+	                  tag += '<i class="bi bi-trash">삭제</i>';
+	                  tag += '</button>';
                   };
+                  
                   tag += '</div>';
                   tag += '</div>';
       
@@ -991,7 +979,9 @@ $(document).ready(function(){
       }; 
          return false;
    });
-	*/
+*/
+	
+	
 	// 실종자 신고 게시판 -경욱
 	
 	// 수정버튼 클릭시
@@ -1020,15 +1010,12 @@ $(document).ready(function(){
 		location.href="mhfDeleteProcess?mhfNo="+mhfNo+"&pageNum="+pageNum;
 	});
 	
+	
+	
 	// 실종자 목격 게시판 댓글 ajax
 	$(document).on("submit","#mhfCommInsert",function(evt){
 		evt.preventDefault();
 		
-		var Comsession = $("#Comsession").val(); // session id
-		var writeId = $("#mhfcWriter").val(); // 작성자 아이디
-		
-		console.log(Comsession);
-		console.log(writeId);
 		if($("#commContent").val() < 1){
 			alert("댓글 내용을 입력하지 않았습니다");
 			return false;
@@ -1041,63 +1028,44 @@ $(document).ready(function(){
 			"type":"post",
 			"dataType":"json",
 			"success":function(resultData){
-				console.log(resultData);
 				
 				$("#comList").empty();
-				for(var i =0; i < resultData.length; i++){
-					 var timestamp = resultData[i].mhfComRegDate;
-					 var date = new Date(timestamp);
-					 var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
-				
-					  var result ="";
-					   		result= result+	'<div class="row">'
-							result= result+			'<div class="col">'
-							result= result+			'<span id="mhfComWriter"><b>'+resultData[i].mhfComWriter+'</b></span><br>'
-							result= result+			'<pre id="beforeCon'+resultData[i].mhfComNo+'" class="m-0">'+resultData[i].mhfComContent+'</pre>'
-							result= result+			'<small class="text-secondary"><fmt:formatDate value="'+resultData[i].mhfComRegDate+'" pattern="yyyy-MM-dd HH:mm" /></small>'
-							if( $.trim(Comsession == writeId) || $.trim(Comsession == 'admin0001')){
-							result= result+				'<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+resultData[i].mhfComNo+'" id="mhfcUpdate"> '
-							result= result+					'<i class="bi bi-journal-text"></i>수정</button>'
-							result= result+				'<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+resultData[i].mhfComNo+'" id="mhfcDelete"> '
-							result= result+					'<i class="bi bi-trash"></i>삭제</button>'
-							};
-							result= result+			'</div>'
-								'</div>'
-							'<hr class="border border-dark">'
-					 				$("#comList").append(result);
-					} 					 			 				
-
-				
-		
-		/*
-		
 		
 				$.each(resultData, function(k, v) {
+				var sessionId = $("#mhfComWriter").val();
+				console.log($.trim(sessionId));
+				console.log($.trim(v.mhfComWriter));
+					
 					var date = new Date(v.mhfComRegDate);
 					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
 										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
- 					var result ='<div class="row">'
-						+'		<div class="col">'
-						+'			<span id="mhfComWriter"><b>'+v.mhfComWriter+'</b></span><br>'
-						+'			<pre id="beforeCon"'+v.mhfComWriter+ 'class="m-0">'+v.mhfComContent+'</pre>'
-						+'			<small class="text-secondary">'+tmpDate+'</small>'
-							+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">'
-							+'				<i class="bi bi-journal-text"></i>수정</button>'
-							+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">'
-							+'				<i class="bi bi-trash"></i>삭제</button>'
-						+'		</div>'
-						+'	</div>'
-						+'<hr class="border border-dark">'
-	 					
+ 					
+ 					var result ='<div class="row">';
+						result+='<div class="col">';
+						result+='<span id="mhfComWriter"><b>'+v.mhfComWriter+'</b></span><br>';
+						result+='<pre id="beforeCon"'+v.mhfComWriter+ 'class="m-0">'+v.mhfComContent+'</pre>';
+						result+='<small class="text-secondary">'+tmpDate+'</small>';
+					
+						if($.trim(sessionId) === $.trim(v.mhfComWriter) || $.trim(sessionId) === 'admin0001'){
+							result+='<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">';
+							result+='<i class="bi bi-journal-text"></i>수정</button>';
+							result+='<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">';
+							result+='<i class="bi bi-trash"></i>삭제</button>';
+						}
+					
+						result+='</div>';
+						result+='</div>';
+						result+='<hr class="border border-dark">';
+ 					
 	 					 				
 	 				$("#comList").append(result);
  				});
  				
- 				*/
 				$("#mhfcForm").slideUp(300)
 			},
+			
 			"error":function(xhr, status){
 				console.log("error:");
 				console.log(status);
@@ -1138,14 +1106,6 @@ $(document).ready(function(){
 
 		var mhfComNo = $("#mhfModifyForm").attr("data-mhfComNo");
 
-		var Comsession = $("#Comsession").val(); // session id
-		var writeId = $("#mhfComWriter").val(); // 작성자 아이디
-		
-		console.log("Comsession:");
-		console.log(Comsession);
-		console.log("writeId:");
-		console.log(writeId);
-
 		if($("#mhfComContent").val().length < 1){
 			alert("댓글이 입력되지 않았습니다.");
 			return false;
@@ -1163,33 +1123,10 @@ $(document).ready(function(){
 			dataType:"json",
 			type:"post",
 			success : function(resultData){
-				console.log(resultData);
+				
+				var sessionId = $("#mhfComWriter").val();
+				
 				$("#comList").empty();
-					for(var i =0; i < resultData.length; i++){
-					 var timestamp = resultData[i].mhfComRegDate;
-					 var date = new Date(timestamp);
-					 var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
-				
-					  var result ="";
-					   		result= result+	'<div class="row">'
-							result= result+			'<div class="col">'
-							result= result+			'<span id="mhfComWriter"><b>'+resultData[i].mhfComWriter+'</b></span><br>'
-							result= result+			'<pre id="beforeCon'+resultData[i].mhfComNo+'" class="m-0">'+resultData[i].mhfComContent+'</pre>'
-							result= result+			'<small class="text-secondary"><fmt:formatDate value="'+resultData[i].mhfComRegDate+'" pattern="yyyy-MM-dd HH:mm" /></small>'
-													if( $.trim(Comsession == writeId) || $.trim(Comsession == 'admin0001')){
-							result= result+				'<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+resultData[i].mhfComNo+'" id="mhfcUpdate"> '
-							result= result+					'<i class="bi bi-journal-text"></i>수정</button>'
-							result= result+				'<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+resultData[i].mhfComNo+'" id="mhfcDelete"> '
-							result= result+					'<i class="bi bi-trash"></i>삭제</button>'
-													};
-							result= result+			'</div>'
-								'</div>'
-							'<hr class="border border-dark">'
-					 				$("#comList").append(result);
-					} 					 			 		
-				
-				
-				/*
 				$.each(resultData, function(k, v) {
 					var date = new Date(v.mhfComRegDate);
 					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
@@ -1197,23 +1134,26 @@ $(document).ready(function(){
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;
 										
-					var result =
-								'<div class="row">'
-							+'		<div class="col">'
-							+'			<span id="mhfComWriter"><b>'+v.mhfComWriter+'</b></span><br>'
-							+'			<pre id="beforeCon"'+v.mhfComWriter+ 'class="m-0">'+v.mhfComContent+'</pre>'
-							+'			<small class="text-secondary">'+tmpDate+'</small>'
-							+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">'
-							+'				<i class="bi bi-journal-text"></i>수정</button>'
-							+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">'
-							+'				<i class="bi bi-trash"></i>삭제</button>'
-							+'		</div>'
-							+'	</div>'
-							+'<hr class="border border-dark">'
-		 					 				
+					var result ='<div class="row">';
+						result+='<div class="col">';
+						result+='<span id="mhfComWriter"><b>'+v.mhfComWriter+'</b></span><br>';
+						result+='<pre id="beforeCon"'+v.mhfComWriter+ 'class="m-0">'+v.mhfComContent+'</pre>';
+						result+='<small class="text-secondary">'+tmpDate+'</small>';
+					
+						if($.trim(sessionId) === $.trim(v.mhfComWriter) || $.trim(sessionId) === 'admin0001'){
+							result+='<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">';
+							result+='<i class="bi bi-journal-text"></i>수정</button>';
+							result+='<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">';
+							result+='<i class="bi bi-trash"></i>삭제</button>';
+						}
+					
+						result+='</div>';
+						result+='</div>';
+						result+='<hr class="border border-dark">';
+					
 		 				$("#comList").append(result);					
 				});
-				*/
+				
 				$("#mhfComContent").val("");
 				$mhfcForm.css("display","none");
 				$("#global > div.col").append($mhfcForm);
@@ -1232,14 +1172,6 @@ $(document).ready(function(){
 		var writer = $("#mhfComWriter").val();
 		var mhfNo = $("#mhfcForm input[name=mhfNo]").val();
 		var par = "mhfComNo=" + mhfComNo + "&mhfComWriter=" + writer + "&mhfNo=" + mhfNo
-		
-		
-		var Comsession = $("#Comsession").val(); // session id
-		var writeId = $("#mhfComWriter").html(); // 작성자 아이디
-		
-		
-		
-		
 		console.log(par);
 		var alram = confirm("댓글을 삭제하시겠습니까?");
 		if(alram){
@@ -1249,33 +1181,10 @@ $(document).ready(function(){
 				"data":par,
 				"dataType":"json",
 				"success":function(resultData){
-				console.log("resultData:");
-					console.log(resultData);
-					$("#comList").empty();
-					for(var i =0; i < resultData.length; i++){
-					 var timestamp = resultData[i].mhfComRegDate;
-					 var date = new Date(timestamp);
-					 var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
 				
-					  var result ="";
-					   		result= result+	'<div class="row">'
-							result= result+			'<div class="col">'
-							result= result+			'<span id="mhfComWriter"><b>'+resultData[i].mhfComWriter+'</b></span><br>'
-							result= result+			'<pre id="beforeCon'+resultData[i].mhfComNo+'" class="m-0">'+resultData[i].mhfComContent+'</pre>'
-							result= result+			'<small class="text-secondary"><fmt:formatDate value="'+resultData[i].mhfComRegDate+'" pattern="yyyy-MM-dd HH:mm" /></small>'
-													if( $.trim(Comsession == writeId) || $.trim(Comsession == 'admin0001')){
-							result= result+				'<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+resultData[i].mhfComNo+'" id="mhfcUpdate"> '
-							result= result+					'<i class="bi bi-journal-text"></i>수정</button>'
-							result= result+				'<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+resultData[i].mhfComNo+'" id="mhfcDelete"> '
-							result= result+					'<i class="bi bi-trash"></i>삭제</button>'
-													};
-							result= result+			'</div>'
-								'</div>'
-							'<hr class="border border-dark">'
-					 				$("#comList").append(result);
-					} 					 			 		
+				var sessionId = $("#mhfComWriter").val();
 				
-					/*
+				$("#comList").empty();
 				$.each(resultData, function(k, v) {
 					var date = new Date(v.mhfComRegDate);
 					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
@@ -1283,25 +1192,26 @@ $(document).ready(function(){
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;
 										
-					var result ='<div class="row">'
-						+'		<div class="col">'
-						+'			<span id="mhfComWriter"><b>'+v.mhfComWriter+'</b></span><br>'
-						+'			<pre id="beforeCon"'+v.mhfComWriter+ 'class="m-0">'+v.mhfComContent+'</pre>'
-						+'			<small class="text-secondary">'+tmpDate+'</small>'
-						if(($.trim(loginId) == $.trim(writeId)) || ($.trim(loginId) == 'admin0001')){
-							+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">'
-							+'				<i class="bi bi-journal-text"></i>수정</button>'
-							+'			<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">'
-							+'				<i class="bi bi-trash"></i>삭제</button>'
-						}
-						+'		</div>'
-						+'	</div>'
-						+'<hr class="border border-dark">'
+					var result ='<div class="row">';
+						result+='<div class="col">';
+						result+='<span id="mhfComWriter"><b>'+v.mhfComWriter+'</b></span><br>';
+						result+='<pre id="beforeCon"'+v.mhfComWriter+ 'class="m-0">'+v.mhfComContent+'</pre>';
+						result+='<small class="text-secondary">'+tmpDate+'</small>';
 					
+						if($.trim(sessionId) === $.trim(v.mhfComWriter) || $.trim(sessionId) === 'admin0001'){
+							result+='<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcUpdate">';
+							result+='<i class="bi bi-journal-text"></i>수정</button>';
+							result+='<button class="btn btn-outline-dark btn-sm" data-mhfComNo="'+v.mhfComNo+'" id="mhfcDelete">';
+							result+='<i class="bi bi-trash"></i>삭제</button>';
+						}
+					
+						result+='</div>';
+						result+='</div>';
+						result+='<hr class="border border-dark">';
 		 					 				
 		 				$("#comList").append(result);					
 				});
-				*/
+				
 				$("#mhfComContent").val("");
 				},
 				"error":function(status, xhr){
