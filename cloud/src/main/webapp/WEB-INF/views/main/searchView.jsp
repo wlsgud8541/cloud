@@ -63,7 +63,7 @@
 		</c:if>
 	 </c:forEach>
 	<c:if test="${count02 == null}">
-		<h1>testestes</h1>
+		<div class="text-center fw-bold fw-3 mt-4"> 검색 결과가 없습니다.</div>
 	</c:if>
 	<div class="text-end">
 	<a href="mhrSelectList">실종자 신고 더보기</a>
