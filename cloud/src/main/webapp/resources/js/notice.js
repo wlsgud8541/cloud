@@ -571,6 +571,260 @@ $(document).ready(function(){
 		location.href='mppDeleteProcess?mppNo='+mppNo+'&pageNum='+pageNum;
 	});
 	
+	 // 실종 반려동물 목격 게시판
+   $(document).on("click","#commInsert",function(e){
+      e.preventDefault();
+      
+      var mpfNo = $("#mpfNo").val();
+      var mmNo = $("#mmNo").val();
+      var mpfComWriter = $("#mpfComWriter").val();
+      var mpfComContent = $("#commContent").val();
+      
+      if(mpfNo == '' || mmNo == '' || mpfComWriter == '' || mpfComContent == ''){
+         alert("댓글에 입력된 정보가 올바르지 않습니다. 학인 후 다시 작성해주세요.");
+         return false;
+      }
+      
+      var paramData = {
+                     mpfNo : mpfNo,
+                     mmNo : mmNo,
+                     mpfComWriter : mpfComWriter,
+                     mpfComContent : mpfComContent
+                  };
+      
+      $.ajax({
+         url : "mpfCommInsert",
+         type : "post",
+         data : paramData,
+         datatype : "json",
+         success : function(result){
+            console.log(result);
+         
+            $("#mpfComList").empty();
+         
+            var tag = '';
+            
+            for(var i = 0; i < result.length; i++){
+            
+               var timestamp = result[i].mpfComRegDate;
+               var date = new Date(timestamp);
+               var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
+               
+                              
+               tag += '<div class="row">';
+               tag += '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'"><p>'+result[i].mpfComContent+'</p></div>';
+               tag += '<div class="col-2"><p>'+result[i].mpfComWriter+'</p></div>';
+               tag += '<div class="col-2"><p>'+formatDate+'</p></div>';
+               tag += '<div class="col-2">';
+               tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
+               tag += '<i class="bi bi-journal-text">수정</i>';
+               tag += '</button>';
+               tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
+               tag += '<i class="bi bi-trash">삭제</i>';
+               tag += '</button>';
+               tag += '</div>';
+               tag += '</div>';
+   
+            }
+            $("#mpfComList").append(tag);
+            
+         },
+         error : function(){
+            alert("댓글 등록중 오류가 발생했습니다. 관리자에게 문의해주세요.");
+         }
+      });
+   });
+   
+   $(document).on("click",".mpfcUpdate",function(){
+      var mpfComNo = $(this).attr("data-mpfComNo");
+      var beforeContent = $("#mpfComContent"+mpfComNo).children().html();
+   
+      if($(this).hasClass("mpfcUpdateSuccess") === false){
+         var tag = '<input type="text" style="width: 450px;" id="mpfComContentVal'+mpfComNo+'" value="'+beforeContent+'" >';
+
+         $("#mpfComContent"+mpfComNo).empty();
+         $("#mpfComContent"+mpfComNo).append(tag);         
+         $(this).addClass("mpfcUpdateSuccess");
+         $(this).children().html("수정완료");
+         
+      }else{
+         var mpfNo = $("#mpfNo").val();
+         var mpfComNo = $(this).attr("data-mpfComNo");
+         var mpfContent = $("#mpfComContentVal"+mpfComNo).val();
+         
+         
+         if(mpfNo == '' ||  mpfContent == ''){
+            alert("댓글에 입력된 정보가 올바르지 않습니다. 학인 후 다시 작성해주세요.");
+            return false;
+         }
+         
+         var paramData = {
+                        mpfNo : mpfNo,
+                        mpfComNo : mpfComNo,
+                        mpfContent : mpfContent
+                     };
+         
+         $.ajax({
+            url : "mpfcUpdate",
+            type : "post",
+            data : paramData,
+            datatype : "json",
+            success : function(result){
+               
+               $("#mpfComList").empty();
+            
+               var tag = '';
+               
+               for(var i = 0; i < result.length; i++){
+                  
+                  var timestamp = result[i].mpfComRegDate;
+                  var date = new Date(timestamp);
+                  var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
+                  
+                  
+                  tag += '<div class="row">';
+                  tag += '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'"><p>'+result[i].mpfComContent+'</p></div>';
+                  tag += '<div class="col-2"><p>'+result[i].mpfComWriter+'</p></div>';
+                  tag += '<div class="col-2"><p>'+formatDate+'</p></div>';
+                  tag += '<div class="col-2">';
+                  tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
+                  tag += '<i class="bi bi-journal-text">수정</i>';
+                  tag += '</button>';
+                  tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
+                  tag += '<i class="bi bi-trash">삭제</i>';
+                  tag += '</button>';
+                  tag += '</div>';
+                  tag += '</div>';
+   
+      
+               }
+               $("#mpfComList").append(tag);
+               
+            },
+            error : function(){
+               alert("댓글 수정 중 오류가 발생했습니다. 관리자에게 문의해주세요.");
+            }
+         });
+      }
+   });
+   
+   $(document).on("click","#mpfcDelete",function(){
+      var mpfNo = $("#mpfNo").val();
+      var mpfComNo = $(this).attr("data-mpfComNo");
+      var paramData = {
+                     mpfNo : mpfNo,
+                     mpfComNo : mpfComNo,
+                  };
+   
+      var conf = confirm("댓글을 삭제합니다.정말 삭제하시겠습니까?");
+      
+      if(conf){
+         $.ajax({
+            url : "mpfCommDelete",
+            type : "post",
+            data : paramData,
+            datatype : "json",
+            success : function(result){
+               $("#mpfComList").empty();
+            
+               var tag = '';
+               
+               for(var i = 0; i < result.length; i++){
+                  
+                  var timestamp = result[i].mpfComRegDate;
+                  var date = new Date(timestamp);
+                  var formatDate = date.getFullYear() + "-" + (date.getMonth()+1 < 10 ? "0"+(date.getMonth()+1) : (date.getMonth()+1)) + "-" + date.getDate();
+                  
+                  
+                  tag += '<div class="row">';
+                  tag += '<div class="col-6" id="mpfComContent'+result[i].mpfComNo+'"><p>'+result[i].mpfComContent+'</p></div>';
+                  tag += '<div class="col-2"><p>'+result[i].mpfComWriter+'</p></div>';
+                  tag += '<div class="col-2"><p>'+formatDate+'</p></div>';
+                  tag += '<div class="col-2">';
+                  tag += '<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcUpdate'+result[i].mpfComNo+'">';
+                  tag += '<i class="bi bi-journal-text">수정</i>';
+                  tag += '</button>';
+                  tag += '<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+result[i].mpfComNo+'" id="mpfcDelete'+result[i].mpfComNo+'">';
+                  tag += '<i class="bi bi-trash">삭제</i>';
+                  tag += '</button>';
+                  tag += '</div>';
+                  tag += '</div>';
+      
+               }
+               $("#mpfComList").append(tag);
+               
+            },
+            error : function(){
+               alert("댓글 삭제 중 오류가 발생했습니다. 관리자에게 문의해주세요.");
+            }
+         });
+      }else{
+         return false;
+      }
+   });
+	
+	
+	
+	
+/*	
+	// 실종반려동물 목격 게시판 댓글 
+	$(document).on("submit","#mpfCommForm",function(evt){
+		evt.preventDefault();
+		if($("#commContent").val() < 1){
+			alert("댓글 내용을 입력하지 않았습니다");
+			return false;
+		}
+		var param = $(this).serialize();
+	
+		$.ajax({
+			"url":"mpfCommInsert",
+			"data":param,
+			"type":"post",
+			"dataType":"json",
+			"success":function(resultData){
+				console.log(resultData);
+				
+				$("#mpfComList").empty();
+				
+				$.each(resultData, function(k, v) {
+					var date = new Date(v.mhfComRegDate);
+					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
+										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
+										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
+										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
+ 					 var result =	'<div class="row">'
+					+	'<div class="col-6" id="mpfComContent"'+v.mpfComNo+'">'
+					+		 '<p>'+v.mpfComContent+'</p>'
+					+	'</div>'
+					+	'<div class="col-2">'
+					+		 '<p>'+v.mpfComWriter+'</p>'
+					+	'</div>'
+					+	'<div class="col-2">'
+					+		'<p><fmt:formatDate value="'+v.mpfComRegDate+'" pattern="yyyy-MM-dd" /></p>'
+					+	'</div>'
+					+	'<div class="col-2">'
+					+	'	<button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="'+v.mpfComNo+'" id="mpfcUpdate"'+v.mpfComNo+'"> '
+					+			'<i class="bi bi-journal-text">수정</i>'
+					+		'</button>'
+					+		'<button id="mpfcDelete" class="btn btn-outline-warning btn-sm" data-mpfComNo="'+v.mpfComNo+'" id="mpfcDelete"> '
+					+			'<i class="bi bi-trash">삭제</i>'
+					+		'</button>'
+					+	'</div>'
+					+'</div>'
+	 					 				
+	 				$("#mpfComList").append(result);
+	 			
+ 				});
+			},
+			"error":function(xhr, status){
+				console.log("error:");
+				console.log(status);
+			}
+		});
+		return false;
+	});
+	
+	
 	// 실종 반려동물 목격 게시판 댓글 수정버튼 클릭
 	   $(document).on("click","#mpfcUpdate", function(){
 	      console.log($("#mpfCommForm").css("display"));
@@ -580,9 +834,9 @@ $(document).ready(function(){
 	      var mpfComNo = $(this).attr("data-mpfComNo");
 	      if($("#mpfCommForm").is(":visible")){
 	         var $next = $mpfComList.next();
-	         if(! $next.is("#mpfCommForm")){
+	        if(! $next.is("#mpfCommForm")){
 	            $("#mpfCommForm").slideUp(500);
-	         }
+	         }	
 	         setTimeout(function(){
 	            $("#mpfCommForm").insertAfter($mpfComList).slideDown(500);
 	         },500);
@@ -596,7 +850,6 @@ $(document).ready(function(){
 	      console.log("mpfcModify:"+mpfcModify);
 	      $("#mpfComContent").val($.trim(mpfcModify));
 	   });
-
 	
 	// 실종 반려동물 목격 게시판 댓글 수정 서브밋
 	
@@ -626,7 +879,7 @@ $(document).ready(function(){
 				$("#mpfComList").empty();
 				$.each(resultData, function(k, v) {
 					var date = new Date(v.mpfComRegDate);
-					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMoth()+1)) + "-"
+					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
 										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
@@ -685,7 +938,7 @@ $(document).ready(function(){
                $("#mpfComList").empty();
             $.each(resultData, function(k, v) {
                var date = new Date(v.mpfComRegDate);
-               var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMoth()+1)) + "-"
+               var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
                               + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
                               + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
                               + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;
@@ -717,7 +970,7 @@ $(document).ready(function(){
       }; 
          return false;
    });
-	
+	*/
 	// 실종자 신고 게시판 -경욱
 	
 	// 수정버튼 클릭시
@@ -768,7 +1021,7 @@ $(document).ready(function(){
 		
 				$.each(resultData, function(k, v) {
 					var date = new Date(v.mhfComRegDate);
-					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMoth()+1)) + "-"
+					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
 										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
@@ -873,7 +1126,7 @@ $(document).ready(function(){
 				$("#comList").empty();
 				$.each(resultData, function(k, v) {
 					var date = new Date(v.mhfComRegDate);
-					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMoth()+1)) + "-"
+					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
 										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;
@@ -941,7 +1194,7 @@ $(document).ready(function(){
 					$("#comList").empty();
 				$.each(resultData, function(k, v) {
 					var date = new Date(v.mhfComRegDate);
-					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMoth()+1)) + "-"
+					var tmpDate = date.getFullYear() + "-" + ((date.getMonth()+1 <10) ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) + "-"
 										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())+":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) ;

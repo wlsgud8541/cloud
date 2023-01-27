@@ -6,11 +6,41 @@
 <h3 class="text-success fw-bold mt-4">검색결과</h3>
 	<hr class="border border-success border-2 opacity-75">
 
-<% int i = 0; %>
+<% int i02 = 0; %>
+<% int i01 = 0; %>
+<% int j13 = 0; %>
+<% int j11 = 0; %>
+<% int j12 = 0; %>
+<% int k21 = 0; %>
+<% int k22 = 0; %>
 <c:forEach var="index" items="${searchList}" varStatus="status">
 		<c:if test="${fn:trim(index.tableType) == '02'}">
-			<%i++;%>
-			<c:set var="count02" value="<%= i %>" />
+			<%i02++;%>
+			<c:set var="count02" value="<%= i02 %>" />
+		</c:if>
+		<c:if test="${fn:trim(index.tableType) == '01'}">
+			<%i01++;%>
+			<c:set var="count01" value="<%= i01 %>" />
+		</c:if>
+		<c:if test="${fn:trim(index.tableType) == '13'}">
+			<%j13++;%>
+			<c:set var="count13" value="<%= j13 %>" />
+		</c:if>
+		<c:if test="${fn:trim(index.tableType) == '11'}">
+			<%j11++;%>
+			<c:set var="count11" value="<%= j11 %>" />
+		</c:if>
+		<c:if test="${fn:trim(index.tableType) == '12'}">
+			<%j12++;%>
+			<c:set var="count12" value="<%= j12 %>" />
+		</c:if>
+		<c:if test="${fn:trim(index.tableType) == '21'}">
+			<%k21++;%>
+			<c:set var="count21" value="<%= k21 %>" />
+		</c:if>
+		<c:if test="${fn:trim(index.tableType) == '22'}">
+			<%k22++;%>
+			<c:set var="count22" value="<%= k22 %>" />
 		</c:if>
 </c:forEach>
 
@@ -54,6 +84,9 @@
 		<br><br>
 		</c:if>
 	</c:forEach>
+	<c:if test="${count01 == null}">
+		<div class="text-center fw-bold fw-3 mt-4"> 검색 결과가 없습니다.</div>
+	</c:if>
 	<div class="text-end">
 		<a href="mhfSelectList">실종자 목격 더보기</a>
 	</div>
@@ -73,6 +106,9 @@
 		<br><br>
 		</c:if>
 	</c:forEach>
+	<c:if test="${count13 == null}">
+		<div class="text-center fw-bold fw-3 mt-4"> 검색 결과가 없습니다.</div>
+	</c:if>
 	<div class="text-end">
 		<a href="mprSelelctList">반려동물 신고 더보기</a>
 	</div>
@@ -91,6 +127,9 @@
 		<br><br>
 		</c:if>
 	</c:forEach>
+	<c:if test="${count11 == null}">
+		<div class="text-center fw-bold fw-3 mt-4"> 검색 결과가 없습니다.</div>
+	</c:if>
 	<div class="text-end">
 		<a href="mpfSelectList">반려동물 목격 더보기</a>
 	</div>
@@ -109,6 +148,9 @@
 		<br><br>
 		</c:if>
 	</c:forEach>
+	<c:if test="${count12 == null}">
+		<div class="text-center fw-bold fw-3 mt-4"> 검색 결과가 없습니다.</div>
+	</c:if>
 	<div class="text-end">
 		<a href="mppSelectList">반려동물 임시보호 더보기</a>
 	</div>
@@ -126,6 +168,9 @@
 		</small>
 		</c:if>
 	</c:forEach>
+	<c:if test="${count21 == null}">
+		<div class="text-center fw-bold fw-3 mt-4"> 검색 결과가 없습니다.</div>
+	</c:if>
 	<div class="text-end">
 		<a href="mnSelectList">공지사항 더보기</a>
 	</div>
@@ -143,13 +188,16 @@
 			</small>
 		</c:if>
 	</c:forEach>
+	<c:if test="${count22 == null}">
+		<div class="text-center fw-bold fw-3 mt-4"> 검색 결과가 없습니다.</div>
+	</c:if>
 	<div class="text-end">
 		<a href="mqSelectList">Q&A 더보기</a>
 	</div>
 </c:if>
 
 <c:if test="${empty searchList}">
-	<div class="text-center fw-bold fw-3 mt-4"> 검색 결과가 없습니다.</div>
+	<div class="text-center fw-bold fw-3 mt-4"><h1>'${uSearch}' 에 대한 검색 결과가 없습니다.</h1></div>
 </c:if>
 
 </body>

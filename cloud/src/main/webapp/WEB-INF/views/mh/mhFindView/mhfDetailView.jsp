@@ -49,11 +49,11 @@
 			<div>
 				<b>의견쓰기</b>
 				<textarea class="form-control rounded-0" id="commContent" name="mhfComContent" style="resize: none;"></textarea>
-				<input type="hidden" class="form-control" id="mhfComWriter" name="mhfComWriter" value="회원" />
-				<input type="hidden" id="mmNo" name="mmNo" value="1"/>
+				<input type="hidden" class="form-control" id="mhfComWriter" name="mhfComWriter" value="${sessionScope.userId}" />
+				<input type="hidden" id="mmNo" name="mmNo" value="${sessionScope.mmNo}"/>
 			</div>
 			<div class="text-end">
-				<input type="submit" class="btn btn-danger rounded-0" value="등록" id="commInsert" />
+				<input type="submit" class="btn btn-danger rounded-0" value="등록" id="mhfcommInsert" />
 			</div>
 		</form>
 		
@@ -82,8 +82,8 @@
 			<div class="col">
 				<form name="WriteForm" id="WriteForm">
 					<input type="hidden" name="mhfNo" value="${mhfind.mhfNo}"/>
-					<input type="hidden" name="mhfComWriter" value="회원" />
-					<input type="hidden" name="mmNo" value="1"/>
+					<input type="hidden" name="mhfComWriter" value="${sessionScope.userId}" />
+					<input type="hidden" name="mmNo" value="${sessionScope.mmNo}"/>
 					<div class="row bg-light my-3 p-3 border">
 						<div class="row">
 							<div class="col">
