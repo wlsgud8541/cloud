@@ -80,12 +80,12 @@
 						</select>-
 						<input type="text" class="mail-field" name="tel2" id="tel2" maxlength="4">-
 						<input type="text" class="mail-field" name="tel3" id="tel3" maxlength="4">
-						<div class="telCheck">
-							<input type="button" class="btn btn-secondary" id="SMSsendBtn" value="인증번호 전송">&nbsp;&nbsp;
-						</div>
 						
 						<label for="telCheck" class="joinTitle">인증번호 : </label>
 						<input type="text" class="mail-field" id="telCheck">
+						<div class="telCheck inblock">
+							<input type="button" class="btn btn-secondary" id="SMSsendBtn" value="인증번호 전송">&nbsp;&nbsp;
+						</div>
 	            	</div>
            		</div>
            		

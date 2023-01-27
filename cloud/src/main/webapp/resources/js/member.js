@@ -103,6 +103,7 @@ $(document).ready(function(){
 	var passBool1 = true;
 	var passBool2 = true;
 	var emailCerNum = 0;
+	var phoneCerNum = 0;
 	var emailCerNumCheck = false;
 	var telCerNumCheck = false;
 	var telBool = true;
@@ -396,15 +397,21 @@ $(document).ready(function(){
 			data : {tel : paramTel},
 			dataType : "json",
 			success : function(result){
+				console.log("result");
+				console.log(result);
+				console.log(result.result);
+				console.log(result.strCN);
+				phoneCerNum = result.strCN; // 인증번호		
+				
 				// 1 : 전송 성공 | 0 : 전송 실패
-				if(result == 1){
+				if(result.result == 1){
 					alert("인증번호가 전송되었습니다.");
-					var tag1 = '<input type="button" class="btn btn-secondary" id="SMSsendBtn" value="인증번호 확인">&nbsp;&nbsp;';
+					var tag1 = '<input type="button" class="btn btn-secondary" id="SMSsendBtnSuc" value="인증번호 확인">&nbsp;&nbsp;';
 					$(".telCheck").empty();
 					$(".telCheck").append(tag1);
-					telCerNumCheck = true;
+					
 				}
-				if(result == 0){
+				if(result.result == 0){
 					alert("인증번호 전송 실패. 인증번호 재전송 부탁드립니다.");
 				}
 			},
@@ -413,6 +420,29 @@ $(document).ready(function(){
 			}
 		});
 	});
+		
+	$(document).on("click","#SMSsendBtnSuc",function(){
+		
+		var telCheck = $("#telCheck").val();
+		
+		console.log("telCheck : "+telCheck);
+		console.log("phoneCerNum : "+phoneCerNum);
+		
+		if(telCheck != phoneCerNum){
+			alert("인증번호가 일치하지 않습니다. 확인 후 다시 시도해주세요.");
+			return false;
+		}
+
+		if(telCheck == phoneCerNum){
+			alert("인증이 완료되었습니다.");
+			var tag1 = '<input type="button" class="btn btn-secondary" id="SMSsendBtn" value="인증완료">&nbsp;&nbsp;';
+			$(".telCheck").empty();
+			$(".telCheck").append(tag1);
+			telCerNumCheck = true;
+		}
+		
+	});
+	
 	
 	// 전화번호 변경 change event
 	$("#tel1").on("change",function(){

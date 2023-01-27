@@ -25,7 +25,7 @@ public interface MmemberService {
 	// 마이페이지 회원 탈퇴
 	public int memberDisabled(String mmNo);
 	// 문자 인증
-	public int sendMessege(String tel);
+	public Map<String,Object> sendMessege(String tel);
 	// 이메일 인증()
 	public Map<String,Object> sendEmail(String email);
 	// 이메일 비밀번호 전송

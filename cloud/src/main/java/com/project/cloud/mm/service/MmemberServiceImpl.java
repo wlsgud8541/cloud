@@ -222,7 +222,8 @@ public class MmemberServiceImpl implements MmemberService{
 	}
 
 	@Override
-	public int sendMessege(String tel) {
+	public Map<String,Object> sendMessege(String tel) {
+		Map<String,Object> resultMap = new HashMap<String, Object>();
 		String strCN = certificationNumber();
 
 		int result = 0;
@@ -253,7 +254,7 @@ public class MmemberServiceImpl implements MmemberService{
 		bodyJson.put("messages", toArr);
 		
 		String body = bodyJson.toString();
-		
+		resultMap.put("strCN", strCN);
 		
 		try {
 			URL url = new URL(apiUrl);
@@ -277,9 +278,11 @@ public class MmemberServiceImpl implements MmemberService{
 			if(responseCode == 202) { // 정상 호출
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 result = 1;
+                resultMap.put("result", result);
             } else { // 에러 발생
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
                 result = 0;
+                resultMap.put("result", result);
             }
             
 			String inputLine;
@@ -297,7 +300,7 @@ public class MmemberServiceImpl implements MmemberService{
 			e.printStackTrace();
 		}
 	
-		return result;
+		return resultMap;
 	}
 
 	// 메세지 전송 URL
