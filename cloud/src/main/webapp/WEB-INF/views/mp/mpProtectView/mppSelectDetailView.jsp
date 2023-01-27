@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!-- content -->
 <div class="w3-content">
 	<input type="hidden" id="mppNo" value="${mppDetail.mppNo}">
@@ -191,7 +191,7 @@
 
 	<div class="row">
 		<div class="col text-center mt-4">
-			<c:if test="${(sessionScope.userId == mppDetail.mppWriter) or (sessionScope.userId == 'admin0001')}">
+			<c:if test="${(fn:trim(sessionScope.userId) eq fn:trim(mppDetail.mppWriter)) or (fn:trim(sessionScope.userId) eq 'admin0001')}">
 				<input type="button" class="btn btn-outline-primary" id="mppUpdate" data-mppNo="${mppDetail.mppNo}" data-pageNum="${pageNum}"value="수정하기"> 
 				<input type="button" class="btn btn-outline-primary  mx-3"  id="mppDelete" data-mppNo="${mppDetail.mppNo}" data-pageNum="${pageNum}"value="삭제하기" />
 			</c:if> 

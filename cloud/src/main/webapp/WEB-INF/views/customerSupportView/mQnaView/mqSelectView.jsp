@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- content -->
 <div class="w3-content pt-5">
 	<div class="textTop row">
 		<div class="col fs-2">
 			<b>Q&A 게시판</b>
 		</div>
-		<c:if test="${not empty sessionScope.userId && sessionScope.userId == 'admin0001'}">
+		<c:if test="${not empty sessionScope.userId && sessionScope.userId eq 'admin0001'}">
 			<div class="col board-bottom text-end">
 				<a href="mqInsert" class="btn btn-secondary posiRight my-2">글쓰기</a>
 				<br>
@@ -35,16 +35,20 @@
 									<small><fmt:formatDate value="${mqList.mqRegDate}" pattern="yyyy-MM-dd" /></small>
 								</span>
 							</div>
-							<c:if test="${not empty sessionScope.userId && sessionScope.userId == 'admin0001'}">
-								<div class="col-2 text-end">
+							<div class="col-2 text-end">
+								<c:if test="${fn:trim(sessionScope.userId) eq 'admin0001'}">
 									<button class="mqUpdate btn btn-outline-success btn-sm" data-mqNo="${mqList.mqNo}">
 										<i class="bi bi-journal-text" >수정</i>									
 									</button>
 									<button class="mqDelete btn btn-outline-warning btn-sm" data-mqNo="${mqList.mqNo}">
 										<i class="bi bi-trash">삭제</i>
 									</button>
-								</div>
-							</c:if>
+								</c:if>
+								<c:if test="${fn:trim(sessionScope.userId) ne 'admin0001'}">
+									<input type="hidden" class="mqUpdate btn btn-outline-success btn-sm" data-mqNo="${mqList.mqNo}" >
+									<input type="hidden" class="mqDelete btn btn-outline-success btn-sm" data-mqNo="${mqList.mqNo}" >
+								</c:if>
+							</div>
 						</div>	
 						<div id="mqDiv${mqList.mqNo}" class="mqContent row">
 							<div class="col p-3">

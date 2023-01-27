@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="w3-content">
-<input type="hidden" id="commSessionCk" value="${SessionScope.userId}">
 <form enctype="multipart">
+<input type="hidden" id="commSessionCk" value="${SessionScope.userId}">
 		<div class="">
 			<div class="my-4">
 				<h3>${mhfind.mhfTitle} </h3>
@@ -35,7 +36,7 @@
 			<div class="mhboxLine"></div>
 			<div class="row">
 				<div class="col text-center mt-4">
-					<c:if test="${(sessionScope.userId == mhfind.mhfWriter) or (sessionScope.userId == 'admin0001')}">
+					<c:if test="${(sessionScope.userId eq mhfind.mhfWriter) or (sessionScope.userId eq 'admin0001')}">
 						<input type="button" class="btn btn-outline-danger me-3" id="mhfUpdate" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"value="수정하기"> 
 						<input type="button" class="btn btn-outline-danger me-3" id="mhfDelete" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
 					</c:if>
@@ -61,19 +62,20 @@
 		</form>
 		
 			<c:if test="${not empty mhfCommList}">
-			<div class="row">
-				<div id="comList" class="col">
+			<div class="row" id="comList">
+				<div class="col">
 						<c:forEach var="mhfCommList" items="${mhfCommList}">
+						<input type="hidden" id="mhfcWriter" value="${mhfCommList.mhfComWriter}"/>
 							<div class="row">
 								<div class="col">
 									<span id="mhfComWriter"><b>${mhfCommList.mhfComWriter}</b></span><br>
 									<pre id="beforeCon${mhfCommList.mhfComNo}" class="m-0">${mhfCommList.mhfComContent}</pre>
 									<small class="text-secondary"><fmt:formatDate value="${mhfCommList.mhfComRegDate}" pattern="yyyy-MM-dd HH:mm" /></small>
-									<c:if test="${sessionScope.userId == report.mhrWriter or sessionScope.userId == 'admin0001'}">
-									<button class="btn btn-outline-dark btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcUpdate"> 
-										<i class="bi bi-journal-text"></i>수정</button>
-									<button class="btn btn-outline-dark btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcDelete"> 
-										<i class="bi bi-trash"></i>삭제</button>
+									<c:if test="${(fn:trim(sessionScope.userId) == fn:trim(mhfCommList.mhfComWriter)) or (fn:trim(sessionScope.userId == 'admin0001'))}">
+										<button class="btn btn-outline-dark btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcUpdate"> 
+											<i class="bi bi-journal-text"></i>수정</button>
+										<button class="btn btn-outline-dark btn-sm" data-mhfComNo="${mhfCommList.mhfComNo}" id="mhfcDelete"> 
+											<i class="bi bi-trash"></i>삭제</button>
 									</c:if>
 								</div>
 							</div>
@@ -87,18 +89,17 @@
 			<div class="col">
 				<form name="WriteForm" id="WriteForm">
 					<input type="hidden" name="mhfNo" value="${mhfind.mhfNo}"/>
-					<input type="hidden" name="mhfComWriter" value="${sessionScope.userId}" />
+					<input type="hidden" name="mhfComWriter" value="${sessionScope.userId}" id="Comsession"/>
 					<input type="hidden" name="mmNo" value="${sessionScope.mmNo}"/>
+					<input type="hidden" name="mhfWriter" value="${mhfind.mhfWriter}" id="writeId"/>
 					<div class="row bg-light my-3 p-3 border">
 						<div class="row">
 							<div class="col">
 								<textarea name="mhfComContent" id="mhfComContent" class="form-control" rows="4"></textarea>
 							</div>
-							<c:if test="${sessionScope.userId == report.mhrWriter or sessionScope.userId == 'admin0001'}">
 							<div class="col-md">
 								<input type="submit" value="댓글 수정" class="btn" id="updateCom"/>
 							</div>
-							</c:if>
 						</div>
 					</div>
 				</form>

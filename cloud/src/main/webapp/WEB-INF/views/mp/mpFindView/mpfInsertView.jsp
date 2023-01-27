@@ -11,7 +11,7 @@
 	</div>
 	<form name="mpfInsert" action="mpfInsertProcess" id="insertForm" class="row g-3 border-primary" method="post" enctype="multipart/form-data">
 	
-	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${mpModify.mmNo}">
+	<input type="hidden" class="form-control" name="mmNo" id="mmNo" value="${sessionScope.mmNo}">
 	<input type="hidden" class="form-control" name="mpfRegDate" id="mpfRegDate">
 	<input type="hidden" class="form-control" name="mpfWriter" id="writer" value="${sessionScope.userId} ">
 	

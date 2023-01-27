@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- content -->
 <div class="w3-content">
 	<input type="hidden" id="mpfNo" value="${mpfDetail.mpfNo}">
@@ -173,13 +173,12 @@
 		</div>
 	</div>
 	<div class="mpboxLine"></div>
-	
 	<div class="row">
 		<div class="col text-center mt-4">
-			<c:if test="${(sessionScope.userId == mpfDetail.mpfWriter) or (sessionScope.userId == 'admin0001')}">
+			<c:if test="${(fn:trim(sessionScope.userId) eq fn:trim(mpfDetail.mpfWriter)) or (fn:trim(sessionScope.userId) eq 'admin0001')}">
 				<input type="button" class="btn btn-outline-primary" id="mpfUpdate" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="수정하기"> 
-				<input type="button" class="btn btn-outline-primary  mx-3"  id="mpfDelete" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
-			</c:if>
+				<input type="button" class="btn btn-outline-primary  mx-3"  id="mpfDelete" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="삭제하기" />
+			</c:if> 
 			<input type="button" onclick="location.href='mpfSelectList?pageNum=${pageNum}'" class="btn btn-outline-primary" value="목록으로" />
 		</div>
 	</div>
@@ -202,14 +201,14 @@
                   <div class="col-6" id="mpfComContent${mpfCommList.mpfComNo}">
                       <p>${mpfCommList.mpfComContent}</p>
                   </div>
-                  <div class="col-2">
-                      <p>${mpfCommList.mpfComWriter}</p>
+                  <div class="col-2" >
+                      <p id="mpfcWriter">${mpfCommList.mpfComWriter}</p>
                   </div>
                   <div class="col-2">
                      <p><fmt:formatDate value="${mpfCommList.mpfComRegDate}" pattern="yyyy-MM-dd" /></p>
                   </div>
                   <div class="col-2">
-                  <c:if test="${(sessionScope.userId == mpfDetail.mpfWriter) or (sessionScope.userId == 'admin0001')}">
+                 	 <c:if test="${(fn:trim(sessionScope.userId) eq fn:trim(mpfCommList.mpfComWriter)) or (fn:trim(sessionScope.userId) eq 'admin0001')}">
 	                     <button class="btn btn-outline-success btn-sm mpfcUpdate" data-mpfComNo="${mpfCommList.mpfComNo}" id="mpfcUpdate${mpfCommList.mpfComNo }"> 
 	                        <i class="bi bi-journal-text">수정</i>
 	                     </button>
