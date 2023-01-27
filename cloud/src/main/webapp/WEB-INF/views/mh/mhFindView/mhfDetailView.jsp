@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="w3-content">
+<input type="hidden" id="commSessionCk" value="${SessionScope.userId}">
 <form enctype="multipart">
 		<div class="">
 			<div class="my-4">

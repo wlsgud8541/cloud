@@ -148,7 +148,7 @@ public class MhController {
 		return "redirect:mhrSelectList";
 	}
 	// 실종자 정보 수정화면 이동
-	@RequestMapping("/mhrModifyView")
+	@RequestMapping("/mhrModify")
 	public String mhrUpdate(int mhrNo, Model model) {
 		MhReport mhReport = service.mhrSelectDetail(mhrNo);
 		model.addAttribute("mhReport",mhReport);
@@ -270,7 +270,7 @@ public class MhController {
 		return "redirect:mhfSelectList";
 	}
 	// 실종자 목격 게시판 수정뷰 이동
-	@RequestMapping("/mhfModifyView")
+	@RequestMapping("/mhfModify")
 	public String mhfUpdate(int mhfNo, Model model) {
 		MhFind mhfind = mhfService.mhfSelectDetail(mhfNo);
 		model.addAttribute("mhfind",mhfind);

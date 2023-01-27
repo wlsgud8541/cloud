@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- content -->
+<input type="hidden" id="commSessionCk" value="${SessionScope.userId}">
 <div class="w3-content">
 	<input type="hidden" id="mreNo" value="${mrequest.mreNo}"> <input
 		type="hidden" id="mreRecoCnt" value="${mrequest.mreRecoCnt}">
