@@ -80,23 +80,23 @@
 								<c:forEach var="mw" items="${memberWriterInfo}">
 									<tr>
 										<c:if test="${fn:trim(mw.tableType) == '01'}">
-											<td><small>실종자 목격 게시판 </small></td>
+											<td width="150px;"><small>실종자 목격 게시판 </small></td>
 											<td><small><a href="mhfDetailView?mhfNo=${mw.noticeNo}&pageNum=1">${mw.noticeTitle}</a></small></td>
 										</c:if>
 										<c:if test="${fn:trim(mw.tableType) == '02'}">
-											<td><small>실종자 신고 게시판 </small></td>
+											<td width="150px;"><small>실종자 신고 게시판 </small></td>
 											<td><small><a href="mhrDetailView?mhrNo=${mw.noticeNo}&pageNum=1">${mw.noticeTitle}</a></small></td>
 										</c:if>
 										<c:if test="${fn:trim(mw.tableType) == '11'}">
-											<td><small>반려동물 목격 게시판 </small></td>
+											<td width="150px;"><small>반려동물 목격 게시판 </small></td>
 											<td><small><a href="mpfSelectDetail?mpfNo=${mw.noticeNo}&pageNum=1">${mw.noticeTitle}</a></small></td>
 										</c:if>
 										<c:if test="${fn:trim(mw.tableType) == '12'}">
-											<td><small>반려동물 임시보호 게시판 </small></td>
+											<td width="150px;"><small>반려동물 임시보호 게시판 </small></td>
 											<td><small><a href="mppSelectDetail?mppNo=${mw.noticeNo}&pageNum=1">${mw.noticeTitle}</a></small></td>
 										</c:if>
 										<c:if test="${fn:trim(mw.tableType) == '13'}">
-											<td><small>반려동물 실종신고 게시판 </small></td>
+											<td width="150px;"><small>반려동물 실종신고 게시판 </small></td>
 											<td><small><a href="mprSelectDetail?mprNo=${mw.noticeNo}&pageNum=1">${mw.noticeTitle}</a></small></td>
 										</c:if>
 									</tr>
@@ -151,12 +151,12 @@
 							<table class="mReqList">
 								<c:forEach var="mre" items="${memberRequestList}">
 									<tr>
-										<td><small><a href="mrSelectDetail?mreNo=${mre.mreNo}&pageNum=1">${mre.mreTitle}</a></small></td>
+										<td width="370px;"><small><a href="mrSelectDetail?mreNo=${mre.mreNo}&pageNum=1">${mre.mreTitle}</a></small></td>
 										<c:if test="${mre.mreReplyCode == '01'}">
-											<td><small>답변대기</small></td>
+											<td class="text-secondary"><small>답변대기</small></td>
 										</c:if>
 										<c:if test="${mre.mreReplyCode == '02'}">
-											<td><small>답변완료</small></td>
+											<td class="text-success"><small>답변완료</small></td>
 										</c:if>
 									</tr>
 								</c:forEach>
