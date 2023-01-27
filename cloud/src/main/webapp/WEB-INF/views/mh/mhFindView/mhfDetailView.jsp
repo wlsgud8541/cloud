@@ -35,7 +35,7 @@
 			<div class="mhboxLine"></div>
 			<div class="row">
 				<div class="col text-center mt-4">
-					<c:if test="${(sessionScope.userId == report.mhrWriter) or (sessionScope.userId == 'admin0001')}">
+					<c:if test="${(sessionScope.userId == mhfind.mhfWriter) or (sessionScope.userId == 'admin0001')}">
 						<input type="button" class="btn btn-outline-danger me-3" id="mhfUpdate" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"value="수정하기"> 
 						<input type="button" class="btn btn-outline-danger me-3" id="mhfDelete" data-mhfNo="${mhfind.mhfNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
 					</c:if>

@@ -108,7 +108,7 @@
 	<div class="row">
 		<div class="col text-center mt-4">
 			<input type="button" class="btn btn-outline-primary" value="전단지 출력📃"id ="jsReport" data-code="mp" />
-			<c:if test="${(sessionScope.userId == report.mhrWriter) or (sessionScope.userId == 'admin0001')}">
+			<c:if test="${(sessionScope.userId == mprDetail.mprWriter) or (sessionScope.userId == 'admin0001')}">
 				<input type="button" class="btn btn-outline-primary" id="mprUpdate" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="수정하기"> 
 				<input type="button" class="btn btn-outline-primary"  id="mprDelete" data-mprNo="${mprDetail.mprNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
 			</c:if>

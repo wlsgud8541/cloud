@@ -176,7 +176,7 @@
 	
 	<div class="row">
 		<div class="col text-center mt-4">
-			<c:if test="${(sessionScope.userId == report.mhrWriter) or (sessionScope.userId == 'admin0001')}">
+			<c:if test="${(sessionScope.userId == mpfDetail.mpfWriter) or (sessionScope.userId == 'admin0001')}">
 				<input type="button" class="btn btn-outline-primary" id="mpfUpdate" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="수정하기"> 
 				<input type="button" class="btn btn-outline-primary  mx-3"  id="mpfDelete" data-mpfNo="${mpfDetail.mpfNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
 			</c:if>
