@@ -37,7 +37,7 @@
 					</c:if>
 					<c:if test="${report.mhrAddFile == null}">
 					<tr>
-						<td class="py-2">&nbsp;&nbsp;💾 | 파일없음</td>
+					 	<td class="py-2">&nbsp;&nbsp;💾 | 파일없음</td>
 					</tr>	
 					</c:if>
 					 
