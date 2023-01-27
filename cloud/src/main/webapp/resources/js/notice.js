@@ -532,7 +532,6 @@ $(document).ready(function(){
 	$("#mprDelete").on("click",function(){
 		var mprNo = $(this).attr("data-mprNo");
 		var pageNum = $(this).attr("data-pageNum");
-		alert("게시글이 삭제되었습니다.");
 		location.href='mprDeleteProcess?mprNo='+mprNo+'&pageNum='+pageNum;
 	});
 	
@@ -549,7 +548,6 @@ $(document).ready(function(){
 	$("#mpfDelete").on("click",function(){
 		var mpfNo = $(this).attr("data-mpfNo");
 		var pageNum = $(this).attr("data-pageNum");
-		alert("게시글이 삭제되었습니다.");
 		location.href='mpfDeleteProcess?mpfNo='+mpfNo+'&pageNum='+pageNum;
 	});
 	
@@ -567,7 +565,6 @@ $(document).ready(function(){
 	$("#mppDelete").on("click",function(){
 		var mppNo = $(this).attr("data-mppNo");
 		var pageNum = $(this).attr("data-pageNum");
-		alert("게시글이 삭제되었습니다.");
 		location.href='mppDeleteProcess?mppNo='+mppNo+'&pageNum='+pageNum;
 	});
 	
@@ -977,7 +974,7 @@ $(document).ready(function(){
 	$("#mhrUpdate").on("click",function(){
 		var mhrNo = $(this).attr("data-mhrNo");
 		var pageNum = $(this).attr("date-pageNum");
-		location.href="mhrModifyView?mhrNo="+mhrNo+"&pageNum="+pageNum;
+		location.href="mhrModify?mhrNo="+mhrNo+"&pageNum="+pageNum;
 	});
 	// 삭제버튼 클릭시
 	$("#mhrDelete").on("click",function(){
@@ -990,7 +987,7 @@ $(document).ready(function(){
 	$("#mhfUpdate").on("click",function(){
 		var mhfNo = $(this).attr("data-mhfNo");
 		var pageNum = $(this).attr("data-pageNum");
-		location.href="mhfModifyView?mhfNo="+mhfNo+"&pageNum"+pageNum;
+		location.href="mhfModify?mhfNo="+mhfNo+"&pageNum"+pageNum;
 	});
 	// 삭제버튼 클릭시
 	$("#mhfDelete").on("click",function(){
