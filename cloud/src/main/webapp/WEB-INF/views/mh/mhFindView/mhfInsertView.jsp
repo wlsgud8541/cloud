@@ -62,7 +62,7 @@
 		    <textarea class="form-control textEditor" name="mhfContent" id="content"></textarea>
 	  	</div>
 	  	<div class="col-12">
-		    <input type="file" class="form-control rounded-0" name="mhfAddFile" id="mnAddFile">
+		    <input type="file" class="form-control rounded-0" name="mhfAddFile" id="addFile">
 	  	</div>
 		
 	  	<div class="col-12 text-center  text-center mt-3">

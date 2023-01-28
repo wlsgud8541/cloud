@@ -77,7 +77,7 @@
 	  	</div>
 	
 	  	<div class="col-12">
-		    <input type="file" class="form-control rounded-0" name="mpfAddFile" id="mnAddFile" >
+		    <input type="file" class="form-control rounded-0" name="mpfAddFile" id="addFile" >
 		</div>
 	  	<div class="col-8 text-center offset-md-2 text-center mt-3">
 			<input type="submit" value="등록하기" class="btn btn-primary" id="insert" />

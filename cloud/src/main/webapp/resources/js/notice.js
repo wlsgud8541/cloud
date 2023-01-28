@@ -34,6 +34,8 @@ $(document).ready(function(){
 		var mhrage = $("#mhrage").val();
 		var mhrNation = $("#mhrNation").val();
 		
+		
+		
 		// 작성자 체크 
 		if(writer == null){
 			alert("작성자가 입력되지 않았습니다."); 
@@ -64,6 +66,23 @@ $(document).ready(function(){
 		
 		//실종자 신고 폼체크
 		if(arrVCkLocation[0] == 'mhrInsert' || arrVCkLocation[0] == 'mhrModifyView' ){
+			var addr1 = $("#addr1").val();
+			var mhrName = $("#mhrName").val();
+			var mhrStatusCode = $("#mhrStatusCode").val();
+			var mhrIllCode = $("#mhrIllCode").val();
+			
+			// 실종자 이름 체크
+			if(mhrName.length == 0){
+				alert("실종자 이름이 입력되지 않았습니다");
+				return false;
+			}
+			
+			// 실종자 성별
+			if(gen== 0){
+				alert("실종자의 성별을 선택해주세요.");
+				return false;
+			}
+			
 			// 실종자 실종당시 나이 체크
 			if(mhrMage == 0){
 				alert("실종당시 나이가 입력되지 않았습니다.");
@@ -72,13 +91,24 @@ $(document).ready(function(){
 			
 			// 실종자 현재 나이 체크
 			if(mhrage == 0){
-				alert("나이가 입력되지 않았습니다.");
+				alert("실종자의 현재 나이가 입력되지 않았습니다.");
 				return false;
 			}
 			
-			// 실종자 실종 당시 날자 체크
+			// 실종자 실종 당시 날짜 체크
 			if(infoDate == 0){
-				alert("실종당일 날자가 입력되지 않았습니다.");
+				alert("실종당일 날짜가 입력되지 않았습니다.");
+				return false;
+			}
+			// 실종자 현황 체크
+			if(mhrStatusCode == 0){
+				alert("실종현황을 입력해 주세요.");
+				return false;
+			}
+			
+			// 실종자 대상구분 체크
+			if(mhrIllCode == 0){
+				alert("실종자의 대상구분을 선택해주세요.");
 				return false;
 			}
 			
@@ -89,36 +119,46 @@ $(document).ready(function(){
 			}
 			
 			// 실종자 실종 지역 체크
-			if(localCode == null){
+			if(localCode == 0){
 				alert("실종 지역이 입력되지 않았습니다.");
 				return false;
 			}
 			
-			// 실종자 성별
-			if(gen== null){
-				alert("성별이 입력되지 않았습니다.");
+			
+			if(addr1 == ''){
+				alert("상세위치가 입력되지 않았습니다");
 				return false;
 			}
+			
+			
 		}
 		
 		//실종자 목격 폼체크
 		if(arrVCkLocation[0] == 'mhfInsert' || arrVCkLocation[0] == 'mhfModifyView' ){
-			// 실종자 실종 당시 날자 체크
+		
+			var addr1 = $("#addr1").val();
+			var file = $("#file").val();
+			// 실종자 목격 당시 날자 체크
 			if(infoDate == 0){
-				alert("실종당시 날자가 입력되지 않았습니다.");
+				alert("목격당시 날짜가 입력되지 않았습니다.");
 				return false;
 			}
 	
 			
 			// 실종자 실종 지역 체크
-			if(localCode == null){
+			if(localCode == 0){
 				alert("실종 지역이 입력되지 않았습니다.");
 				return false;
 			}
 			
 			// 실종자 성별
-			if(gen== null){
-				alert("성별이 입력되지 않았습니다.");
+			if(gen== 0){
+				alert("성별을 선택해주세요.");
+				return false;
+			}
+			// 실종자 목격 상세위치
+			if(addr1 == ''){
+				alert("상세위치가 입력되지 않았습니다.");
 				return false;
 			}		
 			
