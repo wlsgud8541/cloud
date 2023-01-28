@@ -34,8 +34,10 @@
 	<div class="boxLine"></div>
 	<div class="row">
 		<div class="col text-center mt-4">
+		<c:if test="${sessionScope.userId == 'admin0001'}">
 			<input type="button" class="btn btn-outline-success" id="mnUpdate" data-mnNo="${mnotice.mnNo}" data-pageNum="${pageNum}"value="수정하기"> 
-			<input type="button" class="btn btn-outline-success  mx-3"  id="mnDelete" data-mnNo="${mnotice.mnNo}" data-pageNum="${pageNum}"value="삭제하기" /> 
+			<input type="button" class="btn btn-outline-success  mx-3"  id="mnDelete" data-mnNo="${mnotice.mnNo}" data-pageNum="${pageNum}"value="삭제하기" />
+		</c:if> 
 			<input type="button" onclick="location.href='mnSelectList?pageNum=${pageNum}'" class="btn btn-outline-success" value="목록으로" />
 		</div>
 	</div>
