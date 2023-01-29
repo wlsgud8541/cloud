@@ -134,9 +134,9 @@ $(document).ready(function(){
 				latitude = position.coords.latitude;   // 위도 값
 				longitude = position.coords.longitude; // 경도 값
 
-				latitude = latitude + test;
-				longitude = longitude + test;
-				test = test+0.0005;
+				//latitude = latitude + test;
+				//longitude = longitude + test;
+				//test = test+0.0005;
 				
 				
 				if(beginNum > 1){
@@ -158,14 +158,17 @@ $(document).ready(function(){
 				arrPositions.push(positions);			
 			
 				// 라인 좌표 정보 배열로 저장
-				arrLinePath.push(linePath);
+				
+				var reverseArrLinePath = [...arrLinePath].reverse();
+
+				
+				reverseArrLinePath.push(linePath);
+				
+				console.log("reverseArrLinePath : ");
+				console.log(reverseArrLinePath);
 				
 				
-				console.log("arrPositions2222 : "+arrPositions);
-				console.log("arrLinePath2222 : "+arrLinePath);
-				
-				
-				kakaoMapApi(latitude, longitude, arrPositions, arrLinePath);
+				kakaoMapApi(latitude, longitude, arrPositions, reverseArrLinePath);
 				
 				// 해당 위치주소 가져오기
 				var locationInfo = {latitude,longitude}; // 좌표 배열로 저장
@@ -189,7 +192,7 @@ $(document).ready(function(){
 
 	// kakao 지도 API
 	// 참조 사이트 : https://apis.map.kakao.com/web/guide/
-	function kakaoMapApi(latitude, longitude, arrPositions, arrLinePath){
+	function kakaoMapApi(latitude, longitude, arrPositions, reverseArrLinePath){
 		var container = document.getElementById('map'); // 지도 담을 영역 DOM 레퍼런스
 	
 		if(latitude == ""){
@@ -211,13 +214,13 @@ $(document).ready(function(){
 				level : 3
 			};
 			var map = new kakao.maps.Map(container, options);
-			kakaoMapMarkerApi(arrPositions, map, arrLinePath);
+			kakaoMapMarkerApi(arrPositions, map, reverseArrLinePath);
 		}
 	}
 	
 	// kakao 지도 Marker API
 	// 참조 사이트 : https://apis.map.kakao.com/web/sample/multipleMarkerImage/
-	function kakaoMapMarkerApi(arrPositions, map, arrLinePath){
+	function kakaoMapMarkerApi(arrPositions, map, reverseArrLinePath){
 		
 		var markerImg = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 		var imgSize = new kakao.maps.Size(24, 35); 				        // 마커 이미지 크기
@@ -233,9 +236,10 @@ $(document).ready(function(){
 			});
 		}
 		
+		
 		// 지도에 표시할 라인 정보 생성
 		var mapLineInfo = new kakao.maps.Polyline({
-			path : arrLinePath,		 // 좌표 배열
+			path : reverseArrLinePath,		 // 좌표 배열
 			strokeWeight : 5,		 // 선 두께
 			strokeColor : '#FF0000', // 선 색상
 			strokeOpacity : 0.7,	 // 선 불투명도 1 ~ 0 | 0에 가까울수록 투명
