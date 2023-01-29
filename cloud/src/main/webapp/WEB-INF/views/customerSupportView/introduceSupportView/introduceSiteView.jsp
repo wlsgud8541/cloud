@@ -32,9 +32,9 @@
 				</div>
 				<div class="col-8 ">
 					<p class="border-bottom border-2 border-success display-6 text-top align-top px-3">전진형</p><br>
-					<p class="px-3">직&nbsp;&nbsp;&nbsp;&nbsp;책 : 개발팀 팀장</p>
-					<p class="px-3">이메일 : wlsgud8541@naver.com</p>
-					<p class="px-3">인사말 : 항상 열심히 노력하겠습니다.</p>
+					<p class="px-3"><b>담&nbsp;&nbsp;&nbsp;&nbsp;당 : 개발 및 총괄</b></p>
+					<p class="px-3"><b>이메일 : wlsgud8541@naver.com</b></p>
+					<p class="px-3"><b>인사말 : 항상 열심히 노력하겠습니다.</b></p>
 				</div>
 			</div>
 		</div>
@@ -45,9 +45,9 @@
 				</div>
 				<div class="col-8">
 					<p class="border-bottom border-2 border-success display-6 text-top align-top px-3">정우영</p><br>
-					<p class="px-3">직&nbsp;&nbsp;&nbsp;&nbsp;책 : 디자인 및 개발</p>
-					<p class="px-3">이메일 : woo001@gmail.com</p>
-					<p class="px-3">인사말 : 항상 열심히 노력하겠습니다.</p>
+					<p class="px-3"><b>담&nbsp;&nbsp;&nbsp;&nbsp;당 : 개발 및 디자인</b></p>
+					<p class="px-3"><b>이메일 : woo001@gmail.com</b></p>
+					<p class="px-3"><b>인사말 : 항상 열심히 노력하겠습니다.</b></p>
 				</div>
 			</div>
 		</div>
@@ -60,9 +60,9 @@
 				</div>
 				<div class="col-8">
 					<p class="border-bottom border-2 border-success display-6 text-top align-top px-3">김경욱</p><br>
-					<p class="px-3">직&nbsp;&nbsp;&nbsp;&nbsp;책 : 공통기능 개발</p>
-					<p class="px-3">이메일 : uk001@gmail.com</p>
-					<p class="px-3">인사말 : 항상 열심히 노력하겠습니다.</p>
+					<p class="px-3"><b>담&nbsp;&nbsp;&nbsp;&nbsp;당 : 공통기능 개발 및 데이터베이스관리</b></p>
+					<p class="px-3"><b>이메일 : uk001@gmail.com</b></p>
+					<p class="px-3"><b>인사말 : 항상 열심히 노력하겠습니다.</b></p>
 				</div>
 			</div>
 		</div>
@@ -73,9 +73,9 @@
 				</div>
 				<div class="col-8">
 					<p class="border-bottom border-2 border-success display-6 text-top align-top px-3">정민혁</p><br>
-					<p class="px-3">직&nbsp;&nbsp;&nbsp;&nbsp;책 : 디자인 및 개발</p>
-					<p class="px-3">이메일 : min001@gmail.com</p>
-					<p class="px-3">인사말 : 항상 열심히 노력하겠습니다.</p>
+					<p class="px-3"><b>담&nbsp;&nbsp;&nbsp;&nbsp;당 : 개발 및 디자인</b></p>
+					<p class="px-3"><b>이메일 : min001@gmail.com</b></p>
+					<p class="px-3"><b>인사말 : 항상 열심히 노력하겠습니다.</b></p>
 				</div>
 			</div>
 		</div>
