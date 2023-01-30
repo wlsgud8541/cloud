@@ -58,7 +58,7 @@
 						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 09}">세종</c:if>
 						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 10}">강원</c:if>
 						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 11}">충북</c:if>
-						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 12}">충남</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 12}">충남</c:if> 
 						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 13}">전북</c:if>
 						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 14}">전남</c:if>
 						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 15}">경북</c:if>
