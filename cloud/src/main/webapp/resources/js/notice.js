@@ -70,7 +70,13 @@ $(document).ready(function(){
 			var mhrName = $("#mhrName").val();
 			var mhrStatusCode = $("#mhrStatusCode").val();
 			var mhrIllCode = $("#mhrIllCode").val();
-			
+			var mhrHeight = $("#mhrHeight").val();
+			var mhrWeight = $("#mhrWeight").val();
+			var mhrPhysical = $("#mhrPhysical").val();
+			var mhrFace = $("#mhrFace").val();
+			var mhrHairColor = $("#mhrHairColor").val();
+			var mhrHair = $("#mhrHair").val();
+			var mhrWear = $("#mhrWear").val();
 			// 실종자 이름 체크
 			if(mhrName.length == 0){
 				alert("실종자 이름이 입력되지 않았습니다");
@@ -129,8 +135,15 @@ $(document).ready(function(){
 				alert("상세위치가 입력되지 않았습니다");
 				return false;
 			}
-			
-			
+			if(mhrHeight.length < 1 || mhrWeight.length < 1 || mhrPhysical.length < 1 || mhrFace.length < 1 || mhrHairColor.length < 1 || mhrHair.length < 1 || mhrWear.length < 1){
+				var result =  confirm("기입되지 않은 정보가 남아있습니다. 작성을 완료하시겠습니까?");
+					if(result == true){
+				$("#insertForm").submit();
+				}else{
+					return false;
+					}
+				} 
+				$("#insertForm").submit();
 		}
 		
 		//실종자 목격 폼체크

@@ -131,7 +131,7 @@
   	</div>
 <!--   	파일 -->
   	<div class="col-12">
-	    <input type="file" class="form-control rounded-0" name="mhrAddFile" id="mnAddFile" value="${mhReport.mhrAddFile}">
+	    <input type="file" class="form-control rounded-0" name="mhrAddFile" id="addFile" value="${mhReport.mhrAddFile}">
   	</div>
   	<div class="col-8 text-center offset-md-2 text-center mt-3">
 		<input type="submit" value="등록하기" class="btn btn-danger" id = "insert"/>

@@ -64,7 +64,7 @@
 	  	</div>
 <!-- 	  	파일 -->
 	  	<div class="col-12">
-		    <input type="file" class="form-control rounded-0" name="mhfAddFile" id="mnAddFile"value="${mhifnd.mhfAddFile}">
+		    <input type="file" class="form-control rounded-0" name="mhfAddFile" id="addFile"value="${mhifnd.mhfAddFile}">
 	  	</div>
 	  	<div class="col-12 text-center  text-center mt-3">
 			<input type="submit" value="수정하기" class="btn btn-danger" id = "insert"/>
