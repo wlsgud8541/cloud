@@ -48,7 +48,7 @@
 			<c:if test="${mpfDetail.mpfPetType == 03}"><b>기타</b></c:if>
 			<table class="table border-top border-2 mt-3">
 				<tr>
-					<th>실종지역 / 상세위치</th>
+					<th>목격지역 / 상세위치</th>
 					<td><c:if test="${mpfDetail.mpfLocalCode == 01}">서울</c:if>
 						<c:if test="${mpfDetail.mpfLocalCode == 02}">경기</c:if>
 						<c:if test="${mpfDetail.mpfLocalCode == 03}">인천</c:if>
@@ -69,7 +69,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>실종일시</th>
+					<th>목격일시</th>
 					<td><fmt:formatDate value="${mpfDetail.mpfInfoDate}" pattern="yyyy-MM-dd" /></td>
 				</tr>
 			</table>

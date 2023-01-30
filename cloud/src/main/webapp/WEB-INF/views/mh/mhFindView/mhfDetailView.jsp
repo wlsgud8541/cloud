@@ -28,9 +28,52 @@
 						</c:if>
 						 
 					</table>
-					<div class="py-4 px-3 row">
-						<pre>${mhfind.mhfContent}</pre>
-					</div>
+					<div class="row mt-4">
+						<div class="col">
+							<c:if test="${mhfind.mhfAddFile != null}">
+								<div class="text-center">
+									<img src="fileDownload?fileName=${mhfind.mhfAddFile}" style="width: 500px;">
+								</div>
+							</c:if>
+							<c:if test="${empty mhfind.mhfAddFile}">
+								<div class="text-center text-success p-4">
+									<img src="resources/image/main/cloudLogo.png" style="width: 350px;">
+								</div>
+							</c:if>
+						</div>
+		<div class="col">
+			<c:if test="${mhfind.mhfGen == 'M'}"><b>남성</b></c:if>
+			<c:if test="${mhfind.mhfGen== 'F'}"><b>여성</b></c:if>
+			<table class="table border-top border-2 mt-3">
+				<tr>
+					<th>목격지역 / 상세위치</th>
+					<td><c:if test="${fn:trim(fn:trim(mhfind.mhfLocalCode)) == 01}">서울</c:if>
+						<c:if test="${fn:trim(fn:trim(mhfind.mhfLocalCode)) == 02}">경기</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 03}">인천</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 04}">대전</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 05}">광주</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 06}">대구</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 07}">울산</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 08}">부산</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 09}">세종</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 10}">강원</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 11}">충북</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 12}">충남</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 13}">전북</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 14}">전남</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 15}">경북</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 16}">경남</c:if>
+						<c:if test="${fn:trim(mhfind.mhfLocalCode) == 17}">제주</c:if> / 	${mhfind.mhfLocalDetail}
+					</td>
+				</tr>
+				<tr>
+					<th>목격일시</th>
+					<td><fmt:formatDate value="${mhfind.mhfInfoDate}" pattern="yyyy-MM-dd" /></td>
+				</tr>
+			</table>
+		</div>
+			<b>${mhfind.mhfContent }</b>
+	</div>	
 				</div>
 				<div class="mhboxLine"></div>
 				<div class="row">

@@ -9,13 +9,13 @@
 	    <input type="hidden" class="form-control" name="mreWriter"  id="mreWriter" placeholder="작성자를 입력해 주세요" value="${sessionScope.userId }">
 	    
   		<div class="col-8 offset-md-2">
-		    <label for="title" class="form-label">제 목</label>
-		    <input type="text" class="form-control" name="mreTitle"  id="mreTitle">
+		    <label for="mreTitle" class="form-label">제 목</label>
+		    <input type="text" class="form-control" name="mreTitle"  id="title">
   		</div>
 		<div class="col-8 offset-md-2">
-		    <label for="content" class="form-label">내 용</label> 
+		    <label for="mreContent" class="form-label">내 용</label> 
 		    <pre style="width:100%;">
-		    <textarea class="form-control textEditor" name="mreContent" id="mreContent" rows="15" >※ 웹사이트이용과 관련된 건의사항을 작성해주시기 바랍니다.
+		    <textarea class="form-control textEditor" name="mreContent" id="content" rows="15" >※ 웹사이트이용과 관련된 건의사항을 작성해주시기 바랍니다.
 ※ 건의 게시글 작성 시 하나의 게시글 당 하나의 건의사항을 작성해주시기 바랍니다.
 ※ [필수 기재사항] 누락 시 답변 대기 게시글로 선정되지 않을 수 있습니다. (작성 양식을 그대로 사용 부탁드립니다.)
 
@@ -30,7 +30,7 @@
   		</div>	
   		<div class="col-8 offset-md-2">
 		    <label for="title" class="form-label">파 일</label>
-		    <input type="file" class="form-control" name="mreAddFile"  id="mreAddFile" >
+		    <input type="file" class="form-control" name="mreAddFile"  id="addFile" >
   		</div>
   		<div class="col-8 offset-md-2 text-center mt-5">
 		   <input type="submit" value="등록하기" class="btn btn-success"/>&nbsp;&nbsp;

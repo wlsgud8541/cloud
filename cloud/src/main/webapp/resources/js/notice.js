@@ -306,7 +306,7 @@ $(document).ready(function(){
 			}
 		} 
 		$("#insertForm").submit();
-		
+	
 		
 	});
 	
