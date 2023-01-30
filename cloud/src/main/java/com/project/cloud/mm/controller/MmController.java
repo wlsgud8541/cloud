@@ -38,11 +38,13 @@ public class MmController {
 	private static String REST_API_KAKAO_KEY = "e46c1c647457913d7dbf891555db0996";
 	private static String REST_API_KAKAO_SECRET_KEY = "UVD9pWa6o9kNZ6BLMTBv6KuKXWiLvgnN";
 	private static String REDIRECT_KAKAO_LOGIN_URI = "http://localhost:8080/cloud/loginView?loginType=kakao";
+	//private static String REDIRECT_KAKAO_LOGIN_URI = "http://192.168.219.101:8080/cloud/loginView?loginType=kakao";
 	
 	// 네이버 로그인 key, 네이버 로그인 redirect URI
 	private static String REST_API_NAVER_KEY = "9toN9PG3pvbhxKu3hXUL";
 	private static String REST_API_NAVER_SECRET_KEY = "8DxLGOLOT9";
 	private static String REDIRECT_NAVER_LOGIN_URI = "http://localhost:8080/cloud/loginView?loginType=naver";
+	//private static String REDIRECT_NAVER_LOGIN_URI = "http://192.168.219.101:8080/cloud/loginView?loginType=naver";
 	
 	// 로그인 처리
 	@RequestMapping("mmSelectLoginCheck")

@@ -32,6 +32,7 @@
 				</c:if>
 				<c:if test="${not empty sessionScope.kakaoLogin}">
 					<li><a href="https://kauth.kakao.com/oauth/logout?client_id=e46c1c647457913d7dbf891555db0996&logout_redirect_uri=http://localhost:8080/cloud/mmLogout" class="logout">로그아웃</a></li>
+					<!-- <li><a href="https://kauth.kakao.com/oauth/logout?client_id=e46c1c647457913d7dbf891555db0996&logout_redirect_uri=http://192.168.219.101:8080/cloud/mmLogout" class="logout">로그아웃</a></li> -->
 				</c:if>
 				<c:if test="${not empty sessionScope.naverLogin}">
 					<li><a href="mmLogout" class="logout">로그아웃</a></li>
